@@ -1,0 +1,24 @@
+name: charnet
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  # Core
+  - networkx>=3.0
+  - pandas>=2.0
+  - numpy>=1.24
+  - pyyaml>=6.0
+  - matplotlib>=3.7
+  - seaborn>=0.12
+  # CLI
+  - click>=8.1
+  # Dev
+  - pytest>=7.0
+  - ruff>=0.4
+  - pip:
+    # Optional: Louvain community detection (no conda-forge package for python-louvain)
+    - python-louvain>=0.16
+    # Optional: interactive viz
+    - pyvis>=0.3

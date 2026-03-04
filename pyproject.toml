@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "charnet"
+version = "0.1.0"
+description = "Time-Evolved Character Interaction Network from Transcripts & Scene Detection"
+requires-python = ">=3.10"
+dependencies = [
+    "networkx>=3.0",
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "pyyaml>=6.0",
+    "matplotlib>=3.7",
+    "seaborn>=0.12",
+]
+
+[project.optional-dependencies]
+community = ["python-louvain>=0.16"]
+interactive = ["pyvis>=0.3"]
+cli = ["click>=8.1"]
+dev = ["pytest>=7.0", "ruff>=0.4"]
+all = ["charnet[community,interactive,cli,dev]"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

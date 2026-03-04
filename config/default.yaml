@@ -1,0 +1,55 @@
+# --- Data Paths ---
+data:
+  submodule_root: data/friends_annotations
+  season6:
+    transcript_dir: annotation_results/Speech2Text/s6
+    pyscene_dir: annotation_results/TSVpyscene/s6
+    transcript_glob: "friends_s06e*_model-AA_desc-wSpeaker_transcript.json"
+    pyscene_glob: "friends_s06e*_pyscene.tsv"
+    output_dir: output/s6
+
+# --- Preprocessing ---
+preprocess:
+  estimate_missing_end_times: true      # if utterance has no 'end', estimate from next start
+  min_utterance_duration: 0.1           # discard utterances shorter than this (seconds)
+  word_gap_threshold: 0.5               # seconds between same-speaker words before new utterance
+
+# --- Scene Segmentation ---
+segmentation:
+  jaccard_threshold: 0.3                # speaker overlap threshold for merging shots
+  max_shot_gap: 2.0                     # max seconds gap to still merge shots
+  min_scene_duration: 10.0              # merge scenes shorter than this
+  max_scene_duration: 300.0             # split scenes longer than this
+  silence_lookahead: 3                  # for shots with no speakers, look ahead N shots
+  # transcript-only fallback
+  transcript_only:
+    silence_gap: 5.0                    # gap threshold for scene break
+    speaker_window: 10                  # sliding window size for speaker set comparison
+    speaker_jaccard_break: 0.2          # jaccard below this = scene break
+
+# --- Network Construction ---
+network:
+  weight_adjacency: 1.0                 # alpha: weight for turn adjacency
+  weight_proximity: 0.5                 # beta: weight for turn proximity
+  weight_copresence: 0.25               # gamma: weight for co-presence
+  proximity_window: 3                   # max turn distance for proximity scoring
+  rolling_window_seconds: 300           # for cumulative snapshot aggregation
+
+# --- Analysis ---
+analysis:
+  community_method: louvain             # louvain | girvan_newman
+  centrality_measures:
+    - degree
+    - betweenness
+    - eigenvector
+
+# --- Visualization ---
+visualization:
+  layout: spring                        # spring | kamada_kawai | circular
+  node_size_by: eigenvector_centrality
+  edge_width_by: weight
+  color_by: community
+  export_formats:
+    - png
+    - gexf                              # for Gephi
+    - json                              # for D3 / web viz
