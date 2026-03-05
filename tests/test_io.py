@@ -10,7 +10,8 @@ from charnet.io import (
     load_transcript, load_shots, load_speaker_map,
     load_word_transcript, load_pyscene_tsv,
     estimate_missing_end_times, save_utterances, load_utterances,
-    save_shots, load_shots_json,
+    save_shots, load_shots_json, load_sentence_transcript,
+    infer_community_transcript_path, save_records, load_records,
 )
 from charnet.models import Utterance, Shot
 
@@ -227,3 +228,46 @@ class TestRoundtrip:
         loaded = load_shots_json(path)
         assert len(loaded) == len(sample_shots)
         assert loaded[0].start == sample_shots[0].start
+
+    def test_records_roundtrip(self, tmp_path):
+        path = tmp_path / "records.json"
+        rows = [{"a": 1, "b": "x"}, {"a": 2, "b": "y"}]
+        save_records(rows, path)
+        loaded = load_records(path)
+        assert loaded == rows
+
+
+class TestLoadSentenceTranscript:
+    def test_loads_sentences_dict_shape(self, tmp_path):
+        data = {
+            "sentences": [
+                {"speaker": "ross", "start": 1.0, "end": 2.0, "text": "Hi."},
+                {"speaker": "rachel", "start": 2.5, "end": 3.0, "text": "Hello."},
+            ]
+        }
+        path = tmp_path / "sentences.json"
+        path.write_text(json.dumps(data))
+        utts = load_sentence_transcript(path)
+        assert len(utts) == 2
+        assert utts[0].speaker == "ross"
+        assert utts[0].text == "Hi."
+
+
+class TestInferCommunityTranscriptPath:
+    def test_infers_from_speechtotext_layout(self, tmp_path):
+        transcript = tmp_path / "annotation_results" / "Speech2Text" / "s6" / "friends_s06e01a.json"
+        transcript.parent.mkdir(parents=True)
+        transcript.write_text("{}")
+
+        community = (
+            tmp_path
+            / "annotation_results"
+            / "community_based"
+            / "s6"
+            / "friends_s06e01_ufs.txt"
+        )
+        community.parent.mkdir(parents=True)
+        community.write_text("Ross: hi")
+
+        inferred = infer_community_transcript_path(transcript, "friends_s06e01a")
+        assert inferred == community
