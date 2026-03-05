@@ -9,7 +9,7 @@ import networkx as nx
 import pandas as pd
 
 from charnet.models import SceneGraph
-from charnet.network import to_networkx, aggregate_episode_graph
+from charnet.network import to_networkx
 
 logger = logging.getLogger(__name__)
 
@@ -82,16 +82,35 @@ def scene_metrics(scene_graph: SceneGraph) -> dict[str, Any]:
     return result
 
 
-def episode_metrics(
-    scene_graphs: list[SceneGraph],
+def episode_graph_from_dict(episode_network: dict[str, Any]) -> nx.Graph:
+    """Build a NetworkX graph from stage-2 episode_network.json content."""
+    G = nx.Graph()
+    for node in episode_network.get("nodes", []):
+        G.add_node(node)
+    for edge in episode_network.get("edges", []):
+        source = edge.get("source")
+        target = edge.get("target")
+        if not source or not target:
+            continue
+        G.add_edge(
+            source,
+            target,
+            weight=float(edge.get("weight", 0.0)),
+            adjacency=float(edge.get("adjacency", 0.0)),
+            proximity=float(edge.get("proximity", 0.0)),
+            copresence=float(edge.get("copresence", 0.0)),
+        )
+    return G
+
+
+def episode_metrics_from_graph(
+    G: nx.Graph,
     centrality_measures: list[str] | None = None,
     community_method: str = "louvain",
 ) -> dict[str, Any]:
-    """Compute episode-level aggregate metrics."""
+    """Compute episode-level aggregate metrics from an episode graph."""
     if centrality_measures is None:
         centrality_measures = ["degree", "betweenness", "eigenvector"]
-
-    G = aggregate_episode_graph(scene_graphs)
 
     centralities = compute_centralities(G, centrality_measures)
 

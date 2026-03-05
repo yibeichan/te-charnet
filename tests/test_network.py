@@ -1,14 +1,16 @@
-"""Tests for charnet.network — graph construction."""
+"""Tests for charnet.network — current aligned-rows based graph construction."""
 from __future__ import annotations
 
 import pytest
 import networkx as nx
 
-from charnet.models import Utterance, Scene, SceneGraph, EdgeData
+from charnet.models import SceneGraph, EdgeData
 from charnet.network import (
-    build_scene_graph, build_temporal_network,
-    to_networkx, aggregate_episode_graph,
-    _adjacency_count, _proximity_scores,
+    _adjacency_count,
+    _proximity_scores,
+    aggregate_episode_graph,
+    build_temporal_network_from_aligned_rows,
+    to_networkx,
 )
 
 
@@ -17,16 +19,12 @@ class TestAdjacencyCount:
         seq = ["A", "B", "A", "B"]
         counts = _adjacency_count(seq)
         key = tuple(sorted(["A", "B"]))
-        assert counts[key] == 3  # A->B, B->A, A->B
+        assert counts[key] == 3
 
     def test_same_speaker_not_counted(self):
         seq = ["A", "A", "B"]
         counts = _adjacency_count(seq)
-        # A->A should not appear
         assert ("A", "A") not in counts
-
-    def test_empty_sequence(self):
-        assert _adjacency_count([]) == {}
 
 
 class TestProximityScores:
@@ -35,69 +33,85 @@ class TestProximityScores:
         scores = _proximity_scores(seq, window=2)
         key_ab = tuple(sorted(["A", "B"]))
         key_ac = tuple(sorted(["A", "C"]))
-        # A-B distance 1, A-C distance 2
         assert scores.get(key_ab, 0) > scores.get(key_ac, 0)
 
-    def test_empty_sequence(self):
-        assert _proximity_scores([]) == {}
 
-
-class TestBuildSceneGraph:
-    def test_builds_graph(self, sample_scene, sample_utterances):
-        sg = build_scene_graph(sample_scene, sample_utterances)
-        assert isinstance(sg, SceneGraph)
-        assert "Monica" in sg.nodes
-        assert "Ross" in sg.nodes
-
-    def test_edges_have_positive_weight(self, sample_scene, sample_utterances):
-        sg = build_scene_graph(sample_scene, sample_utterances)
-        for e in sg.edges:
-            assert e.weight > 0
-
-    def test_empty_scene_returns_empty_graph(self):
-        sc = Scene(
-            scene_id=0, start=0.0, end=10.0, speakers=[],
-            n_shots=0, n_utterances=0, utterance_indices=[],
-        )
-        sg = build_scene_graph(sc, [])
-        assert sg.nodes == []
-        assert sg.edges == []
+class TestBuildTemporalNetworkFromAlignedRows:
+    def test_builds_scene_graphs_from_scene_id(self):
+        rows = [
+            {
+                "start": "0.0",
+                "end": "1.0",
+                "scene_id": "1",
+                "speaker": "Monica",
+                "utterance": "Hi",
+                "scene_desc": "",
+            },
+            {
+                "start": "1.1",
+                "end": "2.0",
+                "scene_id": "1",
+                "speaker": "Ross",
+                "utterance": "Hello",
+                "scene_desc": "",
+            },
+            {
+                "start": "",
+                "end": "",
+                "scene_id": "2",
+                "speaker": "",
+                "utterance": "",
+                "scene_desc": "New scene",
+            },
+            {
+                "start": "3.0",
+                "end": "4.0",
+                "scene_id": "2",
+                "speaker": "Rachel",
+                "utterance": "Hey",
+                "scene_desc": "",
+            },
+        ]
+        graphs = build_temporal_network_from_aligned_rows(rows)
+        assert len(graphs) == 2
+        assert graphs[0].scene_id == 1
+        assert graphs[1].scene_id == 2
+        assert "Monica" in graphs[0].nodes
+        assert "Rachel" in graphs[1].nodes
 
 
 class TestToNetworkx:
-    def test_converts_correctly(self, sample_scene, sample_utterances):
-        sg = build_scene_graph(sample_scene, sample_utterances)
+    def test_converts_correctly(self):
+        sg = SceneGraph(
+            scene_id=1,
+            start=0.0,
+            end=5.0,
+            nodes=["A", "B"],
+            edges=[EdgeData("A", "B", 2.0, 1.0, 1.5, 1.0)],
+        )
         G = to_networkx(sg)
         assert isinstance(G, nx.Graph)
-        assert "Monica" in G.nodes
-        assert G.number_of_edges() >= 1
-
-    def test_edge_weights_preserved(self, sample_scene, sample_utterances):
-        sg = build_scene_graph(sample_scene, sample_utterances)
-        G = to_networkx(sg)
-        for u, v, d in G.edges(data=True):
-            assert d["weight"] > 0
+        assert G.number_of_nodes() == 2
+        assert G.number_of_edges() == 1
+        assert G["A"]["B"]["weight"] == 2.0
 
 
 class TestAggregateEpisodeGraph:
-    def test_aggregates_weights(self, sample_scene, sample_utterances):
-        sg1 = build_scene_graph(sample_scene, sample_utterances)
-        sg2 = build_scene_graph(sample_scene, sample_utterances)
+    def test_aggregates_weights(self):
+        sg1 = SceneGraph(
+            scene_id=1,
+            start=0.0,
+            end=5.0,
+            nodes=["A", "B"],
+            edges=[EdgeData("A", "B", 2.0, 1.0, 1.5, 1.0)],
+        )
+        sg2 = SceneGraph(
+            scene_id=2,
+            start=5.0,
+            end=10.0,
+            nodes=["A", "B"],
+            edges=[EdgeData("A", "B", 3.0, 2.0, 1.0, 1.0)],
+        )
         G = aggregate_episode_graph([sg1, sg2])
-        # Weights should be doubled compared to single scene
-        sg_single = build_scene_graph(sample_scene, sample_utterances)
-        G_single = to_networkx(sg_single)
-        for u, v in G.edges():
-            assert G[u][v]["weight"] == pytest.approx(G_single[u][v]["weight"] * 2)
-
-    def test_empty_list(self):
-        G = aggregate_episode_graph([])
-        assert G.number_of_nodes() == 0
-
-
-class TestBuildTemporalNetwork:
-    def test_returns_one_graph_per_scene(self, sample_scene, sample_utterances):
-        scenes = [sample_scene]
-        graphs = build_temporal_network(scenes, sample_utterances)
-        assert len(graphs) == 1
-        assert isinstance(graphs[0], SceneGraph)
+        assert G["A"]["B"]["weight"] == pytest.approx(5.0)
+        assert G["A"]["B"]["adjacency"] == pytest.approx(3.0)

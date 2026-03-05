@@ -4,7 +4,7 @@ from __future__ import annotations
 import json
 import logging
 from pathlib import Path
-from typing import Any, Optional
+from typing import Optional
 
 import matplotlib
 matplotlib.use("Agg")  # non-interactive backend
@@ -15,7 +15,7 @@ import numpy as np
 import pandas as pd
 
 from charnet.models import SceneGraph
-from charnet.network import aggregate_episode_graph, to_networkx
+from charnet.network import to_networkx
 
 logger = logging.getLogger(__name__)
 
@@ -169,12 +169,10 @@ def plot_scene_timeline(
 
     for sg in scene_graphs:
         dominant = None
-        max_degree = -1
         G = to_networkx(sg)
         if G.number_of_nodes() > 0:
             deg = nx.degree_centrality(G)
             dominant = max(deg, key=deg.get)
-            max_degree = deg[dominant]
 
         color_idx = 0
         if dominant and community_map:

@@ -8,7 +8,7 @@ import re
 from pathlib import Path
 from typing import Any, Optional
 
-from charnet.models import Utterance, Shot
+from charnet.models import EdgeData, SceneGraph, Shot, Utterance
 
 logger = logging.getLogger(__name__)
 
@@ -358,11 +358,6 @@ def load_records(path: Path) -> list[dict[str, Any]]:
     return data
 
 
-def load_pyscene_tsv(path: Path) -> list[Shot]:
-    """Backward-compatible alias for load_shots."""
-    return load_shots(path)
-
-
 def load_speaker_map(path: Path) -> dict[str, str]:
     """Load optional speaker map JSON (SPEAKER_01 -> 'Monica')."""
     with open(path, "r", encoding="utf-8") as f:
@@ -404,38 +399,8 @@ def load_shots_json(path: Path) -> list[Shot]:
     return [Shot(**d) for d in data]
 
 
-def save_scenes(scenes: list, path: Path) -> None:
-    """Save scenes list to JSON."""
-    from charnet.models import Scene
-    path.parent.mkdir(parents=True, exist_ok=True)
-    data = [s.to_dict() if hasattr(s, "to_dict") else s for s in scenes]
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2)
-    logger.info("Saved %d scenes to %s", len(scenes), path)
-
-
-def load_scenes(path: Path):
-    """Load scenes JSON produced by segment stage."""
-    from charnet.models import Scene
-    with open(path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    scenes = []
-    for d in data:
-        scenes.append(Scene(
-            scene_id=d["scene_id"],
-            start=d["start"],
-            end=d["end"],
-            speakers=d.get("speakers", []),
-            n_shots=d.get("n_shots", 0),
-            n_utterances=d.get("n_utterances", 0),
-            utterance_indices=d.get("utterance_indices", []),
-        ))
-    return scenes
-
-
-def save_temporal_network(scene_graphs: list, path: Path) -> None:
+def save_temporal_network(scene_graphs: list[SceneGraph | dict[str, Any]], path: Path) -> None:
     """Save temporal network JSON."""
-    from charnet.models import SceneGraph
     path.parent.mkdir(parents=True, exist_ok=True)
     data = [sg.to_dict() if hasattr(sg, "to_dict") else sg for sg in scene_graphs]
     with open(path, "w", encoding="utf-8") as f:
@@ -443,9 +408,8 @@ def save_temporal_network(scene_graphs: list, path: Path) -> None:
     logger.info("Saved temporal network (%d scenes) to %s", len(scene_graphs), path)
 
 
-def load_temporal_network(path: Path) -> list:
+def load_temporal_network(path: Path) -> list[SceneGraph]:
     """Load temporal network JSON."""
-    from charnet.models import SceneGraph, EdgeData
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
     result = []

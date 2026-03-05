@@ -3,11 +3,11 @@ from __future__ import annotations
 
 import itertools
 import logging
-from typing import Any, Optional
+from typing import Any
 
 import networkx as nx
 
-from charnet.models import Utterance, Scene, SceneGraph, EdgeData
+from charnet.models import SceneGraph, EdgeData
 
 logger = logging.getLogger(__name__)
 
@@ -41,82 +41,78 @@ def _proximity_scores(
     return scores
 
 
-def build_scene_graph(
-    scene: Scene,
-    utterances: list[Utterance],
-    weight_adjacency: float = 1.0,
-    weight_proximity: float = 0.5,
-    weight_copresence: float = 0.25,
-    proximity_window: int = 3,
-) -> SceneGraph:
-    """Build a weighted interaction graph for a single scene."""
-    # Get utterances for this scene in order
-    scene_utts = sorted(
-        [u for u in utterances if u.index in set(scene.utterance_indices)],
-        key=lambda u: u.start,
-    )
-
-    speakers_seq = [u.speaker for u in scene_utts if u.speaker]
-    unique_speakers = scene.speakers  # already computed
-
-    adj = _adjacency_count(speakers_seq)
-    prox = _proximity_scores(speakers_seq, window=proximity_window)
-
-    # All pairs of unique speakers
-    all_pairs = set()
-    for a, b in itertools.combinations(sorted(unique_speakers), 2):
-        all_pairs.add((a, b))
-    # Also add pairs from adjacency/proximity even if not in unique_speakers list
-    for key in list(adj.keys()) + list(prox.keys()):
-        all_pairs.add(key)
-
-    edges: list[EdgeData] = []
-    for pair in all_pairs:
-        a, b = pair
-        adj_val = adj.get(pair, 0.0)
-        prox_val = prox.get(pair, 0.0)
-        cop_val = 1.0 if (a in unique_speakers and b in unique_speakers) else 0.0
-
-        w = weight_adjacency * adj_val + weight_proximity * prox_val + weight_copresence * cop_val
-        if w > 0:
-            edges.append(EdgeData(
-                source=a, target=b,
-                weight=round(w, 4),
-                adjacency=adj_val,
-                proximity=round(prox_val, 4),
-                copresence=cop_val,
-            ))
-
-    return SceneGraph(
-        scene_id=scene.scene_id,
-        start=scene.start,
-        end=scene.end,
-        nodes=list(unique_speakers),
-        edges=edges,
-    )
-
-
-def build_temporal_network(
-    scenes: list[Scene],
-    utterances: list[Utterance],
+def build_temporal_network_from_aligned_rows(
+    aligned_rows: list[dict[str, Any]],
     weight_adjacency: float = 1.0,
     weight_proximity: float = 0.5,
     weight_copresence: float = 0.25,
     proximity_window: int = 3,
 ) -> list[SceneGraph]:
-    """Build per-scene graphs for all scenes."""
-    graphs: list[SceneGraph] = []
-    for scene in scenes:
-        g = build_scene_graph(
-            scene, utterances,
-            weight_adjacency=weight_adjacency,
-            weight_proximity=weight_proximity,
-            weight_copresence=weight_copresence,
-            proximity_window=proximity_window,
+    """Build per-scene graphs using stage-1 aligned rows with scene_id labels."""
+    grouped: dict[int, list[tuple[float, float, str]]] = {}
+
+    for row in aligned_rows:
+        scene_id_raw = str(row.get("scene_id", "")).strip()
+        speaker = str(row.get("speaker", "")).strip()
+        if not scene_id_raw or not speaker:
+            continue
+        try:
+            scene_id = int(float(scene_id_raw))
+            start = float(row.get("start", ""))
+            end = float(row.get("end", ""))
+        except (TypeError, ValueError):
+            continue
+        grouped.setdefault(scene_id, []).append((start, end, speaker))
+
+    scene_graphs: list[SceneGraph] = []
+    for scene_id in sorted(grouped):
+        turns = sorted(grouped[scene_id], key=lambda x: x[0])
+        if not turns:
+            continue
+
+        scene_start = turns[0][0]
+        scene_end = max(t[1] for t in turns)
+        speakers_seq = [t[2] for t in turns]
+        unique_speakers = sorted(set(speakers_seq))
+
+        adj = _adjacency_count(speakers_seq)
+        prox = _proximity_scores(speakers_seq, window=proximity_window)
+
+        all_pairs = set(itertools.combinations(unique_speakers, 2))
+        for key in list(adj.keys()) + list(prox.keys()):
+            all_pairs.add(key)
+
+        edges: list[EdgeData] = []
+        for pair in sorted(all_pairs):
+            a, b = pair
+            adj_val = adj.get(pair, 0.0)
+            prox_val = prox.get(pair, 0.0)
+            cop_val = 1.0 if (a in unique_speakers and b in unique_speakers) else 0.0
+            w = weight_adjacency * adj_val + weight_proximity * prox_val + weight_copresence * cop_val
+            if w > 0:
+                edges.append(
+                    EdgeData(
+                        source=a,
+                        target=b,
+                        weight=round(w, 4),
+                        adjacency=adj_val,
+                        proximity=round(prox_val, 4),
+                        copresence=cop_val,
+                    )
+                )
+
+        scene_graphs.append(
+            SceneGraph(
+                scene_id=scene_id,
+                start=scene_start,
+                end=scene_end,
+                nodes=unique_speakers,
+                edges=edges,
+            )
         )
-        graphs.append(g)
-    logger.info("Built temporal network: %d scene graphs", len(graphs))
-    return graphs
+
+    logger.info("Built temporal network from aligned rows: %d scene graphs", len(scene_graphs))
+    return scene_graphs
 
 
 def to_networkx(scene_graph: SceneGraph) -> nx.Graph:
@@ -145,28 +141,3 @@ def aggregate_episode_graph(scene_graphs: list[SceneGraph]) -> nx.Graph:
                            adjacency=e.adjacency, proximity=e.proximity,
                            copresence=e.copresence)
     return G
-
-
-def rolling_window_aggregation(
-    scene_graphs: list[SceneGraph], window_seconds: float = 300.0
-) -> list[dict]:
-    """Produce rolling-window aggregated graphs.
-
-    Returns list of dicts with keys: window_start, window_end, graph (nx.Graph).
-    """
-    if not scene_graphs:
-        return []
-
-    episode_start = scene_graphs[0].start
-    episode_end = scene_graphs[-1].end
-    results = []
-
-    t = episode_start
-    while t < episode_end:
-        t_end = t + window_seconds
-        window_graphs = [sg for sg in scene_graphs if sg.start < t_end and sg.end > t]
-        G = aggregate_episode_graph(window_graphs)
-        results.append({"window_start": t, "window_end": t_end, "graph": G})
-        t += window_seconds
-
-    return results

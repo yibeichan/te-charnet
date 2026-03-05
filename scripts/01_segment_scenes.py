@@ -18,8 +18,6 @@ from charnet.community_align import (
     save_alignment_rows_tsv,
 )
 from charnet.io import load_utterances, load_shots_json, load_records, save_records
-from charnet.io import save_scenes
-from charnet.scene_segment import segment_with_shots, segment_transcript_only
 
 logger = logging.getLogger(__name__)
 SCRATCH_DIR = os.environ.get("SCRATCH_DIR", ".")
@@ -35,32 +33,12 @@ SCRATCH_DIR = os.environ.get("SCRATCH_DIR", ".")
               help="Output directory. Defaults to $SCRATCH_DIR/output/01_segment_scenes/<episode>/")
 @click.option("--min-similarity", default=0.52, show_default=True, type=float,
               help="Minimum similarity for accepting mapped community dialogue labels.")
-@click.option("--jaccard-threshold", default=0.3, show_default=True)
-@click.option("--max-shot-gap", default=2.0, show_default=True)
-@click.option("--min-scene-duration", default=10.0, show_default=True)
-@click.option("--max-scene-duration", default=300.0, show_default=True)
-@click.option("--silence-lookahead", default=3, show_default=True)
-@click.option("--transcript-only", "transcript_only_mode", is_flag=True, default=False,
-              help="Use transcript-only segmentation for legacy scenes.json generation.")
-@click.option(
-    "--save-legacy-scenes/--no-save-legacy-scenes",
-    default=True,
-    show_default=True,
-    help="Also produce legacy scenes.json for downstream stages.",
-)
 @click.option("--verbose", "-v", is_flag=True, default=False)
 def main(
     episode,
     preprocess_dir,
     output_dir,
     min_similarity,
-    jaccard_threshold,
-    max_shot_gap,
-    min_scene_duration,
-    max_scene_duration,
-    silence_lookahead,
-    transcript_only_mode,
-    save_legacy_scenes,
     verbose,
 ):
     """Align corrected timed utterances to community transcript + annotate scene_desc and shot_id."""
@@ -132,35 +110,6 @@ def main(
         len(timed_utterances),
         n_scene_ids,
     )
-
-    if save_legacy_scenes:
-        # Keep legacy scenes.json available so stage-2 network steps remain usable.
-        utt_path = preprocess_dir / "utterances.json"
-        if not utt_path.exists():
-            raise click.ClickException(
-                f"utterances.json not found for legacy scene segmentation: {utt_path}"
-            )
-
-        grouped_utterances = load_utterances(utt_path)
-        if shots and not transcript_only_mode:
-            scenes = segment_with_shots(
-                grouped_utterances,
-                shots,
-                jaccard_threshold=jaccard_threshold,
-                max_shot_gap=max_shot_gap,
-                min_scene_duration=min_scene_duration,
-                max_scene_duration=max_scene_duration,
-                silence_lookahead=silence_lookahead,
-            )
-        else:
-            logger.info("Using transcript-only segmentation for legacy scenes.json")
-            scenes = segment_transcript_only(
-                grouped_utterances,
-                min_scene_duration=min_scene_duration,
-                max_scene_duration=max_scene_duration,
-            )
-        save_scenes(scenes, output_dir / "scenes.json")
-        logger.info("Legacy scenes saved: %d scenes", len(scenes))
 
     click.echo(
         f"Aligned rows: {len(rows)}  Matched: {matched}/{len(timed_utterances)}  "

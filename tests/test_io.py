@@ -2,18 +2,18 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
 
 import pytest
 
 from charnet.io import (
-    load_transcript, load_shots, load_speaker_map,
-    load_word_transcript, load_pyscene_tsv,
+    load_shots,
+    load_transcript,
+    load_word_transcript,
     estimate_missing_end_times, save_utterances, load_utterances,
     save_shots, load_shots_json, load_sentence_transcript,
     infer_community_transcript_path, save_records, load_records,
 )
-from charnet.models import Utterance, Shot
+from charnet.models import Utterance
 
 
 class TestLoadTranscript:
@@ -25,13 +25,11 @@ class TestLoadTranscript:
         assert utts[0].end == 3.5
 
     def test_variant_fields(self, transcript_json_variant_fields):
-        utts = load_transcript(transcript_json_variant_fields)
-        assert len(utts) == 5
-        assert utts[0].speaker == "Monica"
-        assert utts[0].start == 0.0
+        with pytest.raises(ValueError):
+            load_transcript(transcript_json_variant_fields)
 
     def test_speaker_map_applied(self, tmp_path):
-        data = [{"speaker_label": "SPEAKER_01", "start_time": 0.0, "end_time": 1.0, "content": "hi"}]
+        data = [{"speaker": "SPEAKER_01", "start": 0.0, "end": 1.0, "word": "hi"}]
         path = tmp_path / "t.json"
         path.write_text(json.dumps(data))
         spk_map = {"SPEAKER_01": "Monica"}
@@ -40,8 +38,8 @@ class TestLoadTranscript:
 
     def test_sorted_by_start(self, tmp_path):
         data = [
-            {"speaker": "B", "start": 5.0, "end": 6.0, "text": "later"},
-            {"speaker": "A", "start": 1.0, "end": 2.0, "text": "first"},
+            {"speaker": "B", "start": 5.0, "end": 6.0, "word": "later"},
+            {"speaker": "A", "start": 1.0, "end": 2.0, "word": "first"},
         ]
         path = tmp_path / "t.json"
         path.write_text(json.dumps(data))
@@ -50,8 +48,8 @@ class TestLoadTranscript:
 
     def test_missing_end_handled(self, tmp_path):
         data = [
-            {"speaker": "A", "start": 0.0, "text": "no end"},
-            {"speaker": "B", "start": 2.0, "end": 3.0, "text": "has end"},
+            {"speaker": "A", "start": 0.0, "end": None, "word": "no"},
+            {"speaker": "B", "start": 2.0, "end": 3.0, "word": "yes"},
         ]
         path = tmp_path / "t.json"
         path.write_text(json.dumps(data))
@@ -178,40 +176,6 @@ class TestLoadWordTranscript:
         path.write_text(json.dumps(data))
         utts = load_word_transcript(path)
         assert utts == []
-
-
-class TestLoadPysceneTsv:
-    def test_basic_load(self, tmp_path):
-        """Basic TSV with onset/duration columns loads correctly."""
-        tsv_content = "onset\tduration\tonset_frame\n0.0\t5.0\t0\n5.0\t3.5\t125\n8.5\t4.0\t212\n"
-        path = tmp_path / "shots.tsv"
-        path.write_text(tsv_content)
-        shots = load_pyscene_tsv(path)
-        assert len(shots) == 3
-        assert shots[0].shot_id == 1
-        assert shots[0].start == 0.0
-        assert shots[0].end == 5.0
-        assert shots[1].start == 5.0
-        assert shots[1].end == 8.5
-        assert shots[2].start == 8.5
-        assert shots[2].end == 12.5
-
-    def test_sorted_by_start(self, tmp_path):
-        """Results are sorted by start time."""
-        tsv_content = "onset\tduration\tonset_frame\n10.0\t2.0\t250\n0.0\t5.0\t0\n5.0\t5.0\t125\n"
-        path = tmp_path / "shots.tsv"
-        path.write_text(tsv_content)
-        shots = load_pyscene_tsv(path)
-        starts = [s.start for s in shots]
-        assert starts == sorted(starts)
-
-    def test_sequential_shot_ids(self, tmp_path):
-        """Shot IDs are assigned sequentially (1-based) regardless of TSV order."""
-        tsv_content = "onset\tduration\tonset_frame\n0.0\t2.0\t0\n2.0\t3.0\t50\n"
-        path = tmp_path / "shots.tsv"
-        path.write_text(tsv_content)
-        shots = load_pyscene_tsv(path)
-        assert [s.shot_id for s in shots] == [1, 2]
 
 
 class TestRoundtrip:

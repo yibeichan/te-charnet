@@ -1,30 +1,22 @@
-# te-charnet
+# Time-Evolved Character Interaction Network (te-charnet)
 
 Time-Evolved Character Interaction Network from transcript + community transcript + shot boundaries.
 
-## What Changed (Current Pipeline)
+## Cloning the repo
 
-The current stage-0/stage-1 flow is:
+```bash
+git clone --recursive git@github.com:yibeichan/te-charnet.git
+cd te-charnet
+```
 
-1. `00_preprocess.py`  
-   Normalizes corrected transcript + shots + community transcript into structured intermediate files.
-2. `01_segment_scenes.py`  
-   Aligns timed utterances to community transcript, inserts `scene_desc`, assigns `shot_id`, and derives `scene_id` from `scene_desc` boundaries.
-
-The stage-1 table is now the main scene segmentation output.
 
 ## Environment
 
-Use the project micromamba env:
-
-```bash
-micromamba run -n charnet python --version
-```
-
-If needed:
+Create the environment and verify Python version:
 
 ```bash
 micromamba env create -f environment.yaml
+micromamba run -n charnet python --version
 ```
 
 ## Input Layout
@@ -81,16 +73,75 @@ Columns in aligned table:
 
 `scene_id` is derived from `scene_desc` boundaries (community-based scene markers), and propagated to dialogue rows.
 
-Legacy output:
+`aligned_rows.tsv` / `aligned_rows.json` are the canonical stage-1 outputs consumed downstream.
 
-- `scenes.json` is still produced by default for compatibility with stage 2+.
-- Disable with `--no-save-legacy-scenes` if you only need alignment table outputs.
-
-## End-to-End (single episode)
+## Stage 2: Build Network
 
 ```bash
-micromamba run -n charnet python scripts/run_pipeline.py \
-  --transcript data/friends_annotations/annotation_results/Speech2Text/s6/friends_s06e01a_model-AA_desc-wSpeaker_transcript.json \
-  --shots data/friends_annotations/annotation_results/TSVpyscene/s6/friends_s06e01a_pyscene.tsv \
-  --episode friends_s06e01a
+micromamba run -n charnet python scripts/02_build_network.py --episode friends_s06e01a
 ```
+
+Main outputs (`output/02_build_network/<episode>/`):
+
+- `temporal_network.json` (scene-level graphs)
+- `episode_network.json` (aggregate half-episode graph)
+
+## Stage 3: Analyze
+
+```bash
+micromamba run -n charnet python scripts/03_analyze.py --episode friends_s06e01a
+```
+
+Main outputs (`output/03_analyze/<episode>/`):
+
+- `metrics.json`
+- `centrality_timeseries.csv` (if non-empty)
+- `edge_birth_death.csv` (if non-empty)
+
+## Stage 4: Visualize
+
+```bash
+micromamba run -n charnet python scripts/04_visualize.py --episode friends_s06e01a
+```
+
+Main outputs (`output/04_visualize/<episode>/figures/`):
+
+- `scene_networks/` (network plot per scene)
+- `episode/` (aggregate network plots + exported graph files)
+- `scene_segments/` (scene timeline and durations)
+- `metrics/` (centrality and other metrics plots)
+
+## End-to-End Pipeline
+
+### Single episode (recommended)
+
+```bash
+micromamba run -n charnet python scripts/run_pipeline.py --episode friends_s06e01a
+```
+
+Shorthand also works:
+
+```bash
+micromamba run -n charnet python scripts/run_pipeline.py --episode s06e01a
+```
+
+### Whole season
+
+```bash
+micromamba run -n charnet python scripts/run_pipeline.py --season s6
+```
+
+You can skip stages with:
+
+```bash
+--skip-stages 3,4
+```
+
+### Optional single-episode overrides
+
+For unusual layouts, you can still override inferred inputs:
+
+- `--transcript <path>`
+- `--shots <path>`
+- `--community-transcript <path>`
+- `--speaker-map <path>`

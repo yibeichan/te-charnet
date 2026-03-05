@@ -2,12 +2,11 @@
 from __future__ import annotations
 
 import json
-import tempfile
 from pathlib import Path
 
 import pytest
 
-from charnet.models import Utterance, Shot, Scene, SceneGraph, EdgeData
+from charnet.models import Scene, Shot, Utterance
 
 
 # --- Synthetic utterances ---
@@ -54,9 +53,9 @@ def sample_scene(sample_utterances) -> Scene:
 
 @pytest.fixture
 def transcript_json_file(tmp_path, sample_utterances) -> Path:
-    """A temporary transcript JSON file with standard field names."""
+    """A temporary word-level transcript JSON file."""
     data = [
-        {"speaker": u.speaker, "start": u.start, "end": u.end, "text": u.text}
+        {"speaker": u.speaker, "start": u.start, "end": u.end, "word": u.text}
         for u in sample_utterances
     ]
     path = tmp_path / "transcript.json"
@@ -66,7 +65,7 @@ def transcript_json_file(tmp_path, sample_utterances) -> Path:
 
 @pytest.fixture
 def transcript_json_variant_fields(tmp_path, sample_utterances) -> Path:
-    """Transcript JSON with non-standard field names."""
+    """Transcript JSON with unsupported field names."""
     data = [
         {"speaker_label": u.speaker, "start_time": u.start, "end_time": u.end, "content": u.text}
         for u in sample_utterances

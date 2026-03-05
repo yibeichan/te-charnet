@@ -13,7 +13,13 @@ import click
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from charnet.io import load_temporal_network
-from charnet.metrics import scene_metrics, episode_metrics, centrality_timeseries, edge_birth_death
+from charnet.metrics import (
+    centrality_timeseries,
+    edge_birth_death,
+    episode_graph_from_dict,
+    episode_metrics_from_graph,
+    scene_metrics,
+)
 
 logger = logging.getLogger(__name__)
 SCRATCH_DIR = os.environ.get("SCRATCH_DIR", ".")
@@ -45,19 +51,31 @@ def main(episode, network_dir, output_dir, community_method, centrality_measures
     else:
         output_dir = Path(output_dir)
 
-    network_path = network_dir / "temporal_network.json"
-    if not network_path.exists():
-        raise click.ClickException(f"temporal_network.json not found: {network_path}")
+    temporal_network_path = network_dir / "temporal_network.json"
+    episode_network_path = network_dir / "episode_network.json"
+    if not temporal_network_path.exists():
+        raise click.ClickException(f"temporal_network.json not found: {temporal_network_path}")
+    if not episode_network_path.exists():
+        raise click.ClickException(
+            f"episode_network.json not found: {episode_network_path}. "
+            "Run 02_build_network.py (aligned-rows mode) first."
+        )
 
-    scene_graphs = load_temporal_network(network_path)
+    scene_graphs = load_temporal_network(temporal_network_path)
+    with open(episode_network_path, "r", encoding="utf-8") as f:
+        episode_network_dict = json.load(f)
+    episode_graph = episode_graph_from_dict(episode_network_dict)
     measures = [m.strip() for m in centrality_measures.split(",")]
 
     # Per-scene metrics
     per_scene = [scene_metrics(sg) for sg in scene_graphs]
 
     # Episode metrics
-    ep_metrics = episode_metrics(scene_graphs, centrality_measures=measures,
-                                  community_method=community_method)
+    ep_metrics = episode_metrics_from_graph(
+        episode_graph,
+        centrality_measures=measures,
+        community_method=community_method,
+    )
 
     # Centrality time series
     ts_df = centrality_timeseries(scene_graphs, measures=measures)
@@ -69,9 +87,12 @@ def main(episode, network_dir, output_dir, community_method, centrality_measures
 
     # Save metrics.json
     metrics_out = {
-        "episode": episode,
+        "episode_id": episode,
         "per_scene": per_scene,
         "episode": {
+            "start": episode_network_dict.get("start"),
+            "end": episode_network_dict.get("end"),
+            "n_scenes": episode_network_dict.get("n_scenes"),
             "n_nodes": ep_metrics["n_nodes"],
             "n_edges": ep_metrics["n_edges"],
             "n_communities": ep_metrics["n_communities"],
@@ -80,7 +101,7 @@ def main(episode, network_dir, output_dir, community_method, centrality_measures
             "centralities": ep_metrics["centralities"],
         },
     }
-    with open(output_dir / "metrics.json", "w") as f:
+    with open(output_dir / "metrics.json", "w", encoding="utf-8") as f:
         json.dump(metrics_out, f, indent=2)
 
     # Save centrality timeseries CSV
