@@ -34,6 +34,8 @@ def run_stage(script: str, args: list[str], verbose: bool = False) -> None:
               help="Path to PySceneDetect CSV (optional).")
 @click.option("--speaker-map", "-m", default=None, type=click.Path(exists=True),
               help="Path to speaker map JSON (optional).")
+@click.option("--community-transcript", "-u", default=None, type=click.Path(exists=True),
+              help="Path to episode-level community transcript (optional).")
 @click.option("--episode", "-e", default=None,
               help="Episode name. Inferred from transcript filename if not set.")
 @click.option("--config", "-c", default=None, type=click.Path(exists=True),
@@ -43,7 +45,17 @@ def run_stage(script: str, args: list[str], verbose: bool = False) -> None:
 @click.option("--skip-stages", default="", show_default=True,
               help="Comma-separated stage numbers to skip (e.g. '3,4').")
 @click.option("--verbose", "-v", is_flag=True, default=False)
-def main(transcript, shots, speaker_map, episode, config, output_base, skip_stages, verbose):
+def main(
+    transcript,
+    shots,
+    speaker_map,
+    community_transcript,
+    episode,
+    config,
+    output_base,
+    skip_stages,
+    verbose,
+):
     """Run the full charnet pipeline for one episode."""
     logging.basicConfig(
         level=logging.DEBUG if verbose else logging.INFO,
@@ -70,6 +82,8 @@ def main(transcript, shots, speaker_map, episode, config, output_base, skip_stag
             args += ["--shots", shots]
         if speaker_map:
             args += ["--speaker-map", speaker_map]
+        if community_transcript:
+            args += ["--community-transcript", community_transcript]
         if verbose:
             args.append("--verbose")
         run_stage("00_preprocess.py", args, verbose=verbose)

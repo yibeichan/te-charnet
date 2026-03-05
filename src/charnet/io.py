@@ -1,9 +1,10 @@
-"""I/O utilities: loading, parsing, and field auto-detection."""
+"""I/O utilities: loading and parsing."""
 from __future__ import annotations
 
 import csv
 import json
 import logging
+import re
 from pathlib import Path
 from typing import Any, Optional
 
@@ -11,86 +12,63 @@ from charnet.models import Utterance, Shot
 
 logger = logging.getLogger(__name__)
 
-# --- Field name variants ---
-SPEAKER_FIELDS = ["speaker", "Speaker", "speaker_label", "speakerLabel", "SPEAKER"]
-START_FIELDS = ["start", "start_time", "begin", "Start", "start_sec"]
-END_FIELDS = ["end", "end_time", "End", "end_sec"]
-TEXT_FIELDS = ["text", "transcript", "content", "Text", "words"]
-
 # PySceneDetect CSV columns
 SHOT_START_COL = "Start Time (seconds)"
 SHOT_END_COL = "End Time (seconds)"
 SHOT_NUM_COL = "Scene Number"
 
 
-def _detect_field(record: dict, candidates: list[str]) -> Optional[str]:
-    """Return the first candidate key present in record, or None."""
-    for key in candidates:
-        if key in record:
-            return key
-    return None
-
-
 def load_transcript(path: Path, speaker_map: Optional[dict[str, str]] = None) -> list[Utterance]:
     """Load and normalize a transcript JSON file.
 
-    Handles heterogeneous field names. Applies speaker_map if provided.
-    Returns list of Utterance objects sorted by start time.
+    For dict-shaped transcripts, read only the `words` list and map each
+    word dict to one Utterance using fields: word/start/end/speaker.
+    Applies speaker_map if provided.
     """
     with open(path, "r", encoding="utf-8") as f:
         raw = json.load(f)
 
-    # Handle both list-of-dicts and dict-with-list
+    # Dict transcripts: only accept `words` and treat each word as one utterance.
     if isinstance(raw, dict):
-        # Try common wrapper keys
-        for key in ("utterances", "segments", "words", "transcript", "data"):
-            if key in raw and isinstance(raw[key], list):
-                raw = raw[key]
-                break
-        else:
-            raise ValueError(f"Transcript JSON is a dict but no list found under known keys: {list(raw.keys())}")
+        words = raw.get("words")
+        if not isinstance(words, list):
+            raise ValueError(
+                f"Transcript JSON must contain a list under 'words'. Available keys: {list(raw.keys())}"
+            )
+        raw = words
 
     if not raw:
         logger.warning("Transcript is empty: %s", path)
         return []
 
-    # Auto-detect field names from first record
+    # friends_annotations word entries use fixed keys
     first = raw[0]
-    speaker_key = _detect_field(first, SPEAKER_FIELDS)
-    start_key = _detect_field(first, START_FIELDS)
-    end_key = _detect_field(first, END_FIELDS)
-    text_key = _detect_field(first, TEXT_FIELDS)
-
-    if speaker_key is None:
-        logger.warning("No speaker field detected. Fields found: %s", list(first.keys()))
-    if start_key is None:
-        raise ValueError(f"No start-time field detected. Fields found: {list(first.keys())}")
-
-    logger.info(
-        "Transcript field mapping — speaker:%s  start:%s  end:%s  text:%s",
-        speaker_key, start_key, end_key, text_key,
-    )
+    missing = [k for k in ("word", "start", "end", "speaker") if k not in first]
+    if missing:
+        raise ValueError(
+            f"Word record is missing required keys {missing}. Fields found: {list(first.keys())}"
+        )
 
     utterances: list[Utterance] = []
     n_missing_speaker = 0
     n_missing_end = 0
 
     for i, record in enumerate(raw):
-        speaker = str(record.get(speaker_key, "")) if speaker_key else ""
+        speaker = str(record.get("speaker", ""))
         if not speaker:
             n_missing_speaker += 1
 
-        start = float(record[start_key])
+        start = float(record["start"])
 
         end: Optional[float] = None
-        if end_key and end_key in record and record[end_key] is not None:
-            end = float(record[end_key])
+        if record.get("end") is not None:
+            end = float(record["end"])
         else:
             n_missing_end += 1
             # Will be estimated later
             end = start  # placeholder
 
-        text = str(record.get(text_key, "")) if text_key else ""
+        text = str(record.get("word", ""))
 
         # Apply speaker map
         if speaker_map and speaker in speaker_map:
@@ -121,15 +99,44 @@ def estimate_missing_end_times(utterances: list[Utterance], min_duration: float 
 
 
 def load_shots(path: Path) -> list[Shot]:
-    """Load PySceneDetect CSV and return list of Shot objects.
+    """Load shot boundaries and return list of Shot objects.
 
-    PySceneDetect CSVs have a metadata row before the header. We skip rows
-    until we find the header row containing 'Scene Number'.
+    Preferred format (friends_annotations TSV):
+      onset, duration, onset_frame
+    Converted as:
+      start = onset
+      end = onset + duration
+      shot_id = sequential 1-based row index
+
+    Also supports legacy PySceneDetect CSVs with:
+      Scene Number, Start Time (seconds), End Time (seconds)
     """
     with open(path, "r", encoding="utf-8") as f:
         content = f.read()
 
     lines = content.splitlines()
+    if not lines:
+        logger.warning("Shots file is empty: %s", path)
+        return []
+
+    # friends_annotations TSV: onset/duration/onset_frame
+    delimiter = "\t" if "\t" in lines[0] else ","
+    reader = csv.DictReader(lines, delimiter=delimiter)
+    fieldnames = [f.strip() for f in (reader.fieldnames or [])]
+    shots: list[Shot] = []
+
+    if {"onset", "duration"}.issubset(fieldnames):
+        for i, row in enumerate(reader, start=1):
+            try:
+                onset = float(row["onset"])
+                duration = float(row["duration"])
+                shots.append(Shot(shot_id=i, start=onset, end=onset + duration))
+            except (KeyError, TypeError, ValueError) as e:
+                logger.warning("Skipping malformed TSV shot row: %s — %s", dict(row), e)
+        logger.info("Loaded %d shots from TSV %s", len(shots), path)
+        return sorted(shots, key=lambda s: s.start)
+
+    # Legacy PySceneDetect CSV fallback with metadata rows before header.
     header_idx = None
     for i, line in enumerate(lines):
         if "Scene Number" in line:
@@ -137,18 +144,21 @@ def load_shots(path: Path) -> list[Shot]:
             break
 
     if header_idx is None:
-        raise ValueError(f"Could not find 'Scene Number' header in {path}")
+        raise ValueError(
+            f"Unsupported shots format in {path}. Expected TSV columns "
+            f"('onset', 'duration', 'onset_frame') or legacy PySceneDetect CSV columns "
+            f"('{SHOT_NUM_COL}', '{SHOT_START_COL}', '{SHOT_END_COL}')."
+        )
 
     reader = csv.DictReader(lines[header_idx:])
-    shots: list[Shot] = []
     for row in reader:
         try:
             shot_id = int(row[SHOT_NUM_COL])
             start = float(row[SHOT_START_COL])
             end = float(row[SHOT_END_COL])
             shots.append(Shot(shot_id=shot_id, start=start, end=end))
-        except (KeyError, ValueError) as e:
-            logger.warning("Skipping malformed shot row: %s — %s", dict(row), e)
+        except (KeyError, TypeError, ValueError) as e:
+            logger.warning("Skipping malformed legacy shot row: %s — %s", dict(row), e)
 
     logger.info("Loaded %d shots from %s", len(shots), path)
     return sorted(shots, key=lambda s: s.start)
@@ -175,9 +185,11 @@ def load_word_transcript(
     word_gap_threshold: float = 0.5,
     speaker_map: Optional[dict[str, str]] = None,
 ) -> list[Utterance]:
-    """Load a word-level transcript JSON (friends_annotations format) and group into utterances.
+    """Load a word-level transcript JSON and group words into utterances.
 
-    Format: {"words": [{"word": "Okay,", "start": 4.8, "end": 5.08, "speaker": "chandler", ...}]}
+    Accepted formats:
+    - {"words": [{"word": "Okay,", "start": 4.8, "end": 5.08, "speaker": "chandler", ...}]}
+    - [{"word": "Okay,", "start": 4.8, "end": 5.08, "speaker": "chandler", ...}]
 
     Grouping: new utterance when speaker changes OR gap between consecutive words >= word_gap_threshold.
     Speaker normalization: .strip().title() unless overridden by speaker_map.
@@ -185,10 +197,31 @@ def load_word_transcript(
     with open(path, "r", encoding="utf-8") as f:
         raw = json.load(f)
 
-    words: list[dict] = raw.get("words", [])
+    if word_gap_threshold < 0:
+        raise ValueError(f"word_gap_threshold must be >= 0, got {word_gap_threshold}")
+
+    if isinstance(raw, dict):
+        words = raw.get("words", [])
+    elif isinstance(raw, list):
+        words = raw
+    else:
+        raise ValueError(
+            f"Unsupported transcript format in {path}. Expected dict with 'words' or a list of word dicts."
+        )
+
+    if not isinstance(words, list):
+        raise ValueError(f"'words' in {path} must be a list.")
+
     if not words:
         logger.warning("No words found in word-level transcript: %s", path)
         return []
+
+    first = words[0]
+    missing = [k for k in ("word", "start", "end", "speaker") if k not in first]
+    if missing:
+        raise ValueError(
+            f"Word record is missing required keys {missing}. Fields found: {list(first.keys())}"
+        )
 
     utterances: list[Utterance] = []
     current_group: list[dict] = [words[0]]
@@ -210,22 +243,124 @@ def load_word_transcript(
     return utterances
 
 
-def load_pyscene_tsv(path: Path) -> list[Shot]:
-    """Load a friends_annotations TSV pyscene file.
+def load_sentence_transcript(
+    path: Path,
+    speaker_map: Optional[dict[str, str]] = None,
+) -> list[Utterance]:
+    """Load sentence-level transcript entries into Utterance objects.
 
-    Format: onset\\tduration\\tonset_frame
-    End = onset + duration. Shot IDs are sequential (1-based).
+    Accepted formats:
+    - {"sentences": [{"text": "...", "start": 1.2, "end": 2.3, "speaker": "ross"}]}
+    - [{"text": "...", "start": 1.2, "end": 2.3, "speaker": "ross"}]
     """
     with open(path, "r", encoding="utf-8") as f:
-        reader = csv.DictReader(f, delimiter="\t")
-        shots: list[Shot] = []
-        for i, row in enumerate(reader, start=1):
-            onset = float(row["onset"])
-            duration = float(row["duration"])
-            shots.append(Shot(shot_id=i, start=onset, end=onset + duration))
+        raw = json.load(f)
 
-    logger.info("Loaded %d shots from TSV %s", len(shots), path)
-    return sorted(shots, key=lambda s: s.start)
+    if isinstance(raw, dict):
+        sentences = raw.get("sentences", [])
+    elif isinstance(raw, list):
+        sentences = raw
+    else:
+        raise ValueError(
+            f"Unsupported sentence transcript format in {path}. "
+            "Expected dict with 'sentences' or a list of sentence dicts."
+        )
+
+    if not isinstance(sentences, list):
+        raise ValueError(f"'sentences' in {path} must be a list.")
+
+    utterances: list[Utterance] = []
+    n_missing_end = 0
+    for i, rec in enumerate(sentences):
+        if not isinstance(rec, dict):
+            logger.warning("Skipping non-dict sentence record at index %d in %s", i, path)
+            continue
+        text = str(rec.get("text", "")).strip()
+        if not text:
+            continue
+        speaker = str(rec.get("speaker", "")).strip()
+        if speaker_map and speaker in speaker_map:
+            speaker = speaker_map[speaker]
+
+        start = float(rec.get("start", 0.0))
+        end = rec.get("end")
+        if end is None:
+            n_missing_end += 1
+            end_f = start
+        else:
+            end_f = float(end)
+
+        utterances.append(Utterance(speaker=speaker, start=start, end=end_f, text=text, index=i))
+
+    if n_missing_end:
+        logger.warning("%d sentence utterances have no end time (will be estimated)", n_missing_end)
+
+    utterances.sort(key=lambda u: u.start)
+    logger.info("Loaded %d sentence utterances from %s", len(utterances), path)
+    return utterances
+
+
+def infer_community_transcript_path(transcript_path: Path, episode: str) -> Optional[Path]:
+    """Infer community transcript path for a transcript episode key.
+
+    Example:
+      transcript: .../Speech2Text/s6/friends_s06e01a_model-AA_desc-wSpeaker_transcript.json
+      episode:    friends_s06e01a
+      -> .../community_based/s6/friends_s06e01_ufs.txt
+    """
+    match = re.match(r"^(friends_s\d{2}e\d{2})([a-z]+)?$", episode)
+    if not match:
+        return None
+    episode_root = match.group(1)
+    season_match = re.search(r"s0*(\d+)e", episode_root)
+    if not season_match:
+        return None
+    season_dir = f"s{int(season_match.group(1))}"
+    filename = f"{episode_root}_ufs.txt"
+
+    candidates: list[Path] = []
+
+    parts = list(transcript_path.parts)
+    if "Speech2Text" in parts:
+        i = parts.index("Speech2Text")
+        base = Path(*parts[:i]) if i > 0 else Path(".")
+        candidates.append(base / "community_based" / season_dir / filename)
+
+    candidates.append(
+        Path("data")
+        / "friends_annotations"
+        / "annotation_results"
+        / "community_based"
+        / season_dir
+        / filename
+    )
+
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    return None
+
+
+def save_records(records: list[dict[str, Any]], path: Path, label: str = "records") -> None:
+    """Save list-of-dict records to JSON."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(records, f, indent=2, ensure_ascii=False)
+    logger.info("Saved %d %s to %s", len(records), label, path)
+
+
+def load_records(path: Path) -> list[dict[str, Any]]:
+    """Load list-of-dict records from JSON."""
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    if not isinstance(data, list):
+        raise ValueError(f"Expected list in {path}, found {type(data).__name__}")
+    return data
+
+
+def load_pyscene_tsv(path: Path) -> list[Shot]:
+    """Backward-compatible alias for load_shots."""
+    return load_shots(path)
 
 
 def load_speaker_map(path: Path) -> dict[str, str]:

@@ -181,7 +181,7 @@ def plot_scene_timeline(
             color_idx = community_map.get(dominant, 0)
 
         color = _PALETTE[color_idx % len(_PALETTE)]
-        ax.barh(0, sg.end - sg.start, left=sg.start / 60, height=0.8,
+        ax.barh(0, (sg.end - sg.start) / 60.0, left=sg.start / 60.0, height=0.8,
                 color=color, alpha=0.7, edgecolor="white")
 
         if dominant:
