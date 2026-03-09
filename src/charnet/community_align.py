@@ -208,6 +208,25 @@ def find_shot_id_at_time(shots: list[Shot], timestamp: Optional[float]) -> Optio
     return None
 
 
+_HIGH_THRESHOLD = 0.85
+_REVIEW_THRESHOLD = 0.60
+
+
+def assign_confidence(sim: float, matched: bool) -> tuple[str, str]:
+    """Return (confidence_level, method) for an alignment result.
+
+    confidence_level: "high" | "medium" | "low" | "unresolved"
+    method: "exact_align" | "fuzzy_align" | "none"
+    """
+    if not matched:
+        return "unresolved", "none"
+    if sim >= _HIGH_THRESHOLD:
+        return "high", "exact_align"
+    if sim >= _REVIEW_THRESHOLD:
+        return "medium", "fuzzy_align"
+    return "low", "fuzzy_align"
+
+
 def build_alignment_rows(
     timed_utterances: list[Utterance],
     community_events: list[dict],
@@ -233,10 +252,13 @@ def build_alignment_rows(
         comm = by_dialogue.get(comm_idx) if comm_idx is not None else None
 
         keep_match = False
+        sim = 0.0
         if comm is not None:
             sim = sim_cache.get((utt.index, comm_idx), 0.0)
             spk_match = normalize_speaker(utt.speaker) == normalize_speaker(str(comm["speaker_ct"]))
             keep_match = sim >= min_similarity or (sim >= (min_similarity - 0.08) and spk_match)
+
+        confidence, method = assign_confidence(sim, keep_match)
 
         if keep_match and comm is not None:
             scene = scene_map.get(int(comm["dialogue_idx"]), "")
@@ -251,6 +273,9 @@ def build_alignment_rows(
                         "speaker_ct": "",
                         "utterance_ct": "",
                         "scene_desc": scene,
+                        "alignment_score": "",
+                        "speaker_confidence": "",
+                        "speaker_method": "",
                     }
                 )
                 last_scene = scene
@@ -265,6 +290,9 @@ def build_alignment_rows(
                     "speaker_ct": str(comm["speaker_ct"]),
                     "utterance_ct": str(comm["utterance_ct"]),
                     "scene_desc": "",
+                    "alignment_score": f"{sim:.4f}",
+                    "speaker_confidence": confidence,
+                    "speaker_method": method,
                 }
             )
             matched += 1
@@ -279,6 +307,9 @@ def build_alignment_rows(
                     "speaker_ct": "",
                     "utterance_ct": "",
                     "scene_desc": "",
+                    "alignment_score": f"{sim:.4f}" if sim else "",
+                    "speaker_confidence": confidence,
+                    "speaker_method": method,
                 }
             )
 
@@ -326,8 +357,126 @@ def save_alignment_rows_tsv(rows: list[dict[str, str]], path: Path) -> None:
         "speaker_ct",
         "utterance_ct",
         "scene_desc",
+        "alignment_score",
+        "speaker_confidence",
+        "speaker_method",
     ]
     with open(path, "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter="\t")
+        writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter="\t", extrasaction="ignore")
         writer.writeheader()
         writer.writerows(rows)
+
+
+def export_review_queue(
+    rows: list[dict[str, str]],
+    path: Path,
+    context_lines: int = 2,
+) -> int:
+    """Export rows needing manual review to a TSV file.
+
+    Rows with speaker_confidence in {"low", "unresolved"} are flagged.
+    Each flagged row is written with up to *context_lines* dialogue rows
+    before and after it (scene-only rows are skipped from context).
+
+    Returns the number of flagged rows written.
+    """
+    review_confidences = {"low", "unresolved"}
+    dialogue_indices = [i for i, r in enumerate(rows) if not r.get("scene_desc")]
+    flagged_dialogue_pos = {
+        pos
+        for pos, i in enumerate(dialogue_indices)
+        if rows[i].get("speaker_confidence") in review_confidences
+    }
+
+    included: set[int] = set()
+    for pos in flagged_dialogue_pos:
+        for offset in range(-context_lines, context_lines + 1):
+            neighbour = pos + offset
+            if 0 <= neighbour < len(dialogue_indices):
+                included.add(dialogue_indices[neighbour])
+
+    review_rows = [rows[i] for i in sorted(included)]
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fieldnames = [
+        "start",
+        "end",
+        "speaker",
+        "utterance",
+        "speaker_ct",
+        "utterance_ct",
+        "alignment_score",
+        "speaker_confidence",
+        "speaker_method",
+    ]
+    with open(path, "w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter="\t", extrasaction="ignore")
+        writer.writeheader()
+        writer.writerows(review_rows)
+
+    return len(flagged_dialogue_pos)
+
+
+def find_episode_window(
+    timed_utterances: list[Utterance],
+    community_dialogues: list[dict],
+    window_size: Optional[int] = None,
+) -> tuple[int, int]:
+    """Find the region in community_dialogues that best matches timed_utterances.
+
+    Useful when timed_utterances cover only part of the full episode (e.g. a
+    half-episode local transcript).  Returns (start_idx, end_idx) — a slice
+    of community_dialogues to pass to align_monotonic().
+
+    Args:
+        timed_utterances: Local transcript utterances.
+        community_dialogues: Full-episode community transcript dialogues.
+        window_size: Number of community dialogues in the sliding window.
+            Defaults to len(timed_utterances) + 20% padding.
+
+    Returns:
+        (start_idx, end_idx) into community_dialogues (end_idx exclusive).
+    """
+    n_timed = len(timed_utterances)
+    n_comm = len(community_dialogues)
+
+    if n_comm == 0:
+        return 0, 0
+    if n_timed == 0:
+        return 0, n_comm
+
+    if window_size is None:
+        window_size = min(n_comm, int(n_timed * 1.2) + 5)
+    elif window_size <= 0:
+        raise ValueError(f"window_size must be > 0, got {window_size}")
+
+    window_size = min(window_size, n_comm)
+
+    if window_size >= n_comm:
+        return 0, n_comm
+
+    timed_norms = [normalize_for_match(u.text) for u in timed_utterances]
+    comm_norms = [str(d.get("norm", "")) for d in community_dialogues]
+
+    # Sparse sample: compare every ~4th timed utterance for speed
+    sample_step = max(1, n_timed // 25)
+    sampled = list(range(0, n_timed, sample_step))
+
+    best_score = -1.0
+    best_start = 0
+
+    for start in range(n_comm - window_size + 1):
+        window_norms = comm_norms[start : start + window_size]
+        score = 0.0
+        for ti in sampled:
+            # Best similarity of this timed utterance against any window item
+            best_local = max(
+                text_similarity(timed_norms[ti], cn) for cn in window_norms
+            )
+            score += best_local
+        avg = score / len(sampled)
+        if avg > best_score:
+            best_score = avg
+            best_start = start
+
+    return best_start, best_start + window_size

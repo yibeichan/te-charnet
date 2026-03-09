@@ -1,11 +1,14 @@
 """Tests for charnet.community_align."""
 from __future__ import annotations
 
+import pytest
+
 from charnet.community_align import (
-    parse_community_transcript,
     align_monotonic,
     assign_scene_ids_from_scene_desc,
     build_alignment_rows,
+    find_episode_window,
+    parse_community_transcript,
 )
 from charnet.models import Shot, Utterance
 
@@ -69,3 +72,22 @@ def test_alignment_rows_include_scene_and_shot_id():
     assert dialogue_rows[1]["shot_id"] == "2"
     assert dialogue_rows[0]["scene_id"] == "1"
     assert dialogue_rows[1]["scene_id"] == "1"
+
+
+def test_find_episode_window_empty_community_returns_zero_zero():
+    timed = [Utterance(speaker="ross", start=0.0, end=1.0, text="Hi there.", index=0)]
+    assert find_episode_window(timed, []) == (0, 0)
+
+
+def test_find_episode_window_empty_timed_returns_full_community_range():
+    community_dialogues = [{"dialogue_idx": i, "norm": f"line {i}"} for i in range(12)]
+    assert find_episode_window([], community_dialogues) == (0, 12)
+
+
+@pytest.mark.parametrize("bad_window_size", [0, -1])
+def test_find_episode_window_rejects_non_positive_window_size(bad_window_size: int):
+    timed = [Utterance(speaker="ross", start=0.0, end=1.0, text="Hi there.", index=0)]
+    community_dialogues = [{"dialogue_idx": 0, "norm": "hi there"}]
+
+    with pytest.raises(ValueError, match="window_size must be > 0"):
+        find_episode_window(timed, community_dialogues, window_size=bad_window_size)

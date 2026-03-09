@@ -13,18 +13,66 @@ from charnet.network import to_networkx
 
 logger = logging.getLogger(__name__)
 
+SUPPORTED_CENTRALITY_MEASURES = (
+    "degree",
+    "degree_unweighted",
+    "degree_weighted",
+    "strength",
+    "betweenness",
+    "eigenvector",
+)
+
 
 def degree_centrality(G: nx.Graph) -> dict[str, float]:
+    """Weighted degree centrality (node strength share).
+
+    For weighted interaction graphs, plain graph degree is often uninformative
+    (e.g., fully connected co-presence graphs). This returns each node's share
+    of total weighted degree so values are in [0, 1] and sum to 1 across nodes.
+    """
+    if G.number_of_nodes() == 0:
+        return {}
+
+    strengths = {node: float(val) for node, val in G.degree(weight="weight")}
+    total_strength = sum(strengths.values())
+    if total_strength <= 0:
+        return {node: 0.0 for node in G.nodes()}
+    return {node: strengths[node] / total_strength for node in G.nodes()}
+
+
+def degree_unweighted_centrality(G: nx.Graph) -> dict[str, float]:
+    """Unweighted degree centrality with singleton-safe behavior."""
+    if G.number_of_nodes() == 0:
+        return {}
+    if G.number_of_nodes() == 1:
+        # Interaction centrality for a singleton scene should be 0, not 1.
+        return {next(iter(G.nodes())): 0.0}
     return nx.degree_centrality(G)
 
 
 def betweenness_centrality(G: nx.Graph) -> dict[str, float]:
-    return nx.betweenness_centrality(G, weight="weight")
+    """Betweenness on inverse-weight distances (stronger ties -> shorter paths)."""
+    if G.number_of_nodes() == 0:
+        return {}
+
+    H = nx.Graph()
+    H.add_nodes_from(G.nodes())
+    for u, v, data in G.edges(data=True):
+        w = float(data.get("weight", 0.0) or 0.0)
+        if w <= 0.0:
+            continue
+        H.add_edge(u, v, distance=1.0 / w)
+
+    if H.number_of_edges() == 0:
+        return {node: 0.0 for node in H.nodes()}
+    return nx.betweenness_centrality(H, weight="distance")
 
 
 def eigenvector_centrality(G: nx.Graph) -> dict[str, float]:
     if G.number_of_nodes() == 0:
         return {}
+    if G.number_of_edges() == 0:
+        return {node: 0.0 for node in G.nodes()}
     try:
         return nx.eigenvector_centrality(G, weight="weight", max_iter=1000)
     except nx.PowerIterationFailedConvergence:
@@ -39,6 +87,9 @@ def compute_centralities(
     results: dict[str, dict[str, float]] = {}
     dispatch = {
         "degree": degree_centrality,
+        "degree_unweighted": degree_unweighted_centrality,
+        "degree_weighted": degree_centrality,
+        "strength": degree_centrality,
         "betweenness": betweenness_centrality,
         "eigenvector": eigenvector_centrality,
     }
@@ -68,6 +119,17 @@ def scene_metrics(scene_graph: SceneGraph) -> dict[str, Any]:
         "density": density,
         "n_components": components,
     }
+
+    # Distinguish interaction edges from pure co-presence edges.
+    n_interaction_edges = sum(
+        1
+        for e in scene_graph.edges
+        if (float(e.adjacency) > 0.0) or (float(e.proximity) > 0.0)
+    )
+    possible_edges = n_nodes * (n_nodes - 1) / 2 if n_nodes >= 2 else 0.0
+    interaction_density = (n_interaction_edges / possible_edges) if possible_edges else 0.0
+    result["n_interaction_edges"] = n_interaction_edges
+    result["interaction_density"] = interaction_density
 
     # Scene-level entropy (how distributed is speech)
     weights = [e.weight for e in scene_graph.edges]
