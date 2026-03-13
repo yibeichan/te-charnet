@@ -12,7 +12,7 @@ import click
 
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from charnet.io import load_records, save_temporal_network
+from charnet.io import load_records, load_corrected_speaker_rows, save_temporal_network
 from charnet.network import (
     aggregate_episode_graph,
     build_temporal_network_from_aligned_rows,
@@ -26,13 +26,17 @@ SCRATCH_DIR = os.environ.get("SCRATCH_DIR", ".")
 @click.option("--episode", "-e", required=True)
 @click.option("--segment-dir", default=None)
 @click.option("--output-dir", "-o", default=None)
+@click.option("--corrected-speaker-tsv", default=None, type=click.Path(exists=True, path_type=Path),
+              help="Speaker-filled TSV from 01b (optional). When provided, used instead of aligned_rows.json.")
+@click.option("--speaker-col", default="speaker", show_default=True,
+              help="Column to use as speaker source when loading --corrected-speaker-tsv.")
 @click.option("--weight-adjacency", default=1.0, show_default=True)
 @click.option("--weight-proximity", default=0.5, show_default=True)
 @click.option("--weight-copresence", default=0.25, show_default=True)
 @click.option("--proximity-window", default=3, show_default=True)
 @click.option("--verbose", "-v", is_flag=True, default=False)
 def main(
-    episode, segment_dir, output_dir,
+    episode, segment_dir, output_dir, corrected_speaker_tsv, speaker_col,
     weight_adjacency, weight_proximity, weight_copresence, proximity_window, verbose,
 ):
     """Build per-scene and half-episode interaction networks."""
@@ -42,7 +46,7 @@ def main(
     )
 
     if segment_dir is None:
-        segment_dir = Path(SCRATCH_DIR) / "output" / "01_segment_scenes" / episode
+        segment_dir = Path(SCRATCH_DIR) / "output" / "01a_segment_scenes" / episode
     else:
         segment_dir = Path(segment_dir)
 
@@ -51,15 +55,18 @@ def main(
     else:
         output_dir = Path(output_dir)
 
-    aligned_rows_path = segment_dir / "aligned_rows.json"
-    if not aligned_rows_path.exists():
-        raise click.ClickException(
-            f"Required file not found: {aligned_rows_path}. "
-            "Run 01_segment_scenes.py first."
-        )
-
-    aligned_rows = load_records(aligned_rows_path)
-    logger.info("Building network from aligned rows (%d rows)", len(aligned_rows))
+    if corrected_speaker_tsv is not None:
+        aligned_rows = load_corrected_speaker_rows(corrected_speaker_tsv, speaker_col=speaker_col)
+        logger.info("Building network from speaker TSV (%d rows)", len(aligned_rows))
+    else:
+        aligned_rows_path = segment_dir / "aligned_rows.json"
+        if not aligned_rows_path.exists():
+            raise click.ClickException(
+                f"Required file not found: {aligned_rows_path}. "
+                "Run 01a_extract_annotations.py first."
+            )
+        aligned_rows = load_records(aligned_rows_path)
+        logger.info("Building network from aligned rows (%d rows)", len(aligned_rows))
     temporal_network = build_temporal_network_from_aligned_rows(
         aligned_rows,
         weight_adjacency=weight_adjacency,

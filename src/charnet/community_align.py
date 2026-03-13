@@ -1,14 +1,14 @@
 """Alignment utilities: map timed transcript to community transcript + scene markers."""
 from __future__ import annotations
 
-import csv
 import re
 import unicodedata
+from collections import defaultdict
 from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Optional
 
-from charnet.models import Shot, Utterance
+from charnet.models import Scene, Shot, Utterance
 
 try:
     from rapidfuzz import fuzz
@@ -344,77 +344,71 @@ def assign_scene_ids_from_scene_desc(rows: list[dict[str, str]]) -> tuple[list[d
     return rows, scene_id
 
 
-def save_alignment_rows_tsv(rows: list[dict[str, str]], path: Path) -> None:
-    """Save aligned rows to TSV."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    fieldnames = [
-        "start",
-        "end",
-        "shot_id",
-        "scene_id",
-        "speaker",
-        "utterance",
-        "speaker_ct",
-        "utterance_ct",
-        "scene_desc",
-        "alignment_score",
-        "speaker_confidence",
-        "speaker_method",
-    ]
-    with open(path, "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter="\t", extrasaction="ignore")
-        writer.writeheader()
-        writer.writerows(rows)
+def scenes_from_aligned_rows(rows: list[dict[str, str]]) -> list[Scene]:
+    """Extract Scene objects from aligned rows (already scene-id-assigned).
 
-
-def export_review_queue(
-    rows: list[dict[str, str]],
-    path: Path,
-    context_lines: int = 2,
-) -> int:
-    """Export rows needing manual review to a TSV file.
-
-    Rows with speaker_confidence in {"low", "unresolved"} are flagged.
-    Each flagged row is written with up to *context_lines* dialogue rows
-    before and after it (scene-only rows are skipped from context).
-
-    Returns the number of flagged rows written.
+    Groups dialogue rows by scene_id, computes start/end from utterance timings,
+    collects unique speakers and shot_ids, reads scene_desc from scene-marker rows.
+    Returns list[Scene] sorted by scene_id.
     """
-    review_confidences = {"low", "unresolved"}
-    dialogue_indices = [i for i, r in enumerate(rows) if not r.get("scene_desc")]
-    flagged_dialogue_pos = {
-        pos
-        for pos, i in enumerate(dialogue_indices)
-        if rows[i].get("speaker_confidence") in review_confidences
-    }
+    scene_starts: dict[int, float] = {}
+    scene_ends: dict[int, float] = {}
+    scene_speakers: dict[int, list[str]] = defaultdict(list)
+    scene_shot_ids: dict[int, set[int]] = defaultdict(set)
+    scene_utterance_indices: dict[int, list[int]] = defaultdict(list)
 
-    included: set[int] = set()
-    for pos in flagged_dialogue_pos:
-        for offset in range(-context_lines, context_lines + 1):
-            neighbour = pos + offset
-            if 0 <= neighbour < len(dialogue_indices):
-                included.add(dialogue_indices[neighbour])
+    utterance_index = 0
+    for row in rows:
+        scene_id_str = row.get("scene_id", "")
+        if not scene_id_str:
+            continue
+        scene_id = int(scene_id_str)
 
-    review_rows = [rows[i] for i in sorted(included)]
+        if row.get("scene_desc"):
+            continue  # scene-marker row; no timing data
 
-    path.parent.mkdir(parents=True, exist_ok=True)
-    fieldnames = [
-        "start",
-        "end",
-        "speaker",
-        "utterance",
-        "speaker_ct",
-        "utterance_ct",
-        "alignment_score",
-        "speaker_confidence",
-        "speaker_method",
-    ]
-    with open(path, "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter="\t", extrasaction="ignore")
-        writer.writeheader()
-        writer.writerows(review_rows)
+        start_str = row.get("start", "")
+        end_str = row.get("end", "")
+        if not start_str:
+            utterance_index += 1
+            continue
 
-    return len(flagged_dialogue_pos)
+        start = float(start_str)
+        end = float(end_str) if end_str else start
+
+        if scene_id not in scene_starts or start < scene_starts[scene_id]:
+            scene_starts[scene_id] = start
+        if scene_id not in scene_ends or end > scene_ends[scene_id]:
+            scene_ends[scene_id] = end
+
+        speaker = row.get("speaker_ct") or row.get("speaker", "")
+        if speaker:
+            scene_speakers[scene_id].append(speaker)
+
+        shot_id_str = row.get("shot_id", "")
+        if shot_id_str:
+            scene_shot_ids[scene_id].add(int(shot_id_str))
+
+        scene_utterance_indices[scene_id].append(utterance_index)
+        utterance_index += 1
+
+    scene_ids = sorted(set(scene_starts) | set(scene_ends))
+    scenes = []
+    for sid in scene_ids:
+        speakers_seen: list[str] = []
+        for sp in scene_speakers[sid]:
+            if sp not in speakers_seen:
+                speakers_seen.append(sp)
+        scenes.append(Scene(
+            scene_id=sid,
+            start=scene_starts.get(sid, 0.0),
+            end=scene_ends.get(sid, 0.0),
+            speakers=speakers_seen,
+            n_shots=len(scene_shot_ids[sid]),
+            n_utterances=len(scene_utterance_indices[sid]),
+            utterance_indices=scene_utterance_indices[sid],
+        ))
+    return scenes
 
 
 def find_episode_window(

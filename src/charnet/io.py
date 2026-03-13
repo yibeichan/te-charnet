@@ -8,7 +8,7 @@ import re
 from pathlib import Path
 from typing import Any, Optional
 
-from charnet.models import EdgeData, SceneGraph, Shot, Utterance
+from charnet.models import EdgeData, Scene, SceneGraph, Shot, Utterance
 
 logger = logging.getLogger(__name__)
 
@@ -423,3 +423,122 @@ def load_temporal_network(path: Path) -> list[SceneGraph]:
             edges=edges,
         ))
     return result
+
+
+_ALIGNED_ROWS_FIELDNAMES = [
+    "start",
+    "end",
+    "shot_id",
+    "scene_id",
+    "speaker",
+    "utterance",
+    "speaker_ct",
+    "utterance_ct",
+    "scene_desc",
+    "alignment_score",
+    "speaker_confidence",
+    "speaker_method",
+]
+
+
+def save_alignment_rows_tsv(rows: list[dict[str, str]], path: Path) -> None:
+    """Save aligned rows to TSV."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=_ALIGNED_ROWS_FIELDNAMES, delimiter="\t", extrasaction="ignore")
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def load_alignment_rows_tsv(path: Path) -> list[dict[str, str]]:
+    """Load a saved aligned_rows TSV back into a list of dicts."""
+    with open(path, "r", encoding="utf-8", newline="") as f:
+        reader = csv.DictReader(f, delimiter="\t")
+        return [dict(row) for row in reader]
+
+
+def export_review_queue(
+    rows: list[dict[str, str]],
+    path: Path,
+    context_lines: int = 2,
+) -> int:
+    """Export rows needing manual review to a TSV file.
+
+    Rows with speaker_confidence in {"low", "unresolved"} are flagged.
+    Each flagged row is written with up to *context_lines* dialogue rows
+    before and after it (scene-only rows are skipped from context).
+
+    Returns the number of flagged rows written.
+    """
+    review_confidences = {"low", "unresolved"}
+    dialogue_indices = [i for i, r in enumerate(rows) if not r.get("scene_desc")]
+    flagged_dialogue_pos = {
+        pos
+        for pos, i in enumerate(dialogue_indices)
+        if rows[i].get("speaker_confidence") in review_confidences
+    }
+
+    included: set[int] = set()
+    for pos in flagged_dialogue_pos:
+        for offset in range(-context_lines, context_lines + 1):
+            neighbour = pos + offset
+            if 0 <= neighbour < len(dialogue_indices):
+                included.add(dialogue_indices[neighbour])
+
+    review_rows = [rows[i] for i in sorted(included)]
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fieldnames = [
+        "start",
+        "end",
+        "speaker",
+        "utterance",
+        "speaker_ct",
+        "utterance_ct",
+        "alignment_score",
+        "speaker_confidence",
+        "speaker_method",
+    ]
+    with open(path, "w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter="\t", extrasaction="ignore")
+        writer.writeheader()
+        writer.writerows(review_rows)
+
+    return len(flagged_dialogue_pos)
+
+
+def load_corrected_speaker_rows(path: Path, speaker_col: str = "speaker_ct") -> list[dict]:
+    """Load a speaker TSV and normalise column names for network building.
+
+    Works with speaker-filled TSVs from 01b (enhanced or final-cleaned)
+    as well as legacy aligned_rows TSVs.
+    Required columns: scene_id, start, end, and *speaker_col*.
+    """
+    rows = load_alignment_rows_tsv(path)
+    result = []
+    for row in rows:
+        if not row.get("start"):  # skip scene-marker rows
+            continue
+        normalised = dict(row)
+        if speaker_col != "speaker":
+            normalised["speaker"] = row.get(speaker_col, "")
+        result.append(normalised)
+    return result
+
+
+def load_scenes(path: Path) -> list[Scene]:
+    """Load scenes.json produced by Stage 1."""
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    return [
+        Scene(
+            scene_id=d["scene_id"],
+            start=d["start"],
+            end=d["end"],
+            speakers=d.get("speakers", []),
+            n_shots=d.get("n_shots", 0),
+            n_utterances=d.get("n_utterances", 0),
+            utterance_indices=d.get("utterance_indices", []),
+        )
+        for d in data
+    ]

@@ -62,6 +62,16 @@ def _plot_per_scene_metrics(per_scene_df: pd.DataFrame, output_path: Path) -> No
     axes[1].set_ylabel("n_edges")
 
     axes[2].plot(per_scene_df["scene_id"], per_scene_df["density"], marker="o", color="#d62728")
+    if "interaction_density" in per_scene_df.columns:
+        axes[2].plot(
+            per_scene_df["scene_id"],
+            per_scene_df["interaction_density"],
+            marker="o",
+            linestyle="--",
+            color="#9467bd",
+            label="interaction_density",
+        )
+        axes[2].legend(loc="best")
     axes[2].set_ylabel("density")
     axes[2].set_xlabel("scene_id")
 

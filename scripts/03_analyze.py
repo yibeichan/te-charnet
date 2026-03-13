@@ -14,6 +14,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from charnet.io import load_temporal_network
 from charnet.metrics import (
+    SUPPORTED_CENTRALITY_MEASURES,
     centrality_timeseries,
     edge_birth_death,
     episode_graph_from_dict,
@@ -32,7 +33,7 @@ SCRATCH_DIR = os.environ.get("SCRATCH_DIR", ".")
 @click.option("--community-method", default="louvain", show_default=True,
               type=click.Choice(["louvain", "girvan_newman"]))
 @click.option("--centrality-measures", default="degree,betweenness,eigenvector", show_default=True,
-              help="Comma-separated list of centrality measures.")
+              help=f"Comma-separated list of centrality measures: {', '.join(SUPPORTED_CENTRALITY_MEASURES)}.")
 @click.option("--verbose", "-v", is_flag=True, default=False)
 def main(episode, network_dir, output_dir, community_method, centrality_measures, verbose):
     """Compute network metrics at scene and episode level."""
@@ -65,7 +66,17 @@ def main(episode, network_dir, output_dir, community_method, centrality_measures
     with open(episode_network_path, "r", encoding="utf-8") as f:
         episode_network_dict = json.load(f)
     episode_graph = episode_graph_from_dict(episode_network_dict)
-    measures = [m.strip() for m in centrality_measures.split(",")]
+    measures = [m.strip().lower() for m in centrality_measures.split(",") if m.strip()]
+    if not measures:
+        raise click.ClickException("No centrality measures provided.")
+    unknown = sorted(set(measures) - set(SUPPORTED_CENTRALITY_MEASURES))
+    if unknown:
+        raise click.ClickException(
+            "Unknown centrality measure(s): "
+            + ", ".join(unknown)
+            + ". Supported: "
+            + ", ".join(SUPPORTED_CENTRALITY_MEASURES)
+        )
 
     # Per-scene metrics
     per_scene = [scene_metrics(sg) for sg in scene_graphs]
