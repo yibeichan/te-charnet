@@ -9,71 +9,101 @@ git clone --recursive git@github.com:yibeichan/te-charnet.git
 cd te-charnet
 ```
 
-
 ## Environment
 
-Create the environment and verify Python version:
+This project supports both **micromamba** and **uv** for environment management. Pick whichever you prefer — all examples below show both.
+
+### Option A: micromamba
 
 ```bash
 micromamba env create -f environment.yaml
 micromamba run -n charnet python --version
 ```
 
+### Option B: uv
+
+This repo is configured as a non-package `uv` project. `uv sync` installs the dependencies but does not install `charnet` as an editable/local package. The scripts import from `src/` directly.
+
+```bash
+uv sync
+uv run python --version
+```
+
+For tests and other dev-only tools, include the `dev` extra:
+
+```bash
+uv run --extra dev pytest -q
+```
+
+### Running scripts
+
+Throughout this README, examples use `micromamba run -n charnet python`. If you use uv, replace that prefix with `uv run python`:
+
+```bash
+# micromamba
+micromamba run -n charnet python scripts/run_pipeline.py --help
+
+# uv
+uv run python scripts/run_pipeline.py --help
+```
+
 ## Input Layout
 
 Default structured paths (under `data/friends_annotations/annotation_results/`):
 
-- `Speech2Text/s{season}/friends_sXXeYY{part}_model-AA_desc-wSpeaker_transcript.json`
+- `Speech2Text/s{season}/friends_sXXeYY{part}_model-AA_desc-wUtter_transcript.json`
 - `TSVpyscene/s{season}/friends_sXXeYY{part}_pyscene.tsv`
-- `community_based/s{season}/friends_sXXeYY_ufs.txt` (episode-level, no `a/b/c` suffix)
+- `community_based/s{season}/friends_sXXeYY_ufs.txt` (full-episode, no `a/b/c` suffix)
 
-## Stage 0: Preprocess
+Note: ASR data is per half-episode part (`a`/`b`/...), while community transcripts cover the full episode. The pipeline handles this automatically.
 
-### Single episode (recommended)
+## Stage 1a: Extract Annotations
 
-```bash
-micromamba run -n charnet python scripts/00_preprocess.py --episode friends_s06e01a
-```
-
-Shorthand works too:
+Aligns ASR (Speech2Text) sentences to community-transcript dialogues using monotonic fuzzy alignment to extract speaker labels and scene segmentation.
 
 ```bash
-micromamba run -n charnet python scripts/00_preprocess.py --episode s06e01a
+# Single episode
+micromamba run -n charnet python scripts/01a_extract_annotations.py --episode friends_s01e01a
+
+# Whole season
+micromamba run -n charnet python scripts/01a_extract_annotations.py --season s1
+
+# Scene summary only (skip sentence table)
+micromamba run -n charnet python scripts/01a_extract_annotations.py --episode friends_s01e01a --scene-summary-only
 ```
 
-### Whole season
+Main outputs (`output/map_speaker/s{season}/`):
+
+- `friends_sXXeYY{part}_sentence_speaker_table.tsv` — sentence-level speaker annotations
+- `friends_sXXeYY{part}_scene_summary.tsv` — per-scene start/end times and shot IDs
+
+Sentence table columns: `scene_id`, `sentence_id`, `start`, `end`, `utterance`, `speaker`, `utterance_ct`, `speaker_ct`
+
+Scene summary columns: `scene_id`, `scene_desc`, `start`, `end`, `shot_ids`
+
+## Stage 1b: Fill Missing Speakers
+
+Fills the missing speaker rows from Stage 1a using cascading inference rules (community-transcript matching, same-speaker bridging, name-address detection, turn alternation, scene context) followed by a cross-season global QA pass.
 
 ```bash
-micromamba run -n charnet python scripts/00_preprocess.py --season s6
+# All seasons
+micromamba run -n charnet python scripts/01b_fill_speakers.py
+
+# Single season
+micromamba run -n charnet python scripts/01b_fill_speakers.py --season s1
+
+# Skip global QA
+micromamba run -n charnet python scripts/01b_fill_speakers.py --skip-qa
 ```
 
-### Outputs (`output/00_preprocess/<episode>/`)
+Main outputs:
 
-- `words.json`
-- `utterances.json`
-- `sentences.json`
-- `shots.json` (if available)
-- `community_events.json` (if available)
-- `community_dialogues.json` (if available)
+- `output/map_speaker_enhanced/s{season}/` — enhanced TSVs with filled speakers and metadata columns (`speaker_confidence`, `speaker_method`, `alignment_score`, `row_type`, `filled_from_missing`, `review_flag`, etc.)
+- `output/map_speaker_enhanced/s{season}_review/` — subset of rows flagged for manual review
+- `output/map_speaker_final/global_qa_work/final_cleaned/` — post-QA cleaned TSVs
+- `output/map_speaker_final/global_qa_work/reports/` — QA summary and change reports
 
-## Stage 1: Segment/Align
-
-```bash
-micromamba run -n charnet python scripts/01_segment_scenes.py --episode friends_s06e01a
-```
-
-Main outputs (`output/01_segment_scenes/<episode>/`):
-
-- `aligned_rows.tsv`
-- `aligned_rows.json`
-
-Columns in aligned table:
-
-- `start`, `end`, `shot_id`, `scene_id`, `speaker`, `utterance`, `speaker_ct`, `utterance_ct`, `scene_desc`
-
-`scene_id` is derived from `scene_desc` boundaries (community-based scene markers), and propagated to dialogue rows.
-
-`aligned_rows.tsv` / `aligned_rows.json` are the canonical stage-1 outputs consumed downstream.
+The filling pipeline is defined in `src/charnet/speaker_fill.py` with tunable score thresholds in `src/charnet/pipeline_config.yaml`.
 
 ## Stage 2: Build Network
 
@@ -134,7 +164,7 @@ micromamba run -n charnet python scripts/run_pipeline.py --season s6
 You can skip stages with:
 
 ```bash
---skip-stages 3,4
+--skip-stages 1a,1b,3,4
 ```
 
 ### Optional single-episode overrides

@@ -1,6 +1,6 @@
 [build-system]
 requires = ["setuptools>=68", "wheel"]
-build-backend = "setuptools.backends.legacy:build"
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "charnet"
@@ -15,17 +15,21 @@ dependencies = [
     "rapidfuzz>=3.0",
     "matplotlib>=3.7",
     "seaborn>=0.12",
+    "click>=8.1",
 ]
 
 [project.optional-dependencies]
 community = ["python-louvain>=0.16"]
 interactive = ["pyvis>=0.3"]
-cli = ["click>=8.1"]
+cli = []
 dev = ["pytest>=7.0", "ruff>=0.4"]
-all = ["charnet[community,interactive,cli,dev]"]
+all = ["python-louvain>=0.16", "pyvis>=0.3", "pytest>=7.0", "ruff>=0.4"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.uv]
+package = false
 
 [tool.ruff]
 line-length = 100

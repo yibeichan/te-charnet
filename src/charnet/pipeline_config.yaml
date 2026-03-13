@@ -1,0 +1,28 @@
+pipeline_version: "v1.0"
+
+rules:
+  song_markers:
+    - "theme song"
+    - "theme from"
+    - "i'll be there for you"
+    - "if you ever need"
+    - "when the rain starts to pour"
+    - "your job's a joke"
+    - "your love life's doa"
+  continuation_prefixes:
+    - "and "
+    - "but "
+    - "so "
+    - "because "
+    - "well "
+
+scores:
+  ct_match: 1.00
+  direction: 0.95
+  high_bridge: 0.88
+  name_address: 0.74
+  short_turn: 0.70
+  scene_context: 0.68
+  long_ambiguous: 0.66
+  weak_ambiguous: 0.58
+  scene_majority: 0.52
