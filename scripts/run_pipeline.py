@@ -63,21 +63,23 @@ def discover_episodes_from_tsv(season_dir: str, tsv_root: Path) -> list[str]:
 def find_speaker_tsv(episode: str, output_root: Path) -> Path | None:
     """Find the best available speaker-filled TSV for an episode.
 
-    Prefers final-cleaned (from global QA), falls back to enhanced.
+    Prefers canonical (final-cleaned, in annotations/sentences/),
+    falls back to enhanced (in annotations/intermediate/01b_enhanced/).
     """
     season_dir = episode_to_season_dir(episode)
+    annotations = output_root / "annotations"
 
-    # Final cleaned (global QA output)
-    final_cleaned = (
-        output_root / "map_speaker_final" / "global_qa_work" / "final_cleaned"
-        / f"{episode}_sentence_speaker_table_final_cleaned.tsv"
+    # Canonical (final cleaned, in sentences/)
+    canonical = (
+        annotations / "sentences" / season_dir
+        / f"{episode}_sentence_speaker_table.tsv"
     )
-    if final_cleaned.exists():
-        return final_cleaned
+    if canonical.exists():
+        return canonical
 
-    # Enhanced (01b output)
+    # Enhanced (01b intermediate output)
     enhanced = (
-        output_root / "map_speaker_enhanced" / season_dir
+        annotations / "intermediate" / "01b_enhanced" / season_dir
         / f"{episode}_sentence_speaker_table_enhanced.tsv"
     )
     if enhanced.exists():
@@ -142,7 +144,8 @@ def main(
         click.echo("\n[Stage 01a] Extracting annotations...")
         stage01a_args = [
             "--annotation-root", str(annotation_root_path),
-            "--output-dir", str(output_root / "map_speaker"),
+            "--output-dir", str(output_root / "annotations" / "intermediate" / "01a_raw"),
+            "--scene-output-dir", str(output_root / "annotations" / "scenes"),
         ]
         if season:
             stage01a_args += ["--season", season]
@@ -156,9 +159,9 @@ def main(
     if "1b" not in skip:
         click.echo("\n[Stage 01b] Filling missing speaker annotations...")
         stage01b_args = [
-            "--input-dir", str(output_root / "map_speaker"),
-            "--output-dir", str(output_root / "map_speaker_enhanced"),
-            "--final-dir", str(output_root / "map_speaker_final"),
+            "--input-dir", str(output_root / "annotations" / "intermediate" / "01a_raw"),
+            "--output-dir", str(output_root / "annotations" / "intermediate" / "01b_enhanced"),
+            "--final-dir", str(output_root / "annotations" / "sentences"),
         ]
         if season:
             stage01b_args += ["--season", season]

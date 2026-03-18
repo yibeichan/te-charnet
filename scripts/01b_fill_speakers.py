@@ -29,9 +29,9 @@ import tempfile
 logger = logging.getLogger(__name__)
 
 DEFAULT_CONFIG = REPO_ROOT / "src" / "charnet" / "pipeline_config.yaml"
-DEFAULT_INPUT_DIR = Path(SCRATCH_DIR) / "output" / "map_speaker"
-DEFAULT_OUTPUT_DIR = Path(SCRATCH_DIR) / "output" / "map_speaker_enhanced"
-DEFAULT_FINAL_DIR = Path(SCRATCH_DIR) / "output" / "map_speaker_final"
+DEFAULT_INPUT_DIR = Path(SCRATCH_DIR) / "output" / "annotations" / "intermediate" / "01a_raw"
+DEFAULT_OUTPUT_DIR = Path(SCRATCH_DIR) / "output" / "annotations" / "intermediate" / "01b_enhanced"
+DEFAULT_FINAL_DIR = Path(SCRATCH_DIR) / "output" / "annotations" / "sentences"
 
 # Enhanced output keeps timing columns alongside the pipeline's schema.
 ENHANCED_COLUMNS = FINAL_COLUMNS[:2] + ["start", "end"] + FINAL_COLUMNS[2:]
@@ -135,7 +135,7 @@ def main(
             continue
 
         enhanced_dir = output_dir / season_label
-        review_dir = output_dir / f"{season_label}_review"
+        review_dir = output_dir.parent / "01b_review" / season_label
         enhanced_dir.mkdir(parents=True, exist_ok=True)
         review_dir.mkdir(parents=True, exist_ok=True)
 
@@ -162,8 +162,10 @@ def main(
                 summary_rows.append({"file": tsv_path.name, "error": str(exc)})
 
         # Season summary
+        qa_reports_dir = output_dir.parent / "qa_reports"
+        qa_reports_dir.mkdir(parents=True, exist_ok=True)
         summary_df = pd.DataFrame(summary_rows)
-        summary_path = output_dir / f"{season_label}_annotation_summary.tsv"
+        summary_path = qa_reports_dir / f"{season_label}_annotation_summary.tsv"
         summary_df.to_csv(summary_path, sep="\t", index=False)
 
         total_filled = sum(s.get("filled_rows", 0) for s in summary_rows)
@@ -176,42 +178,53 @@ def main(
 
     # Global QA pass — global_qa() requires zip inputs, so build temp zips.
     click.echo("\nRunning global QA...")
+    qa_reports_dir = output_dir.parent / "qa_reports"
+    qa_reports_dir.mkdir(parents=True, exist_ok=True)
+
     with tempfile.TemporaryDirectory() as tmp:
         tmp_path = Path(tmp)
+        qa_staging = tmp_path / "qa_staging"
         enhanced_zips: list[Path] = []
         for season_label in seasons:
             enhanced_dir = output_dir / season_label
             enh_files = sorted(enhanced_dir.glob("*_enhanced.tsv"))
             if not enh_files:
                 continue
-            summary_file = output_dir / f"{season_label}_annotation_summary.tsv"
+            summary_file = qa_reports_dir / f"{season_label}_annotation_summary.tsv"
             files_to_zip = ([summary_file] if summary_file.exists() else []) + enh_files
             zip_path = tmp_path / f"{season_label}_enhanced_outputs.zip"
             zip_dir(zip_path, files_to_zip)
             enhanced_zips.append(zip_path)
 
         if enhanced_zips:
-            global_qa(enhanced_zips, final_dir)
+            global_qa(enhanced_zips, qa_staging)
 
-    # Clean up artifacts produced by global_qa inside final_dir
-    for zf in final_dir.glob("*.zip"):
-        zf.unlink()
-    qa_input_dir = final_dir / "global_qa_work" / "input"
-    if qa_input_dir.exists():
-        shutil.rmtree(qa_input_dir)
+        # Distribute final cleaned TSVs to annotations/sentences/s{N}/
+        final_cleaned_dir = qa_staging / "global_qa_work" / "final_cleaned"
+        if final_cleaned_dir.exists():
+            for final_tsv in sorted(final_cleaned_dir.glob("*_final_cleaned.tsv")):
+                # Restore timing columns
+                enhanced_name = final_tsv.name.replace("_final_cleaned.tsv", "_enhanced.tsv")
+                for season_label in seasons:
+                    candidate = output_dir / season_label / enhanced_name
+                    if candidate.exists():
+                        final_df = pd.read_csv(final_tsv, sep="\t")
+                        final_df = _restore_timing_from_enhanced(final_df, candidate)
+                        # Write to final_dir/s{N}/ with canonical name
+                        dest_season = final_dir / season_label
+                        dest_season.mkdir(parents=True, exist_ok=True)
+                        canonical_name = final_tsv.name.replace(
+                            "_sentence_speaker_table_final_cleaned.tsv",
+                            "_sentence_speaker_table.tsv",
+                        )
+                        final_df.to_csv(dest_season / canonical_name, sep="\t", index=False)
+                        break
 
-    # Restore timing columns in final cleaned TSVs
-    final_cleaned_dir = final_dir / "global_qa_work" / "final_cleaned"
-    if final_cleaned_dir.exists():
-        for final_tsv in sorted(final_cleaned_dir.glob("*_final_cleaned.tsv")):
-            enhanced_name = final_tsv.name.replace("_final_cleaned.tsv", "_enhanced.tsv")
-            for season_label in seasons:
-                candidate = output_dir / season_label / enhanced_name
-                if candidate.exists():
-                    final_df = pd.read_csv(final_tsv, sep="\t")
-                    final_df = _restore_timing_from_enhanced(final_df, candidate)
-                    final_df.to_csv(final_tsv, sep="\t", index=False)
-                    break
+        # Copy QA reports
+        qa_reports_src = qa_staging / "global_qa_work" / "reports"
+        if qa_reports_src.exists():
+            for rpt in qa_reports_src.iterdir():
+                shutil.copy2(rpt, qa_reports_dir / rpt.name)
 
     click.echo("Done.")
 

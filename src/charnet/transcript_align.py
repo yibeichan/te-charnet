@@ -1014,10 +1014,13 @@ def process_episode(
     community_override: Path | None = None,
     shots: list | None = None,
     scene_summary_only: bool = False,
+    scene_output_dir: Path | None = None,
 ) -> tuple[Path, dict]:
     """Process one episode: align, fill speakers, write TSVs.
 
     If scene_summary_only is True, only the scene summary TSV is written.
+    If scene_output_dir is provided, scene summaries are written there instead
+    of alongside sentence tables in output_dir.
 
     Returns (output_tsv_path, stats_dict).
     """
@@ -1052,8 +1055,10 @@ def process_episode(
         out_tsv = out_season_dir / f"{episode}_sentence_speaker_table.tsv"
         write_sentence_table_tsv(mapped, out_tsv)
 
-    # Scene summary TSV
-    scene_summary_tsv = out_season_dir / f"{episode}_scene_summary.tsv"
+    # Scene summary TSV — write to separate dir if provided
+    scene_season_dir = (scene_output_dir / season_dir) if scene_output_dir else out_season_dir
+    scene_season_dir.mkdir(parents=True, exist_ok=True)
+    scene_summary_tsv = scene_season_dir / f"{episode}_scene_summary.tsv"
     write_scene_summary_tsv(mapped, scene_descs, shots, scene_summary_tsv)
 
     primary_out = scene_summary_tsv if scene_summary_only else out_season_dir / f"{episode}_sentence_speaker_table.tsv"

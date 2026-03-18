@@ -57,121 +57,81 @@ Default structured paths (under `data/friends_annotations/annotation_results/`):
 
 Note: ASR data is per half-episode part (`a`/`b`/...), while community transcripts cover the full episode. The pipeline handles this automatically.
 
-## Stage 1a: Extract Annotations
+## Output Layout
 
-Aligns ASR (Speech2Text) sentences to community-transcript dialogues using monotonic fuzzy alignment to extract speaker labels and scene segmentation.
-
-```bash
-# Single episode
-micromamba run -n charnet python scripts/01a_extract_annotations.py --episode friends_s01e01a
-
-# Whole season
-micromamba run -n charnet python scripts/01a_extract_annotations.py --season s1
-
-# Scene summary only (skip sentence table)
-micromamba run -n charnet python scripts/01a_extract_annotations.py --episode friends_s01e01a --scene-summary-only
+```
+output/
+  annotations/
+    sentences/s{N}/        # canonical speaker-annotated sentence tables
+    scenes/s{N}/           # scene summaries (timing, shot boundaries)
+    intermediate/
+      01a_raw/s{N}/        # raw alignment before speaker fill
+      01b_enhanced/s{N}/   # enhanced with fill metadata columns
+      01b_review/s{N}/     # rows flagged for manual review
+      qa_reports/          # per-season summaries + global QA reports
+  02_build_network/{ep}/   # temporal + episode network graphs
+  03_analyze/{ep}/         # metrics, centrality, edge stats
+  04_visualize/{ep}/       # figures (gitignored)
 ```
 
-Main outputs (`output/map_speaker/s{season}/`):
+Downstream consumers (network building, scene clustering, brain-state mapping) read from `annotations/sentences/` and `annotations/scenes/`. Intermediate outputs are for debugging and auditing only.
 
-- `friends_sXXeYY{part}_sentence_speaker_table.tsv` — sentence-level speaker annotations
-- `friends_sXXeYY{part}_scene_summary.tsv` — per-scene start/end times and shot IDs
+## Pipeline
+
+### Stage 1a: Extract Annotations
+
+Aligns ASR sentences to community-transcript dialogues via monotonic fuzzy matching. Produces raw sentence tables and scene summaries.
+
+```bash
+python scripts/01a_extract_annotations.py --episode friends_s01e01a
+python scripts/01a_extract_annotations.py --season s1
+python scripts/01a_extract_annotations.py --episode friends_s01e01a --scene-summary-only
+```
 
 Sentence table columns: `scene_id`, `sentence_id`, `start`, `end`, `utterance`, `speaker`, `utterance_ct`, `speaker_ct`
 
 Scene summary columns: `scene_id`, `scene_desc`, `start`, `end`, `shot_ids`
 
-## Stage 1b: Fill Missing Speakers
+### Stage 1b: Fill Missing Speakers
 
-Fills the missing speaker rows from Stage 1a using cascading inference rules (community-transcript matching, same-speaker bridging, name-address detection, turn alternation, scene context) followed by a cross-season global QA pass.
-
-```bash
-# All seasons
-micromamba run -n charnet python scripts/01b_fill_speakers.py
-
-# Single season
-micromamba run -n charnet python scripts/01b_fill_speakers.py --season s1
-
-# Skip global QA
-micromamba run -n charnet python scripts/01b_fill_speakers.py --skip-qa
-```
-
-Main outputs:
-
-- `output/map_speaker_enhanced/s{season}/` — enhanced TSVs with filled speakers and metadata columns (`speaker_confidence`, `speaker_method`, `alignment_score`, `row_type`, `filled_from_missing`, `review_flag`, etc.)
-- `output/map_speaker_enhanced/s{season}_review/` — subset of rows flagged for manual review
-- `output/map_speaker_final/global_qa_work/final_cleaned/` — post-QA cleaned TSVs
-- `output/map_speaker_final/global_qa_work/reports/` — QA summary and change reports
-
-The filling pipeline is defined in `src/charnet/speaker_fill.py` with tunable score thresholds in `src/charnet/pipeline_config.yaml`.
-
-## Stage 2: Build Network
+Fills missing speakers using cascading rules (CT matching, same-speaker bridging, name-address, turn alternation, scene context) + cross-season global QA.
 
 ```bash
-micromamba run -n charnet python scripts/02_build_network.py --episode friends_s06e01a
+python scripts/01b_fill_speakers.py                # all seasons
+python scripts/01b_fill_speakers.py --season s1     # single season
+python scripts/01b_fill_speakers.py --skip-qa       # skip global QA
 ```
 
-Main outputs (`output/02_build_network/<episode>/`):
+Config: `src/charnet/pipeline_config.yaml`
 
-- `temporal_network.json` (scene-level graphs)
-- `episode_network.json` (aggregate half-episode graph)
-
-## Stage 3: Analyze
+### Stage 2: Build Network
 
 ```bash
-micromamba run -n charnet python scripts/03_analyze.py --episode friends_s06e01a
+python scripts/02_build_network.py --episode friends_s06e01a
 ```
 
-Main outputs (`output/03_analyze/<episode>/`):
+Outputs: `temporal_network.json` (per-scene graphs), `episode_network.json` (aggregate graph).
 
-- `metrics.json`
-- `centrality_timeseries.csv` (if non-empty)
-- `edge_birth_death.csv` (if non-empty)
-
-## Stage 4: Visualize
+### Stage 3: Analyze
 
 ```bash
-micromamba run -n charnet python scripts/04_visualize.py --episode friends_s06e01a
+python scripts/03_analyze.py --episode friends_s06e01a
 ```
 
-Main outputs (`output/04_visualize/<episode>/figures/`):
+Outputs: `metrics.json`, `centrality_timeseries.csv`, `edge_birth_death.csv`
 
-- `scene_networks/` (network plot per scene)
-- `episode/` (aggregate network plots + exported graph files)
-- `scene_segments/` (scene timeline and durations)
-- `metrics/` (centrality and other metrics plots)
-
-## End-to-End Pipeline
-
-### Single episode (recommended)
+### Stage 4: Visualize
 
 ```bash
-micromamba run -n charnet python scripts/run_pipeline.py --episode friends_s06e01a
+python scripts/04_visualize.py --episode friends_s06e01a
 ```
 
-Shorthand also works:
+Outputs: `scene_networks/`, `episode/`, `scene_segments/`, `metrics/` (all under `figures/`)
+
+### End-to-End
 
 ```bash
-micromamba run -n charnet python scripts/run_pipeline.py --episode s06e01a
+python scripts/run_pipeline.py --episode friends_s06e01a   # or --season s6
+python scripts/run_pipeline.py --episode s06e01a           # shorthand works
+python scripts/run_pipeline.py --season s6 --skip-stages 1a,1b,3,4
 ```
-
-### Whole season
-
-```bash
-micromamba run -n charnet python scripts/run_pipeline.py --season s6
-```
-
-You can skip stages with:
-
-```bash
---skip-stages 1a,1b,3,4
-```
-
-### Optional single-episode overrides
-
-For unusual layouts, you can still override inferred inputs:
-
-- `--transcript <path>`
-- `--shots <path>`
-- `--community-transcript <path>`
-- `--speaker-map <path>`

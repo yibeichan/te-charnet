@@ -51,7 +51,13 @@ def _load_shots_for_episode(episode: str, annotation_root: Path) -> list | None:
     "-o",
     type=click.Path(path_type=Path),
     default=None,
-    help="Output root. Defaults to $SCRATCH_DIR/output/map_speaker.",
+    help="Output root for sentence tables. Defaults to $SCRATCH_DIR/output/annotations/intermediate/01a_raw.",
+)
+@click.option(
+    "--scene-output-dir",
+    type=click.Path(path_type=Path),
+    default=None,
+    help="Output root for scene summaries. Defaults to $SCRATCH_DIR/output/annotations/scenes.",
 )
 @click.option(
     "--wutter-json",
@@ -84,6 +90,7 @@ def main(
     season: str | None,
     annotation_root: Path,
     output_dir: Path | None,
+    scene_output_dir: Path | None,
     wutter_json: Path | None,
     community_txt: Path | None,
     min_similarity: float,
@@ -113,7 +120,9 @@ def main(
         raise click.ClickException("--wutter-json/--community-txt are only allowed in --episode mode.")
 
     if output_dir is None:
-        output_dir = Path(SCRATCH_DIR) / "output" / "map_speaker"
+        output_dir = Path(SCRATCH_DIR) / "output" / "annotations" / "intermediate" / "01a_raw"
+    if scene_output_dir is None:
+        scene_output_dir = Path(SCRATCH_DIR) / "output" / "annotations" / "scenes"
 
     if episode:
         episodes = [normalize_episode_key(episode)]
@@ -147,6 +156,7 @@ def main(
                 community_override=community_txt if len(episodes) == 1 else None,
                 shots=shots,
                 scene_summary_only=scene_summary_only,
+                scene_output_dir=scene_output_dir,
             )
             ok += 1
             click.echo(f"[OK] {ep}")
