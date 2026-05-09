@@ -1,22 +1,28 @@
-"""Tests for speaker mapping helpers in map_speaker_from_community.py."""
+"""Tests for transcript alignment speaker-mapping helpers."""
 from __future__ import annotations
 
 import importlib.util
+import sys
 from pathlib import Path
 
 
-MODULE_PATH = (
-    Path(__file__).resolve().parents[1]
+REPO_ROOT = Path(__file__).resolve().parents[1]
+LEGACY_MODULE_PATH = (
+    REPO_ROOT
     / "data"
     / "friends_annotations"
     / "src"
     / "map_speaker_code"
     / "map_speaker_from_community.py"
 )
-SPEC = importlib.util.spec_from_file_location("map_speaker_from_community", MODULE_PATH)
-assert SPEC is not None and SPEC.loader is not None
-map_speaker = importlib.util.module_from_spec(SPEC)
-SPEC.loader.exec_module(map_speaker)
+if LEGACY_MODULE_PATH.exists():
+    SPEC = importlib.util.spec_from_file_location("map_speaker_from_community", LEGACY_MODULE_PATH)
+    assert SPEC is not None and SPEC.loader is not None
+    map_speaker = importlib.util.module_from_spec(SPEC)
+    SPEC.loader.exec_module(map_speaker)
+else:
+    sys.path.insert(0, str(REPO_ROOT / "src"))
+    from charnet import transcript_align as map_speaker
 
 
 def _sentence(

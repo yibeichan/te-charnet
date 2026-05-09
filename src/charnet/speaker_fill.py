@@ -46,6 +46,8 @@ from typing import Iterable
 import pandas as pd
 import yaml
 
+from charnet.visual_presence import VISUAL_COLUMNS, assess_annotation_confidence
+
 
 FINAL_COLUMNS = [
     "scene_id",
@@ -67,6 +69,7 @@ FINAL_COLUMNS = [
     "utterance_ct",
     "speaker_ct",
     "speaker_original",
+    *VISUAL_COLUMNS,
 ]
 
 
@@ -106,6 +109,64 @@ def clean_str(x) -> str:
     if pd.isna(x):
         return ""
     return str(x).strip()
+
+
+def append_token(old: str, new: str) -> str:
+    old = clean_str(old)
+    new = clean_str(new)
+    if not new:
+        return old
+    if not old:
+        return new
+    if new in {part.strip() for part in old.split("|")}:
+        return old
+    return old + " | " + new
+
+
+def ensure_visual_columns(df: pd.DataFrame) -> pd.DataFrame:
+    """Ensure optional visual-presence columns exist for old 01a outputs."""
+    defaults = {
+        "visual_presence": "unavailable",
+        "visual_presence_source": "none",
+        "visual_presence_ratio": "",
+        "visual_presence_frames": "",
+        "visual_presence_total_frames": "",
+        "visual_presence_note": "visual_presence_data_unavailable",
+        "annotation_confidence": "",
+        "annotation_review_reason": "",
+    }
+    for col in VISUAL_COLUMNS:
+        if col not in df.columns:
+            df[col] = defaults[col]
+        else:
+            df[col] = df[col].apply(clean_str)
+    df.loc[df["visual_presence"] == "", "visual_presence"] = "unavailable"
+    df.loc[df["visual_presence_source"] == "", "visual_presence_source"] = "none"
+    no_source_note = (df["visual_presence_source"] == "none") & (df["visual_presence_note"] == "")
+    df.loc[no_source_note, "visual_presence_note"] = "visual_presence_data_unavailable"
+    return df
+
+
+def apply_visual_annotation_quality(df: pd.DataFrame) -> pd.DataFrame:
+    """Recompute composite confidence and visual-specific review reasons."""
+    df = ensure_visual_columns(df)
+    for idx in df.index:
+        confidence, reason = assess_annotation_confidence(
+            speaker=clean_str(df.at[idx, "speaker"]),
+            speaker_ct=clean_str(df.at[idx, "speaker_ct"]),
+            speaker_confidence=clean_str(df.at[idx, "speaker_confidence"]),
+            visual_presence=clean_str(df.at[idx, "visual_presence"]),
+        )
+        df.at[idx, "annotation_confidence"] = confidence
+        df.at[idx, "annotation_review_reason"] = reason
+        if (
+            reason
+            and confidence in {"low", "medium"}
+            and reason not in {"visual_presence_unavailable", "visual_presence_unknown"}
+        ):
+            df.at[idx, "review_flag"] = True
+            df.at[idx, "review_reason"] = append_token(df.at[idx, "review_reason"], reason)
+    return df
 
 
 def word_count(text: str) -> int:
@@ -268,6 +329,7 @@ def ensure_required_input_columns(df: pd.DataFrame, filename: str) -> None:
 def process_tsv(path: Path, cfg: PipelineConfig) -> tuple[pd.DataFrame, dict]:
     df = pd.read_csv(path, sep="\t")
     ensure_required_input_columns(df, path.name)
+    df = ensure_visual_columns(df)
 
     df["speaker"] = df["speaker"].apply(clean_str)
     df["speaker_ct"] = df["speaker_ct"].apply(clean_str)
@@ -348,6 +410,7 @@ def process_tsv(path: Path, cfg: PipelineConfig) -> tuple[pd.DataFrame, dict]:
     df.loc[medium_mask & (df["review_reason"] == ""), "review_flag"] = True
     df.loc[medium_mask & (df["review_reason"] == ""), "review_reason"] = "medium_confidence_context_fill"
 
+    df = apply_visual_annotation_quality(df)
     df = df[FINAL_COLUMNS]
 
     summary = {
@@ -360,6 +423,14 @@ def process_tsv(path: Path, cfg: PipelineConfig) -> tuple[pd.DataFrame, dict]:
         "high_confidence_rows": int((df["speaker_confidence"] == "high").sum()),
         "medium_confidence_rows": int((df["speaker_confidence"] == "medium").sum()),
         "low_confidence_rows": int((df["speaker_confidence"] == "low").sum()),
+        "annotation_high_confidence_rows": int((df["annotation_confidence"] == "high").sum()),
+        "annotation_medium_confidence_rows": int((df["annotation_confidence"] == "medium").sum()),
+        "annotation_low_confidence_rows": int((df["annotation_confidence"] == "low").sum()),
+        "visual_present_rows": int((df["visual_presence"] == "present").sum()),
+        "visual_partial_rows": int((df["visual_presence"] == "partial").sum()),
+        "visual_absent_rows": int((df["visual_presence"] == "absent").sum()),
+        "visual_unknown_rows": int((df["visual_presence"] == "unknown").sum()),
+        "visual_unavailable_rows": int((df["visual_presence"] == "unavailable").sum()),
     }
     return df, summary
 
@@ -418,16 +489,11 @@ def ensure_schema(df: pd.DataFrame) -> pd.DataFrame:
                 df[c] = 0.0
             else:
                 df[c] = ""
-    return df[FINAL_COLUMNS].copy()
+    return ensure_visual_columns(df)[FINAL_COLUMNS].copy()
 
 
 def append_note(old: str, new: str) -> str:
-    old = clean_str(old)
-    if not old:
-        return new
-    if new in old:
-        return old
-    return old + " | " + new
+    return append_token(old, new)
 
 
 def scene_neighbors(df: pd.DataFrame, idx: int) -> tuple[str, int | None, str, int | None]:
@@ -626,6 +692,7 @@ def global_qa(enhanced_zips: list[Path], output_dir: Path) -> None:
                 review_fix_count += 1
 
         df = recompute_scene_context(df)
+        df = apply_visual_annotation_quality(df)
         df = df[FINAL_COLUMNS]
 
         out_name = fpath.name.replace("_enhanced.tsv", "_final_cleaned.tsv")
