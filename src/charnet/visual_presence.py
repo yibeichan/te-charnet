@@ -164,7 +164,7 @@ def assess_annotation_confidence(
 
     if speaker and visual_presence == "absent":
         rank = min(rank, 2)
-        reason = "speaker_no_visual_presence"
+        reason = "speaker_no_face"
     elif speaker and visual_presence in {"unknown", "unavailable"}:
         rank = min(rank, 2)
         reason = "visual_presence_unavailable" if visual_presence == "unavailable" else "visual_presence_unknown"

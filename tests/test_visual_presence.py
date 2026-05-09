@@ -64,7 +64,7 @@ def test_annotation_confidence_flags_speaker_without_visual_presence():
     )
 
     assert confidence == "medium"
-    assert reason == "speaker_no_visual_presence"
+    assert reason == "speaker_no_face"
 
 
 def test_process_tsv_preserves_visual_columns_and_sets_review_reason(tmp_path):
@@ -96,8 +96,35 @@ def test_process_tsv_preserves_visual_columns_and_sets_review_reason(tmp_path):
 
     assert df.loc[0, "visual_presence"] == "absent"
     assert df.loc[0, "annotation_confidence"] == "medium"
-    assert df.loc[0, "annotation_review_reason"] == "speaker_no_visual_presence"
+    assert df.loc[0, "annotation_review_reason"] == "speaker_no_face"
     assert df.loc[0, "review_flag"]
-    assert "speaker_no_visual_presence" in df.loc[0, "review_reason"]
+    assert "speaker_no_face" in df.loc[0, "review_reason"]
     assert summary["visual_absent_rows"] == 1
     assert summary["annotation_medium_confidence_rows"] == 1
+
+
+def test_process_tsv_defaults_missing_visual_data_without_review(tmp_path):
+    path = tmp_path / "legacy_sentence_speaker_table.tsv"
+    pd.DataFrame(
+        [
+            {
+                "scene_id": "1",
+                "sentence_id": "1",
+                "start": "0.0",
+                "end": "1.0",
+                "utterance": "Hi.",
+                "speaker": "Rachel",
+                "utterance_ct": "Hi.",
+                "speaker_ct": "Rachel",
+            }
+        ]
+    ).to_csv(path, sep="\t", index=False)
+
+    df, summary = process_tsv(path, _cfg())
+
+    assert df.loc[0, "visual_presence"] == "unavailable"
+    assert df.loc[0, "visual_presence_source"] == "none"
+    assert df.loc[0, "annotation_confidence"] == "medium"
+    assert df.loc[0, "annotation_review_reason"] == "visual_presence_unavailable"
+    assert not df.loc[0, "review_flag"]
+    assert summary["visual_unavailable_rows"] == 1
