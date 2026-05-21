@@ -17,12 +17,16 @@ sys.path.insert(0, str(REPO_ROOT / "src"))
 
 from charnet.io import load_shots  # noqa: E402
 from charnet.transcript_align import (  # noqa: E402
-    DEFAULT_DEEPGAZE_FPS,
     discover_episodes_in_season,
     episode_to_season_dir,
     normalize_episode_key,
     normalize_season_id,
     process_episode,
+)
+from charnet.visual_presence import (  # noqa: E402
+    CHAR_TRACKER_ENV_VAR,
+    DEFAULT_CHAR_TRACKER_DIR,
+    resolve_char_tracker_dir,
 )
 
 logger = logging.getLogger(__name__)
@@ -83,7 +87,16 @@ def _load_shots_for_episode(episode: str, annotation_root: Path) -> list | None:
 @click.option("--scene-iter-context-similarity", type=float, default=0.65, show_default=True)
 @click.option("--scene-iter-ambiguity-margin", type=float, default=0.05, show_default=True)
 @click.option("--scene-iter-max-rounds", type=int, default=8, show_default=True)
-@click.option("--deepgaze-fps", type=float, default=DEFAULT_DEEPGAZE_FPS, show_default=True)
+@click.option(
+    "--char-tracker-dir",
+    type=click.Path(path_type=Path),
+    default=None,
+    help=(
+        "Directory containing char-tracker stage-05 per-character timestamps "
+        f"(<episode>_timestamps.csv). Falls back to ${CHAR_TRACKER_ENV_VAR} env "
+        f"var, then to {DEFAULT_CHAR_TRACKER_DIR}."
+    ),
+)
 @click.option("--overwrite-speaker", is_flag=True, default=False, show_default=True)
 @click.option("--scene-summary-only", is_flag=True, default=False, help="Only generate scene summary TSVs, skip sentence tables.")
 @click.option("--verbose", "-v", is_flag=True, default=False)
@@ -106,7 +119,7 @@ def main(
     scene_iter_context_similarity: float,
     scene_iter_ambiguity_margin: float,
     scene_iter_max_rounds: int,
-    deepgaze_fps: float,
+    char_tracker_dir: Path | None,
     overwrite_speaker: bool,
     scene_summary_only: bool,
     verbose: bool,
@@ -126,6 +139,18 @@ def main(
         output_dir = Path(SCRATCH_DIR) / "output" / "annotations" / "intermediate" / "01a_raw"
     if scene_output_dir is None:
         scene_output_dir = Path(SCRATCH_DIR) / "output" / "annotations" / "scenes"
+
+    resolved_char_tracker_dir = resolve_char_tracker_dir(char_tracker_dir)
+    if resolved_char_tracker_dir is None:
+        logger.warning(
+            "char-tracker stage-05 directory not found (override=%s, env=%s, default=%s); "
+            "visual_presence will be 'unavailable' for all sentences.",
+            char_tracker_dir,
+            os.environ.get(CHAR_TRACKER_ENV_VAR),
+            DEFAULT_CHAR_TRACKER_DIR,
+        )
+    else:
+        logger.info("Using char-tracker stage-05 directory: %s", resolved_char_tracker_dir)
 
     if episode:
         episodes = [normalize_episode_key(episode)]
@@ -160,7 +185,7 @@ def main(
                 shots=shots,
                 scene_summary_only=scene_summary_only,
                 scene_output_dir=scene_output_dir,
-                deepgaze_fps=deepgaze_fps,
+                char_tracker_dir=resolved_char_tracker_dir,
             )
             ok += 1
             click.echo(f"[OK] {ep}")

@@ -46,7 +46,12 @@ from typing import Iterable
 import pandas as pd
 import yaml
 
-from charnet.visual_presence import VISUAL_COLUMNS, assess_annotation_confidence
+from charnet.visual_presence import (
+    MAIN_CHARACTERS,
+    VISUAL_COLUMN_DEFAULTS,
+    VISUAL_COLUMNS,
+    assess_annotation_confidence,
+)
 
 
 FINAL_COLUMNS = [
@@ -125,37 +130,64 @@ def append_token(old: str, new: str) -> str:
 
 def ensure_visual_columns(df: pd.DataFrame) -> pd.DataFrame:
     """Ensure optional visual-presence columns exist for old 01a outputs."""
-    defaults = {
-        "visual_presence": "unavailable",
-        "visual_presence_source": "none",
-        "visual_presence_ratio": "",
-        "visual_presence_frames": "",
-        "visual_presence_total_frames": "",
-        "visual_presence_note": "visual_presence_data_unavailable",
-        "annotation_confidence": "",
-        "annotation_review_reason": "",
-    }
     for col in VISUAL_COLUMNS:
         if col not in df.columns:
-            df[col] = defaults[col]
+            df[col] = VISUAL_COLUMN_DEFAULTS[col]
         else:
             df[col] = df[col].apply(clean_str)
     df.loc[df["visual_presence"] == "", "visual_presence"] = "unavailable"
     df.loc[df["visual_presence_source"] == "", "visual_presence_source"] = "none"
+    df.loc[df["speaker_visual_presence"] == "", "speaker_visual_presence"] = "unavailable"
     no_source_note = (df["visual_presence_source"] == "none") & (df["visual_presence_note"] == "")
     df.loc[no_source_note, "visual_presence_note"] = "visual_presence_data_unavailable"
     return df
+
+
+def _speaker_visual_from_chars(
+    speaker: str,
+    chars_present: str,
+    visual_presence: str,
+    visual_presence_source: str,
+) -> str:
+    """Derive ``speaker_visual_presence`` for *speaker* using the per-sentence char set.
+
+    Used inside 01b to keep ``speaker_visual_presence`` coherent with whatever
+    speaker ``infer_speaker`` ended up assigning (the value 01a wrote may have
+    been for a different speaker). The partial-ratio distinction is lost here;
+    01a's ``speaker_visual_ratio`` retains the original numerical signal.
+    """
+    if visual_presence_source in {"", "none"}:
+        return "unavailable"
+    if visual_presence in {"unknown", ""}:
+        return "unknown"
+    if not speaker:
+        return "unknown"
+    key = speaker.strip().lower()
+    if key not in MAIN_CHARACTERS:
+        return "unobserved"
+    present = {c.strip() for c in chars_present.split("|") if c.strip()}
+    return "present" if key in present else "absent"
 
 
 def apply_visual_annotation_quality(df: pd.DataFrame) -> pd.DataFrame:
     """Recompute composite confidence and visual-specific review reasons."""
     df = ensure_visual_columns(df)
     for idx in df.index:
+        speaker = clean_str(df.at[idx, "speaker"])
+        visual_presence = clean_str(df.at[idx, "visual_presence"])
+        visual_presence_chars = clean_str(df.at[idx, "visual_presence_chars"])
+        visual_presence_source = clean_str(df.at[idx, "visual_presence_source"])
+        speaker_visual_presence = _speaker_visual_from_chars(
+            speaker, visual_presence_chars, visual_presence, visual_presence_source
+        )
+        df.at[idx, "speaker_visual_presence"] = speaker_visual_presence
         confidence, reason = assess_annotation_confidence(
-            speaker=clean_str(df.at[idx, "speaker"]),
+            speaker=speaker,
             speaker_ct=clean_str(df.at[idx, "speaker_ct"]),
             speaker_confidence=clean_str(df.at[idx, "speaker_confidence"]),
-            visual_presence=clean_str(df.at[idx, "visual_presence"]),
+            visual_presence=visual_presence,
+            visual_presence_chars=visual_presence_chars,
+            speaker_visual_presence=speaker_visual_presence,
         )
         df.at[idx, "annotation_confidence"] = confidence
         df.at[idx, "annotation_review_reason"] = reason
@@ -218,6 +250,35 @@ def name_mentions(text: str, candidates: Iterable[str]) -> set[str]:
     return hits
 
 
+def visual_chars_present(df: pd.DataFrame, idx: int) -> set[str]:
+    """Return the lowercase set of main-cast chars on screen for row *idx*.
+
+    Empty set means either no main-cast face in window, or no visual data
+    available. The caller distinguishes these via ``visual_presence_source``.
+    """
+    if "visual_presence_chars" not in df.columns:
+        return set()
+    raw = clean_str(df.at[idx, "visual_presence_chars"])
+    return {part.strip().lower() for part in raw.split("|") if part.strip()}
+
+
+def _visual_tiebreaker(
+    chars_present: set[str], candidates: list[str]
+) -> str | None:
+    """Return the unique on-screen candidate, or ``None`` if 0 or >1 match.
+
+    Conservative by design: visual only disambiguates when exactly one of the
+    text-derived candidates is visually confirmed — never introduces a new
+    speaker that wasn't already a scene candidate.
+    """
+    if not chars_present:
+        return None
+    matches = [c for c in candidates if c and c.strip().lower() in chars_present]
+    if len(matches) == 1:
+        return matches[0]
+    return None
+
+
 def infer_speaker(df: pd.DataFrame, idx: int, cfg: PipelineConfig) -> tuple[str, str, str, float, bool, str, str]:
     text = clean_str(df.at[idx, "utterance"])
     rtype = row_type_from_text(text, cfg)
@@ -251,6 +312,13 @@ def infer_speaker(df: pd.DataFrame, idx: int, cfg: PipelineConfig) -> tuple[str,
             return prev_sp, "name_address_rule", "medium", cfg.name_address_score, False, "", \
                 "Utterance names the next speaker, so the previous speaker is more likely."
 
+    chars_present = visual_chars_present(df, idx)
+    if prev_sp and next_sp and prev_sp != next_sp:
+        visual_pick = _visual_tiebreaker(chars_present, [prev_sp, next_sp])
+        if visual_pick:
+            return visual_pick, "visual_disambiguation", "medium", cfg.name_address_score, False, "", \
+                "Only one of the two text-context candidates was visually present in the window."
+
     if wc <= 2 and prev_sp and next_sp and prev_sp != next_sp:
         return next_sp, "short_turn_alternation", "medium", cfg.short_turn_score, True, \
             "short_utterance_between_two_speakers", \
@@ -278,6 +346,12 @@ def infer_speaker(df: pd.DataFrame, idx: int, cfg: PipelineConfig) -> tuple[str,
         return next_sp, "scene_context_inference", "low", cfg.weak_ambiguous_score, True, \
             "two_sided_context_ambiguous", \
             "No direct transcript match; weak local context only."
+
+    visual_pick = _visual_tiebreaker(chars_present, scene_candidates)
+    if visual_pick:
+        return visual_pick, "visual_disambiguation", "medium", cfg.scene_context_score, True, \
+            "visual_disambiguation_scene", \
+            "Only one scene candidate was visually present; no text-context signal available."
 
     speaker_counts = (
         df.loc[(df["scene_id"] == scene) & (df["speaker"].astype(str).str.strip() != ""), "speaker"]
@@ -431,6 +505,12 @@ def process_tsv(path: Path, cfg: PipelineConfig) -> tuple[pd.DataFrame, dict]:
         "visual_absent_rows": int((df["visual_presence"] == "absent").sum()),
         "visual_unknown_rows": int((df["visual_presence"] == "unknown").sum()),
         "visual_unavailable_rows": int((df["visual_presence"] == "unavailable").sum()),
+        "speaker_offscreen_rows": int(
+            (df["annotation_review_reason"] == "speaker_offscreen").sum()
+        ),
+        "visual_disambiguation_rows": int(
+            (df["speaker_method"] == "visual_disambiguation").sum()
+        ),
     }
     return df, summary
 

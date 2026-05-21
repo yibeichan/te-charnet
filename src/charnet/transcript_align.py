@@ -19,12 +19,11 @@ except ImportError:  # pragma: no cover
     fuzz = None
 
 from charnet.visual_presence import (
-    DEFAULT_DEEPGAZE_FPS,
     VISUAL_COLUMNS,
     add_visual_presence_to_sentences,
     assess_annotation_confidence,
-    deepgaze_path_for_episode,
-    load_deepgaze_maxpeak,
+    char_tracker_csv_path,
+    load_char_tracker_grid,
 )
 
 
@@ -946,6 +945,8 @@ def write_sentence_table_tsv(mapped: dict, out_path: Path) -> None:
                 speaker_ct=speaker_ct,
                 speaker_confidence=speaker_confidence,
                 visual_presence=sent.get("visual_presence", ""),
+                visual_presence_chars=sent.get("visual_presence_chars", ""),
+                speaker_visual_presence=sent.get("speaker_visual_presence", ""),
             )
             writer.writerow(
                 {
@@ -959,9 +960,9 @@ def write_sentence_table_tsv(mapped: dict, out_path: Path) -> None:
                     "speaker_ct": speaker_ct,
                     "visual_presence": sent.get("visual_presence", "unavailable"),
                     "visual_presence_source": sent.get("visual_presence_source", "none"),
-                    "visual_presence_ratio": sent.get("visual_presence_ratio", ""),
-                    "visual_presence_frames": sent.get("visual_presence_frames", ""),
-                    "visual_presence_total_frames": sent.get("visual_presence_total_frames", ""),
+                    "visual_presence_chars": sent.get("visual_presence_chars", ""),
+                    "speaker_visual_presence": sent.get("speaker_visual_presence", "unavailable"),
+                    "speaker_visual_ratio": sent.get("speaker_visual_ratio", ""),
                     "visual_presence_note": sent.get("visual_presence_note", ""),
                     "annotation_confidence": annotation_confidence,
                     "annotation_review_reason": annotation_reason,
@@ -1064,7 +1065,7 @@ def process_episode(
     shots: list | None = None,
     scene_summary_only: bool = False,
     scene_output_dir: Path | None = None,
-    deepgaze_fps: float = DEFAULT_DEEPGAZE_FPS,
+    char_tracker_dir: Path | None = None,
 ) -> tuple[Path, dict]:
     """Process one episode: align, fill speakers, write TSVs.
 
@@ -1096,22 +1097,16 @@ def process_episode(
         anchor_short_sent_tokens=anchor_short_sent_tokens,
         anchor_short_sent_similarity=anchor_short_sent_similarity,
     )
-    deepgaze_path = deepgaze_path_for_episode(annotation_root, episode)
-    if deepgaze_path is not None:
-        deepgaze_frames = load_deepgaze_maxpeak(deepgaze_path)
-        visual_counts = add_visual_presence_to_sentences(
-            mapped.get("sentences", []),
-            deepgaze_frames,
-            fps=deepgaze_fps,
-        )
-        stats["visual_presence_source"] = "deepgaze_maxpeak"
-        stats["visual_presence_path"] = str(deepgaze_path)
+    char_tracker_path = (
+        char_tracker_csv_path(char_tracker_dir, episode) if char_tracker_dir is not None else None
+    )
+    if char_tracker_path is not None:
+        grid = load_char_tracker_grid(char_tracker_path)
+        visual_counts = add_visual_presence_to_sentences(mapped.get("sentences", []), grid)
+        stats["visual_presence_source"] = "char_tracker_stage05"
+        stats["visual_presence_path"] = str(char_tracker_path)
     else:
-        visual_counts = add_visual_presence_to_sentences(
-            mapped.get("sentences", []),
-            None,
-            fps=deepgaze_fps,
-        )
+        visual_counts = add_visual_presence_to_sentences(mapped.get("sentences", []), None)
         stats["visual_presence_source"] = "none"
         stats["visual_presence_path"] = ""
     stats.update({f"visual_presence_{key}_sentences": value for key, value in visual_counts.items()})
