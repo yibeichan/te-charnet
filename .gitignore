@@ -210,7 +210,17 @@ marimo/_lsp/
 __marimo__/
 
 # Output: figures and binary exports are large; JSON/CSV results are committed
+output/
 output/**/figures/
 output/**/*.png
 output/**/*.gexf
 !output/.gitkeep
+
+# Local agent/specification artifacts
+.specify/
+AGENTS.md
+CLAUDE.md
+specs/
+
+# Local annotation data checkout
+data/friends_annotations/
