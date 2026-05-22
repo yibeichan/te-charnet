@@ -1,0 +1,269 @@
+scene_id	sentence_id	start	end	utterance	speaker	utterance_ct	speaker_ct	visual_presence	visual_presence_source	visual_presence_chars	speaker_visual_presence	speaker_visual_ratio	visual_presence_note	annotation_confidence	annotation_review_reason
+42	1	0.48	2.16	To solidify your commitment.	Monica	To solidify your commitment	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+42	2	2.32	4.72	To declare your love for one another to the world.	Monica	Why?! To celebrate your relationship! To solidify your commitment! To declare your love for one another to the world!	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+42	3	6.16	6.72	Yes.				present	char_tracker_stage05	chandler|monica	unknown			low	missing_speaker
+42	4	9.2	9.72	Okay.	Monica	okay	Monica	present	char_tracker_stage05	monica	present	1.0000		low	low_speaker_confidence
+42	5	9.72	10.88	Well, that's good to know.	Monica	Okay well that’s good to know.	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+43	6	13.68	15.36	The Mr. Beaumont's here.	Joey	(all excited) The Mr. Beaumont’s here!!! (Jumps over the back off the couch and runs out into the street.)	Joey	present	char_tracker_stage05	joey	present	0.6667		high	
+43	7	22.08	23.0	Hey, Monica.	Waitress	hey monica should i let him in	Waitress	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+44	8	23.0	24.88	There's a customer who wants to compliment the chef.	Waitress	Hey Monica, there’s a customer who wants to complement the chef, should I let him in?	Waitress	absent	char_tracker_stage05		unobserved			medium	
+44	9	24.88	25.68	Shall I let him in?	Waitress	hey monica should i let him in	Waitress	present	char_tracker_stage05	monica	unobserved			low	low_speaker_confidence
+44	10	26.07	26.23	Sure.	Monica	sure	Monica	present	char_tracker_stage05	monica	present	1.0000		low	low_speaker_confidence
+44	11	26.23	27.27	I love this part.	Monica	Sure, I love this part! (Starts to look busy.)	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+44	12	28.87	29.59	Come on in.	Waitress	(to the customer) Come on in.	Waitress	absent	char_tracker_stage05		unobserved			high	
+45	13	30.47	32.71	Hi, Richard.	Monica	Richard!	Monica	present	char_tracker_stage05	monica	present	0.6667		high	
+45	14	33.75	35.67	Actually, I'm not here to compliment the chef.	Richard	Actually, I’m not here to complement the chef.	Richard	present	char_tracker_stage05	monica	unobserved			high	
+45	15	36.15	37.87	Oh, well, that's okay.				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+45	16	37.87	39.79	I hate when people come back to compliment the chef.	Monica	Ohh… Oh, that’s okay I hate when people come back to complement the chef. Like I have nothing better to do! So what’s up?	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+45	17	39.79	41.27	Like I have nothing better to do.	Monica	Like I have nothing better to do	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+45	18	43.67	44.47	So, what's up?	Monica	So what's up	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+45	19	44.79	47.27	Well, it was great seeing you the other night.	Richard	Well, it was great seeing you the other night.	Richard	partial	char_tracker_stage05		unobserved			high	
+45	20	47.67	48.87	It was good to see you too.	Monica	Oh, good to see you too	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+45	21	51.52	52.96	Did you come down here to tell me that?	Monica	Oh, good to see you too. Did you come down here to tell me that?	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+45	22	53.12	53.52	No.	Richard	No	Richard	absent	char_tracker_stage05		unobserved			medium	
+45	23	54.08	55.68	Came here to tell you something else.	Richard	I came here to tell you something else	Richard	absent	char_tracker_stage05		unobserved			medium	
+45	24	58.24	61.2	Came here to tell you I still love you.	Richard	No! I came here to tell you something else. (Pause) I came here (Pause) to tell you I still love you.	Richard	absent	char_tracker_stage05		unobserved			medium	
+45	25	64.48	64.88	What?	Monica	what uh what	Monica	present	char_tracker_stage05	monica	present	1.0000		low	low_speaker_confidence
+45	26	65.12	65.84	What did you.	Monica	What uh—What did you—What?!	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+45	27	65.84	66.24	What?	Monica	what uh what	Monica	present	char_tracker_stage05	monica	present	1.0000		low	low_speaker_confidence
+45	28	68.8	69.92	I still love you.				absent	char_tracker_stage05		unknown			low	missing_speaker
+45	29	70.72	74.4	And I know I probably shouldn't even be here telling you this.	Richard	and i know i probably shouldn't even be here telling you this	Richard	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+45	30	74.4	76.56	I mean, you're with Chandler, a guy I really like.	Richard	and i know i probably shouldn't even be here telling you this i mean you're with chandler a guy i really like	Richard	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+45	31	76.97	78.73	And if you say he's straight, I'll believe you.	Richard	And I know I probably shouldn't even be here telling you this, I mean you're with Chandler a guy I really like, and if you say he's straight I'll believe you	Richard	partial	char_tracker_stage05		unobserved			medium	
+45	32	80.89	84.97	After seeing you the other night I knew if I didn't tell you, I'd regret it for the rest of my life.	Richard	I still love you. And I know I probably shouldn’t even be here telling you this, I mean you’re with Chandler a guy I really like, and if you say he’s straight I’ll believe you! After seeing ya the other night I knew if I didn’t tell ya I’d regret it for the rest of my life. Letting you go was the stupidest thing I ever did.	Richard	present	char_tracker_stage05	monica	unobserved			medium	
+45	33	85.05	87.69	Letting it go was the stupidest thing I ever did.	Richard	Letting you go was the stupidest thing I ever did	Richard	absent	char_tracker_stage05		unobserved			medium	
+45	34	89.37	91.13	You know, you're really not supposed to be back here.	Monica	Y’know you’re really not supposed to be back here!	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+45	35	93.37	94.09	I'm sorry.	Richard	Well yeah, I'm sorry	Richard	absent	char_tracker_stage05		unobserved			medium	
+45	36	94.09	98.57	I know this is the wrong time and the wrong place but I had to tell you.	Richard	Well yeah, I’m sorry. I know this is the wrong time and the wrong place but I had to tell ya! I wanna spend my life with you. I wanna marry you. I wanna have kids with you.	Richard	absent	char_tracker_stage05		unobserved			medium	
+45	37	99.85	101.33	I want to spend my life with you.	Richard	I wanna spend my life with you	Richard	absent	char_tracker_stage05		unobserved			medium	
+45	38	101.33	102.25	I want to marry you.	Richard	I wanna marry you	Richard	present	char_tracker_stage05	monica	unobserved			medium	
+45	39	104.42	105.78	I want to have kids with you.	Richard	I wanna have kids with you	Richard	absent	char_tracker_stage05		unobserved			medium	
+45	40	108.58	109.54	Oh, my God.	Monica	Oh God	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+45	41	109.94	111.54	Why don't they put chairs back here?	Monica	Oh God… (Starts looking around.) Why don’t they put chairs back here?!	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+45	42	113.38	116.74	Look, I know this is crazy, but am I too late?	Richard	I know this is crazy but am I too late?	Richard	partial	char_tracker_stage05		unobserved			high	
+45	43	117.62	118.819	Yes, you're too late.	Monica	Yes you're too late	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+45	44	119.62	121.14	Where was all this three years ago?	Monica	What the… Yes you’re too late! Where was all this three years ago?!	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+45	45	121.46	121.98	I know.				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+45	46	121.98	125.3	I was an idiot and I tried to forget you.	Richard	and i tried to forget you	Richard	partial	char_tracker_stage05		unobserved			low	low_speaker_confidence
+45	47	125.62	126.42	I really did.	Richard	And I tried to forget you, I really did	Richard	absent	char_tracker_stage05		unobserved			medium	
+45	48	126.42	131.46	You know, after we had lunch last year I spent six months in Africa trying to get you out of my head.	Richard	Well I know I was an idiot! And I tried to forget you, I really did! Y’know after we had lunch last year I spent six months in Africa trying to get you out of my head!	Richard	partial	char_tracker_stage05		unobserved			high	
+45	49	131.99	132.95	What were you doing in Africa?	Monica	What were you doing in Africa?	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+45	50	133.27	134.55	Working with blind kids.	Richard	Working with blind kids.	Richard	present	char_tracker_stage05	monica	unobserved			high	
+45	51	134.63	136.63	Oh, what are you doing to me?	Monica	Ohhh! What are you doing to me?! Oh look, I-I… I’m sorry but umm, this-this-this-this is not going to happen.	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+45	52	138.07	143.51	I'm like, I'm sorry, but it's not gonna happen.				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+45	53	143.67	144.15	Okay.	Richard	okay i am	Richard	present	char_tracker_stage05	monica	unobserved			low	low_speaker_confidence
+45	54	144.15	144.79	That's fine.	Richard	okay that's fine i am	Richard	present	char_tracker_stage05	monica	unobserved			low	low_speaker_confidence
+45	55	144.87	147.35	I'll walk away and I'll never bother you again.	Richard	okay that's fine i'll walk away and i'll never bother you again i am	Richard	present	char_tracker_stage05	monica	unobserved			low	low_speaker_confidence
+45	56	147.67	150.91	But only if you tell me that Chandler's willing to give you everything.	Richard	Okay that’s fine, I’ll walk away. And I’ll never bother you again, but only if you tell me Chandler’s willing to give you everything I am.	Richard	present	char_tracker_stage05	monica	unobserved			medium	
+45	57	150.91	151.43	I am.				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+45	58	151.99	152.79	Well, he is?				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+45	59	153.67	154.03	Yeah.				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+45	60	154.03	156.47	I mean, marriage is all he talks about.				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+45	61	157.11	158.07	Oh, my goodness.				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+45	62	158.39	161.29	In fact, I'm the one that's making him wait.	Monica	Well he is! Yeah, I mean marriage is all he talks about! My goodness, in fact, I’m the one that’s making him wait!	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+45	63	161.45	162.01	You are?	Richard	You are?	Richard	present	char_tracker_stage05	monica	unobserved			high	
+45	64	162.01	162.57	Yeah.	Monica	Yeah!	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+45	65	162.81	163.21	Why?				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+45	66	163.61	164.01	Why?	Richard	Why?	Richard	present	char_tracker_stage05	monica	unobserved			high	
+45	67	165.85	166.73	Because of the government.	Monica	Why? Because of the government.	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+46	68	171.69	173.37	Isn't it incredible?	Rachel	Isn’t it incredible?! Monica and Chandler, gettin’ married.	Rachel	partial	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+46	69	173.53	174.01	Yeah.				present	char_tracker_stage05	phoebe	unknown			low	missing_speaker
+46	70	174.41	176.89	Monica and Chandler are getting married.				present	char_tracker_stage05	phoebe|rachel	unknown			low	missing_speaker
+46	71	177.61	178.25	I know.	Phoebe	i know	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		low	low_speaker_confidence
+46	72	178.49	180.09	They're gonna be so happy together.	Phoebe	I know, they’re gonna be so happy together.	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+46	73	180.33	182.97	Oh, I mean, two best friends falling in love.	Rachel	Ohh… I mean two best friends falling in love, how often does that happen?	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+46	74	182.97	184.01	How often does that happen?	Rachel	ohh how often does that happen	Rachel	present	char_tracker_stage05	rachel	present	1.0000		low	low_speaker_confidence
+46	75	184.09	184.89	Not that often.	Phoebe	Not that often!	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+46	76	184.89	185.29	No.	Rachel	No	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+46	77	187.29	188.81	I'm so happy for them.	Rachel	No! I’m so happy for them!	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+46	78	188.89	189.53	Me too.	Phoebe	Me too	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+46	79	189.93	190.97	So happy for them.	Phoebe	Me too! So happy for them!	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+46	80	191.93	193.85	I'm so Happy and not at all jealous.	Rachel	I’m so happy and not at all jealous.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+46	81	194.97	195.69	Oh, no.	Phoebe	Oh no	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+46	82	195.85	197.69	Oh God, definitely not jealous.	Phoebe	Oh no! No God, definitely not jealous!	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+47	83	203.29	206.73	I mean, I'm probably 98% happy and maybe 2% jealous.	Rachel	I mean I’m probably 98% happy, maybe 2% jealous. And I mean what’s 2%? That’s nothing.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+47	84	207.61	208.81	And I mean, what's 2%?	Rachel	And I mean what's 2%	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+47	85	208.81	209.45	That's nothing.	Rachel	That's nothing	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+47	86	209.53	210.65	Totally nothing.	Phoebe	Totally	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+47	87	213.78	214.74	I'm like 90 10.	Phoebe	Totally. I’m like 90/10.	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+47	88	214.74	215.46	Yeah, me too.	Rachel	Yeah me too.	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+48	89	219.94	224.82	Hey, have you guys seen Chandler?	Joey	Hey uh,(salutes to them) have you guys seen Chandler?	Joey	present	char_tracker_stage05	joey|phoebe|rachel	present	0.5000		high	
+48	90	228.74	229.1	No.				present	char_tracker_stage05	phoebe|rachel	unknown			low	missing_speaker
+48	91	229.1	231.38	But you know who did stop in here looking for you?	Rachel	(staring at him) Wh—no, but y’know who did stop in here looking for ya, Teneal?	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+48	92	231.62	232.5	Tennille.				present	char_tracker_stage05	joey|phoebe|rachel	unknown			low	missing_speaker
+49	93	242.35	246.51	So that marriage stuff that you were saying yesterday, you don't really believe that, do you?	Monica	So that marriage stuff that you were saying yesterday, you don’t really believe that do you?	Monica	present	char_tracker_stage05	chandler	partial	0.4000		medium	partial_visual_presence
+49	94	246.59	247.31	Sure I do.	Chandler	Sure I do	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		medium	
+49	95	248.27	251.55	In fact, I think the whole concept of marriage is unnatural.	Chandler	Sure I do. In fact, I think the whole concept of marriage is unnatural. I mean look at pigs. Let’s take a second here and look at pigs. Okay pigs don’t mate for life. I mean a pig can have like a hundred sexual partners in a lifetime, and that’s just an ordinary pig not even a pig that’s good at sports!	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+49	96	252.03	253.23	I mean, look at pigs.	Chandler	I mean look at pigs	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+49	97	253.31	255.71	Let's take a second here and look at pigs.	Chandler	Let's take a second here and look at pigs	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+49	98	256.75	258.11	Pigs don't mate for life.	Chandler	Okay pigs don't mate for life	Chandler	present	char_tracker_stage05	monica	partial	0.3333		medium	partial_visual_presence
+49	99	258.27	261.95	I mean, a pig can have like 100 sexual partners in a lifetime.	Chandler	I mean a pig can have like a hundred sexual partners in a lifetime, and that's just an ordinary pig not even a pig that's good at sports	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+49	100	262.19	263.55	And that's just an ordinary pig.	Chandler	and that's just an ordinary pig not even a pig that's good at sports	Chandler	present	char_tracker_stage05	chandler	present	1.0000		low	low_speaker_confidence
+49	101	263.55	265.15	Not even a pig that's good at sports.	Chandler	not even a pig that's good at sports	Chandler	present	char_tracker_stage05	chandler	present	1.0000		low	low_speaker_confidence
+49	102	269.36	271.84	Yeah, but that's pigs, not people.	Monica	Yeah, but that’s pigs not people!	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+49	103	271.92	273.8	If marriage worked, I'd be all for it.	Chandler	If marriage worked, I'd be all for it	Chandler	present	char_tracker_stage05	chandler	present	0.6667		medium	
+49	104	273.8	276.08	But do you know what the divorce rate in this country is?	Chandler	If marriage worked, I’d be all for it. But do you know what the divorce rate in this country is? 97%.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+49	105	276.72	277.68	97%.	Chandler	97%	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+49	106	281.92	285.36	Are you honestly telling me that you may never want to get married?	Monica	Wait a minute. Are you honestly telling me that-that you may never want to get married?	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+49	107	285.76	286.64	Who's to say?	Chandler	Who's to say?	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+49	108	286.88	288.8	You, you're to say.	Monica	(upset) You! You're to say!	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+49	109	289.44	293.2	Well, never say never, but you know, probably, yeah, never.	Chandler	Well, never say never but y’know probably uh yeah, never.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+49	110	294.8	298.23	Oh my God, then what are we even doing?	Monica	Oh my God! Then-then-then what are we even doing?! What is this?!	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+49	111	298.31	299.11	What is this?	Monica	What is this	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		medium	
+49	112	299.19	300.39	Whoa, whoa, whoa.	Chandler	Whoa	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		medium	
+49	113	300.39	301.83	What is all this pressure?	Chandler	What is all this pressure	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+49	114	303.19	304.95	Is this some new kind of strategy?	Chandler	Whoa! Whoa! Whoa! What is all this pressure?! Is this some new kind of strategy? Why don’t you put down your copy of ‘The Rules’ huh mantrap?!	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+49	115	305.19	307.79	Why don't you put down your copy of the rules, huh?	Chandler	Why don't you put down your copy of 'The Rules' huh mantrap	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+49	116	307.79	308.47	Man trap.				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+49	117	310.39	311.03	You know what?	Monica	Y'know what	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+49	118	311.03	311.83	I gotta go.	Monica	Y’know what?! I gotta go! Ugh!	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+49	119	314.71	315.47	It's okay.	Chandler	it's okay	Chandler	present	char_tracker_stage05	chandler	present	1.0000		low	low_speaker_confidence
+50	120	315.47	316.31	I got a plan.	Chandler	(to them) It’s okay, I got a plan.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+51	121	322.95	324.31	We're gonna find love.	Rachel	We’re gonna find love!	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+51	122	325.12	325.68	Definitely.	Phoebe	Definitely!	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+51	123	327.2	328.96	Yeah, I'm pretty confident about that.	Rachel	Yeah, I'm pretty confident about that	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+51	124	330.4	333.92	That's what makes it so easy for me to be 80% happy for Monica and Chandler.	Rachel	Yeah, I’m pretty confident about that. That’s what makes it so easy for me to be 80% happy for Monica and Chandler! It would be nice to have a little guarantee though.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+51	125	335.68	337.6	It'd be nice to have a little guarantee though.	Rachel	It would be nice to have a little guarantee though	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+51	126	338.08	338.8	What do you mean?	Phoebe	What do you mean?	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+51	127	338.96	341.6	Well, you know, some people make deals with a friend.	Rachel	well y'know some people make deals with a friend	Rachel	present	char_tracker_stage05	rachel	present	1.0000		low	low_speaker_confidence
+51	128	341.6	346.4	Like if neither of them are married by the time they're 40, they marry each other.	Rachel	Well y’know, some people make deals with a friend, like if neither of them are married by the time they’re 40, they marry each other.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+51	129	346.56	347.48	You mean a backup?	Phoebe	You mean a backup?	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+51	130	347.48	348.2	Yeah, exactly.	Rachel	Exactly!	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+51	131	348.2	349.44	Yeah, yeah, I've got that.	Phoebe	Yeah, yeah I got that.	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+51	132	351.6	352.24	You do?	Rachel	You do?	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+51	133	352.24	352.72	Mm.				present	char_tracker_stage05	phoebe|rachel	unknown			low	missing_speaker
+51	134	353.45	353.69	Who?	Rachel	Who?	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+51	135	354.01	354.57	Joey.	Phoebe	Joey.	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+51	136	354.89	355.45	Joey?	Rachel	Joey?!	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+51	137	356.33	356.89	Yeah.	Phoebe	Yeah!	Phoebe	present	char_tracker_stage05	rachel	absent	0.0000		low	speaker_offscreen
+51	138	356.89	357.93	Are you serious?	Rachel	Are you serious?!	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+51	139	358.01	359.77	Yeah, I locked him in years ago.	Phoebe	Yeah, I locked him years ago!	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+51	140	362.89	368.05	Wait, so if neither of you are married by the time you're 40, you're gonna marry Joey?	Rachel	Wh… So… If neither of you are married by the time you’re 40, you’re gonna marry Joey.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+51	141	368.05	368.53	Yep.	Phoebe	yep	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		low	low_speaker_confidence
+51	142	368.53	369.45	We shook on it.	Phoebe	Yep, we shook on it	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+51	143	370.57	373.61	Yeah, but believe me, that is not how he wanted to seal the deal.	Phoebe	Yep, we shook on it. Yeah but believe me that is not how he wanted to seal the deal.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+51	144	375.61	376.81	Oh, seriously?	Rachel	Oh, seriously?	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+51	145	376.81	377.21	Ugh.				present	char_tracker_stage05	phoebe|rachel	unknown			low	missing_speaker
+51	146	377.21	383.19	Yeah, I think his exact words were charming.	Phoebe	Ohh, yeah. I think his exact words were… (She makes two clicking sounds with her tongue and purrs.)	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+51	147	384.47	385.51	He's just a backup.	Phoebe	Well hey, it’s just a backup.	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+52	148	394.39	397.07	Hey, Monica, have you seen Rachel?	Joey	Hey Monica!	Joey	present	char_tracker_stage05	joey|monica	present	0.5000		medium	
+52	149	397.07	397.99	Or a mirror?	Monica	Have you seen Rachel? Or a mirror?	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+52	150	399.67	400.55	Just for my boat.	Joey	this is for my boat	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+52	151	400.55	401.43	Pretty cool, huh?	Joey	This is for my boat, pretty cool huh?	Joey	present	char_tracker_stage05	joey|monica	present	1.0000		medium	
+52	152	402.15	403.11	Yeah, it's great.	Monica	Yeah, it’s great.	Monica	present	char_tracker_stage05	joey|monica	present	1.0000		high	
+52	153	403.35	403.95	Whoa, whoa.	Joey	whoa whoa	Joey	present	char_tracker_stage05	joey|monica	present	1.0000		low	low_speaker_confidence
+52	154	403.95	404.55	What's the matter?	Joey	Whoa-whoa, what's the matter	Joey	present	char_tracker_stage05	joey|monica	present	1.0000		medium	
+52	155	404.55	405.51	Talk to the captain.	Joey	Whoa-whoa, what’s the matter?! Talk to the captain!	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+52	156	408.36	411.48	Just having one of those days where you realize you're in a dead end relationship.	Monica	I’m just having one of those days where you realize you’re in a dead-end relationship!	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+52	157	411.8	413.48	Chandler giving you a hard time, huh?	Joey	Chandler giving you a hard time huh?	Joey	present	char_tracker_stage05	joey|monica	present	1.0000		high	
+52	158	413.64	415.48	It's not like I want to get married tomorrow.	Monica	It's not like I want to get married tomorrow	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+52	159	415.64	418.8	It's just I'd like to believe that I'm in a relationship that's going somewhere.	Monica	It’s not like I want to get married tomorrow! It’s just that I-I’d like to believe that I’m in a relationship that’s actually going somewhere, that I’m not just wasting my time!	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+52	160	418.8	420.28	That I'm not just wasting my time.	Monica	it's not like i want to get married tomorrow that i'm not just wasting my time	Monica	present	char_tracker_stage05	monica	present	1.0000		low	low_speaker_confidence
+52	161	420.44	421.64	Oh, you know Chandler.	Joey	Well, you know Chandler.	Joey	present	char_tracker_stage05	joey|monica	present	1.0000		medium	
+52	162	421.799	423.16	No, I don't know Chandler.	Monica	No I don't know Chandler	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+52	163	423.8	424.76	Not anymore.	Monica	Not anymore	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+52	164	425.48	427.16	It's like something's changed.	Monica	No I don’t know Chandler! Not anymore! It’s like it’s like something’s changed.	Monica	present	char_tracker_stage05	joey|monica	present	1.0000		medium	
+52	165	428.36	429.56	Maybe you changed.	Joey	Maybe you changed?	Joey	present	char_tracker_stage05	joey|monica	present	1.0000		high	
+52	166	430.36	431.32	I didn't change.	Monica	I didn’t change!	Monica	present	char_tracker_stage05	joey|monica	present	1.0000		high	
+52	167	432.35	433.15	Maybe that's the problem.	Joey	Maybe that’s the problem.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+52	168	435.71	436.11	What?	Monica	What?!	Monica	present	char_tracker_stage05	joey|monica	present	1.0000		high	
+52	169	436.75	438.83	Chandler is a complex fellow.	Joey	Chandler is a complex fellow, one who is unlikely to take a wife.	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+52	170	438.83	440.59	One who was unlikely to take a wife.	Joey	one who is unlikely to take a wife	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+52	171	443.55	445.07	Is that some kind of boat talk?	Monica	Is that some kind of boat talk?	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+52	172	446.51	446.99	I don't know.	Joey	I don't know	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+52	173	446.99	449.15	I haven't totally decided how to talk on my boat yet.	Joey	I don’t know! (All excited) I haven’t totally decided how to talk on my boat yet.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+52	174	452.43	453.03	What does he think?	Monica	What does he think	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+52	175	453.03	455.31	Does he think I'm just gonna wait around for nothing?	Monica	What does he think? Does he think I’m just gonna wait around for nothing?	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+52	176	455.31	456.51	Monica, face it.	Joey	Monica face it, Chandler is against marriage	Joey	present	char_tracker_stage05	joey|monica	present	1.0000		medium	
+52	177	456.67	460.52	Chandler is against marriage and always will be.	Joey	Monica face it, Chandler is against marriage. And-and always will be!	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+52	178	462.2	464.68	Yeah, well, there's some people who do want to marry me.	Monica	(starts for the door) Well there’s some people who do want to marry me.	Monica	partial	char_tracker_stage05		partial	0.3333		medium	partial_visual_presence
+52	179	465.08	465.72	There are?	Joey	There are?	Joey	present	char_tracker_stage05	joey|monica	present	1.0000		high	
+52	180	466.28	466.76	Yeah.	Monica	Yeah	Monica	present	char_tracker_stage05	joey|monica	present	1.0000		medium	
+52	181	467.0	467.64	Richard.	Monica	Yeah! Richard!	Monica	present	char_tracker_stage05	joey|monica	present	1.0000		high	
+52	182	468.6	470.28	Richard said he wants to marry you.	Joey	R-R-Richard said he wants to marry you	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+52	183	471.56	473.959	And Chandler's telling you how much he hates marriage.	Joey	R-R-Richard said he wants to marry you?! (Monica nods yes.) And-and Chandler’s tellin’ ya how much he hates marriage?!	Joey	present	char_tracker_stage05	joey|monica	present	1.0000		medium	
+52	184	474.04	474.68	That's right.	Monica	That’s right.	Monica	present	char_tracker_stage05	joey|monica	present	1.0000		high	
+52	185	475.48	477.08	Chandler loves marriage.	Joey	Chandler loves marriage!!	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+52	186	479.88	482.2	You just told me that he hates marriage.	Monica	You just told me that he hates marriage	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+52	187	482.2	485.74	That he's a complex fact who's unlikely to take a wife.	Monica	That-that he's a-a complex fellow who's unlikely to take a wife	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+52	188	485.9	488.54	That he's against marriage and always will be.	Monica	You just told me that he hates marriage! That-that he’s a-a complex fellow who’s unlikely to take a wife! That-that he’s against marriage and always will be!	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+52	189	489.1	490.78	You got that from what I said?	Joey	You got that from what I said?!	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+53	190	497.74	501.18	When the Cretaceous Period ended, the dinosaurs were gone.	Narrator	When the Cretaceous period ended, the dinosaurs were gone.	Narrator	partial	char_tracker_stage05		unobserved			high	
+53	191	501.42	503.02	What happened, you guys?	Ross	What happened you guys?	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+54	192	511.44	511.84	Rach.	Ross	Rach!	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+54	193	512.08	512.8	Hey, you.	Rachel	Hey you!	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+54	194	514.72	515.2	Hey.	Ross	hey	Ross	present	char_tracker_stage05	rachel|ross	present	0.5000		low	low_speaker_confidence
+54	195	515.2	515.88	Come on in.	Ross	Hey, come on in.	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		high	
+54	196	515.88	516.8	Oh, thank you.	Rachel	Oh thank you	Rachel	present	char_tracker_stage05	rachel|ross	present	0.5000		medium	
+54	197	517.44	520.64	Hey, you know, I'm so sorry to hear about you and Elizabeth.	Rachel	Oh thank you. Hey y’know, I’m so sorry to hear about you and Elizabeth.	Rachel	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+54	198	520.64	521.68	Oh, thanks.	Ross	Oh, thanks	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+54	199	521.68	523.8	Yeah, I really thought we'd be able to make it work.	Ross	Oh, thanks. Yeah, I really thought we’d be able to make it work, but uh, I guess it just wasn’t meant to be.	Ross	present	char_tracker_stage05	ross	present	0.6667		medium	
+54	200	523.8	526.64	But I guess it just wasn't meant to be.	Ross	oh thanks but uh i guess it just wasn't meant to be	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+54	201	527.28	527.84	Yeah.	Rachel	yeah	Rachel	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+54	202	528.0	528.4	Love.	Rachel	Yeah, love	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		medium	
+54	203	529.36	531.12	It's a tricky business, isn't it?	Rachel	Yeah, love. It’s a tricky business isn’t it?	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+54	204	533.12	534.0	I guess so.	Ross	I guess so.	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+54	205	534.72	536.24	So, what do you say we make a pact?	Rachel	so what do you say we make a pact and we've you know what i mean no like what's that	Rachel	present	char_tracker_stage05	rachel	present	1.0000		low	low_speaker_confidence
+54	206	537.16	540.52	If you and I are both single by the time we're 40, we get married.	Rachel	so what do you say we make a pact if you and i are both single by the time we're 40 we get married and we've you know what i mean no like what's that	Rachel	present	char_tracker_stage05	rachel	present	1.0000		low	low_speaker_confidence
+54	207	540.68	543.56	I mean, we know each other, we like each other.	Rachel	so what do you say we make a pact if you and i are both single by the time we're 40 we get married i mean we know each other we like each other and we've you know what i mean no like what's that	Rachel	present	char_tracker_stage05	rachel	present	1.0000		low	low_speaker_confidence
+54	208	543.88	547.64	I mean, we've already slept together, so, you know, there'll be no surprises there.	Rachel	"So what do you say we make a pact? If you and I are both single by the time we’re 40, we get married. I mean, we know each other, we like each other, and we’ve-we’ve already slept together so y’know there’ll be no surprises there! You know what I mean? No like, ""What’s that?!"""	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+54	209	547.64	548.4	You know what I mean?	Rachel	You know what I mean	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+54	210	548.4	549.72	No, like, what's that?	Rachel	"No like, ""What's that"	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+54	211	553.56	554.36	Oh, you.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+54	212	554.76	556.76	You want me to be your backup?	Ross	Right. Ohh! You-you want me to be your backup.	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+54	213	556.84	557.56	Exactly.	Rachel	Exactly.	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		high	
+54	214	557.56	558.64	Oh, yeah.	Ross	ohh yeah	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		low	low_speaker_confidence
+54	215	558.64	559.72	I already have one.	Ross	Ohh, yeah I already have one.	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+54	216	561.4	562.12	But who?	Rachel	What? Who?	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		medium	
+54	217	562.54	562.94	Phoebe.				present	char_tracker_stage05	rachel|ross	unknown			low	missing_speaker
+54	218	562.94	563.58	Phoebe?	Ross	Phoebe.	Ross	present	char_tracker_stage05	rachel|ross	present	0.5000		high	
+54	219	565.58	566.3	But she just.	Rachel	phoebe wait a but but she just	Rachel	present	char_tracker_stage05	rachel	present	1.0000		low	low_speaker_confidence
+54	220	566.3	567.98	She said Joey is her backup.	Rachel	Phoebe?! Wait a—but-but she just, she said that Joey was her backup.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+54	221	567.98	571.5	Oh, I don't think so, Rose.	Ross	Ohh, I don’t think so.	Ross	present	char_tracker_stage05	rachel|ross	present	0.6000		medium	
+54	222	571.5	574.94	I just had a conversation with her and she said that she and Joey made a deal.	Rachel	Ross! I just had a conversation with her, and she said that she and Joey made a deal!	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+54	223	575.1	576.14	That's impossible.				present	char_tracker_stage05	rachel|ross	unknown			low	missing_speaker
+54	224	576.14	578.3	I mean, we have had a deal for years.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+54	225	578.38	578.659	We.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+54	226	578.659	578.86	We.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+54	227	578.86	579.82	We shook on it.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+54	228	579.98	582.78	Although, believe me, she wanted to do a lot more than that.	Ross	That’s impossible! I mean we have had a deal for years! We-we-we shook on it, although believe me she wanted to do a lot more than that.	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+54	229	585.9	587.22	Hey, Gunther, it's Joey.				present	char_tracker_stage05	joey|rachel	unknown			low	missing_speaker
+54	230	587.22	588.14	Is Chandler there?				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+54	231	588.56	590.12	Oh, all right.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+54	232	590.12	590.56	Listen.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+55	233	590.88	592.8	What kind of muffins do they serve at sea?	Joey	Hey Gunther, It's Joey. Is-is Chandler there? (sighs) All right, listen, what kind of muffins do they serve at sea? (listens) (Chandler enters and he hangs up) Where the hell have you been?!	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+55	234	596.16	597.36	Where the hell have you been?	Joey	Where the hell have you been	Joey	present	char_tracker_stage05	chandler|joey	present	1.0000		medium	
+55	235	598.56	601.2	I was making a coconut phone with the professor.	Chandler	I was making a coconut phone with the professor.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+55	236	603.52	606.72	Richard told Monica he wants to marry her.	Joey	Richard told Monica he wants to marry her!	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+55	237	606.88	607.28	What?	Chandler	What?!	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		high	
+55	238	607.52	607.92	Yeah.	Joey	yeah	Joey	present	char_tracker_stage05	chandler|joey	present	1.0000		low	low_speaker_confidence
+55	239	607.92	610.6	Yeah, I've been trying to find you to tell you to stop messing with her.	Joey	yeah yeah i've been trying to find ya to tell to stop messing with her	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+55	240	610.6	614.0	And maybe I would have if these damn boat shoes wouldn't keep flying off.	Joey	Yeah! Yeah, I’ve been trying to find ya to tell to stop messing with her and maybe I would have if these (lifts a leg) damn boat shoes wouldn’t keep flying off!	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+55	241	615.2	616.04	Oh, my God.	Chandler	My—Oh my God!	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		high	
+55	242	616.04	616.48	I know.	Joey	I know	Joey	present	char_tracker_stage05	chandler|joey	present	1.0000		medium	
+55	243	616.48	617.2	They suck.	Joey	I know! They suck!!	Joey	present	char_tracker_stage05	chandler|joey	present	0.5000		high	
+55	244	618.39	620.39	He's not supposed to ask my girlfriend to marry him.	Chandler	He’s not supposed to ask my girlfriend to marry him! I’m supposed to do that!	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+55	245	620.39	621.51	I'm supposed to do that.	Chandler	I'm supposed to do that	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		medium	
+55	246	621.51	622.71	I know, but what?	Joey	I know!	Joey	present	char_tracker_stage05	chandler|joey	present	1.0000		medium	
+55	247	622.95	623.91	You know what I'm do?				present	char_tracker_stage05	chandler|joey	unknown			low	missing_speaker
+55	248	623.91	624.75	I'm going to go over there.	Chandler	I'm gonna go over there	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+55	249	624.75	625.91	I'm going to kick his ass.	Chandler	I'm gonna kick his ass	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+55	250	627.19	628.15	Will you help me?	Chandler	Well what… Y’know what I’m gonna do? I’m gonna go over there; I’m gonna kick his ass! (Pause) Will you help me?!	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		medium	
+55	251	630.63	634.95	Look, Chandler, I don't think us getting our asses kicked is a solution, okay?	Joey	Look, Chandler I don’t think us getting our asses kicked is a solution. Okay? Just go and find Monica!	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+55	252	635.99	638.15	Just go and find Monica.	Joey	just go and find monica	Joey	present	char_tracker_stage05	chandler|joey	present	1.0000		low	low_speaker_confidence
+55	253	638.31	638.83	You're right.	Chandler	You’re right.	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		high	
+55	254	638.83	639.19	Yeah.	Joey	Yeah!	Joey	present	char_tracker_stage05	chandler|joey	present	0.5000		high	
+55	255	639.19	639.67	Okay.	Chandler	Okay	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+55	256	639.67	640.79	I'm going to get the ring.	Chandler	I'm gonna get the ring	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+55	257	641.03	642.15	I'm going to get the ring.	Chandler	I'm gonna get the ring	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+55	258	642.15	645.27	I'm going to go find her and I'm just going to propose.	Chandler	Okay. (Starts running for the bedroom) I’m gonna get the ring! I’m gonna get the ring! (Does so) I’m gonna go find her and (starts running for the door) I’m just going to propose!	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+55	259	645.27	645.75	Okay?				absent	char_tracker_stage05		unknown			low	missing_speaker
+55	260	645.75	646.03	Okay.	Joey	Okay.	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+55	261	646.03	646.47	Okay.	Chandler	Okay great.	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+55	262	646.72	647.44	Do, do, do.				absent	char_tracker_stage05		unknown			low	missing_speaker
+55	263	648.16	649.64	Let me know about that coconut phone.	Joey	Let me know about that coconut phone, it might great for the boat.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+55	264	649.64	650.8	It might be good for the boat.	Joey	it might great for the boat	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+56	265	666.4	666.88	Hi.	Monica	Hi.	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+56	266	670.08	670.56	Hi.	Richard	Hi.	Richard	absent	char_tracker_stage05		unobserved			high	
+56	267	674.33	675.37	I don't know why I'm here.	Monica	I don’t know why I’m here.	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+56	268	676.49	677.37	I didn't ask.	Richard	I didn’t ask. You wanna come in?	Richard	present	char_tracker_stage05	monica	unobserved			medium	

@@ -1,0 +1,199 @@
+scene_id	sentence_id	start	end	utterance	speaker	utterance_ct	speaker_ct	visual_presence	visual_presence_source	visual_presence_chars	speaker_visual_presence	speaker_visual_ratio	visual_presence_note	annotation_confidence	annotation_review_reason
+1	1	6.24	7.92	Hey, remember when I had a monkey?	Ross	Hey, remember when I had a monkey?	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+1	2	9.52	9.88	Yeah.	Chandler	Yeah.	Chandler	present	char_tracker_stage05	phoebe|ross	absent	0.0000		low	speaker_offscreen
+1	3	9.88	10.12	What?	Ross	yeah what	Ross	present	char_tracker_stage05	phoebe|ross	present	1.0000		low	low_speaker_confidence
+1	4	10.12	11.12	What was I thinking?	Ross	Yeah, what, what was I thinking?	Ross	present	char_tracker_stage05	phoebe|ross	present	1.0000		high	
+1	5	12.88	16.399	Hey, so what's with the 20% tip?	Joey	(he’s just picked up their bill) Hey! So, what’s with the 20 percent tip? Did I do something wrong?	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+1	6	16.64	17.76	Did I do something wrong?	Joey	Did I do something wrong	Joey	present	char_tracker_stage05	chandler|joey	present	1.0000		medium	
+1	7	19.04	21.2	20% is a pretty generous tip, Joe.	Chandler	Twenty percent is a pretty generous tip Joe.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+1	8	21.2	22.64	You know what's more generous than that?				present	char_tracker_stage05	chandler|joey|monica	unknown			low	missing_speaker
+1	9	22.64	23.28	50%.				present	char_tracker_stage05	chandler|joey|monica	unknown			low	missing_speaker
+1	10	25.2	26.68	You know what's even more generous than that?	Joey	Y’know what’s more generous than that?! Fifty percent! Y’know what’s even more generous than that?!!	Joey	present	char_tracker_stage05	chandler|joey	present	1.0000		medium	
+1	11	26.68	27.6	I see where you're going.	Chandler	I see where you’re goin’!	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		high	
+1	12	29.44	31.12	What's up with the greed, Joe?	Ross	What’s up with the greed Joe?	Ross	present	char_tracker_stage05	phoebe|ross	present	1.0000		high	
+1	13	31.12	38.54	All right, I'm sorry you guys, but it's just that I gotta get these new headshots made and they're really expensive, you know, I'm down to like three.	Joey	All right, look I’m sorry you guys, but it’s just that I gotta get these new head shots made. And they’re really expensive, y’know? I’m down to like three! Well, actually two ‘cause one of ‘em I kinda blackened in some teeth—Why did I do that?! (Hits himself in the head.)	Joey	partial	char_tracker_stage05		partial	0.3750		medium	partial_visual_presence
+1	14	40.38	41.18	Actually two.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+1	15	41.18	43.78	Cause one of them I kind of blackin in some teeth.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+1	16	43.78	44.62	Why'd I do that?				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+1	17	46.22	49.54	Well, isn't there something you can do to earn a little extra money?	Ross	Well isn’t there something you can do to earn a little extra money? I mean, can’t-can’t you pick up, I don’t know, an extra shift here?	Ross	present	char_tracker_stage05	phoebe|ross	present	1.0000		high	
+1	18	49.54	55.5	I mean, can't you pick up, I don't know, an extra shift here or, you know, I used to beg for money.	Ross	I mean, can't-can't you pick up, I don't know, an extra shift here	Ross	present	char_tracker_stage05	phoebe|ross	present	0.7143		medium	
+1	19	57.5	60.3	Of course, it helps if you've got, you know, a little of this going on.	Phoebe	Or, y’know, I used to beg for money. Of course it helps if you’ve got y’know a little of this (she sticks her chest out and shakes it) goin’ on. Wow! I still have it!	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+1	20	61.5	62.82	Ah, I still have it.				present	char_tracker_stage05	chandler|phoebe	unknown			low	missing_speaker
+1	21	62.82	63.26	Yeah.				present	char_tracker_stage05	chandler|phoebe	unknown			low	missing_speaker
+1	22	64.6	65.44	Oh, wait, wait.	Ross	Wait	Ross	present	char_tracker_stage05	chandler|phoebe|ross	present	1.0000		medium	
+1	23	65.44	66.72	Don't you have an audition today?	Ross	Oh, wait! Wait! Don’t you have an audition today? Yeah! Maybe you’ll get that job!	Ross	present	char_tracker_stage05	phoebe|ross	present	1.0000		medium	
+1	24	66.72	67.04	Yeah.	Ross	Yeah	Ross	present	char_tracker_stage05	phoebe|ross	present	1.0000		medium	
+1	25	67.04	68.04	Maybe you'll get that job.	Ross	Maybe you'll get that job	Ross	present	char_tracker_stage05	joey|phoebe|ross	present	1.0000		medium	
+1	26	68.12	69.24	Oh, ha ha ha.	Joey	oh ha ha ha ooh	Joey	present	char_tracker_stage05	joey|phoebe|ross	present	1.0000		low	low_speaker_confidence
+1	27	71.24	72.48	Oh, wait a minute.	Joey	oh ha ha ha ooh wait a minute	Joey	present	char_tracker_stage05	joey|phoebe|ross	present	0.5000		low	low_speaker_confidence
+1	28	72.48	75.08	I used to get medical experiments done on me all the time.	Joey	Oh, ha-ha-ha! Ooh! Wait a minute, I used to get medical experiments down on me all the time!	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+1	29	76.6	78.44	Ah, finally an explanation.	Chandler	(reminiscing) Ah, finally an explanation.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+1	30	79.4	79.999	Oh, no.	Joey	No-no	Joey	present	char_tracker_stage05	chandler|joey	present	1.0000		medium	
+1	31	79.999	82.52	I used to get paid for all kinds of medical stuff, remember?	Joey	No-no! I used to get paid for all kinds of medical stuff, remember? Let’s see uh, well I don’t want to donate sperm again. (To Ross) I really prefer doing that at the home office y’know? (Ross nods his head.) Ooh-ooh, maybe they want like some of my blood or-or spit or something, huh?	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+1	32	82.92	83.64	Let's see.	Joey	Let's see uh, well I don't want to donate sperm again	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+1	33	84.2	86.44	Well, I don't want to donate sperm again.	Joey	uh well i don't want to donate sperm again	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+1	34	87.56	89.56	Really prefer doing that at the home office, you know?				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+1	35	90.6	94.2	Oh, oh, maybe they want like some of my blood or spit or something, huh?				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+1	36	95.86	96.18	Yeah.	Joey	Yeah?	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+1	37	96.34	98.82	What'd I tell you about talking to your friends while you're working?	Gunther	What did I tell you about talking to your friends while you’re working?	Gunther	present	char_tracker_stage05	joey	unobserved			high	
+1	38	99.54	100.06	Uh.				present	char_tracker_stage05	joey|ross	unknown			low	missing_speaker
+1	39	100.06	100.66	Do it.	Joey	Uhh do it?	Joey	present	char_tracker_stage05	joey|ross	present	1.0000		high	
+1	40	102.26	104.54	That guy's been waiting for his coffee for 10 minutes.	Gunther	That guy has been waiting for his coffee for ten minutes	Gunther	absent	char_tracker_stage05		unobserved			medium	
+1	41	104.54	106.1	He's complained about you three times.	Gunther	That guy (points) has been waiting for his coffee for ten minutes! He’s complained about you three times! (He hands the coffee cup to Joey, assuming that Joey will deliver it and walks away.)	Gunther	absent	char_tracker_stage05		unobserved			medium	
+1	42	109.78	110.82	Well, where was I?	Joey	Well, where was I? (Takes a sip of the coffee.)	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+3	43	150.96	151.4	Hi.	Ross	Hi!	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+3	44	151.4	151.84	Hey.				absent	char_tracker_stage05		unknown			low	missing_speaker
+3	45	151.84	152.12	Hey.	Phoebe	Hey!	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+3	46	152.12	153.2	What have you guys been up to?	Ross	Hey, what have you guys been up to?	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+3	47	153.2	155.52	Oh, we went to a self defense class today.	Phoebe	Ohh! We went to a self-defense class today!	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+3	48	155.6	156.04	Wow.	Ross	Wow!	Ross	present	char_tracker_stage05	phoebe|rachel	absent	0.0000		low	speaker_offscreen
+3	49	156.04	156.48	Yeah.	Rachel	yeah ya	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		low	low_speaker_confidence
+3	50	156.74	159.22	Kicking a guy in the crotch all morning really takes it out of you.	Rachel	Yeah, kicking a guy in the crotch all morning really takes it out of ya!	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+3	51	160.58	161.62	Takes it out of you?	Joey	Takes it out of you? (Laughs.)	Joey	present	char_tracker_stage05	joey|phoebe|rachel	present	1.0000		high	
+3	52	164.1	164.5	No.				present	char_tracker_stage05	phoebe	unknown			low	missing_speaker
+3	53	164.5	166.22	Now we can kick anybody's ass.	Phoebe	Now, we can kick anybody’s ass!	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+3	54	166.22	167.78	Yeah, after one class?	Rachel	Yeah!	Rachel	present	char_tracker_stage05	phoebe|ross	absent	0.0000		low	speaker_offscreen
+3	55	168.1	169.14	I don't think so.	Ross	After one class? I don’t think so.	Ross	present	char_tracker_stage05	phoebe|rachel|ross	present	1.0000		medium	
+3	56	169.46	169.86	What?	Rachel	What	Rachel	present	char_tracker_stage05	phoebe|rachel|ross	present	1.0000		medium	
+3	57	169.86	171.62	You want to see me self defend myself?	Rachel	You wanna see me self-defend myself	Rachel	present	char_tracker_stage05	phoebe|rachel|ross	present	1.0000		medium	
+3	58	171.86	173.86	Go over there and pretend you're a sexual predator.	Rachel	What? You wanna see me self-defend myself?! Go over there (points) and pretend you’re a sexual predator! Go on! I dare ya!!	Rachel	present	char_tracker_stage05	phoebe|rachel|ross	present	1.0000		medium	
+3	59	174.1	175.22	Go on, I dare ya.	Rachel	Go on	Rachel	present	char_tracker_stage05	phoebe|rachel|ross	present	1.0000		medium	
+3	60	177.06	180.66	Of course you could defend yourself from an attack you know is coming.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+3	61	180.98	181.86	That's not enough.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+3	62	183.15	186.19	Look, I studied karate for a long time.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+3	63	187.71	190.83	And there's a concept you should really be familiar with.	Ross	Well, of course you can defend yourself from an attack you know is coming, that’s not enough. Look, I studying kara-tay for a long time, and there’s a concept you should really be familiar with. It’s what the Japanese call (he holds two fingers up to his temple, and he does this every time he says this word) unagi.	Ross	present	char_tracker_stage05	phoebe|rachel|ross	present	1.0000		medium	
+3	64	190.83	194.19	It's what the Japanese call unagi.	Ross	It's what the Japanese call unagi	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+3	65	196.91	198.509	Isn't that a kind of sushi?	Rachel	Isn’t that a kind of sushi?	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+3	66	200.11	201.23	No, it's a concept.	Ross	No, it’s a concept!	Ross	present	char_tracker_stage05	phoebe|rachel|ross	present	1.0000		high	
+3	67	201.23	201.71	Yeah, it is.	Phoebe	Yeah it is	Phoebe	present	char_tracker_stage05	phoebe|rachel|ross	present	1.0000		medium	
+3	68	201.71	202.07	It is.	Phoebe	It is	Phoebe	present	char_tracker_stage05	phoebe|rachel|ross	present	1.0000		medium	
+3	69	202.07	203.15	It's freshwater eel.	Phoebe	Yeah it is! It is! It’s freshwater eel!	Phoebe	present	char_tracker_stage05	phoebe|rachel|ross	present	1.0000		high	
+3	70	204.67	206.19	But maybe it means that too.	Ross	All right, maybe it means that too…	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+3	71	206.35	208.67	Oh, I would kill for a salmon skin roll right now.	Rachel	Ohh! I would kill for a salmon skin roll right now!	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+3	72	210.83	212.15	You know, fine, get attacked.	Ross	Get attacked	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+3	73	212.15	212.67	I don't even.	Ross	Y’know what? Fine! Get attacked! I don’t even care!	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+3	74	214.33	215.13	Come on, Ross.	Phoebe	Come on Ross	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+3	75	215.13	215.93	We're sorry.	Phoebe	We're sorry	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+3	76	215.93	217.21	Please, tell us what it is.	Phoebe	(deadpan) Come on Ross. We’re sorry. Please tell us what it is.	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+3	77	220.25	224.65	Unagi is a state of total awareness.	Ross	Unagi is a state of total awareness	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+3	78	225.37	225.93	Okay?	Ross	Okay	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+3	79	225.93	231.45	Only by achieving true unagi can you be prepared for any danger that may befall you.	Ross	Unagi is a state of total awareness. Okay? Only by achieving true unagi can you be prepared for any danger that may befall you!	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+3	80	233.37	237.53	You mean in case someone's trying to steal your bamboo sleeping mat or your kettle of fish?	Phoebe	You mean in case someone is trying to steal your bamboo sleeping mat or your kettle of fish?	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+4	81	242.17	245.37	All I'm saying is it's one thing being prepared for an attack.	Ross	(moves closer) All I’m saying is, it’s one thing being prepared for an attack against like each other; whole another story being prepared for an attack, I don’t know, like a (turns and puts his face close to Rachel’s and screams) surprise!!	Ross	present	char_tracker_stage05	ross	present	0.5000		medium	
+4	82	247.11	249.19	Whole nother story being prepared for an attack.	Ross	whole another story being prepared for an attack, I don't know, like a surprise	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		medium	
+4	83	249.19	249.75	I don't know.	Ross	i don't know like a surprise	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		low	low_speaker_confidence
+4	84	249.99	250.63	Surprise.	Ross	like a surprise	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		low	low_speaker_confidence
+4	85	259.59	261.23	All right, you knew that was coming.	Ross	all right you know that one was coming	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		low	low_speaker_confidence
+5	86	261.23	264.15	But that doesn't mean you have unagi.	Ross	All right, you know that one was coming, but that doesn’t mean you have unagi. (Does the finger thing.)	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		medium	
+5	87	268.07	268.91	Ooh, you know what?	Rachel	ooh y'know what	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		low	low_speaker_confidence
+5	88	268.91	271.67	If we made reservations, we could have unagi in about a half hour.	Rachel	(To Phoebe) Ooh! Y’know what? If we made reservations, we could have unagi in about a half-hour.	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+5	89	275.24	275.48	Hey.	Chandler	hey	Chandler	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+5	90	275.48	275.72	Hey.	Chandler	hey hey	Chandler	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+5	91	275.72	276.52	Is Monica here?	Chandler	Hey-hey, is Monica here?	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+5	92	276.6	277.0	No.	Phoebe	No.	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+5	93	277.48	278.84	Okay, look, I need your help.	Chandler	okay look i need your help	Chandler	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+5	94	278.84	281.0	I don't know where to get her for Valentine's Day.	Chandler	Okay, look I need your help, I don’t know what to get her for Valentine’s Day.	Chandler	present	char_tracker_stage05	chandler	present	0.6667		medium	
+5	95	281.24	285.16	Well, Valentine's Day was two weeks ago, so I wouldn't get her a calendar.	Rachel	Well, Valentine’s Day was like two weeks ago, so I wouldn’t get her a calendar!	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+5	96	287.08	290.12	She was working on Valentine's Day, so we're celebrating it tonight.	Chandler	(laughs) She was working on Valentine’s Day so we’re celebrating it tonight.	Chandler	present	char_tracker_stage05	chandler|joey	present	0.5000		high	
+5	97	290.6	294.52	Oh, hey, why don't you book a date for both of you at one of those romantic spas?	Joey	Ohh, hey! Why don’t you book a date for both of you at one of those romantic spas?	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+5	98	295.08	297.16	Joey, that's actually a really good idea.	Phoebe	Ooh, Joey, that’s actually a really good idea!	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+5	99	297.16	299.64	Yeah, and of course, crotchless panties.	Joey	And of course, crotchless panties.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+5	100	303.14	312.22	Well, as appealing as that does sound to her boyfriend and her brother I can't do that.	Chandler	Well appealing as that does sound to her boyfriend (pause) and her brother, (the camera pans to Ross flashing Joey a very evil look; Joey gets scared) I can’t do that we promised we’d make each other gifts this year.	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		high	
+5	101	312.22	314.34	We promised we'd make each other gifts this year.	Chandler	we promised we'd make each other gifts this year	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		low	low_speaker_confidence
+5	102	314.42	317.82	Oh, guys, you can't make crotchless panties.	Phoebe	You guys!	Phoebe	present	char_tracker_stage05	chandler|joey|phoebe|rachel	present	0.5000		medium	
+5	103	317.82	321.94	You think you take a pair of scissors and you just cut.	Joey	You can’t make crotchless panties? You take, you take a pair of scissors and you just cut…	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+5	104	324.18	325.3	So making things.	Rachel	So, making things	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+5	105	325.3	326.34	That sounds so much fun.	Rachel	(interrupting him) Okay-okay-okay! So, making things. That sounds like so much fun.	Rachel	present	char_tracker_stage05	chandler|rachel	present	1.0000		medium	
+5	106	326.42	329.54	Yeah, I thought so too, until I paper mached one of my eyes shut.	Chandler	Yeah, I thought so to until I paper mached one of my eyes shut.	Chandler	present	char_tracker_stage05	chandler|rachel	present	1.0000		high	
+5	107	330.78	332.22	I love paper mache.	Phoebe	Oh, I love paper mache! What did you make?	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+5	108	332.22	332.94	What did you make?	Phoebe	What did you make	Phoebe	present	char_tracker_stage05	chandler|phoebe|rachel	present	1.0000		medium	
+5	109	333.02	333.98	I made a flower.	Chandler	I made a… (Does one of those gibberish words.)	Chandler	present	char_tracker_stage05	chandler|phoebe|rachel	present	1.0000		high	
+5	110	336.46	337.18	What is that?	Phoebe	What is that?	Phoebe	present	char_tracker_stage05	chandler|phoebe|rachel	present	1.0000		high	
+5	111	337.18	337.66	Nothing.	Chandler	Nothing!	Chandler	present	char_tracker_stage05	chandler|phoebe|rachel	present	1.0000		high	
+5	112	340.54	341.62	So, what are you gonna do?	Ross	So what are you gonna do?	Ross	present	char_tracker_stage05	chandler|phoebe|rachel|ross	present	1.0000		high	
+5	113	341.62	344.46	Well, have you guys made anything that maybe I could take credit for?	Chandler	Well, have you guys made anything that maybe I can take credit for?	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+5	114	344.46	345.3	Oh, I have.	Phoebe	I have	Phoebe	present	char_tracker_stage05	chandler|phoebe|rachel	present	1.0000		medium	
+5	115	345.3	345.9	I have.	Phoebe	I have	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+5	116	346.14	348.54	I started making these little sock bunnies.	Phoebe	Ohh! I have! I have! I started making these little sock bunnies! (She takes out a sock that’s been made into a bunny with eyes, nose, mouth, whiskers, and two other socks sown onto it for ears.) Oh for crying out loud!	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+5	117	348.62	349.98	Oh, for crying out loud.	Phoebe	Oh for crying out loud	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+5	118	352.38	353.34	Hey, wait a minute.	Rachel	Hey, wait a minute! That is my sock!	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+5	119	353.34	354.62	That is my sock.	Rachel	That is my sock	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+5	120	356.95	358.47	Now it's your little bunny, Flynn.	Phoebe	Now, it’s you little bunny friend. (She sticks it in Rachel’s face and they both laugh.)	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+5	121	368.95	375.67	Okay, this.	Chandler	this	Chandler	present	char_tracker_stage05	chandler	present	1.0000		low	low_speaker_confidence
+6	122	375.67	377.19	This actually is a fly from Pop.	Chandler	(admiring his work) This, this actually is a… (Does the same gibberish word from before.)	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+6	123	381.09	384.13	Hey, honey, can I ask you a question about the Valentine's Day gifts?	Chandler	Hey! Honey, can I ask you a question about the Valentine’s Day gifts?	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+6	124	384.21	385.09	Oh, yeah.	Monica	Oh, yeah.	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+6	125	385.17	386.85	Do we have to make the entire thing?	Chandler	Do we have to make the entire thing?	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+6	126	387.41	387.89	Yes.	Monica	yes	Monica	present	char_tracker_stage05	monica	present	1.0000		low	low_speaker_confidence
+6	127	388.05	388.37	Why?	Monica	yes why	Monica	present	char_tracker_stage05	monica	present	1.0000		low	low_speaker_confidence
+6	128	388.37	389.89	Did you forget to make yours?	Monica	Yes! Why, did you—you forget to make yours?	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+6	129	391.01	391.57	Of course.	Chandler	of course	Chandler	present	char_tracker_stage05	chandler	present	1.0000		low	low_speaker_confidence
+6	130	391.57	392.37	Of course not.	Chandler	Of course, of course not	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		medium	
+6	131	393.97	397.93	I just have to go over to the place where I made it and pick it Up.	Chandler	Of course, of course not. I just have to uh, go over to the place where I-I made it and pick-pick it up.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+6	132	397.93	398.45	Okay.	Monica	Okay	Monica	present	char_tracker_stage05	chandler	absent	0.0000		low	speaker_offscreen
+6	133	398.85	399.65	I can't wait.	Monica	Okay, I can't wait	Monica	present	char_tracker_stage05	chandler	absent	0.0000		low	speaker_offscreen
+6	134	399.65	401.41	It's gonna be the best Valentine's Day ever.	Monica	This is going to be the best Valentine's Day ever	Monica	partial	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+6	135	404.21	405.49	I can't believe it.	Monica	Okay. (They kiss.) Okay, I can’t wait! This is going to be the best Valentine’s Day ever! (Chandler giggles and exits.) I can’t believe it! Make the presents! Make the presents!	Monica	present	char_tracker_stage05	monica	present	0.5000		medium	
+6	136	405.49	406.42	Make the presents.	Monica	Make the presents	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+6	137	406.73	407.61	Make the presents.	Monica	Make the presents	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+6	138	408.49	408.89	What?	Chandler	(sticking his head back in) What?	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+6	139	409.45	412.01	I'm just so excited to make the presents.	Monica	I’m just so excited to make the presents! (Chandler does another sarcastic/scared laugh and leaves.) Shoot!	Monica	present	char_tracker_stage05	monica	present	0.7500		high	
+7	140	420.33	425.69	Hi, I'm Joey Tribbiani, and with all due respect, I'd like to donate some fluids.	Joey	(to the receptionist) Hi uh, I’m Joey Tribbiani and with all do respect I’d like to donate some fluids.	Joey	present	char_tracker_stage05	joey	present	0.6667		high	
+7	141	427.69	432.25	We're actually at the end of one of our research cycles so we're not looking for applicants right now.	Receptionist	We’re actually at the end of one of our research cycles, so we’re not looking for applicants right now.	Receptionist	partial	char_tracker_stage05		unobserved			high	
+7	142	432.9	433.62	That's too bad.	Joey	Oh that's too bad	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+7	143	433.86	435.06	Kind of been saving up.	Joey	I've kinda been saving up	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+7	144	439.78	442.26	Are you sure there's no studies I could participate in?	Joey	Oh that’s too bad. I’ve kinda been saving up. (She just looks at him in horror.) Uh, are you sure there’s no studies I can participate in?	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+7	145	442.5	444.38	Well, here's a schedule of what's coming up.	Receptionist	Well, here’s a schedule of what’s coming up. (Hands it to him.)	Receptionist	present	char_tracker_stage05	joey	unobserved			high	
+7	146	444.38	445.06	Oh, thanks.	Joey	Thanks	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+7	147	446.74	448.02	But this one starts now.	Joey	Thanks. (Starts to read it.) Well but this one starts now. (Points to one.)	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+7	148	448.26	449.7	Oh, that one is available now.	Receptionist	oh that one is available now it's a twins study	Receptionist	present	char_tracker_stage05	joey	unobserved			low	low_speaker_confidence
+7	149	449.7	451.46	But only identical twins are eligible.	Receptionist	Oh that one is available now, but only identical twins are eligible. It’s a twins study.	Receptionist	present	char_tracker_stage05	joey	unobserved			medium	
+7	150	451.46	454.02	It's a twin study, but it's $2,000.	Joey	But it’s $2,000.	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+7	151	454.98	457.96	Sorry.	Receptionist	Sorry.	Receptionist	present	char_tracker_stage05	joey	unobserved			high	
+7	152	458.59	459.79	And, well, how about this one?	Joey	Well how about this one	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+7	153	460.11	464.19	Testing the Effects of Joey Tribbiani on Attractive Nurse Receptionist.	Joey	Well how about this one? Testing the effects of Joey Tribbiani on attractive nurse receptionists.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+7	154	466.43	469.31	We already got the results back on that one, and they're not good.	Receptionist	We already got the results back on that on, and they’re not good. (Joey beats a hasty retreat.)	Receptionist	partial	char_tracker_stage05		unobserved			high	
+7	155	474.19	474.91	It was good.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+7	156	475.07	475.71	Oh, yeah.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+8	157	477.31	478.03	Danger.	Ross	DANGER!!! DANGER!!!!!	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+9	158	483.15	484.91	What the hell was that?	Rachel	What the hell was that?!	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+9	159	485.55	488.68	A lesson in the importance of unagi?	Ross	A lesson in the importance of unagi. (He starts doing the finger thing every time now.)	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+9	160	492.12	493.24	You're a freak.	Phoebe	Ohh, you’re a freak!!	Phoebe	present	char_tracker_stage05	phoebe|rachel|ross	present	1.0000		high	
+9	161	495.16	495.72	Perhaps.	Ross	perhaps	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+9	162	497.8	498.84	Now I'm curious.	Ross	perhaps now i'm curious	Ross	present	char_tracker_stage05	phoebe|rachel|ross	present	1.0000		low	low_speaker_confidence
+9	163	498.84	503.56	At what point during those girlish screams would you have begun to kick my ass?	Ross	Perhaps. Now I’m curious, at what point during those girlish screams would you have begun to kick my ass?	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+9	164	506.68	509.08	All right, so we weren't prepared.	Rachel	All right, so we weren’t prepared!	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+9	165	510.92	514.44	I'm sorry I had to take such drastic measures to make my point.	Ross	I’m sorry I had to take such drastic measures to make my point, but I—look, I just want you guys to be safe. (Monica comes out to throw out the garbage and Ross screams…) DANGER!!!!! (She completely ignores him and keeps walking.) Ahhh, huh? Unagi.	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+9	166	514.44	516.76	But, look, I just want you guys to be safe.	Ross	but i look i just want you guys to be safe danger ahhh huh unagi	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+9	167	518.51	519.15	Danger.	Ross	danger ahhh huh unagi	Ross	present	char_tracker_stage05	ross	present	0.5000		low	low_speaker_confidence
+9	168	524.27	524.67	Ah.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+9	169	525.39	525.95	Huh?				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+9	170	526.03	526.99	Unagi.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+10	171	534.11	536.03	2000 bucks is a lot of money.	Joey	2,000 bucks is a lot of money	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+10	172	536.75	538.11	Well, I wish I had a twin.	Joey	Oh, I wish I had a twin	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+10	173	539.47	544.67	Where could I find someone who looks exactly like me?	Joey	(in his head) 2,000 bucks is a lot of money. Oh, I wish I had a twin. Where could I find someone who looks exactly like me? (The camera widens its shot to reveal a room full of Joey look-a-likes. Joey looks at the guy next to him and then back at his script.)	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+11	174	565.45	567.45	Hey, Chandler.	Chandler	Hey.	Chandler	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+11	175	570.01	571.45	I sensed it was you.	Ross	(not turning around) Chandler. I sensed it was you.	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+11	176	574.52	574.76	What?	Chandler	What?!	Chandler	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+11	177	576.52	577.48	Unagi.	Ross	Unagi	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+11	178	578.84	580.12	I'm always aware.	Ross	Unagi. I’m always aware.	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+11	179	580.52	582.84	Okay, are you aware that unagi is an eel?	Chandler	Okay, are you aware unagi (does the finger thing) is an eel?	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+11	180	585.48	586.12	What's up?	Ross	What’s up?	Ross	present	char_tracker_stage05	chandler|ross	present	1.0000		high	
+11	181	586.28	588.0	I can't figure out what to make Monica.	Chandler	I can’t figure out what to make Monica.	Chandler	present	char_tracker_stage05	chandler|ross	present	1.0000		high	
+11	182	588.0	590.2	Oh, why don't you make her one of your little jokes?	Ross	Oh, why don’t you make her one of your little jokes.	Ross	present	char_tracker_stage05	chandler|ross	present	1.0000		high	
+11	183	591.0	592.04	I'm going crazy.	Chandler	i'm going crazy	Chandler	present	char_tracker_stage05	chandler|ross	present	1.0000		low	low_speaker_confidence
+11	184	592.04	595.24	Okay, do you have anything around here that looks homemade?	Chandler	I’m going crazy! Okay? Do you have any thing around here that looks homemade?	Chandler	present	char_tracker_stage05	chandler|ross	present	1.0000		high	
+11	185	595.88	596.76	Oh, you know what?				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+11	186	596.92	598.04	She'd love this.	Ross	She'd-she'd love this	Ross	partial	char_tracker_stage05		partial	0.3333		medium	partial_visual_presence
+11	187	598.63	600.83	It's an exact replica of Apollo 8.	Ross	Y’know what? She’d-she’d love this. (Picks up a model of the Saturn V rocket, that’s the one that took man to the moon.) Uh, it’s an exact replica of Apollo 8. I made it in the sixth grade.	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+11	188	600.83	602.23	I made it in the sixth grade.	Ross	I made it in the sixth grade	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+11	189	603.51	604.75	Yeah, I guess I could use that.	Chandler	Yeah, I guess I could use that	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+11	190	604.75	607.11	I could say, your love sends me to the moon.	Chandler	Yeah, I guess I could use that. I could say that your love sends me to the moon.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+11	191	607.11	607.55	Yeah.	Ross	yeah	Ross	present	char_tracker_stage05	chandler|ross	present	1.0000		low	low_speaker_confidence
+11	192	607.55	607.91	Yeah.	Ross	yeah yeah	Ross	present	char_tracker_stage05	chandler|ross	present	1.0000		low	low_speaker_confidence
+11	193	607.91	610.47	Except Apollo 8 didn't actually land on the moon.	Ross	Yeah-yeah, except Apollo 8 didn't actually land on the moon	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+11	194	610.71	616.07	But you could write, your love lets me orbit the moon twice and return safely.	Ross	Yeah-yeah, except Apollo 8 didn’t actually land on the moon. But you-you-you could write that umm, your love lets me orbit the moon twice and return safely. (Apollo 8 was the first one that orbited the moon and the one that read the Christmas Story from the orbit of the moon on Christmas Eve, 1968. They also took the famous Earthrise picture of the Earth rising over the moon.)	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+11	195	618.39	619.91	I mean, I can't give this to her.	Chandler	Wait a minute, I can’t give this to her.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+11	196	619.99	620.55	Why not?	Ross	Why not?	Ross	present	char_tracker_stage05	chandler	absent	0.0000		low	speaker_offscreen
+11	197	620.71	622.95	Because it says Captain Ross on the side.	Chandler	"Because it says ""Captain Ross"" on the side and ""I hate Monica"" on the bottom."	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+11	198	624.47	626.41	And it says I Hate Monica on the bottom.	Chandler	and i hate monica on the bottom	Chandler	present	char_tracker_stage05	chandler	present	1.0000		low	low_speaker_confidence

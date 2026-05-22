@@ -1,0 +1,330 @@
+scene_id	sentence_id	start	end	utterance	speaker	utterance_ct	speaker_ct	visual_presence	visual_presence_source	visual_presence_chars	speaker_visual_presence	speaker_visual_ratio	visual_presence_note	annotation_confidence	annotation_review_reason
+1	1	2.0	2.48	Hampton.				absent	char_tracker_stage05		unknown			low	missing_speaker
+1	2	6.48	8.32	Hey, it's your Thanksgiving too.	Phoebe	hey it's your thanksgiving too y'know	Phoebe	present	char_tracker_stage05	chandler|joey|ross	absent	0.0000		low	speaker_offscreen
+1	3	8.56	10.8	You know, instead of watching football, you could help.	Phoebe	Hey, it’s your Thanksgiving too, y'know, instead of watching football, you could help.	Phoebe	present	char_tracker_stage05	chandler|joey|ross	absent	0.0000		low	speaker_offscreen
+1	4	11.2	11.76	We know.	The Guys	We will. (they don’t move)	The Guys	present	char_tracker_stage05	chandler|joey|ross	unobserved			low	low_speaker_confidence
+1	5	13.92	17.36	Rachel, you want to put the marshmallows in concentric circles.	Monica	Okay, Rachel, you wanna put the marshmellows in concentric circles.	Monica	partial	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+1	6	19.2	22.0	No, Mon, you want to put them in concentric circles.	Rachel	No Mon, you want to put them in concentric circles. I want to do this.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+2	7	22.48	34.71	I want to do this every year.	Monica	Every year.	Monica	present	char_tracker_stage05	monica	present	0.5385		medium	
+4	8	47.27	50.87	You know, for once I'm gonna sit down and try to watch one of these things.	Phoebe	Y'know, for once, I am going to sit down and try to watch one of these things. (just as she sits down).	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+4	9	53.19	53.83	Halftime.	Ross	Halftime.	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+4	10	56.23	58.47	Hey, who wants to throw the ball around a little?	Joey	Hey, who wants to ah, throw the ball around a little, maybe get a little three on three going?	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+4	11	58.47	59.83	Maybe get a little three on three going?	Joey	maybe get a little three on three going	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+4	12	59.83	60.71	Oh, that would be.	Rachel	Oh! That would be sooo much fun!	Rachel	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+4	13	61.65	62.65	Oh, can I play too?	Phoebe	Oh, can I play too	Phoebe	present	char_tracker_stage05	rachel	absent	0.0000		low	speaker_offscreen
+4	14	62.65	63.73	I've never played football.	Phoebe	Oh, can I play too? I’ve never played football, like ever.	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	0.5000		medium	
+4	15	63.73	64.45	Like, ever.	Phoebe	oh can i play too like ever	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		low	low_speaker_confidence
+4	16	65.57	65.93	Great.	Joey	great	Joey	present	char_tracker_stage05	joey|phoebe|rachel	present	1.0000		low	low_speaker_confidence
+4	17	65.93	67.09	You can cover Chandler.	Joey	Great, you can cover Chandler.	Joey	present	char_tracker_stage05	joey|rachel	present	1.0000		high	
+4	18	69.49	70.25	No, no, I don't.	Chandler	No, no, no, I don’t, I don’t really wanna play.	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+4	19	70.25	71.49	I don't really want to play.	Chandler	no i don't really wanna play	Chandler	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+4	20	72.13	72.81	Come on, man.	Joey	Come on man	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+4	21	72.81	75.01	You haven't wanted to do anything since you and Janice broke up.	Joey	Come on man! You never want to do anything since you and Janice broke up.	Joey	present	char_tracker_stage05	joey	present	0.7500		medium	
+4	22	75.01	75.73	That's not true.	Chandler	That's not true	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		medium	
+4	23	75.73	78.53	I wanted to wear my bathrobe and eat peanut clusters all day.	Chandler	That’s not true! I wanted to wear my bathrobe and eat peanut clusters all day. I wanted to start drinking in the morning. Don’t say that I don’t have goals!	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+4	24	79.57	81.25	I wanted to start drinking in the morning.	Chandler	I wanted to start drinking in the morning	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+4	25	81.25	81.93	Don't say that.	Chandler	Don't say that I don't have goals	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+4	26	81.93	82.93	I don't have ghouls.	Chandler	i don't have goals	Chandler	present	char_tracker_stage05	chandler	present	1.0000		low	low_speaker_confidence
+4	27	83.57	85.89	Chandler, you have to start getting over her.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+4	28	85.97	86.33	All right?				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+4	29	86.33	87.23	If you play, you.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+4	30	87.3	88.22	You get some fresh air.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+4	31	88.22	90.18	Maybe you'll take your mind off Janice.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+4	32	90.18	93.02	And if you don't play, everyone will be mad at you.	Joey	Chandler, you have to start getting over her. All right, if you play, you get some fresh air, maybe it’ll take your mind off Janice, and if you don’t play, everyone will be mad at you ‘cause the teams won’t be even. Come on.	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+4	33	93.02	94.02	Cause the teams won't be even.				present	char_tracker_stage05	chandler|joey	unknown			low	missing_speaker
+4	34	94.02	94.58	Come on.				present	char_tracker_stage05	chandler|joey	unknown			low	missing_speaker
+4	35	95.86	96.9	All right, I'll play.	Chandler	Yeah, all right, I’ll play. But I don't like....you.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+4	36	96.98	99.54	I don't like you.	Chandler	But I don't like	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+4	37	100.58	101.06	Yay.	Phoebe	Yay!!	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+4	38	101.54	102.58	Let's do it.	Rachel	Let’s do it! Ross?	Rachel	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+4	39	102.74	103.22	Ross.	Rachel	Ross	Rachel	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+4	40	103.299	103.66	What?	Ross	What?	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+4	41	103.66	104.42	Wanna play football?	Rachel	Do you wanna play football?	Rachel	present	char_tracker_stage05	monica|ross	absent	0.0000		low	speaker_offscreen
+4	42	107.06	110.26	Um, Monica and I aren't supposed to play football.	Ross	Um, Monica and I aren’t supposed to play football.	Ross	present	char_tracker_stage05	monica|ross	present	1.0000		high	
+4	43	112.1	112.74	Says who?	Joey	Says who	Joey	present	char_tracker_stage05	chandler|joey	present	1.0000		medium	
+4	44	112.74	113.3	Your mom?	Joey	Says who? Your mom?	Joey	present	char_tracker_stage05	chandler|joey	present	1.0000		medium	
+4	45	115.22	115.78	Yeah.	Monica and Ross	Yeah.	Monica and Ross	present	char_tracker_stage05	chandler|joey|monica|ross	unobserved			high	
+4	46	118.28	119.0	What do you mean?	Rachel	what do you mean	Rachel	present	char_tracker_stage05	chandler|joey|monica|phoebe|rachel	present	1.0000		low	low_speaker_confidence
+4	47	119.0	121.56	She asks her boyfriend really scared to hear the answer.	Rachel	"""What do you mean,"" she asks her boyfriend who's really scared to hear the answer."	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+4	48	122.84	128.52	Well, every Thanksgiving we used to have a touch football game called the Geller Bowl.	Monica	Well, every, every Thanksgiving um, we used to have a touch football game called the ‘Geller Bowl.’	Monica	present	char_tracker_stage05	monica|ross	present	1.0000		high	
+4	49	128.68	129.48	No, no, no.	Chandler	no no no	Chandler	present	char_tracker_stage05	chandler|joey|monica|ross	present	1.0000		low	low_speaker_confidence
+4	50	129.48	130.68	You say that proudly.	Chandler	No, no, no, you say that proudly.	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		high	
+4	51	132.2	137.08	Anyway, Ross and I were always captains and it got kind of competitive.	Monica	anyway ross and i were always captains and um it got kind've competitive	Monica	present	char_tracker_stage05	monica|ross	present	1.0000		low	low_speaker_confidence
+4	52	137.08	142.69	And one year, Geller Bowl 6, I accidentally broke Ross nose.	Monica	Anyway, Ross and I were always captains, and um, it got kind’ve competitive and one year, Geller Bowl VI, I accidentally broke Ross’s nose.	Monica	present	char_tracker_stage05	monica|ross	present	1.0000		medium	
+4	53	144.21	146.37	It was so not an accident.	Ross	It was soo not an accident	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+4	54	146.61	151.17	She saw I was about to tag her, so she threw her big fat grandma arm elbow in my face.	Ross	It was soo not an accident. She saw I was about to tag her, so she threw her big fat grandma arm elbow right into my face. And just keep running.	Ross	present	char_tracker_stage05	monica|ross	present	1.0000		high	
+4	55	152.29	153.49	Just kept running.	Ross	And just keep running	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+4	56	154.13	156.37	Just score the winning touchdown, by the way.	Monica	To score the winning touchdown, by the way.	Monica	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+4	57	156.37	157.889	Whoa, ho, ho ho.	Ross	whoa whoa whoa ho ho ho oh and by the way savage nose breaking	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+4	58	158.45	159.65	You did not win the game.	Ross	whoa whoa whoa ho ho ho you did not win the game oh and by the way savage nose breaking	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+4	59	159.65	163.45	The touchdown didn't count because of the spectacularly illegal.	Ross	Whoa, whoa, whoa, ho, ho, ho, you did not win the game, the touchdown didn’t count, because of the spectacularly illegal, oh and by the way savage nose breaking.	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+4	60	163.45	165.49	Oh, and by the way, savage nose breaking.	Ross	whoa whoa whoa ho ho ho you did not win the game oh and by the way savage nose breaking	Ross	present	char_tracker_stage05	monica|ross	present	1.0000		low	low_speaker_confidence
+4	61	167.33	168.29	I won the game.	Monica	(to Chandler and Joey) I won the game.	Monica	present	char_tracker_stage05	chandler|joey|ross	absent	0.0000		low	speaker_offscreen
+4	62	169.04	169.48	Oh, yeah?	Ross	Oh yeah	Ross	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		medium	
+4	63	169.48	171.44	Then how come you didn't get the Geller Cup?	Ross	Oh yeah! Then how come you didn’t get the Geller Cup?	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+4	64	173.92	175.28	There was a Geller Cup?	Rachel	Um, there was a Geller Cup?	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+4	65	176.48	179.12	Yes, it was the trophy you got if you won the game.	Ross	Yes, it was the trophy you got if you won the game	Ross	present	char_tracker_stage05	joey|ross	present	1.0000		medium	
+4	66	179.2	182.96	But our dad said nobody won that game and he was sick of our fighting.	Ross	Yes, it was the trophy you got if you won the game. But our Dad said, ‘nobody won that game, ‘ and he was sick of our fighting, so he took the trophy and.... (pauses to collect himself, as he is on the verge of tears saying this) threw it in the lake.	Ross	present	char_tracker_stage05	monica|ross	present	1.0000		medium	
+4	67	182.96	192.48	So we took the trophy, threw it in the lake.	Ross	threw it in the lake	Ross	present	char_tracker_stage05	monica|ross	present	1.0000		medium	
+4	68	194.32	195.92	And was the curse lifted?	Chandler	And was the curse lifted?	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		high	
+4	69	198.48	203.2	Anyway, that's when mom said we were not allowed to play football again.	Ross	Anyway. That’s when our Mom said we were not to play football ever again.	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+4	70	203.84	204.56	You know what?				present	char_tracker_stage05	joey|monica|ross	unknown			low	missing_speaker
+4	71	205.52	206.8	I think we should play a game.	Monica	Y'know what, I think we should play a game. I mean come on, it’s been twelve years.	Monica	present	char_tracker_stage05	joey|monica|ross	present	1.0000		medium	
+4	72	206.88	208.72	I mean, come on, it's been 12 years.	Monica	I mean come on, it's been twelve years	Monica	present	char_tracker_stage05	joey|monica	present	1.0000		medium	
+4	73	209.68	210.88	Can I see you for a second?	Ross	Can I see you for a second?	Ross	present	char_tracker_stage05	joey|monica|ross	present	1.0000		high	
+4	74	214.32	215.84	Didn't you tell me that you're not gonna cheat?				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+4	75	216.56	216.96	What?				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+5	76	217.52	218.96	All right, we're gonna play.	Ross	All right, we’re gonna play.	Ross	present	char_tracker_stage05	monica|ross	present	1.0000		high	
+5	77	220.4	221.32	Well, wait a minute, though.				present	char_tracker_stage05	chandler|joey|monica|ross	unknown			low	missing_speaker
+5	78	221.32	222.12	How are we gonna get there?	Chandler	But wait a minute though, how are we gonna get there, though, because my Mom won’t let me cross the street.	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		medium	
+5	79	222.12	223.52	Because my mom won't let me cr.	Chandler	but wait a minute though though because my mom won't let me cross the street	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		low	low_speaker_confidence
+5	80	227.98	228.3	Hey.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+5	81	229.1	229.58	Hey.				absent	char_tracker_stage05		unknown			low	missing_speaker
+5	82	231.9	232.38	All right.				absent	char_tracker_stage05		unknown			low	missing_speaker
+6	83	232.62	233.74	Okay, speed in.	Monica	Okay. Let’s bring it in.	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+6	84	233.98	234.58	No, honey.	Rachel	wait no honey throw it to me	Rachel	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+6	85	234.58	235.62	Honey, throw it to me.	Rachel	Wait no, honey, honey throw it to me, throw it to me.	Rachel	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+6	86	235.62	236.18	Throw it to me.	Rachel	wait no honey throw it to me	Rachel	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+6	87	236.18	236.78	Here you go.	Ross	Here you go. (throws her the ball)	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+6	88	240.06	241.5	That almost hit me in the face.	Rachel	(knocking it down instead of catching it) That almost hit me in the face.	Rachel	present	char_tracker_stage05	monica|rachel|ross	present	1.0000		high	
+6	89	242.86	246.22	All right, we have to pick captains and then Tenille's.	Joey	All right, we have to pick captains.	Joey	present	char_tracker_stage05	joey|rachel	present	0.6000		high	
+6	90	249.02	250.62	Okay, so how do we decide that?	Phoebe	Okay, so how do we decide that?	Phoebe	present	char_tracker_stage05	monica|ross	absent	0.0000		low	speaker_offscreen
+6	91	250.7	252.06	Well, why don't we just bunny up?	Monica	Well, why don’t we just bunny up.	Monica	present	char_tracker_stage05	monica|ross	present	1.0000		high	
+6	92	252.06	252.46	What?	Rachel, Chandler, and Joey	What?	Rachel, Chandler, and Joey	present	char_tracker_stage05	chandler|joey|monica|rachel|ross	unobserved			high	
+6	93	256.31	258.07	Okay, looks like Ross and I are captains.	Monica	Okay, looks like Ross and I are captains.	Monica	present	char_tracker_stage05	monica|ross	present	1.0000		high	
+6	94	259.19	262.71	There must be a special place in heaven for people that hung out with you two in high school.	Joey	There must be a special place in heaven for people who hung out with you two in high school.	Joey	present	char_tracker_stage05	chandler|joey|rachel	present	1.0000		high	
+6	95	264.23	266.71	Okay, so I bunnied first, which means I get to pick first.	Monica	Okay, so um, I bunnied first so that means I get to pick first. Joey.	Monica	present	char_tracker_stage05	monica|ross	present	1.0000		high	
+6	96	267.03	267.55	Joey.	Monica	Joey	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+6	97	267.55	268.15	Thank you.	Joey	Thank you.	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+6	98	268.55	270.79	Monica, I'm your best friend.	Rachel	Monica, I’m your best friend.	Rachel	present	char_tracker_stage05	chandler|rachel	present	0.6667		high	
+6	99	271.91	274.31	Sweetie, don't worry, you'll get picked.	Ross	Sweetie, don’t worry you’ll get picked. Chandler.	Ross	present	char_tracker_stage05	chandler|joey|monica|rachel|ross	present	0.7500		high	
+6	100	274.39	275.03	Chandler.	Ross	Chandler	Ross	present	char_tracker_stage05	chandler|rachel	absent	0.0000		low	speaker_offscreen
+6	101	278.23	278.71	Ross.	Rachel	Ross!	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+6	102	278.95	279.59	Phoebe.	Monica	Phoebe.	Monica	present	char_tracker_stage05	joey|monica|rachel	present	0.5000		high	
+7	103	283.68	285.12	Sweetie, now I pick you.	Ross	Sweetie, now I pick you.	Ross	present	char_tracker_stage05	chandler|ross	present	1.0000		high	
+7	104	285.2	286.4	You don't pick me.	Rachel	You don't pick me	Rachel	present	char_tracker_stage05	chandler|rachel|ross	present	1.0000		medium	
+7	105	286.4	287.68	You're stuck with me.	Rachel	You don’t pick me! You’re stuck with me!	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+7	106	289.6	290.24	Okay.	Ross	Okay	Ross	present	char_tracker_stage05	rachel	absent	0.0000		low	speaker_offscreen
+7	107	290.32	291.4	All right, so let's see.	Ross	All right	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+7	108	291.4	294.08	Let's play from the trash can to the light post.	Ross	Okay. All right. So let’s see, let’s play from the trash can, to the lightpost. Right. Two hand touch, we’ll kick off.	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+7	109	294.16	294.56	Right?	Ross	Right	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+7	110	294.64	295.56	Two hand touch.	Ross	Two hand touch, we'll kick off	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+7	111	295.56	296.24	We'll kick off.	Ross	we'll kick off	Ross	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+7	112	296.4	297.32	All right, people, listen.	Monica	all right people listen	Monica	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+7	113	297.32	300.72	I've got exactly 28 minutes before I have to baste again.	Monica	All right people listen, I’ve got exactly twenty-eight minutes before I have to baste again.	Monica	present	char_tracker_stage05	chandler|rachel	absent	0.0000		low	speaker_offscreen
+7	114	301.44	303.04	Wow, just like in the pros.	Chandler	Wow! Just like in the pros.	Chandler	present	char_tracker_stage05	chandler|rachel	present	1.0000		high	
+7	115	304.32	304.96	Thank you.				absent	char_tracker_stage05		unknown			low	missing_speaker
+7	116	305.76	306.08	Hi.				absent	char_tracker_stage05		unknown			low	missing_speaker
+7	117	306.08	307.2	Huddle up right over here.	Joey	(to his team) All right, huddle up, right over here.	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+7	118	307.42	307.74	Wait for me.				absent	char_tracker_stage05		unknown			low	missing_speaker
+7	119	307.74	308.78	Wait for me, Wait for me.				absent	char_tracker_stage05		unknown			low	missing_speaker
+7	120	309.82	310.54	Oh, cool.				absent	char_tracker_stage05		unknown			low	missing_speaker
+7	121	310.54	311.82	This is my first huddle.	Phoebe	Wait for me! Wait for me! Wait for me! Oh cool, this is my first huddle.	Phoebe	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+7	122	312.78	313.3	Okay.				present	char_tracker_stage05	joey|phoebe	unknown			low	missing_speaker
+7	123	313.3	313.82	Okay.	Monica	Okay.	Monica	present	char_tracker_stage05	joey|phoebe	absent	0.0000		low	speaker_offscreen
+7	124	313.98	315.98	So what do you guys really think of Chandler?	Phoebe	Okay, so what do you guys really think of Chandler?	Phoebe	present	char_tracker_stage05	joey|phoebe	present	1.0000		high	
+7	125	318.54	320.22	Phoebe, you know what you're doing, right?	Monica	Okay, Phoebe you know what you’re doing right?	Monica	present	char_tracker_stage05	joey|monica|phoebe	present	1.0000		high	
+7	126	320.38	320.94	Yeah.	Phoebe	Yeah.	Phoebe	present	char_tracker_stage05	joey|monica|phoebe	present	1.0000		high	
+7	127	321.34	321.86	Okay.				present	char_tracker_stage05	joey|monica|phoebe	unknown			low	missing_speaker
+7	128	321.86	322.14	All right.				present	char_tracker_stage05	joey|monica|phoebe	unknown			low	missing_speaker
+7	129	322.14	323.86	Joey's gonna catch it, and you and I are gonna block.	Monica	Okay, Joey’s gonna catch it, and you and I are gonna block.	Monica	present	char_tracker_stage05	joey|monica|phoebe	present	1.0000		high	
+7	130	323.86	324.62	Let's block.	Phoebe	What’s block?	Phoebe	present	char_tracker_stage05	joey|monica|phoebe	present	1.0000		medium	
+7	131	325.66	327.26	Phoebe, I thought you said you knew what you were doing.	Monica	Phoebe, I thought you said you know what you’re doing?	Monica	present	char_tracker_stage05	joey|phoebe	absent	0.0000		low	speaker_offscreen
+7	132	327.58	328.86	I thought you meant in life.	Phoebe	I thought you meant in life.	Phoebe	present	char_tracker_stage05	joey|phoebe	present	1.0000		high	
+7	133	330.86	331.26	Great.				present	char_tracker_stage05	monica|phoebe	unknown			low	missing_speaker
+7	134	332.46	333.74	The ball is Janice.	Chandler	the ball is janice	Chandler	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+8	135	334.06	335.18	The ball is Janice.	Chandler	The ball is Janice. The ball is Janice. (goes to kick the ball but kicks Ross’s foot instead.)	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+8	136	341.18	343.18	Oh, son of a. Ow.	Ross	Oww!! Son of a...!! Ow! Come on!	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+8	137	343.74	344.34	Come on.	Ross	oww come on	Ross	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+8	138	344.34	345.58	I'm sorry, I'm sorry.				absent	char_tracker_stage05		unknown			low	missing_speaker
+8	139	345.74	346.26	You know what?				absent	char_tracker_stage05		unknown			low	missing_speaker
+8	140	346.26	347.34	We're just gonna throw it.	Chandler	Sorry. I’m sorry. Y'know what, we’re just gonna throw it.	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+9	141	349.66	350.46	I got it.	Joey	I got it. (catches the ball)	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+9	142	351.42	352.3	Go, go, go.	Phoebe	Go! Go! Go!	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+10	143	360.78	362.06	Oh, score.	Monica	Score	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+10	144	362.7	364.28	Seven to nothing.	Monica	Score!! 7 to nothing!	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+10	145	365.64	367.96	Okay, honey, just so that I'm clear on this.	Rachel	Ok honey, just so that I'm clear on this	Rachel	present	char_tracker_stage05	rachel	present	0.6667		medium	
+10	146	368.12	371.72	Now you said in the huddle that if Joey caught the ball you were gonna be the one to stop him.	Rachel	(coming over to Ross, who is just getting up) Ok honey, just so that I'm clear on this. Now you said in the huddle that if Joey caught the ball you were going to be the one to stop him. Now you didn't, so is that like a-like a football strategy?	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+10	147	371.96	372.24	No.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+10	148	372.24	372.8	You didn't.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+10	149	372.8	375.0	So is that like a football strategy?				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+10	150	375.0	377.48	Yeah, it was part of my plan to fall instantly behind.	Ross	Yeah, it was part of my plan to fall instantly behind. So come on, let's go.	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+10	151	377.96	379.4	So come on, let's go.	Ross	So come on, let's go	Ross	present	char_tracker_stage05	ross	present	0.6667		medium	
+10	152	380.2	381.48	Losers walk.	Monica	Losers walk!	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+10	153	381.64	382.12	Yeah.	Ross	yeah	Ross	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+10	154	382.28	383.48	Losers talk.	Ross	Yeah, losers talk!	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+10	155	384.04	384.64	No, no, no.	Chandler	no no no	Chandler	present	char_tracker_stage05	chandler|monica|phoebe	present	1.0000		low	low_speaker_confidence
+10	156	384.64	385.8	Actually, losers rhyme.	Chandler	No, no, no, actually losers rhyme.	Chandler	present	char_tracker_stage05	chandler|monica|phoebe	present	1.0000		high	
+10	157	389.0	391.48	43, 74.				partial	char_tracker_stage05		unknown			low	missing_speaker
+11	158	395.9	396.82	You want to go shotgun?	Chandler	(coming up under center, just like a real quarterback does, and puts his hands between Ross’ legs.) Twenty-three!! Seventy-four!! (Ross stands up and looks at him) You wanna go shotgun?	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+11	159	396.82	397.26	Yeah.	Ross	Yeah!	Ross	present	char_tracker_stage05	chandler	absent	0.0000		low	speaker_offscreen
+11	160	400.06	400.46	Hey.				absent	char_tracker_stage05		unknown			low	missing_speaker
+11	161	400.46	401.54	One Mississippi, two Mississippi.	Monica and Joey	One-Mississippi. Two-Mississippi. Three-Mississippi.	Monica and Joey	absent	char_tracker_stage05		unobserved			high	
+11	162	401.54	401.74	Two minutes.				absent	char_tracker_stage05		unknown			low	missing_speaker
+11	163	401.74	402.1	Mississippi.				absent	char_tracker_stage05		unknown			low	missing_speaker
+11	164	402.1	402.34	Three.				absent	char_tracker_stage05		unknown			low	missing_speaker
+12	165	402.34	403.34	Over here, over here.	Rachel	Over here!	Rachel	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+13	166	404.94	406.06	I almost caught that one.	Rachel	(proud of her self) I almost caught that one!	Rachel	partial	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+13	167	407.82	408.139	Great.	Chandler	Great	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+13	168	408.139	409.9	Now the score is seven to almost seven.	Chandler	Great! Now, the score is 7 to almost 7.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+13	169	411.34	413.42	Okay, let's play.				present	char_tracker_stage05	chandler|rachel	unknown			low	missing_speaker
+13	170	413.58	415.3	I want you to do it down and out to the right.	Ross	Okay, (to Chandler) this play, I want you to do a down and out to the right. Okay. Break!	Ross	present	char_tracker_stage05	chandler|rachel	absent	0.0000		low	speaker_offscreen
+13	171	415.3	415.82	Okay?	Ross	Okay	Ross	present	char_tracker_stage05	chandler|rachel	absent	0.0000		low	speaker_offscreen
+13	172	415.82	416.62	Okay, great.				present	char_tracker_stage05	chandler|rachel	unknown			low	missing_speaker
+13	173	416.62	417.81	Wait, what am I gonna do?	Rachel	Wait, what am I gonna do?	Rachel	present	char_tracker_stage05	chandler|rachel	present	1.0000		high	
+13	174	418.2	418.44	You.	Ross	you	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+13	175	419.56	420.52	You go long.	Ross	You, you go long.	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+13	176	420.68	422.96	Well, how long until we start?	Rachel	Wait, how long?	Rachel	partial	char_tracker_stage05		partial	0.3333		medium	partial_visual_presence
+13	177	422.96	423.88	To look very small.	Ross	Until we start to look very small.	Ross	present	char_tracker_stage05	rachel	absent	0.0000		low	speaker_offscreen
+13	178	424.12	424.68	Okay.	Rachel	Okay.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+13	179	428.04	429.6	One Mississippi, two Mississippi.				absent	char_tracker_stage05		unknown			low	missing_speaker
+13	180	429.6	430.04	Switch.				absent	char_tracker_stage05		unknown			low	missing_speaker
+14	181	430.04	430.92	Switch, switch.	Ross	One-Mississippi, two-Mississippi, switch! Switch! Switch!!	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+14	182	431.24	432.68	No, no, no, no, no, no.	Chandler	No, no, no, no, no!	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+14	183	439.16	439.56	Aw.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+15	184	442.12	444.04	Hey, thanks for stopping our ball.	Joey	Haaaaa! Hey-hey, thanks for stopping our ball.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+15	185	444.63	446.15	You are playing American football?	Woman	(in a foreign accent) You are playing American football?	Woman	present	char_tracker_stage05	joey	unobserved			high	
+15	186	446.63	447.11	Yeah.	Joey	Yeah	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+15	187	447.67	450.15	Wow, you're, like, from a whole other country.	Joey	Yeah! Wow, you're like from a whole other country.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+15	188	451.51	452.31	I'm Dutch.	Woman	I’m Dutch.	Woman	present	char_tracker_stage05	joey	unobserved			high	
+15	189	452.71	453.83	Hi, I'm Joey.	Joey	Hi-hi, I’m Joey.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+15	190	455.27	456.31	I'm Marja.	Woman	I’m Margha.	Woman	present	char_tracker_stage05	joey	unobserved			medium	
+15	191	457.11	459.19	I'm sorry, Dutch, I didn't get that last little bit.	Joey	I’m sorry Dutch, I didn’t get that last little bit.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+15	192	459.75	461.59	Hey, Joey, you want to play football or you want to.	Chandler	(running up) Hey Joey, do you wanna play football or you wanna.. (sees Marhan) Hi, I’m Chandler.	Chandler	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+15	193	461.59	462.55	Hi, I'm Chandler.	Chandler	Hi, I'm Chandler	Chandler	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+15	194	463.43	464.55	Hello, Chandler.	Margha	Hello, Chandler.	Margha	present	char_tracker_stage05	joey	unobserved			high	
+15	195	465.19	466.35	Her name is Dutch.	Joey	Her name is Dutch, and also Marklan.	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+15	196	466.35	467.67	And also Margen.	Joey	and also marklan	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+15	197	469.35	470.23	Marha.	Margha	Margha.	Margha	present	char_tracker_stage05	chandler|joey	unobserved			low	low_speaker_confidence
+15	198	478.03	479.23	Yo, flirty boys.	Phoebe	Yo, flirty boys	Phoebe	present	char_tracker_stage05	joey|phoebe|rachel	present	1.0000		medium	
+15	199	479.79	481.15	We're in the middle of a game.	Phoebe	Yo, flirty boys! We're in the middle of the game.	Phoebe	present	char_tracker_stage05	joey	partial	0.3333		medium	partial_visual_presence
+16	200	481.95	483.31	Come on, guys, let's go.	Monica	Come on guys! Let’s go! Come on, it’s second down.	Monica	present	char_tracker_stage05	joey|ross	absent	0.0000		low	speaker_offscreen
+16	201	483.63	484.19	Come on.	Monica	come on it's second down	Monica	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+16	202	484.19	484.83	Second down.	Monica	it's second down	Monica	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+16	203	485.87	486.31	Hello.	Ross	uh hello	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+16	204	486.31	487.23	It's third down.	Ross	Uh, hello, it’s third down.	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+16	205	487.31	487.95	No, it's not.	Monica	no it's not	Monica	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+16	206	487.95	488.51	It's second.	Monica	No it’s not, it’s second.	Monica	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+16	207	490.03	490.51	Wow.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+16	208	490.99	491.39	Wow.	Ross	Wow!	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+16	209	491.39	491.71	What?	Monica	Wow, what?	Monica	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+16	210	492.51	495.15	Just amazes me that you're still pulling stuff like this.	Ross	It just amazes me that you're still pulling stuff like this.	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+16	211	496.83	497.43	Pulling mud.	Monica	Pulling what	Monica	present	char_tracker_stage05	monica|ross	present	1.0000		medium	
+16	212	497.43	498.27	It's second down.	Monica	Pulling what? It’s second down.	Monica	present	char_tracker_stage05	monica|ross	present	1.0000		high	
+16	213	498.59	499.95	Okay, it's second down.	Ross	Okay, it's second down	Ross	present	char_tracker_stage05	monica|ross	present	1.0000		medium	
+16	214	500.75	502.51	Take all the second downs you need.	Ross	Okay, it’s second down. (turns away) Take all the second downs you need.	Ross	present	char_tracker_stage05	monica|ross	present	1.0000		high	
+16	215	503.87	504.75	I heard that.	Monica	I heard that!	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+16	216	504.91	506.19	Well, I said it loud.	Ross	Well, I said it loud.	Ross	present	char_tracker_stage05	monica|ross	present	0.6667		high	
+17	217	508.35	510.19	It is okay if I stay and watch?	Margha	It is okay, if I stay and watch? I can't go home just yet. My roomate is, um..Ferschlocking, a big American business man.	Margha	partial	char_tracker_stage05		unobserved			medium	
+17	218	510.75	512.43	I can't go home just yet.	Margha	I can't go home just yet	Margha	present	char_tracker_stage05	chandler|joey	unobserved			medium	
+17	219	512.43	515.55	My roommate is for schlocking.				partial	char_tracker_stage05		unknown			low	missing_speaker
+17	220	515.55	517.63	A big American businessman.				partial	char_tracker_stage05		unknown			low	missing_speaker
+17	221	519.15	519.47	Yeah.	Chandler and Joey	Yeah	Chandler and Joey	present	char_tracker_stage05	chandler|joey	unobserved			medium	
+17	222	519.47	521.19	Why don't you stick around as long as you need to?	Chandler and Joey	Yeah! Why don’t you stick around. You can sit right there.	Chandler and Joey	present	char_tracker_stage05	chandler|joey	unobserved			medium	
+17	223	521.19	521.63	Yeah.	Chandler and Joey	yeah right there	Chandler and Joey	present	char_tracker_stage05	chandler|joey	unobserved			low	low_speaker_confidence
+18	224	522.11	522.91	Well, that went well.	Chandler	Well, that went well.	Chandler	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+18	225	522.91	523.63	I think so.	Joey	I think so.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+18	226	524.14	526.7	You know, I was thinking about asking her for her number.	Chandler	Y'know, I was thinking about ah, asking her for her number.	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		high	
+18	227	527.18	531.26	Thanks, man, but I think it makes a stronger statement if I ask for it myself, you know?	Joey	Thanks man, but I think it makes a stronger statement if I ask for it myself, y'know.	Joey	present	char_tracker_stage05	chandler|joey	present	1.0000		high	
+18	228	531.98	532.46	Oh.				present	char_tracker_stage05	chandler|joey	unknown			low	missing_speaker
+18	229	532.62	533.78	Oh, no.				present	char_tracker_stage05	chandler|joey	unknown			low	missing_speaker
+18	230	533.78	537.66	I was thinking about, you know, for me as part of that whole getting over Janice thing you were talking about.	Chandler	Whoa-ho, whoa! No, I was thinking about y'know for me, as a part of that whole getting over Janice thing you were talking about.	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		high	
+18	231	538.7	539.66	Oh, yeah, that.				present	char_tracker_stage05	chandler|joey	unknown			low	missing_speaker
+18	232	541.1	541.66	All right.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+18	233	541.82	542.42	Means that much.	Joey	Oh, yeah, that	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+18	234	542.42	543.26	Here, I'll let you have her.	Joey	Oh, yeah, that. All right, means that much to ya, I’ll let you have her.	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+18	235	543.26	543.66	Thanks.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+18	236	545.18	545.58	What?	Chandler	what	Chandler	present	char_tracker_stage05	chandler	present	1.0000		low	low_speaker_confidence
+18	237	545.82	546.94	Let me have her?	Chandler	What, let me have her	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+18	238	548.14	548.74	What do you mean?	Chandler	What do mean	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+18	239	548.74	550.54	Like, if you didn't, I wouldn't have a shot?	Chandler	Thanks. What, let me have her?! What do mean? Like if you didn’t I wouldn’t have a shot?	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+18	240	551.28	555.12	Well, you don't like to say it out loud, but yeah.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+18	241	556.96	558.0	Don't feel bad, man.	Joey	don't feel bad man	Joey	present	char_tracker_stage05	chandler	absent	0.0000		low	speaker_offscreen
+18	242	558.0	559.08	We all have our strengths.	Joey	Don't feel bad man, we all have our strengths	Joey	present	char_tracker_stage05	chandler|joey	present	1.0000		medium	
+18	243	559.08	560.56	You're better with numbers and stuff.	Joey	Well I don’t like to say it out loud, but, yeah! Don’t feel bad man, we all have our strengths. You’re better with numbers and stuff.	Joey	present	char_tracker_stage05	chandler|joey	present	1.0000		medium	
+18	244	561.2	561.68	Math?				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+18	245	562.32	563.52	You're giving me math?				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+18	246	564.96	565.6	All right, look.				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+18	247	565.6	566.16	You know what?				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+18	248	566.16	567.2	Forget about it.	Chandler	math you're giving me math all right look y'know what forget about it	Chandler	present	char_tracker_stage05	chandler	present	1.0000		low	low_speaker_confidence
+18	249	567.36	568.4	You go for the girl.	Chandler	math you're giving me math all right look y'know what forget about it you go for the girl	Chandler	present	char_tracker_stage05	chandler	present	1.0000		low	low_speaker_confidence
+18	250	568.96	570.08	We'll see who gets her.	Chandler	Math!! You’re giving me math! All right, look y'know what, forget about it, you go for the girl, we’ll see who gets her.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+19	251	573.92	576.32	Chandler, I want you to run a post pattern to the left.	Ross	Chandler, I want you to run a post pattern to the left, okay. And sweetie..	Ross	present	char_tracker_stage05	chandler|rachel|ross	present	0.7500		high	
+19	252	576.54	576.82	Okay.	Ross	okay and sweetie	Ross	present	char_tracker_stage05	chandler|rachel|ross	present	1.0000		low	low_speaker_confidence
+19	253	576.82	577.5	And, sweetie.	Ross	and sweetie	Ross	present	char_tracker_stage05	chandler|rachel|ross	present	1.0000		low	low_speaker_confidence
+19	254	577.5	578.1	Yeah, I know.	Rachel	yeah i know	Rachel	present	char_tracker_stage05	chandler|rachel|ross	present	1.0000		low	low_speaker_confidence
+19	255	578.1	578.7	Go long.	Rachel	Yeah, I know, go long	Rachel	present	char_tracker_stage05	chandler|rachel|ross	present	1.0000		medium	
+19	256	578.78	581.5	You know, it's like all I'm doing is running back and forth from the huddle.	Rachel	Yeah, I know, go long. Y'know, it’s like all I’m doing is running back and forth from the huddle.	Rachel	present	char_tracker_stage05	chandler|rachel|ross	present	1.0000		high	
+19	257	583.18	585.82	Well, you want to just stay out there?	Ross	Well ah, you wanna just stay out there?	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+19	258	588.62	589.1	Yeah.	Ross	Yeah.	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+20	259	592.54	593.1	Okay.	Ross	Okay. Hut! Hike!	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+20	260	593.1	593.78	Here you go, man.				absent	char_tracker_stage05		unknown			low	missing_speaker
+20	261	593.78	594.54	Okay, let's go.				absent	char_tracker_stage05		unknown			low	missing_speaker
+20	262	594.62	595.58	All right, I got you.				absent	char_tracker_stage05		unknown			low	missing_speaker
+20	263	595.82	596.3	Hey.				absent	char_tracker_stage05		unknown			low	missing_speaker
+20	264	597.1	597.78	Two Mississippi.				absent	char_tracker_stage05		unknown			low	missing_speaker
+20	265	597.78	598.62	Three Mississippi.				absent	char_tracker_stage05		unknown			low	missing_speaker
+20	266	599.66	600.3	Bumbo.				absent	char_tracker_stage05		unknown			low	missing_speaker
+22	267	607.17	608.37	What the hell's the matter with you?	Joey	What the hell’s the matter with you?! This is my favourite jersey.	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+22	268	608.69	610.05	It's my favorite jersey.	Joey	This is my favourite jersey	Joey	present	char_tracker_stage05	chandler	absent	0.0000		low	speaker_offscreen
+22	269	610.37	611.49	Well, now you have too.	Chandler	Well now you have two	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+22	270	613.97	615.49	Hey, I am good at math.	Chandler	Well now you have two. Hey, I am good at math.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+22	271	617.25	617.77	That's it.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+22	272	617.77	620.37	You know, I was still gonna let you have her, but now forget about it.	Joey	All right, that’s it. Y'know I was still gonna let you have her. But now, forget about it. Prepare to feel very bad about yourself.	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+22	273	620.37	622.09	Prepare to feel very bad about yourself.	Joey	all right that's it y'know prepare to feel very bad about yourself	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+22	274	622.09	622.45	Hey.	Chandler	Hey	Chandler	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+22	275	622.45	624.45	Well, I've Been preparing for that my entire life.	Chandler	Hey! Well, I’ve been preparing for that my entire life! Or something about you that’s mean!	Chandler	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+22	276	626.13	627.89	Or something about you that's mean.	Chandler	Or something about you that's mean	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+22	277	628.93	629.93	All right, come on, guys.	Monica	All right, come on guys, let’s go! Tie score, and we’re runnin’ out of time. Forty-two!! Thirty-eight!! Hike! (the timer sounds as Monica throws the ball to Phoebe.)	Monica	present	char_tracker_stage05	chandler	absent	0.0000		low	speaker_offscreen
+22	278	629.93	630.45	Let's go.				absent	char_tracker_stage05		unknown			low	missing_speaker
+22	279	631.29	631.65	High score.				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+22	280	631.65	632.65	We're running out of time.				present	char_tracker_stage05	chandler|monica	unknown			low	missing_speaker
+22	281	633.29	634.89	42, 38, hike.				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+22	282	635.29	636.25	Oh, I got it.	Phoebe	Oh I got it!! (catches the ball) Oh! Ew! Broken boob! Ow!	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+22	283	637.69	638.09	Oh.	Phoebe	Oh	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+22	284	638.09	639.29	Oh, broken boobs.				absent	char_tracker_stage05		unknown			low	missing_speaker
+22	285	639.61	640.09	Ow.				absent	char_tracker_stage05		unknown			low	missing_speaker
+22	286	641.29	642.33	Run, baby, run.	Monica	Run, Phoebe, run!	Monica	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+23	287	644.09	647.369	Touchdown Move.	Phoebe	Touchdown!! Touchdown!!	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+23	288	649.85	650.25	Hello.	Ross	Uh, hello, the buzzer buzzed	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		medium	
+23	289	650.25	652.01	The buzzer buzz doesn't count.	Ross	Uh, hello, the buzzer buzzed. It doesn’t count.	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+23	290	652.49	653.45	After the snap.	Monica	After the snap!	Monica	present	char_tracker_stage05	joey|phoebe|ross	absent	0.0000		low	speaker_offscreen
+23	291	653.45	654.57	Before the snap.	Ross	Before the snap!	Ross	present	char_tracker_stage05	joey|phoebe	absent	0.0000		low	speaker_offscreen
+23	292	654.57	654.97	After.	Joey	After!!	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+23	293	655.21	655.61	Before.	Chandler	Before!!	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+23	294	655.93	656.97	Now does it really matter?	Rachel	Now, does it really matter?	Rachel	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+23	295	657.21	657.69	Yes.	All	Yes!!	All	absent	char_tracker_stage05		unobserved			high	
+23	296	658.41	659.73	Okay, I made a touchdown.	Phoebe	Well, okay, I made a touchdown	Phoebe	present	char_tracker_stage05	joey|phoebe	present	0.5000		medium	
+23	297	659.73	660.945	It was my first touchdown.	Phoebe	Well, okay, I made a touchdown. It was my first touchdown. So?	Phoebe	present	char_tracker_stage05	joey|phoebe	present	1.0000		medium	
+23	298	660.945	661.08	Right?				present	char_tracker_stage05	chandler|joey|phoebe|rachel|ross	unknown			low	missing_speaker
+23	299	661.39	662.59	Oh, Jeeves, that's great.	Ross	Oh Pheebs, that's great	Ross	present	char_tracker_stage05	chandler|joey|phoebe|rachel|ross	present	1.0000		medium	
+23	300	662.59	663.23	Doesn't count.	Ross	Oh Pheebs, that’s great. It doesn’t count.	Ross	present	char_tracker_stage05	chandler|rachel|ross	present	1.0000		medium	
+23	301	664.59	665.63	Does so count.	Monica	Does so count!	Monica	present	char_tracker_stage05	chandler|ross	absent	0.0000		low	speaker_offscreen
+23	302	665.63	667.23	Cheater, cheater, compulsive eater.	Ross	Cheater, cheater, compulsive eater.	Ross	present	char_tracker_stage05	chandler|ross	present	1.0000		high	
+23	303	669.07	670.11	Oh, my God.	Phoebe	Oh my God!	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+23	304	671.95	672.55	You know what?	Monica	y'know what	Monica	present	char_tracker_stage05	phoebe	absent	0.0000		low	speaker_offscreen
+23	305	672.55	673.15	That's fine.	Monica	y'know what that's fine	Monica	present	char_tracker_stage05	phoebe	absent	0.0000		low	speaker_offscreen
+23	306	673.55	675.79	Maybe you haven't grown up, but I have.	Monica	Y'know what, that’s fine, maybe you haven’t grown up, but I have.	Monica	partial	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+23	307	675.87	676.83	Oh, okay.	Ross	Oh-ho, okay.	Ross	present	char_tracker_stage05	chandler|ross	present	1.0000		high	
+23	308	677.39	677.99	Dead leg.	Monica	Dead leg!! (kicks him in the thigh.)	Monica	present	char_tracker_stage05	joey|phoebe	absent	0.0000		low	speaker_offscreen
+23	309	677.99	679.87	Oh, oh, oh, oh.				present	char_tracker_stage05	joey|phoebe	unknown			low	missing_speaker
+23	310	679.87	681.51	Okay, okay, fine, Fine.				partial	char_tracker_stage05		unknown			low	missing_speaker
+23	311	681.51	681.83	All right.				absent	char_tracker_stage05		unknown			low	missing_speaker
+23	312	681.83	682.95	You want to win by cheating?				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+23	313	682.95	683.39	Go ahead.	Ross	All right, you wanna win by cheating, go ahead, all right	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+23	314	683.39	685.07	All right, Phoebe, the touchdown does count.	Ross	Ow! Ow! Okay, okay, fine, fine! All right, you wanna win by cheating, go ahead, all right. Phoebe the touchdown does count, you win.	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+23	315	685.07	685.71	You win.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+23	316	686.51	686.91	No.	Monica	No	Monica	present	char_tracker_stage05	joey|phoebe	absent	0.0000		low	speaker_offscreen
+23	317	688.98	691.14	Listen, I'm not gonna go through this with you again, okay?	Monica	Listen, I'm not gonna go through this with you again, okay	Monica	partial	char_tracker_stage05		partial	0.2500		medium	partial_visual_presence
+23	318	691.22	696.98	Just once I wanna beat you when you can't blame it on the broken nose or the buzzer or the fact that you thought you might be getting mono.	Monica	No! Listen, I’m not gonna go through this with you again, okay. Just once I wanna beat when you can’t blame it on the broken nose, the buzzer, or the fact that you thought you were getting mono. Let’s just call this, tie score and it’s halftime.	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+23	319	697.38	700.46	All right, let's just call this tie score and it's halftime.	Monica	Let's just call this, tie score and it's halftime	Monica	present	char_tracker_stage05	joey|monica|phoebe|ross	present	0.7500		medium	
+23	320	700.46	702.42	Okay, first of all, I don't play with cheaters.	Ross	okay first of all i don't play with cheaters	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+23	321	702.42	705.14	And second of all, you know I had swollen glands.	Ross	Okay, first of all, I don’t play with cheaters, and second of all, you know I had swollen glands!!	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+23	322	707.46	708.18	You know what?	Monica	Y'know what	Monica	present	char_tracker_stage05	joey|monica|phoebe	present	1.0000		medium	
+23	323	708.82	709.94	I think you'll play.	Monica	Y'know what? I’ll think you’ll play.	Monica	present	char_tracker_stage05	joey|monica|phoebe|ross	present	1.0000		medium	
+23	324	710.5	711.14	Oh, really?	Ross	Oh really! Why is that?	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+23	325	711.22	712.02	Why's that?	Ross	Why is that	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+24	326	712.42	713.76	Because the winner gets this.	Monica	Because the winner gets this!	Monica	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+24	327	714.87	715.83	The killer cup.	Ross	The Geller Cup.	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+24	328	719.43	722.47	Is everybody else seeing a troll doll nailed to a 2 by 4?	Chandler	Is everybody else seeing a troll doll nailed to a two by four?	Chandler	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+24	329	724.47	725.11	Okay,	Chandler	Okay, good.	Chandler	present	char_tracker_stage05	chandler|phoebe|ross	present	1.0000		medium	

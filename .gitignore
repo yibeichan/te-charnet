@@ -215,11 +215,18 @@ __marimo__/
 # into a directory whose name itself is excluded.
 output/**
 !output/.gitkeep
-# Track the per-season sentence-level speaker tables so reviewers can
-# inspect the pipeline output alongside docs/speaker_identification_summary.md
+# Track the annotation pipeline's text outputs (sentences/, scenes/,
+# intermediates) so reviewers can inspect every stage alongside
+# docs/speaker_identification_summary.md. Heavy/binary outputs from
+# downstream stages (02_build_network, 03_analyze, 04_visualize) stay
+# ignored, as do figure files.
 !output/annotations/
 !output/annotations/sentences/
 !output/annotations/sentences/**
+!output/annotations/scenes/
+!output/annotations/scenes/**
+!output/annotations/intermediate/
+!output/annotations/intermediate/**
 # Re-exclude binary/figure outputs even inside re-included paths
 output/**/figures/
 output/**/*.png

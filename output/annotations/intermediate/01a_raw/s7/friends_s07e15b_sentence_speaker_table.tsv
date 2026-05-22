@@ -1,0 +1,273 @@
+scene_id	sentence_id	start	end	utterance	speaker	utterance_ct	speaker_ct	visual_presence	visual_presence_source	visual_presence_chars	speaker_visual_presence	speaker_visual_ratio	visual_presence_note	annotation_confidence	annotation_review_reason
+1	1	0.48	0.72	About.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+1	2	0.72	1.68	About being you.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+1	3	2.08	4.16	You know, if you could help me capture the.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+1	4	4.16	6.08	The essence of the character.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+15	5	6.08	8.4	You know, help me keep Jessica alive.	Joey	Help me keep Jessica alive	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+15	6	8.88	9.28	Please.	Joey	Uh yeah-ye-ye-ye-ye-ye—l-l-l-l-l-look the-the-the only reason that I, that I came up to you before was because well, I’m really nervous about-about being you. Y’know if you can help me capture the essence of the character. Y’know? Help me keep Jessica alive. Please?	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+15	7	11.76	13.28	All right, Joey, I will help you.	Cecilia	All right Joey, I will help you	Cecilia	absent	char_tracker_stage05		unobserved			medium	
+15	8	13.68	20.24	Not because I. I owe it to this stupid show but because I owe it to Jessica.	Cecilia	All right Joey, I will help you. Not because I-I owe it to this stupid show, but because I owe it to Jessica.	Cecilia	partial	char_tracker_stage05		unobserved			high	
+15	9	20.48	21.44	Well, that's great.	Joey	Oh that's great	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+15	10	21.6	22.84	Oh, thank you so much.	Joey	Oh that’s great! Oh thank you so much!	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+15	11	22.84	23.56	You're so welcome.	Cecilia	You’re so welcome.	Cecilia	present	char_tracker_stage05	joey	unobserved			high	
+15	12	23.56	25.2	Hey, now, I've been watching some tapes.	Joey	now i've been watching some tapes	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+15	13	25.2	25.68	How's this?	Joey	Now, I've been watching some tapes, how's this	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+15	14	27.47	30.19	Jessica Lockhart will never step foot in this place again.	Joey	"Hey! Now, I’ve been watching some tapes, how’s this? (In a British accent.) ""Jessica Lockhart will never step foot in this place again! Ever!!"""	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+15	15	31.07	31.47	Never.	Joey	Ever	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+15	16	34.11	35.31	Is that supposed to be me?	Cecilia	Is that supposed to be me?	Cecilia	absent	char_tracker_stage05		unobserved			high	
+15	17	35.95	37.23	Yeah, well.	Joey	Yeah.	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+15	18	37.23	40.19	But Jessica doesn't have an English accent.	Cecilia	Yeah but Jessica doesn’t have an English accent.	Cecilia	partial	char_tracker_stage05		unobserved			high	
+15	19	41.31	42.75	I can do an English accent.	Joey	I can do an English accent	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+15	20	45.55	47.47	That baby's going on my resume.	Joey	(shocked) I can do an English accent?! That baby’s going on my resume!	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+16	21	51.95	53.39	Well, I feel like a snack.	Chandler	Well, I feel like a snack!	Chandler	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+16	22	54.46	55.66	Do you want some shortbread?	Monica	Do you want some shortbread? Eh that’s Scottish like you are.	Monica	present	char_tracker_stage05	monica|ross	present	1.0000		medium	
+16	23	55.98	57.34	It's Scottish, like you are.	Monica	Eh that's Scottish like you are	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+16	24	58.86	60.02	Oh, no, thanks.	Chandler	Oh no thanks	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		medium	
+16	25	60.02	63.1	I don't like anything from my Scottish heritage.	Chandler	Oh no thanks. I don’t like any thing from my Scottish heritage.	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+16	26	63.34	63.74	What?	Ross	What?!	Ross	present	char_tracker_stage05	chandler|monica|ross	present	1.0000		high	
+16	27	65.26	65.9	Watches?				absent	char_tracker_stage05		unknown			low	missing_speaker
+16	28	65.9	71.26	My entire family was run out of Scotland by Vikings.	Chandler	Well it’s just my entire family was run out of Scotland by…Vikings. Anyway, lots of bad memories. (Makes a few unintelligible noises.)	Chandler	present	char_tracker_stage05	chandler|monica	present	0.7143		high	
+16	29	74.46	75.74	Anyway, lots of bad memories.	Chandler	well it's just anyway lots of bad memories	Chandler	present	char_tracker_stage05	chandler|monica|ross	present	1.0000		low	low_speaker_confidence
+16	30	76.3	84.3	Well, it sounds to me like your family's ready to rediscover its Scottish roots.	Ross	Oh well, it sounds to me like your family is ready to uh, rediscover its Scottish roots.	Ross	present	char_tracker_stage05	ross	present	0.6667		high	
+16	31	85.56	87.4	No, no, no, they're not.	Monica	No-no they're not	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		medium	
+16	32	88.12	89.64	They're still very angry.	Monica	They're still very angry	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		medium	
+16	33	89.96	92.12	But, you know, Chandler's also half Swedish.	Monica	But y'know Chandler is also half-Swedish	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		medium	
+16	34	92.6	94.28	You know what the Swedish people are famous for?	Monica	No! No-no they’re not. They’re still very angry! But y’know Chandler is also half-Swedish. You know what the Swedish people are famous for? Sitting down and being quiet.	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		medium	
+16	35	95.8	97.24	Sitting down and being quiet.	Monica	Sitting down and being quiet	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		medium	
+16	36	100.679	103.6	Yeah, yeah, but the Scottish history is so much.	Ross	Well yeah-yeah the Scottish history is so much more…	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+16	37	103.6	105.32	You cannot play bagpipes at the wedding.	Monica	(interrupting) You can not play bagpipes at the wedding!!	Monica	present	char_tracker_stage05	chandler|monica|ross	present	1.0000		high	
+16	38	107.72	109.16	How did you know about that?	Ross	How did you know about that?!	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+16	39	109.16	111.64	We heard you play all the way from your apartment.	Chandler	We heard you play all the way from your apartment!	Chandler	present	char_tracker_stage05	chandler|monica|ross	present	1.0000		high	
+16	40	111.83	113.35	Were you the ones who called the cops?	Ross	Were you the ones called the cops?!	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+16	41	116.15	117.67	That's not really important right now.	Chandler	that's not really important right now	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		low	low_speaker_confidence
+16	42	118.55	126.47	What is important is while we appreciate the gesture we just don't feel that bagpipes are appropriate for our wedding.	Chandler	That’s not really important right now. What is important is; while we appreciate the gesture, we just don’t feel bagpipes are appropriate for our wedding.	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+16	43	126.63	127.27	Why not?	Ross	Why not?	Ross	present	char_tracker_stage05	chandler|monica|ross	present	1.0000		high	
+16	44	127.35	128.95	Because we hate them.	Chandler	Because we hate them.	Chandler	present	char_tracker_stage05	chandler|monica|ross	present	1.0000		high	
+16	45	130.39	131.71	Come on, that's not fair.	Ross	Come on that's not fair	Ross	present	char_tracker_stage05	monica|ross	present	1.0000		medium	
+16	46	131.71	133.19	You haven't even heard me play.	Ross	Come on that’s not fair! I mean you haven’t even heard me play!	Ross	present	char_tracker_stage05	monica|ross	present	1.0000		medium	
+16	47	133.35	134.87	We have heard you play.	Chandler	We have heard you play.	Chandler	present	char_tracker_stage05	chandler|monica|ross	present	1.0000		high	
+16	48	135.91	137.51	No, you've heard me practice.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+16	49	138.06	138.66	Okay, just.	Ross	just	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+16	50	138.66	140.62	Just give me a chance to perform for you.	Ross	just just give me a chance to perform for you	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+16	51	140.62	142.46	And then decide whatever you want.	Ross	Just-just give me a chance to perform for you and then decide whatever you want	Ross	present	char_tracker_stage05	chandler|monica|ross	present	1.0000		medium	
+16	52	142.78	145.66	And I'm not gonna tell you what song I'm gonna play either.	Ross	No, you’ve heard my practice. Okay? Just-just give me a chance to perform for you and then decide whatever you want. And I’m not going to tell you what song I’m gonna play either. But uh, let’s just say when it’s over I’ll bet there will be a we bit o’ celebration.	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+16	53	145.74	151.66	But let's just say when it's over, I'll bet there'll be a wee bit o celebration.	Ross	But uh, let's just say when it's over I'll bet there will be a we bit o' celebration	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+17	54	158.22	162.78	So the essence of the character is rooted in her confidence.	Cecilia	So, the essence of the character is rooted in her confidence	Cecilia	absent	char_tracker_stage05		unobserved			medium	
+17	55	163.67	171.99	So when Jessica enters a room, for instance she owns everything and every person in that room.	Cecilia	So, the essence of the character is rooted in her confidence. So, when Jessica enters a room for instance, she owns everything and every person in that room. (Joey is nodding.) You try.	Cecilia	present	char_tracker_stage05	joey	unobserved			high	
+17	56	174.23	174.87	You try.	Cecilia	You try	Cecilia	present	char_tracker_stage05	joey	unobserved			medium	
+17	57	174.87	175.43	Okay.	Joey	Okay	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+17	58	182.79	183.43	All right.	Joey	Okay! (He scurries out the set door and re-enters, extremely impressed) All right!	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+17	59	185.59	188.83	No, he already knows that he owns everything in the room.	Cecilia	No, he already knows that he owns everything in the room! He’s not finding it out for the first time! So, try it again.	Cecilia	partial	char_tracker_stage05		unobserved			medium	
+17	60	188.83	190.79	He's not finding it out for the first time.	Cecilia	He's not finding it out for the first time	Cecilia	absent	char_tracker_stage05		unobserved			medium	
+17	61	191.59	192.47	So try it again.	Cecilia	So, try it again	Cecilia	absent	char_tracker_stage05		unobserved			medium	
+17	62	201.06	201.3	Right.				absent	char_tracker_stage05		unknown			low	missing_speaker
+17	63	201.54	203.46	He's not angry at the room either.				partial	char_tracker_stage05		unknown			low	missing_speaker
+17	64	204.9	205.54	Try it again.	Cecilia	try it again	Cecilia	present	char_tracker_stage05	joey	unobserved			low	low_speaker_confidence
+17	65	205.54	206.34	He owns it.	Cecilia	Try it again, he owns it	Cecilia	present	char_tracker_stage05	joey	unobserved			medium	
+17	66	206.42	207.86	He owns the room.	Cecilia	He owns the room	Cecilia	absent	char_tracker_stage05		unobserved			medium	
+17	67	207.94	208.74	It is his.	Cecilia	It is his	Cecilia	present	char_tracker_stage05	joey	unobserved			medium	
+17	68	208.82	211.3	He owns, owns, owns the room.	Cecilia	He owns, owns, owns, owns the room	Cecilia	present	char_tracker_stage05	joey	unobserved			medium	
+17	69	211.3	212.02	He owns it.	Cecilia	He owns it	Cecilia	present	char_tracker_stage05	joey	unobserved			medium	
+17	70	213.22	215.06	All right, it's a little weird, but it's getting better.	Cecilia	Right. He’s not mad at the room either. Try it again, he owns it! He owns the room. It is his. He owns, owns, owns, owns the room! He owns it!! (Joey gets a snooty look on his face.) All right, it’s a little weird, but it’s getting better. (Joey is pleased.) Oh well, I’m gonna miss this woman so much. I don’t know what I’m going to do! I mean, it’s been 20 years of my life.	Cecilia	present	char_tracker_stage05	joey	unobserved			medium	
+17	71	217.7	220.66	Oh, I'm gonna miss this woman so much.	Cecilia	Oh well, I'm gonna miss this woman so much	Cecilia	absent	char_tracker_stage05		unobserved			medium	
+17	72	220.82	221.9	I don't know what I'm gonna do.	Cecilia	I don't know what I'm going to do	Cecilia	absent	char_tracker_stage05		unobserved			medium	
+17	73	221.9	223.62	I mean, it's been 20 years of my life.	Cecilia	I mean, it's been 20 years of my life	Cecilia	absent	char_tracker_stage05		unobserved			medium	
+17	74	225.27	227.11	Hey, hey, maybe, maybe.	Joey	oh well hey hey maybe maybe uh y'know it'll you're so talented	Joey	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+17	75	227.19	228.55	Maybe this is a good thing.	Joey	oh well hey hey maybe maybe uh maybe this is a good thing y'know it'll you're so talented	Joey	present	char_tracker_stage05	joey	present	0.5000		low	low_speaker_confidence
+17	76	228.79	232.79	You know, It'll give you a chance to shake things up, play different characters.	Joey	Oh well—Hey-hey! Maybe, maybe uh, maybe this is a good thing. Y’know? It’ll-it’ll give you a chance to shake things up, play different characters. You’re so talented.	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+17	77	232.87	234.15	You're so talented.	Joey	You're so talented	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+17	78	234.55	235.55	I am, I am.	Cecilia	I am	Cecilia	present	char_tracker_stage05	joey	unobserved			medium	
+17	79	235.55	237.83	But I don't know.	Cecilia	I am, but I don't know you know	Cecilia	absent	char_tracker_stage05		unobserved			medium	
+17	80	237.83	242.95	You know, an actor of a certain age, it's not that easy.	Cecilia	I am. I am, but I don’t know you know. An actor of a certain age is not that easy.	Cecilia	partial	char_tracker_stage05		unobserved			high	
+17	81	243.67	244.95	Hey, that's not true.	Joey	Hey that’s not true! Look at uh, look at Angela Lansb—Angelina Jolie!	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+17	82	245.43	245.99	Look at.	Joey	Look at uh, look at Angela Lansb—Angelina Jolie	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+17	83	246.55	249.03	Look at Angela Lands by Angelina Jolie.	Joey	uh look at angela lansb angelina jolie	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+17	84	251.83	261.96	Probably should have just left years ago when the offers were pouring in, but, you know, I just got so comfy here and I turned down some amazing work.	Cecilia	I probably should’ve just left years ago when the offers were pouring in, but y’know I just got so comfy here! And… Ohh, I turned down some amazing work!	Cecilia	partial	char_tracker_stage05		unobserved			high	
+17	85	262.28	262.64	Like.	Joey	like	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+17	86	262.64	263.32	Like what?	Joey	Like-like what?	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+17	87	264.28	272.36	Well, let's just say If I left 15 years ago, the landscape of Mexican cinema would be very different today.	Cecilia	Well, let’s just say if I left 15 years ago, the landscape of Mexican cinema would be very different today!	Cecilia	partial	char_tracker_stage05		unobserved			high	
+17	88	274.92	275.48	Wow.	Joey	(impressed) Wow!	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+17	89	277.8	279.57	But, well, now.	Cecilia	But	Cecilia	present	char_tracker_stage05	joey	unobserved			medium	
+17	90	280.29	281.97	Now's a different time for me.	Cecilia	But… Well now, now’s a different time for me. (Starts to cry.)	Cecilia	present	char_tracker_stage05	joey	unobserved			high	
+17	91	284.61	286.05	Oh, hey, come on.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+17	92	286.13	286.61	Don't.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+17	93	287.25	288.05	Don't do this.	Joey	Oh hey come on, don't-don't-don't do this	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+17	94	289.01	290.77	Look, let me tell you something, okay?	Joey	Umm, look let-let me tell you something, okay	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+17	95	290.93	295.89	Now, when I watch you do a scene, I'm thinking, boy, she is a great actress.	Joey	"Oh hey come on, don’t-don’t-don’t do this! Umm, look let-let me tell you something, okay? Now when I watch you do a scene, I’m thinking, ""Boy, she-she is a great actress!"" (She’s not buying it.) Uh but-but, I am also thinking, ""She is hot!"""	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+17	96	296.45	296.85	But.	Joey	""" Uh but-but, I am also thinking, ""She is hot"	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+17	97	296.85	299.97	But I'm also thinking, she is hot.	Joey	uh but i am also thinking she is hot	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+17	98	304.13	305.25	You think I'm hot?	Cecilia	(intrigued) You think I’m hot?	Cecilia	absent	char_tracker_stage05		unobserved			high	
+17	99	307.52	308.4	You own the room.	Joey	You own the room. (She smiles and stares longingly into his eyes.) We should probably get-get uh…	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+17	100	313.52	315.68	But we should probably get.	Joey	We should probably get-get uh	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+17	101	316.08	316.68	Oh, yeah.	Cecilia	oh yeah the	Cecilia	present	char_tracker_stage05	joey	unobserved			low	low_speaker_confidence
+17	102	316.68	317.76	Yeah, we should get.	Cecilia	Oh yeah-yeah, we should get the	Cecilia	present	char_tracker_stage05	joey	unobserved			medium	
+17	103	322.72	331.68	So when Jessica kisses a man, she usually puts both her hands on them.	Cecilia	Oh yeah-yeah, we should get the… (Pause) So when Jessica kisses a man, she usually puts umm, both her hands on the man’s face. (She does so.)	Cecilia	absent	char_tracker_stage05		unobserved			high	
+17	104	332.42	333.14	Man's face.	Cecilia	oh yeah yeah we should get the man's face	Cecilia	present	char_tracker_stage05	joey	unobserved			low	low_speaker_confidence
+17	105	333.7	335.02	Yeah, yeah, I noticed that.	Joey	Yeah-yeah, I noticed that! Is that ‘cause she’s so passionate?	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+17	106	335.02	335.3	Is that.	Joey	Is that 'cause she's so passionate	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+17	107	335.3	336.5	Cause she's so passionate?	Joey	'cause she's so passionate	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+17	108	336.9	339.3	No, it's because that way the camera only sees her.	Cecilia	No! It’s because that way the camera only sees her! (She takes her hands off his face.) Do you wanna try it?	Cecilia	present	char_tracker_stage05	joey	unobserved			high	
+17	109	344.18	345.3	You want to try it?	Cecilia	Do you wanna try it	Cecilia	absent	char_tracker_stage05		unobserved			medium	
+17	110	346.42	346.98	Yeah.	Joey	Yeah	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+17	111	347.14	347.78	Okay.	Joey	Yeah! Okay. (He puts his hands on her face and they kiss.)	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+17	112	360.83	361.39	That was good.	Cecilia	that was good right like	Cecilia	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+17	113	361.47	362.35	That was really good.	Cecilia	that was good that was really good right like	Cecilia	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+17	114	364.91	368.35	But I think that maybe your hands are just a little off.	Cecilia	that was good that was really good but i i think your hands maybe a little off right like	Cecilia	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+17	115	368.35	369.27	They should be, maybe.	Cecilia	That was good, that was really good. But I-I think your hands maybe a little off, they should be maybe right like… (She grabs the back of his neck and kisses him passionately causing them to fall onto the couch.)	Cecilia	absent	char_tracker_stage05		unobserved			medium	
+17	116	369.27	370.27	Like, right, like.				absent	char_tracker_stage05		unknown			low	missing_speaker
+19	117	380.83	381.27	Hey.	Rachel	Hey! Hey!	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+20	118	381.27	385.07	Hey, who is it?	Phoebe and Rachel	(simultaneously) Who is it?	Phoebe and Rachel	present	char_tracker_stage05	phoebe|rachel	unobserved			high	
+20	119	386.62	387.22	Hi, it's Tom.	Guy	Hi	Guy	present	char_tracker_stage05	phoebe|rachel	unobserved			medium	
+20	120	387.22	388.3	I'm here to pick up the phone.	Guy	Hi! It’s Tom, I’m here to pick up the phone.	Guy	present	char_tracker_stage05	phoebe|rachel	unobserved			high	
+21	121	390.7	392.62	Well, why do you get to answer the door?	Phoebe	Whoa! Why do you get to answer the door?	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+21	122	393.26	394.38	Well, why shouldn't I?	Rachel	Well why shouldn’t I?!	Rachel	present	char_tracker_stage05	phoebe	absent	0.0000		low	speaker_offscreen
+21	123	394.54	395.82	Cause it's my apartment.	Phoebe	Because it’s my apartment!	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+21	124	396.22	398.14	Well, then I get to give him the cell phone.	Rachel	Well, then I get to give him the cell phone.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+21	125	398.62	399.14	Okay.	Phoebe	Okay	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	0.5000		medium	
+21	126	399.14	399.7	All right.	Phoebe	All right	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+21	127	399.7	401.58	Good luck explaining all the calls to China.	Phoebe	Okay. All right. (Hands her the phone.) Good luck explaining all the calls to China.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+22	128	406.06	406.62	Hi.	Tom	Hi!	Tom	absent	char_tracker_stage05		unobserved			high	
+22	129	411.42	411.82	Wow.	Phoebe	Wow	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+22	130	411.82	412.94	How long were we arguing?	Phoebe	(To Rachel) Wow! How long were we arguing for?	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	0.5000		high	
+22	131	418.52	420.52	You're not the man who left the cell phone.	Rachel	(laughs) You’re not the man who left the cell phone.	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+22	132	420.52	421.8	No, that's my assistant.	Tom	No that’s my assistant.	Tom	present	char_tracker_stage05	phoebe|rachel	unobserved			high	
+22	133	422.6	423.32	Is he coming?	Rachel	Is-is he coming? (Looks hopefully out the door.)	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+22	134	424.2	425.64	Um, no.	Tom	Umm, no.	Tom	present	char_tracker_stage05	phoebe	unobserved			medium	
+22	135	426.44	426.88	Could you.	Phoebe	could you	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		low	low_speaker_confidence
+22	136	426.88	428.92	Could you give us one second?	Phoebe	Could you-could you umm, give us one second?	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+22	137	429.08	429.48	Sure.	Tom	Sure!	Tom	present	char_tracker_stage05	phoebe	unobserved			high	
+22	138	429.48	430.64	We'll be right back, sir.	Rachel	We’ll be right back sir.	Rachel	present	char_tracker_stage05	phoebe	absent	0.0000		low	speaker_offscreen
+22	139	430.64	431.0	Sure.	Tom	Sure.	Tom	absent	char_tracker_stage05		unobserved			high	
+23	140	433.88	434.76	What do we do?	Phoebe	Wh-what do we do?	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+23	141	434.76	435.64	I don't know.	Rachel	I don’t know!	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+23	142	436.84	438.04	Can you believe that?	Phoebe	Can you believe this	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+23	143	438.44	441.84	We're waiting for a hot guy and then an even hotter one shows up.	Phoebe	Can you believe this? (Rachel exhales in amazement.) We were waiting for a hot guy and then an even hotter one shows up!	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+23	144	441.84	442.44	I know.	Rachel	I know! (Realizes what Phoebe said.) What?!	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+23	145	447.49	447.73	What?	Rachel	What	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+23	146	449.97	451.97	They just don't make them like that anymore.	Phoebe	Hmm, they just don’t make ‘em like that anymore!	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+23	147	455.41	458.53	No, no, they do, but you just have to wait.	Rachel	(turning and looking at Tom again) No-no they do but, you just have to wait.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+23	148	461.33	462.21	Rachel, listen.	Phoebe	rachel listen	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		low	low_speaker_confidence
+23	149	462.21	467.97	I mean, if you let me have him, then I will really owe you one.	Phoebe	Rachel, listen—I mean, if you let me have him then I will really owe you one.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+23	150	470.77	475.48	All right, all right, Phoebe.	Rachel	(fake disappointment) All right. All right Phoebe I will let you have him, but you owe me; you owe me big!	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+23	151	475.48	476.68	I will let you have him.	Rachel	i will let you have him but you owe me you owe me big	Rachel	present	char_tracker_stage05	rachel	present	1.0000		low	low_speaker_confidence
+23	152	477.08	478.04	But you owe me.	Rachel	but you owe me you owe me big	Rachel	present	char_tracker_stage05	rachel	present	1.0000		low	low_speaker_confidence
+23	153	478.04	479.0	You owe me big.	Rachel	you owe me big	Rachel	present	char_tracker_stage05	rachel	present	1.0000		low	low_speaker_confidence
+23	154	479.16	479.72	Yeah.	Phoebe	Yeah	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+23	155	480.2	481.36	You're such a great friend.	Phoebe	Yeah! You’re such a great friend!	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+23	156	481.36	481.88	Oh.	Rachel	Ohh…	Rachel	present	char_tracker_stage05	phoebe	absent	0.0000		low	speaker_offscreen
+23	157	482.76	486.28	So which one of you lovely ladies am I gonna take to dinner, huh?	Tom	So, which one of you lovely ladies am I going to take to dinner huh?	Tom	partial	char_tracker_stage05		unobserved			high	
+23	158	486.28	488.28	Oh, that'd be me, sir.	Phoebe	Oh that’d be me. Sir. (Hands him the cell phone.) After you.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+23	159	489.48	490.2	After you.	Phoebe	after you	Phoebe	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+23	160	490.6	491.24	Thank you.				absent	char_tracker_stage05		unknown			low	missing_speaker
+24	161	502.28	504.44	Well, you certainly owned that.	Cecilia	Well, you certainly own that room.	Cecilia	present	char_tracker_stage05	joey	unobserved			high	
+24	162	507.86	509.22	Actually, I rent the whole place.	Joey	Actually I rent the whole place and, I just got what you meant. Thank you.	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+24	163	509.22	511.42	And I just got what you meant.	Joey	and i just got what you meant thank you	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+24	164	511.42	511.86	Thank you.	Joey	thank you	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+25	165	515.06	515.5	Hi.	Rachel	Hi.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+25	166	515.5	515.94	Hey.	Joey	Hey!	Joey	present	char_tracker_stage05	rachel	absent	0.0000		low	speaker_offscreen
+25	167	517.94	518.74	Oh, my God.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+25	168	520.02	520.9	Oh, my God.				present	char_tracker_stage05	joey|rachel	unknown			low	missing_speaker
+25	169	521.62	522.1	Oh.				present	char_tracker_stage05	joey|rachel	unknown			low	missing_speaker
+26	170	522.18	525.3	Jessica Lockhart in my apartment.	Rachel	Oh my God! Oh my God!! Ohh, Jessica Lockhart!! In my apartment!! I am such a huge fan! I am such a huge fan!	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+26	171	525.86	527.78	I am such a huge fan.	Rachel	I am such a huge fan	Rachel	present	char_tracker_stage05	rachel	present	0.6667		medium	
+26	172	527.78	529.54	I am such a huge fan.	Rachel	I am such a huge fan	Rachel	partial	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+26	173	529.62	531.06	Well, it's nice to know that you.	Cecilia	Well, it’s nice to know that you…	Cecilia	present	char_tracker_stage05	joey	unobserved			high	
+26	174	531.3	532.02	Monica?	Rachel	monica	Rachel	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+26	175	532.94	533.58	Monica.	Rachel	(screaming) MONICA!!!! MONICA!!!! (Runs to Monica’s.)	Rachel	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+26	176	534.46	534.86	That.	Joey	that uh that is	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+26	177	535.02	536.62	That's my roommate, Rachel.	Joey	That uh, that is my roommate Rachel.	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+26	178	537.02	539.02	Oh, that explains all the women's underwear.	Cecilia	Oh that explains all the women’s underwear.	Cecilia	present	char_tracker_stage05	joey	unobserved			high	
+26	179	539.26	539.66	Sure.	Joey	(shrugs) Sure. Yep.	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+26	180	541.82	543.9	Oh, my God, it's true.				present	char_tracker_stage05	monica|rachel	unknown			low	missing_speaker
+26	181	545.82	546.5	Oh, my God.				present	char_tracker_stage05	joey|monica|rachel	unknown			low	missing_speaker
+26	182	546.5	548.14	You are so amazing.	Monica	you are so amazing	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		low	low_speaker_confidence
+26	183	549.42	550.14	Oh, my God.	Monica	Oh my God you are so amazing	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+26	184	550.14	553.26	Can I just ask you to do me just one favor?	Monica	(entering with Rachel) Oh my God! It’s true!! Oh my God you are so amazing! Oh my God, can I just ask you to do me oh, just one favor?	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+26	185	553.74	554.38	Certainly.	Cecilia	Certainly.	Cecilia	present	char_tracker_stage05	joey|monica	unobserved			high	
+26	186	554.94	555.86	Would you slap me?	Monica	Would you slap me	Monica	present	char_tracker_stage05	joey|monica	present	1.0000		medium	
+26	187	555.86	557.34	Would you slap me right here in the face?	Monica	Would you slap me? Would you slap me right here in the face?! (Points to her cheek.)	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+26	188	559.9	562.54	I'd love to, but my lawyer said I can't do that anym.	Cecilia	I’d love to, but my lawyer said I can’t do that anymore.	Cecilia	present	char_tracker_stage05	joey	unobserved			high	
+26	189	565.0	567.8	God, you seem really, really nice.	Rachel	God. You seem really, really nice.	Rachel	present	char_tracker_stage05	monica|rachel	present	1.0000		high	
+26	190	568.36	569.28	Okay, bye.	Joey	Okay, bye-bye.	Joey	present	char_tracker_stage05	joey|monica|rachel	present	1.0000		high	
+26	191	569.28	569.64	Bye.	Joey	bye	Joey	present	char_tracker_stage05	joey|monica|rachel	present	1.0000		low	low_speaker_confidence
+26	192	571.4	574.6	I mean, not fake at all like most famous people.	Rachel	I mean n-not-not fake at all like most famous people.	Rachel	present	char_tracker_stage05	monica|rachel	present	1.0000		high	
+26	193	575.0	575.88	All right, here we go.	Joey	All right, here we go. (He grabs them and starts to pull them out of the apartment.)	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+26	194	575.88	576.36	Okay.	Rachel	Okay.	Rachel	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+26	195	576.92	577.32	All right.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+26	196	577.32	577.88	Just one with me.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+26	197	577.88	578.0	One.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+26	198	578.0	578.76	Mom, one with me.				present	char_tracker_stage05	joey|monica	unknown			low	missing_speaker
+26	199	581.24	582.52	You're a stupid bitch.	Monica	(breaks away) Oh wait, just one more thing! One more minute! (To Cecilia) Umm, you’re a stupid bitch.	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+26	200	582.6	583.76	I really can't slap you.	Cecilia	I really can’t slap you. (Monica walks away angrily)	Cecilia	present	char_tracker_stage05	monica	unobserved			high	
+26	201	583.76	584.12	Go.				absent	char_tracker_stage05		unknown			low	missing_speaker
+26	202	585.08	586.44	You are so beautiful.	Rachel	You are so beautiful.	Rachel	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+26	203	586.6	587.72	So nice to meet you.	Monica	Nice to meet you	Monica	present	char_tracker_stage05	monica	present	0.5000		medium	
+26	204	587.8	589.08	My God, you're great.	Monica	Nice to meet you! My God you’re great!	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+26	205	589.08	590.2	Thanks for stopping by.	Joey	Thanks for stopping by. See ya! (Throws them out and closes the door.) (To Cecilia) I-I am so sorry. I…	Joey	present	char_tracker_stage05	monica	absent	0.0000		low	speaker_offscreen
+26	206	593.43	594.43	I. I am so sorry.	Joey	see ya i i am so sorry i	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+26	207	594.43	595.59	Oh, no, no, no, no, no.	Cecilia	oh no no no no	Cecilia	present	char_tracker_stage05	joey	unobserved			low	low_speaker_confidence
+26	208	595.59	596.87	Being a Dort, I'm used to it.	Cecilia	oh no no no no being adored i'm used to it	Cecilia	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+26	209	596.87	597.67	Don't worry about it.	Cecilia	Oh no-no-no-no, being adored. I’m used to it, don’t worry about it.	Cecilia	absent	char_tracker_stage05		unobserved			medium	
+26	210	599.75	600.55	Oh, my God.	Joey	(notices something in the mail that Rachel brought in) Oh my God!	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+26	211	601.03	601.43	What?	Cecilia	What?	Cecilia	present	char_tracker_stage05	joey	unobserved			high	
+26	212	601.75	603.19	They sent me today's script.	Joey	They sent me today’s script! They never send the script!	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+26	213	603.27	604.71	They never send me the script.	Joey	They never send the script	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+26	214	604.71	605.35	They don't?	Cecilia	They don’t?	Cecilia	present	char_tracker_stage05	joey	unobserved			high	
+26	215	605.67	607.23	Well, no, I'm just in a coma.	Joey	Well no, I’m just in a coma. This must mean I have lines! (Realizes what that means.) Oh…	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+26	216	607.23	608.63	This must mean I have lines.	Joey	This must mean I have lines	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+26	217	611.27	618.73	Oh.	Joey	Oh	Joey	present	char_tracker_stage05	joey	present	0.6250		medium	
+26	218	618.8	619.2	Oh.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+26	219	619.68	622.4	You get thrown from a horse into an electric fence.	Joey	(flipping to the last page) Ew, you get thrown from a horse into an electric fence.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+26	220	625.44	625.84	What?	Cecilia	Ah what	Cecilia	absent	char_tracker_stage05		unobserved			medium	
+26	221	626.0	627.6	Jessica hates horses.	Cecilia	Ah what?! Jessica hates horses!	Cecilia	present	char_tracker_stage05	joey	unobserved			high	
+26	222	627.68	630.96	Yeah, well, I'm guessing after this she's not gonna be crazy about electricity either.	Joey	Yeah well, I’m guessing after this she’s not going to be crazy about electricity either.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+27	223	635.92	638.32	Now, remember, you have to imagine me in a kilt.	Ross	…now remember you have to imagine me in a kilt.	Ross	partial	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+27	224	640.48	644.08	I can imagine you in a short plaid skirt and knee socks.	Rachel	(giggles) (To Ross) I can imagine you in a short plaid skirt and knee socks.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+27	225	646.47	647.99	You want to start telling secrets?	Ross	(To Rachel) Do you wanna start telling secrets?	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+27	226	647.99	648.39	No.	Rachel	No!	Rachel	present	char_tracker_stage05	rachel|ross	present	0.5000		high	
+27	227	653.03	656.23	Now, remember, I'm still learning.	Ross	(stands up) Now umm, remember I’m still learning.	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+28	228	666.31	667.99	One, two, three, four.	Ross	One, two, three, four!	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+29	229	686.93	687.89	You know the song.	Ross	You know the song! Sing along!	Ross	present	char_tracker_stage05	rachel	absent	0.0000		low	speaker_offscreen
+29	230	687.89	688.53	Sing along.	Ross	Sing along	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+30	231	716.03	718.43	So no.	Monica and Chandler	No!	Monica and Chandler	present	char_tracker_stage05	chandler|monica|ross	unobserved			medium	
+32	232	723.47	727.15	Loosening the saddle on Mother's horse was brilliant, Frederick.	Dina	Loosening the saddle on mother’s horse was brilliant Fredrick. And the electric fence, inspired.	Dina	absent	char_tracker_stage05		unobserved			medium	
+32	233	727.31	729.39	And the electric fence, inspired.	Dina	And the electric fence, inspired	Dina	absent	char_tracker_stage05		unobserved			medium	
+32	234	730.11	731.39	Thank you, sweetheart.	Fredrick	Thank you sweetheart. (They clink glasses.)	Fredrick	absent	char_tracker_stage05		unobserved			high	
+32	235	732.59	734.27	I can't believe she's really gone.	Dina	I can’t believe she’s really gone. Look around you, all of this is ours. (They move into kiss but; they’re stopped by Joey entering with a huge bandage wrapped around his head.)	Dina	absent	char_tracker_stage05		unobserved			medium	
+32	236	735.72	736.52	Look around you.	Dina	Look around you, all of this is ours	Dina	absent	char_tracker_stage05		unobserved			medium	
+32	237	736.68	738.12	All of this is ours.	Dina	all of this is ours	Dina	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+32	238	740.76	741.88	I don't think so.	Joey	(as Jessica) I don’t think so.	Joey	present	char_tracker_stage05	joey	present	0.5000		high	
+32	239	747.88	748.76	Who are you?	Dina	Who are you?!	Dina	absent	char_tracker_stage05		unobserved			high	
+32	240	749.24	750.36	What's the matter, Dina?	Jessica Lockhart	What's the matter Dina	Jessica Lockhart	present	char_tracker_stage05	joey	unobserved			medium	
+32	241	751.24	754.76	Don't you recognize your own mother?	Jessica Lockhart	What’s the matter Dina? Don’t you recognize your own (Does a hair flip) mother?!	Jessica Lockhart	present	char_tracker_stage05	joey	unobserved			high	
+32	242	758.68	760.32	Pat, that was great, everybody.	The Director	Cut! That was great everybody! Thank you!	The Director	present	char_tracker_stage05	joey	unobserved			medium	
+32	243	760.32	760.92	Thank you.	The Director	Thank you	The Director	present	char_tracker_stage05	joey	unobserved			medium	
+32	244	761.32	763.0	That was so wonderful.	Cecilia	That was so wonderful	Cecilia	absent	char_tracker_stage05		unobserved			medium	
+32	245	764.12	767.47	Oh, I think that you're a better Jessica than I ever was.	Cecilia	(running out to Joey) That was so wonderful! (Hugs him) Ohh, I think that you’re a better Jessica than I ever was!	Cecilia	present	char_tracker_stage05	joey	unobserved			high	
+32	246	767.86	769.42	Oh, no, of course not.	Cecilia	well of course not	Cecilia	partial	char_tracker_stage05		unobserved			low	low_speaker_confidence
+32	247	769.42	770.5	But you were very good.	Cecilia	Well of course not, but you were very good.	Cecilia	absent	char_tracker_stage05		unobserved			high	
+32	248	770.9	771.38	Thanks.	Joey	Thanks!	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+32	249	772.02	772.78	And guess what?	Cecilia	And guess what	Cecilia	absent	char_tracker_stage05		unobserved			medium	
+32	250	772.78	773.18	Good news.	Cecilia	Good news	Cecilia	absent	char_tracker_stage05		unobserved			medium	
+32	251	773.18	774.18	I got another job.	Cecilia	And guess what? Good news! I got another job!	Cecilia	present	char_tracker_stage05	joey	unobserved			medium	
+32	252	774.66	775.06	Great.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+32	253	775.3	776.26	Hey, all right.	Joey	Great! Hey! All right! Well-well what is it?!	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+32	254	776.5	777.1	What is it?	Joey	Well-well what is it	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+32	255	777.1	778.74	A film in Guadalajara.	Cecilia	A film in Guadalajara!	Cecilia	present	char_tracker_stage05	joey	unobserved			high	
+32	256	780.5	781.22	The airport?	Joey	The airport?	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+32	257	784.26	785.7	No, that's LaGuardia.	Cecilia	No that's La Guardia	Cecilia	absent	char_tracker_stage05		unobserved			medium	
+32	258	789.54	791.22	This is Mexico.	Cecilia	No that’s La Guardia. (Joey nods in recognition.) This is Mexico.	Cecilia	present	char_tracker_stage05	joey	unobserved			medium	
+32	259	791.38	792.5	Oh, wow.	Joey	Wow	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+32	260	793.54	794.82	How long will you be gone?	Joey	Ohh. Wow! Well how-how, how will you be gone?	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+32	261	795.73	796.29	Eight months.	Cecilia	Eight months.	Cecilia	present	char_tracker_stage05	joey	unobserved			high	
+32	262	798.29	799.57	That's a really long time.	Joey	That’s a really long time.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+32	263	799.57	801.25	Yeah, but you could come and visit me.	Cecilia	Yeah, but you can come and visit me	Cecilia	partial	char_tracker_stage05		unobserved			medium	
+32	264	802.05	805.65	I bet that you could own a few places down there.	Cecilia	Yeah, but you can come and visit me. I bet that you could uh, own a few places down there.	Cecilia	absent	char_tracker_stage05		unobserved			high	
+32	265	807.17	810.37	You know, I tell you, I should probably buy a place in the city first.	Joey	Well I tell ya, I should probably buy a place in the city first. (Realizes.) And I just got what you meant again—That is—I tell ya, that is a tricky one!	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+32	266	813.41	815.09	And I just got what you meant to get.	Joey	And I just got what you meant again—That is—I tell ya, that is a tricky one	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+32	267	815.09	816.93	That is a. I'll tell you, that's a tricky one.	Joey	again that is i tell ya that is a tricky one	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+32	268	816.93	817.73	That's a tricky one.	Cecilia	That is a tricky one	Cecilia	present	char_tracker_stage05	joey	unobserved			medium	
+32	269	819.01	822.38	Well, Joy, I really want to thank you.	Cecilia	Well, Joey I really wanna thank you	Cecilia	partial	char_tracker_stage05		unobserved			medium	
+32	270	823.9	828.54	Well, you made a very difficult time for me a little less painful.	Cecilia	That is a tricky one. Well, Joey I really wanna thank you. You’ve, well you made a very difficult time for me a little less painful.	Cecilia	absent	char_tracker_stage05		unobserved			medium	
+32	271	831.34	832.06	Good luck.	Joey	Good luck.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+32	272	833.58	834.22	You, too.	Cecilia	You too.	Cecilia	absent	char_tracker_stage05		unobserved			high	

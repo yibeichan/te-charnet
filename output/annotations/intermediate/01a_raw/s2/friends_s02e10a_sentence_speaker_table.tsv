@@ -1,0 +1,255 @@
+scene_id	sentence_id	start	end	utterance	speaker	utterance_ct	speaker_ct	visual_presence	visual_presence_source	visual_presence_chars	speaker_visual_presence	speaker_visual_ratio	visual_presence_note	annotation_confidence	annotation_review_reason
+1	1	5.36	6.52	Joey, just slow down.	Rachel	Joey, would you slow down	Rachel	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+1	2	6.52	9.28	They're not gonna be sold out of papers at one o' clock in the morning.	Rachel	Joey, would you slow down? They're not gonna be sold out of papers at one o'clock in the morning.	Rachel	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+1	3	9.44	10.2	I'm excited.	Joey	I'm excited	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+1	4	10.2	11.76	I've never gotten reviewed before.	Joey	I'm excited! I've never gotten reviewed before.	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+1	5	12.0	13.72	You were so amazing at the King.	Monica	You were so amazing as the king	Monica	present	char_tracker_stage05	joey|monica	present	1.0000		medium	
+1	6	13.72	14.88	I was really impressed.	Monica	You were so amazing as the king. I was really impressed, I was.	Monica	present	char_tracker_stage05	joey|monica	present	1.0000		medium	
+1	7	14.88	15.44	I was.				present	char_tracker_stage05	joey|monica	unknown			low	missing_speaker
+1	8	16.0	17.04	Although, you know what?	Phoebe	Although, you know what	Phoebe	present	char_tracker_stage05	chandler|joey	absent	0.0000		low	speaker_offscreen
+1	9	17.44	19.92	You might want to consider wearing underwear next time.	Phoebe	Although, you know what? You might want to consider wearing underwear next time. Yeah, cause when you sat down on your throne you could kind of see your... royal subject.	Phoebe	present	char_tracker_stage05	joey|phoebe	present	0.6667		medium	
+1	10	20.48	20.88	Yeah?	Phoebe	Yeah, cause when you sat down on your throne you could kind of see your	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+1	11	20.88	25.36	Cause when you sat down on your throne, you could just kind of see your royal subjects.	Phoebe	cause when you sat down on your throne you could kind of see your	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		low	low_speaker_confidence
+1	12	26.8	28.48	No one wore underwear back then.	Ross	Come on, no one wore underwear back then	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+1	13	28.48	33.9	I'm sure the critics appreciated your authentic nice genitals, by the way.	Ross	Come on, no one wore underwear back then. I’m sure the critics appreciated your authenticity. (opens up his paper)  (to Joey) Nice genitals by the way.	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+1	14	34.86	35.66	Thanks, man.				present	char_tracker_stage05	joey|phoebe|ross	unknown			low	missing_speaker
+1	15	36.62	37.14	Here it is.	Joey	here it is	Joey	present	char_tracker_stage05	chandler|joey|phoebe|ross	present	1.0000		low	low_speaker_confidence
+1	16	37.14	37.66	Here it is.	Joey	Here it is, here it is	Joey	present	char_tracker_stage05	chandler|joey|phoebe|ross	present	1.0000		medium	
+1	17	38.06	45.82	The only thing worse than the mindless adolescent direction is Joseph Tribbiani's disturbingly unskilled portrayal of the king.	Joey	Thanks man! Here it is, here it is. (reading from newspaper) The only thing worse than the mindless, adolescent direction was Joseph Tribbiani's disturbingly unskilled portrayal of the king.	Joey	present	char_tracker_stage05	chandler|joey	present	1.0000		high	
+1	18	47.18	50.38	Okay, look, that is one guy's opinion, all right?	Chandler	OK, look, that is one guy's opinion, alright. Phoebs, read yours.	Chandler	present	char_tracker_stage05	chandler|joey|phoebe	present	0.7500		medium	
+1	19	50.38	51.82	Phoebe, read yours.	Chandler	Phoebs, read yours	Chandler	present	char_tracker_stage05	joey|phoebe	absent	0.0000		low	speaker_offscreen
+1	20	51.82	56.5	Okay, the only thing worse than the mindless adolescent direction is just triggering.	Phoebe	OK. (reading) The only thing worse than the mindless, adolescent direction...	Phoebe	present	char_tracker_stage05	chandler|joey|phoebe	present	1.0000		high	
+1	21	56.5	58.14	Does anybody have one from a different paper?	Chandler	Does anyone have one from a different paper? Ross, read yours.	Chandler	present	char_tracker_stage05	chandler|phoebe	present	1.0000		medium	
+1	22	59.9	60.94	Ross, read yours.	Chandler	Ross, read yours	Chandler	present	char_tracker_stage05	chandler|joey|phoebe|ross	present	1.0000		medium	
+1	23	61.7	62.42	I don't want to.	Ross	I don't want to.	Ross	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		high	
+1	24	65.14	69.86	The only enjoyable moment is when the king is beheaded and he can speak no more.	Joey	(reading) The only enjoyable moment is when the king is beheaded and he can speak no more.	Joey	present	char_tracker_stage05	chandler|joey	present	1.0000		high	
+1	25	71.06	74.1	Joey, honey, they don't know what they're talking about.	Rachel	Joey, honey, they don't know what they're talking about.	Rachel	partial	char_tracker_stage05		partial	0.2500		medium	partial_visual_presence
+1	26	74.18	75.62	Yeah, maybe they do.	Ross	Yeah.	Ross	present	char_tracker_stage05	joey|rachel|ross	present	1.0000		medium	
+1	27	76.26	78.98	I've been doing this 10 years and I haven't gotten anywhere.	Joey	Maybe they do. I've been doin' this ten years and I haven't gotten anywhere. There's gotta be a reason.	Joey	present	char_tracker_stage05	joey|rachel|ross	present	1.0000		medium	
+1	28	79.3	80.34	There's gotta be a reason.	Joey	There's gotta be a reason	Joey	present	char_tracker_stage05	joey|rachel|ross	present	1.0000		medium	
+1	29	80.34	81.1	Oh, come on, man.				present	char_tracker_stage05	joey|rachel|ross	unknown			low	missing_speaker
+1	30	81.1	81.62	You just.	Ross	Maybe you're just, uhhh	Ross	present	char_tracker_stage05	joey|rachel|ross	present	1.0000		medium	
+1	31	81.7	83.14	You're just paying your dues.	Ross	Oh c'mon. Maybe you're just, uhhh... paying your dues.	Ross	present	char_tracker_stage05	joey|rachel|ross	present	1.0000		high	
+1	32	83.22	84.5	No, no, no.	Joey	No, no, no, it	Joey	present	char_tracker_stage05	joey|rachel|ross	present	1.0000		medium	
+1	33	84.58	85.54	It's too hard.	Joey	it's too hard	Joey	present	char_tracker_stage05	joey|rachel|ross	present	1.0000		medium	
+1	34	85.94	86.78	It's not worth it.	Joey	No, no, no, it.. it's too hard. It's not worth it. I quit.	Joey	present	char_tracker_stage05	joey|rachel|ross	present	1.0000		medium	
+1	35	86.78	87.5	I quit with.	Joey	I quit	Joey	present	char_tracker_stage05	joey|rachel|ross	present	1.0000		medium	
+1	36	89.1	89.94	Wait, wait, wait, wait.	Monica	wait wait wait wait	Monica	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+1	37	89.94	90.66	Wait one minute.	Monica	Wait, wait, wait, wait, wait one minute	Monica	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+1	38	90.66	91.42	Wait a minute.	Monica	Wait a minute	Monica	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+1	39	91.74	93.98	I believe this will change your mind.	Monica	I believe this will change your mind	Monica	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+1	40	94.54	99.66	In a mediocre play, Joseph Tribbiani was able to achieve brilliant new levels of.	Monica	Wait, wait, wait, wait, wait one minute. Wait a minute. I believe this will change your mind. (Reads from paper) In a mediocre play, Joseph Tribbiana was able to achieve brilliant new levels of... continued on page 153...(turns it) sucking.	Monica	present	char_tracker_stage05	joey|monica	present	1.0000		medium	
+1	41	99.82	101.42	Continued on page 153.	Monica	continued on page 153	Monica	present	char_tracker_stage05	chandler|joey|monica|rachel|ross	present	1.0000		medium	
+1	42	102.54	103.18	Sucking.	Monica	sucking	Monica	present	char_tracker_stage05	joey|monica	present	1.0000		medium	
+3	43	111.58	114.06	Well, was there anything else you ever wanted to be?	Rachel	Well, was there anything else you ever wanted to be?	Rachel	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+3	44	114.46	115.26	I don't know.	Joey	I don't know	Joey	present	char_tracker_stage05	joey|rachel	present	0.5000		medium	
+3	45	116.19	118.11	When I was little, I wanted to be a veterinarian.	Joey	I don’t know. When I was little, I wanted to be a veterinarian, but then I found out you had to put your hands into cows and stuff.	Joey	present	char_tracker_stage05	joey|rachel	present	1.0000		medium	
+3	46	118.35	121.31	But then I found out you have to put your hands in the cows and stuff.	Joey	i don't know but then i found out you had to put your hands into cows and stuff	Joey	present	char_tracker_stage05	joey|rachel	present	1.0000		low	low_speaker_confidence
+3	47	124.03	124.51	Hi.				absent	char_tracker_stage05		unknown			low	missing_speaker
+3	48	125.79	126.27	Hey.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+4	49	127.23	128.03	Are you okay?	Phoebe	Are... are you OK?	Phoebe	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+4	50	128.35	129.07	Yeah, yeah.	Ross	yeah yeah	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+4	51	129.07	130.91	Just a tough day at work, you know.	Ross	Yeah, yeah, just a tough day at work	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+4	52	130.91	133.55	Stegosaurus fell over, trapped the kid.	Ross	Yeah, yeah, just a tough day at work. A stegosaurus fell over and trapped a kid. Whoa, whoa, I know this jacket, this is, th--Fun Bobby's jacket! Where is he, what. He, he's here, isn't he?	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+4	53	135.47	137.51	Well, I know this jacket.				absent	char_tracker_stage05		unknown			low	missing_speaker
+4	54	137.51	139.59	It's Fun Bobby's jacket.				absent	char_tracker_stage05		unknown			low	missing_speaker
+4	55	139.59	140.07	Where is he?				absent	char_tracker_stage05		unknown			low	missing_speaker
+4	56	140.07	140.35	What?				absent	char_tracker_stage05		unknown			low	missing_speaker
+4	57	140.51	141.51	He's here, isn't he?				absent	char_tracker_stage05		unknown			low	missing_speaker
+4	58	141.51	142.19	He maybe.	Monica	Maybe.	Monica	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+4	59	142.19	146.03	Don't toy with me, Gallery Fun Bobby.	Ross	Don't toy with me.	Ross	partial	char_tracker_stage05		partial	0.4000		medium	partial_visual_presence
+4	60	146.83	147.31	Whoa.				absent	char_tracker_stage05		unknown			low	missing_speaker
+5	61	147.53	147.69	Hey.	Ross	Hey, Fun Bobby!	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+5	62	147.69	148.89	You've been working out, huh?	Fun Bobby	Hey. Whoa, hey, you've been working out, huh?	Fun Bobby	absent	char_tracker_stage05		unobserved			high	
+5	63	148.89	149.69	Not at all.	Ross	Not at all	Ross	present	char_tracker_stage05	ross	present	0.5000		medium	
+5	64	150.25	151.37	I love this guy.	Ross	I love this guy	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+5	65	153.21	155.29	I was so psyched to hear you're back with my sister.	Ross	Not at all! I love this guy. Hey, I was so psyched to hear you're back with my sister!	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+5	66	155.69	156.57	You and me both.	Monica	You and me both.	Monica	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+5	67	156.57	156.85	Hey.				absent	char_tracker_stage05		unknown			low	missing_speaker
+5	68	156.85	157.33	So what'd I miss?	Fun Bobby	Hey, so what'd I miss, what'd I miss, c'mon?	Fun Bobby	absent	char_tracker_stage05		unobserved			medium	
+5	69	157.33	157.73	What'd I miss?	Fun Bobby	hey what'd i miss c'mon	Fun Bobby	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+5	70	157.73	158.17	Come on.				absent	char_tracker_stage05		unknown			low	missing_speaker
+5	71	158.17	160.41	Oh, we were just trying to make Joey feel better.	Phoebe	Oh, we were just trying to make Joey feel better.	Phoebe	partial	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+5	72	160.97	162.41	Hey, do you need me to pick you up?	Fun Bobby	Hey, do you need me to pick you up?	Fun Bobby	present	char_tracker_stage05	monica	unobserved			high	
+5	73	162.89	164.33	No, I'm all right, man, really.	Joey	No, I'm all right man. Really.	Joey	present	char_tracker_stage05	chandler	absent	0.0000		low	speaker_offscreen
+5	74	164.41	165.85	Nah, I'm picking you up.	Fun Bobby	No, I'm picking you up.	Fun Bobby	absent	char_tracker_stage05		unobserved			high	
+5	75	166.09	171.57	Hey, no, seriously, I don't need you to pick, all right?	Joey	Hey no, seriously, I don't need you to pick me... (Fun Bobby picks Joey up off the ground, bounces him. Joey laughs.) Alright! It still works.	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+5	76	171.57	172.65	It still works.	Joey	me alright it still works	Joey	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+5	77	172.89	176.57	Okay, now, before I go, does anybody else need to be picked up?	Fun Bobby	OK, now before I go, does anybody else need to be picked up? (everyone raises their hands except Chandler) I'm still gonna go.	Fun Bobby	absent	char_tracker_stage05		unobserved			high	
+5	78	177.21	178.25	I'm still gonna.	Fun Bobby	I'm still gonna go	Fun Bobby	absent	char_tracker_stage05		unobserved			medium	
+5	79	179.59	181.03	Okay, I'll see you later, babe.	Monica	OK, I'll see you later babe.	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+5	80	183.03	184.91	Public display of affection coming up.	Fun Bobby	Uh, public display of affection coming up. You can avert your eyes. (kisses Monica)	Fun Bobby	absent	char_tracker_stage05		unobserved			high	
+5	81	184.91	185.99	You can avert your eyes.	Fun Bobby	You can avert your eyes	Fun Bobby	absent	char_tracker_stage05		unobserved			medium	
+6	82	194.07	194.59	See you.	Fun Bobby	See ya. (exits)	Fun Bobby	absent	char_tracker_stage05		unobserved			medium	
+6	83	194.59	196.99	Bye, bun.				partial	char_tracker_stage05		unknown			low	missing_speaker
+6	84	196.99	198.15	Bobby is so great.	Phoebe	Fun Bobby is so great.	Phoebe	present	char_tracker_stage05	phoebe|ross	present	1.0000		high	
+6	85	198.15	199.11	Oh, isn't he?				present	char_tracker_stage05	phoebe|ross	unknown			low	missing_speaker
+6	86	199.75	200.19	You know what?				absent	char_tracker_stage05		unknown			low	missing_speaker
+6	87	200.19	202.07	I really think this time it may work with him.	Monica	oh isn't he oh you know i really think this time it may work with him no job no boyfriend well at least my cup is half full	Monica	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+6	88	202.23	204.07	I mean, he just makes me feel so good.	Monica	oh isn't he oh you know i really think this time it may work with him i mean he just makes me feel so good no job no boyfriend well at least my cup is half full	Monica	partial	char_tracker_stage05		partial	0.3333		low	partial_visual_presence
+6	89	204.07	206.47	And I've been feeling so lousy, you know, last couple of months.	Monica	Oh, isn't he? Oh, you know, I really think this time it may work with him. I mean, he just makes me feel so good and I've been feeling so lousy this last couple of months, no job, no boyfriend. Well, at least my cup is half full.	Monica	present	char_tracker_stage05	chandler|monica|ross	present	1.0000		medium	
+6	90	206.47	207.67	No job, no boyfriend.				present	char_tracker_stage05	chandler|joey|monica|ross	unknown			low	missing_speaker
+6	91	208.38	210.3	Well, at least my cup is half full.				present	char_tracker_stage05	joey|monica|ross	unknown			low	missing_speaker
+6	92	211.26	212.38	Half full of love.	Phoebe	Half full of looooovvvvve.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+6	93	215.74	219.58	And for our two week anniversary, he's gonna take me to his cousin's cabin for the weekend.	Monica	And for our two-week anniversary, he's gonna take me to his cousin's cabin for the weekend.	Monica	present	char_tracker_stage05	joey|monica|ross	present	0.8000		high	
+6	94	219.74	220.94	Cabin of love.	Phoebe	Cabin of loooooovvvvve.	Phoebe	present	char_tracker_stage05	phoebe|ross	present	1.0000		medium	
+6	95	223.9	226.34	We went through a lot of wine tonight, you guys.	Rachel	We went through a lot of wine tonight, you guys. (walks over to table, holding five empty wine bottles)	Rachel	present	char_tracker_stage05	chandler|joey	absent	0.0000		low	speaker_offscreen
+6	96	226.34	226.62	Really?	Monica	Really	Monica	present	char_tracker_stage05	chandler|joey|monica|ross	present	1.0000		medium	
+6	97	226.62	227.82	I only had two glasses.	Monica	Really? I only had two glasses.	Monica	present	char_tracker_stage05	chandler|joey|monica|ross	present	1.0000		high	
+6	98	227.9	229.02	I just had a glass.	Joey	I just had a glass.	Joey	present	char_tracker_stage05	joey	present	0.6667		high	
+6	99	229.34	229.74	Two.	Phoebe	Two.	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+6	100	229.98	230.94	I had one glass.	Rachel	I had one glass.	Rachel	present	char_tracker_stage05	chandler|rachel	present	0.5000		high	
+6	101	231.26	232.42	I had about a mug full.	Chandler	i had about a mugful in	Chandler	present	char_tracker_stage05	chandler|joey|rachel	present	1.0000		low	low_speaker_confidence
+6	102	232.42	235.58	And this lovely I got boned at the Museum of Natural History mug.	Chandler	I had about a mugful in this lovely 'I got boned at the Museum of Natural History' mug.	Chandler	present	char_tracker_stage05	chandler|joey|rachel	present	1.0000		high	
+6	103	237.74	240.7	Okay, so that's, that's what, two bottles?	Rachel	that's what, two bottles	Rachel	present	char_tracker_stage05	chandler|rachel	present	1.0000		medium	
+6	104	240.7	242.22	And yet somehow we went through five.	Rachel	OK, so that's... that's what, two bottles? And yet somehow we went through five?	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+7	105	252.14	256.54	Oh, so what?	Monica	So what	Monica	partial	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+7	106	256.94	258.62	So he drank a lot tonight.	Monica	So what. So he drank a lot tonight.	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+7	107	258.7	264.94	Yeah, but you know, now that I think about it, I don't think I've ever seen Fun Bobby without a drink in his hand.	Ross	Yeah but, you know, now that I think about it, I don't think I've ever seen Fun Bobby without a... a drink in his hand.	Ross	present	char_tracker_stage05	monica|ross	present	0.8571		high	
+7	108	265.18	265.66	Yeah.				present	char_tracker_stage05	monica|ross	unknown			low	missing_speaker
+7	109	265.98	266.38	Oh.				present	char_tracker_stage05	monica|phoebe|ross	unknown			low	missing_speaker
+7	110	266.38	266.98	Oh, yeah.	Phoebe	Yeah	Phoebe	present	char_tracker_stage05	monica|phoebe|ross	present	1.0000		medium	
+7	111	266.98	275.43	You know, did you notice how he always starts his stories with okay, I was so wasted or oh, we were so bombed or oh, whoa.	Phoebe	Yeah. Oh, OOOH, yeah, you know, did you notice how he always starts his stories with, um, OK, 'I was soooo wasted,' or, 'Oh, we were soooo bummed,' or, ummm, ooh, ooh, 'So I wake up, and I'm in this dumpster in Connecticut.'	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+7	112	275.51	278.39	So I wake up and I'm in this dumpster in Connecticut.	Phoebe	yeah oh oooh yeah bummed ' or ummm ooh ooh 'so i wake up and i'm in this dumpster in connecticut '	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		low	low_speaker_confidence
+7	113	280.55	282.95	Monica, have you ever been with him when he wasn't drinking?	Joey	Monica, have you ever been with him when he wasn't drinking?	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+7	114	283.67	287.19	Well, we just happened to go to a lot of places where you might drink.	Monica	Well, we just happen to go to a lot of places where you might drink	Monica	present	char_tracker_stage05	monica|ross	present	1.0000		medium	
+7	115	287.51	290.79	I mean, how do you go to a wine tasting without having a drink?	Monica	Well, we just happen to go to a lot of places where you might drink. I mean, how do you go to a wine tasting without having a drink? Or... or to a club, or to the... zoo.	Monica	present	char_tracker_stage05	monica|ross	present	1.0000		medium	
+7	116	290.79	292.03	Or to a club.				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+7	117	292.03	294.48	Or to the zoo.				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+7	118	299.36	300.36	Thanks, Rach.	Monica	rach	Monica	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+8	119	300.36	301.6	Does this have nonfat milk?	Monica	Rach, does this have nonfat milk?	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+8	120	302.88	303.96	I don't know.	Rachel	ehhhummmm i don't know	Rachel	present	char_tracker_stage05	rachel	present	1.0000		low	low_speaker_confidence
+8	121	303.96	305.04	Why don't you taste it?	Rachel	Ehhhummmm, I don't know, why don't you taste it.	Rachel	present	char_tracker_stage05	rachel	present	0.6667		medium	
+8	122	308.16	308.56	No.	Monica	(takes a sip) Mmmm, no.	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		medium	
+8	123	308.56	309.12	Oh, well.	Rachel	oh well sorry you	Rachel	present	char_tracker_stage05	monica|rachel	present	1.0000		low	low_speaker_confidence
+8	124	309.12	309.4	Too late.	Rachel	oh well too late sorry you	Rachel	present	char_tracker_stage05	monica|rachel	present	1.0000		low	low_speaker_confidence
+8	125	309.4	310.4	Sorry, I already had some.	Rachel	Oh well, too late, sorry, you already had some.	Rachel	present	char_tracker_stage05	monica|rachel	present	1.0000		medium	
+8	126	314.16	317.2	What do you say we make these coffees Irish?	Fun Bobby	(pulls out a flask) Whattaya say we make these, uh, coffees Irish?	Fun Bobby	present	char_tracker_stage05	monica	unobserved			medium	
+9	127	320.65	321.69	Um, cake?	Phoebe	Um, cake.	Phoebe	present	char_tracker_stage05	rachel	absent	0.0000		low	speaker_offscreen
+9	128	323.53	325.93	Yeah, we're gonna, we're gonna get some cake.	Rachel	Yeah, we're gonna... we're gonna get some cake. (Phoebe and Rachel go to counter.)	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+9	129	328.57	333.01	You know, it seems like you've been making an awful lot of stuff Irish lately.	Monica	You know what? It seems like you've been making an awful lot of stuff Irish lately.	Monica	present	char_tracker_stage05	monica	present	0.8333		high	
+9	130	333.01	336.65	Well, it would make them Belgian, but the waffles are hard to get into that flask.	Fun Bobby	Well, I would make them Belgian, but the waffles are hard to get into that flask.	Fun Bobby	partial	char_tracker_stage05		unobserved			high	
+9	131	337.85	338.49	Bobby.	Monica	Bobby.	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+9	132	339.37	339.73	Yeah.	Fun Bobby	Yeah, OK.	Fun Bobby	absent	char_tracker_stage05		unobserved			high	
+9	133	339.73	347.68	Okay, look, maybe this is none of my business, or maybe it is, I don't know, but I'm kind of worried about you.	Monica	Look, maybe this is none of my business, or maybe it is, I don't know... but, uh, I'm kind of worried about you.	Monica	present	char_tracker_stage05	monica	present	0.7778		high	
+9	134	348.8	352.52	Okay, look, this isn't the first time somebody said something to me about this.	Fun Bobby	OK, look, this isn't the first time somebody's said something to me about this, but, I don't know	Fun Bobby	absent	char_tracker_stage05		unobserved			medium	
+9	135	352.52	359.2	But I don't know, I always made excuses about it, like I'm just a social drinker or hey, come on, it's Flag Day.	Fun Bobby	OK, look, this isn't the first time somebody's said something to me about this, but, I don't know... I always made excuses about it, like... uhhh... 'I'm just a social drinker,' or, 'C'mon, it's Flag Day.'	Fun Bobby	partial	char_tracker_stage05		unobserved			medium	
+9	136	362.32	363.52	So what are you saying now?	Monica	So, what are you saying now?	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+9	137	365.2	368.24	I guess I'm saying I'll try and quit.	Fun Bobby	I guess I'm saying, I'll try and quit	Fun Bobby	absent	char_tracker_stage05		unobserved			medium	
+9	138	369.04	370.72	I kinda like that you worry about me.	Fun Bobby	I guess I'm saying, I'll try and quit. I kinda like that you worry about me. (they hug)	Fun Bobby	absent	char_tracker_stage05		unobserved			medium	
+9	139	374.65	375.93	So what's going on?	Phoebe	(comes back to couch, with cake) Sooo, what's goin' on, huh?	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+9	140	377.21	379.37	I am gonna try and quit drinking.	Fun Bobby	I am gonna try and quit drinking.	Fun Bobby	present	char_tracker_stage05	monica	unobserved			high	
+9	141	379.53	380.49	Oh, why?	Phoebe	(sad) Ooohh, why?	Phoebe	present	char_tracker_stage05	monica|phoebe	present	1.0000		medium	
+10	142	385.13	387.21	Hey, hey, hey, hey.	Phoebe	Hey.	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+10	143	388.09	389.53	Guess who's back in show business?	Chandler	Guess who's back in show business.	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+10	144	389.69	390.49	Oh, whoa.				present	char_tracker_stage05	phoebe	unknown			low	missing_speaker
+10	145	390.89	391.85	Lorne Green.	Phoebe	Ohh, ohh, Lorne Green?	Phoebe	present	char_tracker_stage05	chandler|joey|phoebe	present	1.0000		high	
+10	146	394.73	395.09	No.	Chandler	no	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		low	low_speaker_confidence
+10	147	395.09	395.85	No, Phoebes.	Chandler	No, no, Phoebs	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		medium	
+10	148	395.85	396.13	You know why?	Chandler	You know why	Chandler	present	char_tracker_stage05	chandler|joey|phoebe	present	1.0000		medium	
+10	149	396.13	396.89	Cause he's dead.	Chandler	No, no, Phoebs. You know why? Cause he's dead.	Chandler	present	char_tracker_stage05	chandler|joey|phoebe	present	1.0000		medium	
+10	150	397.34	397.98	Oh, no.	Phoebe	Oh, no.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+10	151	400.46	404.14	Okay, I guess it's gonna seem kind of bittersweet now, but Joey, that's who.	Chandler	OK, I guess this is gonna seem kinda bittersweet now, but... Joey, that's who.	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+10	152	404.22	404.7	Hi.				absent	char_tracker_stage05		unknown			low	missing_speaker
+10	153	405.1	405.5	Really?				absent	char_tracker_stage05		unknown			low	missing_speaker
+10	154	405.74	406.22	Yeah.	Joey	yeah lives	Joey	present	char_tracker_stage05	joey	present	0.5000		low	low_speaker_confidence
+10	155	406.3	409.42	My agent just called me with an audition for Days of Our Life.	Joey	Yeah, my agent just called me with an audition for Days of Our Lives!	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+10	156	410.86	411.98	Here's to Joey.	Fun Bobby	(raises his flask) Here’s to Joey! (everyone stares at him and decides to hand the flask to Joey) Here Joey! (Joey just sets it on the table.)	Fun Bobby	present	char_tracker_stage05	monica|phoebe	unobserved			high	
+10	157	414.46	415.42	Here, Joey.	Fun Bobby	Here Joey	Fun Bobby	present	char_tracker_stage05	joey|monica	unobserved			medium	
+10	158	418.78	419.62	Oh, God.	Phoebe	oh	Phoebe	present	char_tracker_stage05	joey|phoebe	present	0.5000		low	low_speaker_confidence
+10	159	419.62	420.86	Well, we have to celebrate.	Phoebe	Oh, well, we have to celebrate	Phoebe	present	char_tracker_stage05	joey|phoebe	present	1.0000		medium	
+10	160	420.94	421.78	You know what we should do?	Phoebe	You know what we should do	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+10	161	421.78	423.42	We should do like a soap opera theme.	Phoebe	Oh, well, we have to celebrate. You know what we should do? We should do, like, a soap opera theme.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+10	162	423.5	427.32	Hey, yeah, we could all sleep together and then one of us could get amnesia.	Chandler	Hey, yeah... we could all sleep together and then one of us could get amnesia.	Chandler	present	char_tracker_stage05	chandler	present	0.8000		high	
+10	163	431.24	432.76	Hey, Rach, what time do you get off?	Phoebe	Hey Rach, what time do you get off	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+10	164	432.76	434.04	We're all gonna do something tonight.	Phoebe	Hey Rach, what time do you get off? We're all gonna do something tonight.	Phoebe	partial	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+10	165	434.92	438.6	Well, actually, I'm already done, but I kinda got plans.	Rachel	Ummmm.... well, actually I'm already done, but I...I kinda got plans.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+10	166	439.72	441.079	You have other friends?	Monica	(gasps) You have other friends?	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+10	167	442.44	445.32	Yeah, I have a date.	Rachel	Yeah... I, uhh... I have a... I have a date.	Rachel	present	char_tracker_stage05	chandler|rachel	present	1.0000		high	
+10	168	445.56	445.96	What?	Monica	What?	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		high	
+10	169	446.2	447.24	You have a date?	Phoebe	You have a date?	Phoebe	present	char_tracker_stage05	monica|phoebe|rachel	present	1.0000		high	
+10	170	447.56	449.4	Yes, I have a date.	Rachel	Yeah. I have a date.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+10	171	449.8	450.52	With a man?	Joey	With a man?	Joey	present	char_tracker_stage05	joey|rachel	present	1.0000		high	
+10	172	452.24	453.28	No, with a crouton.	Rachel	No with a crouton. What? What is so strange about me having a date?	Rachel	present	char_tracker_stage05	joey|rachel	present	1.0000		medium	
+10	173	454.24	454.64	What?	Rachel	What	Rachel	present	char_tracker_stage05	joey|rachel	present	1.0000		medium	
+10	174	454.64	457.36	What is so strange about me having a date with a crouton?	Chandler	…..with a crouton?	Chandler	present	char_tracker_stage05	chandler|joey|rachel	present	0.5000		medium	
+10	175	459.44	461.28	Rach, what about Ross?	Joey	what about ross i mean you	Joey	present	char_tracker_stage05	joey|rachel	present	1.0000		low	low_speaker_confidence
+10	176	462.08	463.24	Are you still mad at him?	Joey	what about ross i mean are you still mad at him you	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+10	177	463.24	464.4	Cause he made that list about.	Joey	What about Ross? I mean, are you still mad at him cause he made that list about you?	Joey	present	char_tracker_stage05	chandler|joey	present	1.0000		medium	
+10	178	464.72	466.679	No, no, I'm not mad at him.	Rachel	Noooo, no, I'm not mad at him	Rachel	present	char_tracker_stage05	chandler	absent	0.0000		low	speaker_offscreen
+10	179	466.679	467.2	I'm.	Rachel	I'm	Rachel	present	char_tracker_stage05	chandler	absent	0.0000		low	speaker_offscreen
+10	180	467.28	469.76	I'm not really anything at him anymore.	Rachel	Noooo, no, I'm not mad at him. I'm.. I'm not really anything at him anymore.	Rachel	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+10	181	470.08	471.28	What are you talking about?	Monica	What are you talking about?	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+10	182	471.6	472.32	I don't know.	Rachel	I don't know	Rachel	present	char_tracker_stage05	rachel	present	0.5000		medium	
+10	183	474.08	477.45	Whatever I was feeling, I'm not.	Rachel	I don't know. Whatever I was feeling, I'm... not.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+10	184	477.85	479.29	But you guys came so close.	Phoebe	But you guys came so close.	Phoebe	present	char_tracker_stage05	chandler|phoebe|rachel	present	1.0000		high	
+10	185	479.45	480.21	Oh, I know.	Rachel	oh i know	Rachel	present	char_tracker_stage05	chandler|phoebe|rachel	present	1.0000		low	low_speaker_confidence
+10	186	480.21	481.53	I'm sorry, you guys.	Rachel	Oh, I know, I'm sorry you guys	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+10	187	481.53	484.97	You're just gonna have to get used to the fact that I will not be dating Ross.	Rachel	Oh, I know, I'm sorry you guys. You're just gonna have to get used to the fact that I will not be dating Ross.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+11	188	487.05	487.77	Here he is.	Rachel	Here he is. Hi. Guys, this is Russ.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+11	189	488.57	490.41	Hi, guys.	Rachel	Hi	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+13	190	491.21	508.06	This is Russ H. Estelle Leonard Talent Agency.	Estelle	Estelle Leonard Talent Agency	Estelle	partial	char_tracker_stage05		unobserved			medium	
+13	191	510.3	512.62	Oh, Sammy, would you stop calling me already?	Estelle	Oh Stanley, would you stop calling me already	Estelle	absent	char_tracker_stage05		unobserved			medium	
+13	192	513.26	514.58	No, no, no, no, no.	Estelle	No, n-n-n-no	Estelle	absent	char_tracker_stage05		unobserved			medium	
+13	193	514.58	516.1	I'm not saying you're not talented.	Estelle	I'm not saying you're not talented	Estelle	absent	char_tracker_stage05		unobserved			medium	
+13	194	516.1	517.34	You're very talented.	Estelle	You're very talented	Estelle	absent	char_tracker_stage05		unobserved			medium	
+13	195	517.42	520.78	It's just that with the bird dead and all, there's very little act left.	Estelle	Estelle Leonard Talent Agency! Oh Stanley, would you stop calling me already? No, n-n-n-no. I’m not saying you’re not talented. You’re very talented.  It's just with the bird dead and all, there's very little act left. Oh, honey, give me a break, will ya? (a knock on the door) Oooh, ooh, I'll talk to you later.	Estelle	absent	char_tracker_stage05		unobserved			medium	
+13	196	521.98	523.98	Oh, honey, give me a break, will you?	Estelle	Oh, honey, give me a break, will ya	Estelle	absent	char_tracker_stage05		unobserved			medium	
+13	197	523.98	525.66	Oh, I'll talk to you later.	Estelle	Oooh, ooh, I'll talk to you later	Estelle	absent	char_tracker_stage05		unobserved			medium	
+14	198	526.14	528.06	Well, there's my favorite client.	Estelle	Well, there's my favorite client	Estelle	absent	char_tracker_stage05		unobserved			medium	
+14	199	528.38	530.62	So tell me, darling, how was the audition?	Estelle	Well, there's my favorite client. So tell me darling, how was the audition?	Estelle	partial	char_tracker_stage05		unobserved			high	
+14	200	531.11	532.71	Well, I think it went pretty well.	Joey	Well, I think it went pretty well. I.. I got a callback for Thursday.	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+14	201	532.79	534.15	I got a call back for Thursday.	Joey	i i got a callback for thursday	Joey	present	char_tracker_stage05	joey	present	0.6667		low	low_speaker_confidence
+14	202	535.19	538.15	Joey, have you ever seen me ecstatic?	Estelle	Joey, have you ever seen me ecstatic?	Estelle	partial	char_tracker_stage05		unobserved			high	
+14	203	538.79	539.19	No.	Joey	No.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+14	204	539.67	540.79	Well, here it is.	Estelle	Well, here it is. (She almost smiles.)	Estelle	present	char_tracker_stage05	joey	unobserved			high	
+14	205	545.35	549.43	Okay, listen, there's something I want to talk to you about.	Joey	OK, uh.... listen, there's something I want to talk to you about. The network casting lady...	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+14	206	549.51	551.07	The network casting lady.	Joey	The network casting lady	Joey	present	char_tracker_stage05	joey	present	0.6667		medium	
+14	207	551.07	552.99	Oh, isn't Laurie a doll?	Estelle	Oh, isn't Lori a doll?	Estelle	absent	char_tracker_stage05		unobserved			high	
+14	208	552.99	554.27	Oh, yeah, yeah, she was great.	Joey	oh yeah yeah she's great	Joey	partial	char_tracker_stage05		partial	0.3333		low	partial_visual_presence
+14	209	554.27	560.17	But I kind of got the feeling that she was sort of coming on to me.	Joey	oh yeah yeah she's great but i kinda got the feeling that she was sort of coming on to me	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+14	210	560.49	570.73	And I definitely would get the part if I would have, you know, if I would have sent the little general in.	Joey	Oh yeah, yeah, she's great, but... I kinda got the feeling that she was sort of... coming on to me. And I definitely would get the part if I would've... you know... if I would have sent the Little General in.	Joey	present	char_tracker_stage05	joey	present	0.8182		high	
+14	211	570.97	574.65	Oh, I see.	Estelle	Oh, I see	Estelle	present	char_tracker_stage05	joey	unobserved			medium	
+14	212	575.37	581.05	Well, I'm just gonna put in a call here and we'll find out what's going on and straighten it out.	Estelle	Oh, I see. Well, I'm just gonna put in a call here and we'll find out what's goin' on and straighten it out. (picks up the phone) Yeah, hi, Lori please. (pulls out her umbrella of cigarettes) (pause) Hi darling. So how 'bout Joey Tribbiani for the part of the cab driver, isn't he terrific? (pause) Uh-huuuuh. (pause) Uh-huuuuh. OK, doll. Talk to you later. (hangs up) (to Joey) Yeah, you're gonna have to sleep with her.	Estelle	present	char_tracker_stage05	joey	unobserved			medium	
+14	213	581.13	581.57	Yeah.	Estelle	Yeah, hi, Lori please	Estelle	absent	char_tracker_stage05		unobserved			medium	
+14	214	581.57	583.69	Hi, Laurie, please.	Estelle	Hi darling	Estelle	absent	char_tracker_stage05		unobserved			medium	
+14	215	586.49	587.61	Hi, darling.	Estelle	darling	Estelle	present	char_tracker_stage05	joey	unobserved			low	low_speaker_confidence
+14	216	588.39	591.43	So how about Joey Tribbiani for the part of the cab driver?				partial	char_tracker_stage05		unknown			low	missing_speaker
+14	217	591.43	592.47	Isn't he terrific?				absent	char_tracker_stage05		unknown			low	missing_speaker
+14	218	593.59	594.39	Uh huh.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+14	219	596.15	596.95	Uh huh.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+14	220	597.91	599.51	Okay, doll, talk to you later.				partial	char_tracker_stage05		unknown			low	missing_speaker
+14	221	600.31	602.07	Yeah, you're gonna have to sleep with her.				partial	char_tracker_stage05		unknown			low	missing_speaker
+15	222	606.31	607.11	What's the matter?	Rachel	What's the matter?	Rachel	present	char_tracker_stage05	monica	absent	0.0000		low	speaker_offscreen
+15	223	607.43	608.39	Fun Bobby?	Monica	It's Fun Bobby.	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+15	224	608.63	608.99	What?	Rachel	what	Rachel	present	char_tracker_stage05	monica	absent	0.0000		low	speaker_offscreen
+15	225	608.99	609.83	Isn't he sober?	Rachel	What, isn't he sober?	Rachel	present	char_tracker_stage05	monica	absent	0.0000		low	speaker_offscreen
+15	226	609.99	611.51	Oh, he's sober all right.	Monica	Oh, he's sober alright	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+15	227	611.91	614.31	Just turns out that Fun Bobby was fun for a reason.	Monica	Oh, he's sober alright. Just turns out that Fun Bobby was fun for a reason.	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+15	228	617.14	617.62	Okay.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+15	229	619.46	619.98	All right.	Monica	all right	Monica	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+16	230	619.98	621.3	Here you go, sweetie.	Monica	All right, here you go, sweetie. (hands Fun Bobby his coffee)	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+16	231	622.66	623.14	Thanks.	Fun Bobby	Thanks	Fun Bobby	absent	char_tracker_stage05		unobserved			medium	
+16	232	623.78	625.46	You want to hear something funny?	Fun Bobby	Thanks. You wanna hear something funny?	Fun Bobby	absent	char_tracker_stage05		unobserved			medium	
+16	233	625.46	626.58	Oh, God, yes.	Monica	Oh God, yes!	Monica	present	char_tracker_stage05	chandler	absent	0.0000		low	speaker_offscreen
+16	234	628.58	632.98	There are no hardware stores open past midnight in the Village.	Fun Bobby	There are no hardware stores open past midnight in the Village.	Fun Bobby	partial	char_tracker_stage05		unobserved			high	
+16	235	636.02	637.06	That is funny.	Phoebe	That is funny.	Phoebe	present	char_tracker_stage05	chandler|monica|phoebe	present	1.0000		high	
+16	236	638.66	648.6	I needed to buy a hammer the other night and I'm out walking around the neighborhood and I'm walking and I'm walking and I'm walking and I'm walking.	Fun Bobby	I needed to buy a hammer the other night, and I'm out walkin' around the neighborhood, and I’m walking, and I’m walking, and I’m walking, and I’m walking….	Fun Bobby	present	char_tracker_stage05	monica	unobserved			high	
+16	237	648.6	658.24	Okay, so you're saying you were walking, but apparently there are no hardware stores open past midnight in the Village.	Fun Bobby	…but apparently there are no hardware stores open past midnight in the Village.	Fun Bobby	partial	char_tracker_stage05		unobserved			high	
+16	238	661.36	661.92	Huh.	Phoebe	huh	Phoebe	present	char_tracker_stage05	chandler|phoebe	present	1.0000		low	low_speaker_confidence
+16	239	662.88	663.28	So?	Phoebe	huh so	Phoebe	present	char_tracker_stage05	chandler|phoebe	present	1.0000		low	low_speaker_confidence
+16	240	663.28	666.56	So it's a helpful fact as well as funny.	Phoebe	Huh, so-so it’s a helpful fact as well as funny. (mouths ‘Good job!’)	Phoebe	present	char_tracker_stage05	chandler|phoebe	present	1.0000		high	
+16	241	673.0	674.96	Say, honey, don't you have to be at your interview now?	Monica	Ahhh, hey honey? Don't you have to be at your interview now?	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+16	242	674.96	675.64	Oh, yeah.	Fun Bobby	Oh yeah	Fun Bobby	present	char_tracker_stage05	monica	unobserved			medium	
+16	243	679.4	680.2	See you guys.	Fun Bobby	Oh yeah. See you guys. (leaves)	Fun Bobby	present	char_tracker_stage05	monica|phoebe	unobserved			high	
+16	244	680.44	681.0	Bye.	Chandler	Bye	Chandler	present	char_tracker_stage05	monica|phoebe	absent	0.0000		low	speaker_offscreen
+16	245	682.519	684.28	Ridiculously dull Bobby.	Chandler	Bye..... ridiculously dull Bobby.	Chandler	present	char_tracker_stage05	chandler|monica|phoebe	present	1.0000		high	
+16	246	686.04	687.4	Oh, my God.	Monica	Oh.... my... God.	Monica	present	char_tracker_stage05	monica|phoebe	present	1.0000		high	
+16	247	687.64	688.84	It's not that bad.	Phoebe	It's not that bad.	Phoebe	present	char_tracker_stage05	monica|phoebe	present	1.0000		high	
+16	248	689.16	690.28	Not that bad?	Monica	Not that bad	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+16	249	691.0	692.84	Did you not hear the hammer story?	Monica	Not that bad? Did you hear the hammer story?	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+16	250	693.41	695.65	Okay, okay, don't get all squinky.	Phoebe	OK, OK, don't get all squinky.	Phoebe	present	char_tracker_stage05	monica	absent	0.0000		low	speaker_offscreen
+16	251	697.09	699.89	Maybe it was just the kind of story where you had to be there.	Rachel	Maybe it was just the kind of story where you have to be there.	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+16	252	699.89	703.89	But I'm gonna be there for the rest of my life.	Monica	But I'm gonna be there... for the rest of my life. I mean, I can't break up with him. I'm the one who made him quit drinking. He's dull because of me.	Monica	present	char_tracker_stage05	monica	present	0.8000		medium	
+16	253	704.85	706.33	I mean, I can't break up with him.	Monica	i mean i can't break up with him i'm the one who made him quit drinking he's dull because of me	Monica	present	char_tracker_stage05	monica|phoebe|rachel	present	1.0000		low	low_speaker_confidence
+16	254	706.33	713.6	I'm the one who made him quit drinking.	Monica	i'm the one who made him quit drinking he's dull because of me	Monica	present	char_tracker_stage05	monica	present	1.0000		low	low_speaker_confidence

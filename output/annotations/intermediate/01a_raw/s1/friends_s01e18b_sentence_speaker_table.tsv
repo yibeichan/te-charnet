@@ -1,0 +1,265 @@
+scene_id	sentence_id	start	end	utterance	speaker	utterance_ct	speaker_ct	visual_presence	visual_presence_source	visual_presence_chars	speaker_visual_presence	speaker_visual_ratio	visual_presence_note	annotation_confidence	annotation_review_reason
+24	1	0.16	0.88	Recommending Trident?	Chandler	Um, ok... the... the fifth dentist caved and now they're all recommending Trident?	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+24	2	8.08	9.68	No, the interview.				present	char_tracker_stage05	monica|rachel	unknown			low	missing_speaker
+24	3	10.48	11.36	Unbelievable.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+24	4	11.36	12.24	She loved me.	Rachel	She loved me	Rachel	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+24	5	12.24	13.52	She absolutely loved me.	Rachel	She absolutely loved me	Rachel	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+24	6	13.52	15.2	We talked for like two and a half hours.	Rachel	Noooo... the interview! She loved me! She absolutely loved me. We talked for like two and a half hours, we have the same taste in clothes, and—oh, I went to camp with her cousin... And, oh, the job is perfect. I can do this. I can do this well!	Rachel	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+24	7	15.44	17.44	We have the same taste in clothes.				partial	char_tracker_stage05		unknown			low	missing_speaker
+24	8	17.44	19.28	And oh, I went to camp with her cousin.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+24	9	19.6	21.32	And oh, the job is perfect.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+24	10	21.32	22.08	I can do this.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+24	11	22.08	22.76	I could do this.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+24	12	22.76	23.12	Well.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+24	13	24.56	25.4	Oh, got to know.				absent	char_tracker_stage05		unknown			low	missing_speaker
+24	14	25.4	26.72	And then she told the funniest story.	Rachel	Oh God, oh, and then she told the funniest story...	Rachel	present	char_tracker_stage05	monica	absent	0.0000		low	speaker_offscreen
+24	15	26.72	27.52	Okay, great.	Monica	OK, great	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+24	16	27.52	28.8	You'll tell us and we'll laugh.	Monica	OK, great. You'll tell us and we'll laugh. Let's play poker.	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+24	17	29.24	30.2	Let's play poker.	Monica	Let's play poker	Monica	present	char_tracker_stage05	rachel	absent	0.0000		low	speaker_offscreen
+24	18	32.6	36.6	All right, now listen, you guys, we talked about it and if you don't want to play, we'd completely understand.	Joey	Alright now listen, you guys, we talked about it, and if you don't want to play, we completely understand.	Joey	present	char_tracker_stage05	chandler|ross	absent	0.0000		low	speaker_offscreen
+24	19	36.84	38.08	Oh, yes, yes.	Chandler	oh yes yes like uh i don't know pictionary	Chandler	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		low	low_speaker_confidence
+24	20	38.08	39.04	We could play some other game.	Chandler	Oh yes, yes, we could play some other game... like, uh, I don't know... Pictionary?	Chandler	present	char_tracker_stage05	chandler|joey|ross	present	0.5000		medium	
+24	21	39.04	41.24	Like, I don't know, Pictionary?	Chandler	like, uh, I don't know	Chandler	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+24	22	44.04	44.64	Very funny.	Monica	ha ha very funny	Monica	present	char_tracker_stage05	monica	present	1.0000		low	low_speaker_confidence
+25	23	44.64	45.4	Very funny.	Monica	Ha, ha, very funny, very funny	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+25	24	45.48	47.36	But I think we'd like to give poker another try.	Monica	Ha, ha, very funny, very funny. But I think we'd like to give poker another try. Shall we, ladies?	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+25	25	47.36	48.2	Shall we, ladies?	Phoebe and Rachel	Yes, we should	Phoebe and Rachel	present	char_tracker_stage05	monica|phoebe|rachel	unobserved			medium	
+25	26	48.44	49.4	Yes, I think we should.	Phoebe and Rachel	Yes, we should. I think we should.	Phoebe and Rachel	present	char_tracker_stage05	chandler|monica|phoebe|rachel|ross	unobserved			high	
+25	27	50.04	51.48	Rich, do you want me to shuffle those?	Ross	Uh, Rach, do you want me to shuffle those?	Ross	present	char_tracker_stage05	chandler|rachel|ross	present	1.0000		high	
+25	28	51.48	52.72	No, no, that's okay.				present	char_tracker_stage05	chandler|rachel|ross	unknown			low	missing_speaker
+25	29	52.72	54.2	You know, I think I'm going to give it a go.	Rachel	No, no, thats OK. Y'know, I think I'm gonna give it a go.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+25	30	54.2	55.56	All right, all right.				present	char_tracker_stage05	joey|rachel	unknown			low	missing_speaker
+25	31	64.44	66.32	So Phoebe owes $7.50.	Ross	so phoebs owes 7 50 fifteen big ones	Ross	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+25	32	66.32	67.56	Monica, you owe $10.	Ross	so phoebs owes 7 50 monica you owe 10 fifteen big ones	Ross	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+26	33	67.56	70.44	And Rachel, you owe 15 big ones.	Ross	So, Phoebs owes $7.50, Monica, you owe $10, and Rachel, you owe fifteen big ones.	Ross	present	char_tracker_stage05	chandler|ross	present	0.7500		medium	
+26	34	71.4	73.64	And hey, thanks for teaching us cross eyed mare.	Joey	But hey, thanks for teachin' us Cross-Eyed Mary	Joey	partial	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+26	35	73.64	74.68	You guys, we gotta play that out.	Joey	But hey, thanks for teachin' us Cross-Eyed Mary. You guys, we gotta play that at our regular game.	Joey	present	char_tracker_stage05	chandler|joey|ross	present	0.5000		medium	
+26	36	77.64	79.44	All right, here's my $7.50.	Phoebe	alright here's my 7 50	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		low	low_speaker_confidence
+26	37	79.44	81.64	But I think you should know that this money is cursed.	Phoebe	Alright, here's my $7.50. (Hands them the money) But I think you should know that this money is cursed.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+26	38	81.88	82.12	What?	Joey	What?	Joey	present	char_tracker_stage05	chandler|joey|phoebe|ross	present	1.0000		high	
+26	39	82.36	83.4	Oh, I cursed it.	Phoebe	Oh, I cursed it	Phoebe	present	char_tracker_stage05	chandler|joey|phoebe|ross	present	1.0000		medium	
+26	40	85.72	88.44	So now bad things will happen to he who spends it.	Phoebe	Oh, I cursed it. So now bad things will happen to he who spends it.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+26	41	89.08	90.16	That's all right, I'll take it.	Chandler	That's alright, I'll take it	Chandler	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		medium	
+26	42	90.16	91.56	Bad things happen to me anyway.	Chandler	That's alright, I'll take it. Bad things happen to me anyway. This way I can break 'em up with a movie.	Chandler	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		medium	
+26	43	93.32	95.24	This way I can split them up with a movie.	Chandler	This way I can break 'em up with a movie	Chandler	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		medium	
+26	44	96.44	101.0	So that just leaves the big green poker machine who owes 15.	Ross	Well, that just leaves the big Green poker machine, who owes fifteen...	Ross	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		high	
+26	45	103.24	105.56	Could you be any smugger?	Rachel	Could you be any smugger?	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+26	46	105.64	106.6	Huh, let's see.	Ross	huh let's see um	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		low	low_speaker_confidence
+26	47	107.42	114.14	Say, Rach, I'm opening up a new art gallery and I could sure use the portraits of Lincoln and Hamilton.	Ross	Huh..let's see..um..say Rach I am opening up a new art gallery and I could sure use portraits of Lincoln and Hamilton. (in reference to their portraits on the bills)	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+26	48	116.22	117.66	Oh, it's so typical.	Rachel	Oh, so typical	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+26	49	117.9	119.1	Ooh, I'm a man.	Rachel	Ooo, I'm a man	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+26	50	119.18	120.62	Ooh, I have a penis.	Rachel	Ooo, I have a penis	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+26	51	120.62	123.42	Oh, I have to win money to exert my power over women.	Rachel	Mmm-hmmm. Oh, so typical. Ooo, I'm a man. Ooo, I have a penis. Ooo, I have to win money to exert my power over women. (hands over her money)	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+26	52	127.9	128.54	You know what?	Monica	you know what forever	Monica	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+26	53	128.54	129.42	This is not over.	Monica	you know what this is not over forever	Monica	present	char_tracker_stage05	monica|rachel	present	0.5000		low	low_speaker_confidence
+26	54	129.9	131.06	We will play you again.	Monica	you know what this is not over we will play you again forever	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		low	low_speaker_confidence
+26	55	131.06	138.115	And we will win and you will lose and you will beg and we will laugh and we will take every last dime you have and you will hate yourselves.	Monica	You know what? This is not over. We will play you again, and we will win, and you will lose, and you will beg, and we will laugh, and we will take every last dime you have, and you will hate yourselves forever.	Monica	present	char_tracker_stage05	monica|rachel	present	0.7500		high	
+26	56	138.115	144.0	We will forever H. Kind of stepped on my point there, Mom.	Rachel	Hmm. Kinda stepped on my point there, Mon.	Rachel	present	char_tracker_stage05	monica|rachel	present	1.0000		medium	
+27	57	145.76	147.24	I can't believe you lost.	Aunt Iris	I can't believe you lost	Aunt Iris	partial	char_tracker_stage05		unobserved			medium	
+27	58	147.24	148.64	How much did they take from you?	Aunt Iris	I can't believe you lost. How much did they take from you?	Aunt Iris	absent	char_tracker_stage05		unobserved			high	
+27	59	149.12	150.84	I don't know, like 30 bucks.	Rachel	I don't know, like 30 bucks.	Rachel	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+27	60	150.84	152.16	Yeah, you know what I'm going to do?				absent	char_tracker_stage05		unknown			low	missing_speaker
+27	61	152.16	153.28	I'm going to give you that money back.	Aunt Iris	You know what I am gonna do? I'm gonna give you that money back.	Aunt Iris	absent	char_tracker_stage05		unobserved			medium	
+27	62	153.68	154.08	Really?	Girls	Really?	Girls	absent	char_tracker_stage05		unobserved			high	
+27	63	154.24	155.4	No, I'm bluffing.	Aunt Iris	No I am bluffing	Aunt Iris	absent	char_tracker_stage05		unobserved			medium	
+27	64	155.4	157.12	You guys haven't learned crap.	Aunt Iris	No I am bluffing! You guys haven't learned CRAP! (sits down) Hand me the cards!	Aunt Iris	partial	char_tracker_stage05		unobserved			medium	
+27	65	161.04	162.24	Hand me the cards.	Aunt Iris	Hand me the cards	Aunt Iris	present	char_tracker_stage05	phoebe	unobserved			medium	
+28	66	163.12	163.81	Can I tell you?	Phoebe	Can I?	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+28	67	163.96	164.36	Yes.	Aunt Iris	Yes.	Aunt Iris	present	char_tracker_stage05	monica|phoebe|rachel	unobserved			high	
+29	68	171.56	173.8	So you gals want to hand over your money now?	Ross	So, you gals wanna hand over your money now	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+29	69	173.8	176.6	That way we don't have to go through the formality of actually playing.	Ross	So, you gals wanna hand over your money now? That way, we don't have to go through the formality of actually playing.	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+29	70	177.96	179.4	Oh, that's fine.	Rachel	Ooooh, that's fine	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+29	71	179.4	181.96	We'll see who has the last laugh there, monkey boy.	Rachel	Ooooh, that's fine. We'll see who has the last laugh there, monkey boy.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+29	72	185.16	186.48	Okay, are we done with the chit chat?	Monica	OK, we done with the chit-chat	Monica	present	char_tracker_stage05	chandler|joey|monica|rachel|ross	present	1.0000		medium	
+29	73	186.48	188.4	Are we ready to play some serious poker?	Monica	OK, we done with the chit-chat? Are we ready to play some serious poker?	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		high	
+29	74	188.4	189.28	Hey, you guys, look.	Phoebe	hey you guys look right ok serious poker	Phoebe	present	char_tracker_stage05	monica|phoebe|rachel	present	1.0000		low	low_speaker_confidence
+29	75	189.28	191.32	The one I Jack follows me wherever I go.	Phoebe	(holding a card and waving it in front of her face) Hey you guys, look, the one-eyed jack follows me wherever I go. (they look at her) Right, OK, serious poker.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+29	76	193.8	194.16	Right?	Phoebe	Right, OK, serious poker	Phoebe	present	char_tracker_stage05	monica|phoebe|rachel	present	1.0000		medium	
+29	77	194.16	194.6	Okay.				present	char_tracker_stage05	monica|phoebe|rachel	unknown			low	missing_speaker
+29	78	194.6	195.48	Serious poker.				present	char_tracker_stage05	chandler|joey|monica|phoebe|rachel|ross	unknown			low	missing_speaker
+29	79	195.86	198.02	Hey, mom, you get any more of those little salmon things?	Joey	Hey Mon, do you have any more of those salmon things?	Joey	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		medium	
+29	80	198.66	200.5	Do you want to eat or do you want to play poker?	Monica	Do you wanna eat or do you wanna play poker?	Monica	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+29	81	200.74	201.46	Excuse me.	Monica	excuse me	Monica	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+30	82	201.86	202.66	Where are you going?	Monica	Excuse me, where are you going?	Monica	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+30	83	203.3	204.18	To the bathroom.	Ross	Uh... to the bathroom.	Ross	present	char_tracker_stage05	joey|monica	absent	0.0000		low	speaker_offscreen
+30	84	204.42	206.98	Do you want to go to the bathroom or do you want to play poker?	Monica	Do you want to go to the bathroom, or do you wanna play poker?	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+30	85	206.98	208.42	I want to go to the bathroom.	Ross	I want to go to the bathroom. (exits)	Ross	present	char_tracker_stage05	monica|ross	present	0.6667		high	
+30	86	211.06	211.42	All right.				absent	char_tracker_stage05		unknown			low	missing_speaker
+30	87	211.42	212.82	Well, I'm going to order a pizza.	Joey	Alright, well, I'm gonna order a pizza. (gets up)	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+30	88	212.9	214.22	Oh, no, no, no, no, no, no.	Rachel	oh no no no no no and the store closes at nine so you can eat then	Rachel	present	char_tracker_stage05	rachel	present	0.6667		low	low_speaker_confidence
+30	89	214.22	215.5	I'm still waiting to hear from that job.	Rachel	Oh no-no-no-no-no, I'm still waiting to hear from that job and the store closes at nine, so you can eat then.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+30	90	215.5	217.5	And the store closes at 9, so you can eat.	Rachel	oh no no no no no and the store closes at nine so you can eat then	Rachel	present	char_tracker_stage05	rachel	present	1.0000		low	low_speaker_confidence
+30	91	217.5	217.78	Fun.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+30	92	218.98	219.78	That's fine.	Joey	That's fine	Joey	present	char_tracker_stage05	joey|rachel	present	1.0000		medium	
+30	93	220.26	221.3	Just have a Tic Tac.	Joey	That's fine. I'll just have a Tic-Tac to hold me over.	Joey	present	char_tracker_stage05	joey|rachel	present	1.0000		medium	
+30	94	221.3	221.94	Pull me over.				present	char_tracker_stage05	joey|rachel	unknown			low	missing_speaker
+30	95	224.02	225.54	All right, Cincinnati.				present	char_tracker_stage05	joey|monica|rachel	unknown			low	missing_speaker
+30	96	226.31	228.03	No blinds, everybody.	Monica	Alright, Cincinnati, no blinds, everybody ante. (deals cards)	Monica	present	char_tracker_stage05	joey|monica	present	1.0000		medium	
+30	97	228.03	231.59	Annie, yes or no?	Phoebe	(looks at her cards) Yes! (everyone looks at her) .... or no.	Phoebe	present	char_tracker_stage05	joey|monica|phoebe|rachel	present	1.0000		high	
+31	98	234.63	237.83	All right, your money's mine, Green.	Ross	Alright. (to Rachel) Your money's mine, Green.	Ross	present	char_tracker_stage05	phoebe|rachel	absent	0.0000		low	speaker_offscreen
+31	99	237.91	239.75	Your fly is open, Geller.	Rachel	Your fly is open, Geller. (he checks it, and zips up)	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+32	100	245.59	247.19	You guys, you know what I just realized?	Phoebe	You guys, you know what I just realized? 'Joker' is 'poker' with a 'J.' Coincidence?	Phoebe	partial	char_tracker_stage05		partial	0.3333		medium	partial_visual_presence
+32	101	248.39	254.61	Joker is poker with a J. Coincidence.	Phoebe	'joker' is 'poker' with a 'j ' coincidence	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		low	low_speaker_confidence
+32	102	256.77	271.97	Hey, that's Joe Incidence with a C. Phoebe.	Chandler	Hey, that's... that's 'joincidence' with a 'C'!	Chandler	partial	char_tracker_stage05		partial	0.3750		medium	partial_visual_presence
+32	103	272.13	272.69	Phoebe.	Joey	Uh... Phoebe? Phoebe?	Joey	present	char_tracker_stage05	phoebe|rachel	absent	0.0000		low	speaker_offscreen
+32	104	272.85	273.97	Yeah, I'm out.	Phoebe	Yeah. Um... I'm out. (throws in cards)	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+32	105	275.41	276.05	I'm in.	Rachel	I'm in.	Rachel	present	char_tracker_stage05	joey|monica|phoebe|rachel	present	1.0000		high	
+32	106	276.77	277.41	Me too.	Monica	Me too.	Monica	present	char_tracker_stage05	joey|monica|phoebe|rachel	present	1.0000		high	
+32	107	278.52	279.08	Me too.	Joey	Me too. Alright, whattaya got.	Joey	present	char_tracker_stage05	joey|monica	present	1.0000		medium	
+32	108	279.24	280.28	All right, what do you got?				present	char_tracker_stage05	chandler|joey|monica|ross	unknown			low	missing_speaker
+32	109	281.0	282.92	Well, you better hop out of the shower.	Ross	Well, you better hop outta the shower, cause... I gotta flush. (lays down cards)	Ross	present	char_tracker_stage05	chandler|ross	present	1.0000		medium	
+32	110	283.0	284.76	Cause I got a flush.	Ross	cause i gotta flush	Ross	present	char_tracker_stage05	chandler|ross	present	1.0000		low	low_speaker_confidence
+32	111	288.52	290.04	Well, well, well.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+32	112	290.36	292.64	Hop back in, bucko.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+32	113	292.64	294.76	Cause I got four sixes.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+32	114	295.24	296.48	I got four sixes.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+32	115	296.48	296.92	I won.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+32	116	297.32	298.28	I actually won.				present	char_tracker_stage05	rachel|ross	unknown			low	missing_speaker
+32	117	298.6	299.24	Oh, my.				present	char_tracker_stage05	joey|monica|rachel|ross	unknown			low	missing_speaker
+32	118	299.8	300.44	You know what?				present	char_tracker_stage05	joey|monica|rachel|ross	unknown			low	missing_speaker
+32	119	300.44	302.44	I think I'm gonna make a little Ross pile.				present	char_tracker_stage05	joey|monica|rachel	unknown			low	missing_speaker
+32	120	302.68	303.04	Yeah.				present	char_tracker_stage05	joey|monica|rachel|ross	unknown			low	missing_speaker
+32	121	303.04	303.48	Oh, look.				present	char_tracker_stage05	rachel|ross	unknown			low	missing_speaker
+32	122	304.36	305.68	That one was Ross's.				present	char_tracker_stage05	rachel|ross	unknown			low	missing_speaker
+32	123	305.68	306.16	And I think.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+32	124	306.16	307.72	Oh, that one was Ross'.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+32	125	308.28	309.0	You're really?				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+32	126	310.42	314.58	Well, I have got your money and you'll never see it.	Rachel	Well, well, well, hop back in bucko, cause I got four sixes! (lays down cards) I won! I actually won! Oh my God! Y'know what? (collects chips) I think I'm gonna make a little Ross pile. (holds up a chip) I think that one was Ross's, and I think—oh—that one was Ross's. Yes! (Starts singing) Well, I have got your money, and you'll never see it...	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+33	127	314.74	316.18	And you fly it open.	Rachel	And your fly's still open...	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+34	128	317.3	318.1	I made you.	Rachel	Ha, I made you look....	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+34	129	318.1	318.58	Duh.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+34	130	321.86	322.5	I'm in.				absent	char_tracker_stage05		unknown			low	missing_speaker
+34	131	323.06	324.26	I shouldn't be in her.				absent	char_tracker_stage05		unknown			low	missing_speaker
+34	132	324.74	325.54	Monica.				absent	char_tracker_stage05		unknown			low	missing_speaker
+35	133	325.86	326.46	Monica.	Rachel	I couldn't be inner. Monica?	Rachel	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+35	134	326.46	327.06	In or out?	Phoebe	Monica, in or out?	Phoebe	present	char_tracker_stage05	joey|monica	absent	0.0000		low	speaker_offscreen
+35	135	327.54	328.82	I hate this game.	Monica	(slams down cards) I hate this game!	Monica	present	char_tracker_stage05	joey|monica	present	1.0000		high	
+36	136	337.86	338.98	Okay, Joey, your bet.	Phoebe	OK Joey, your bet.	Phoebe	present	char_tracker_stage05	rachel	absent	0.0000		low	speaker_offscreen
+36	137	340.02	344.66	I fold like a cheap hooker who got hit in the stomach by a fat guy with sores on his face.	Joey	Ahhh, I fold like a cheap hooker who got hit in the stomach by a fat guy with sores on his face. (the girls look at him, confused) Oh, I'm out.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+36	138	349.38	350.18	Oh, I'm out.	Joey	Oh, I'm out	Joey	present	char_tracker_stage05	joey|monica|phoebe|rachel	present	1.0000		medium	
+36	139	352.02	352.58	Ross.	Phoebe	Ross?	Phoebe	present	char_tracker_stage05	phoebe|rachel|ross	present	1.0000		high	
+36	140	352.98	354.26	Oh, I am very in.	Ross	Oh, I am very in.	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+36	141	355.78	357.86	Chandler couldn't be more out.	Chandler	Couldn't be more out. (throws in cards)	Chandler	present	char_tracker_stage05	chandler|phoebe|rachel|ross	present	0.6667		high	
+36	142	358.34	358.9	Me too.	Phoebe	Me too. Rachel.	Phoebe	present	char_tracker_stage05	chandler|rachel|ross	absent	0.0000		low	speaker_offscreen
+36	143	359.46	364.67	Rachel, I will say see you and I'll raise you.	Rachel	Uh, I will see you... and I'll raise you. (throws chips in pot) What do you say... want to waste another buck?	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+36	144	365.63	366.35	What do you say?	Rachel	What do you say	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+36	145	366.35	367.55	You wanna waste another buck?	Rachel	want to waste another buck	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		medium	
+36	146	368.51	369.55	No, not this time.	Ross	no not this time	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+36	147	370.59	371.47	So, what'd you have?	Ross	No, not this time. (he folds) So... what'd you have?	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		high	
+36	148	371.55	372.51	I'm not telling.	Rachel	I'm not telling. (collects chips)	Rachel	present	char_tracker_stage05	chandler|rachel|ross	present	1.0000		high	
+36	149	372.51	373.55	Come on, show them to me.	Ross	Come on, show them to me. (reaches for her cards, Rachel covers them up)	Ross	present	char_tracker_stage05	chandler|rachel|ross	present	1.0000		high	
+36	150	373.55	374.87	No, show them to me.	Ross	Show them to me!	Ross	present	char_tracker_stage05	chandler|phoebe|rachel|ross	present	1.0000		high	
+36	151	374.87	375.47	Let me see.	Ross	Let me see! Show them!	Ross	present	char_tracker_stage05	chandler|phoebe|rachel|ross	present	1.0000		medium	
+36	152	376.27	377.71	You know, I've had dates like this.	Chandler	Y'know, I've had dates like this.	Chandler	present	char_tracker_stage05	chandler|joey|monica|ross	present	1.0000		high	
+36	153	381.15	383.87	Boy, you really can't stand to lose, can you?	Rachel	(deals new hand) Boy, you really can't stand to lose, can you? Your whole face is getting red... little veins popping out on your temple...	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+36	154	384.35	385.87	Your whole face is getting red.	Rachel	Your whole face is getting red	Rachel	present	char_tracker_stage05	phoebe|rachel|ross	present	1.0000		medium	
+36	155	385.95	388.35	Little veins popping out of your temple.	Rachel	little veins popping out on your temple	Rachel	present	char_tracker_stage05	phoebe|rachel|ross	present	1.0000		medium	
+36	156	389.95	392.19	Plus, that shirt doesn't really match those pants.	Phoebe	Plus that shirt doesn't really match those pants.	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+37	157	397.34	398.46	First of all, I'm not losing.	Ross	First of all, I'm not losing...	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		high	
+37	158	398.78	400.02	Let's not talk about losing.	Ross	Let's not talk about losing. Just deal the...	Ross	present	char_tracker_stage05	rachel	partial	0.3333		medium	partial_visual_presence
+37	159	400.02	400.82	Just deal with.	Ross	Just deal the	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+37	160	400.82	401.54	Hello, Rachel.	Rachel	hel lo rachel	Rachel	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+37	161	401.54	401.86	Green.	Rachel	(answering phone) Hel-lo, Rachel Green.	Rachel	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+37	162	401.86	402.94	Hey, me, me, me, me.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+37	163	404.54	405.34	Excuse me.	Rachel	Excuse me	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+37	164	405.66	406.94	It's about the Job.	Rachel	(on phone) Excuse me. (covers up phone; to Ross) It's about the job.	Rachel	present	char_tracker_stage05	phoebe|rachel	present	0.5000		high	
+37	165	407.98	409.82	Barbara, Hi, how are you?				present	char_tracker_stage05	chandler|ross	unknown			low	missing_speaker
+37	166	412.7	413.5	Uh huh.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+37	167	415.1	415.98	No, I understand.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+37	168	417.5	417.94	Yeah.				present	char_tracker_stage05	phoebe|rachel	unknown			low	missing_speaker
+37	169	417.94	418.3	Oh.	Rachel	oh	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		low	low_speaker_confidence
+37	170	418.5	419.3	Oh, come on.	Rachel	oh oh come on	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		low	low_speaker_confidence
+38	171	419.3	420.26	No, I'm fine.	Rachel	Oh, oh, come on, no, I'm fine	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+38	172	420.66	421.78	Don't be silly.	Rachel	Don't be silly	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+38	173	422.82	423.34	Yeah.	Rachel	Yeah	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+38	174	423.34	427.06	Oh, but you know, if anything else opens up, please.	Rachel	Barbara! Hi, how are you? (Listens) Uh-huh. (Listens) No, I understand. Yeah. Oh, oh, come on, no, I'm fine. Don't be silly. Yeah... oh, but you know, if-if anything else opens up, plea—Hello? Hello? (hangs up phone, very depressed)	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+38	175	427.3	427.86	Hello?	Rachel	Hello	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+38	176	430.02	430.58	Hello?				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+39	177	447.31	447.95	Sorry, Rach.	Monica	Sorry, Rach.	Monica	present	char_tracker_stage05	joey|monica|rachel	present	1.0000		high	
+39	178	448.67	450.43	You know, there's gonna be lots of other stuff.	Phoebe	Y'know, there's gonna be lots of other stuff.	Phoebe	present	char_tracker_stage05	rachel	absent	0.0000		low	speaker_offscreen
+39	179	450.67	452.51	Yeah, okay.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+39	180	454.43	455.23	Where were we?	Rachel	Where were we	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+39	181	455.87	457.07	Oh, okay.	Rachel	Oh, OK	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+39	182	457.07	457.95	Five card draw.	Rachel	Yeah...(sigh)....OK. Where were we? Oh, OK... five card draw, uh... jacks or better... nothing wild, everybody ante.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+39	183	459.47	460.43	Jacks are better.	Rachel	jacks or better	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+39	184	461.47	462.19	Nothing wild.	Rachel	nothing wild, everybody ante	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+39	185	462.19	463.07	Everybody anti.	Rachel	everybody ante	Rachel	present	char_tracker_stage05	joey|monica|rachel	present	1.0000		low	low_speaker_confidence
+39	186	463.87	465.95	Look, Rach, we don't have to do this.	Joey	Look, Rachel, we don't have to do this.	Joey	present	char_tracker_stage05	joey|monica|rachel	present	1.0000		high	
+39	187	466.67	467.63	Yes, we do.	Rachel	Yes, we do. (pause)	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+39	188	470.94	471.3	All right.				present	char_tracker_stage05	joey|monica	unknown			low	missing_speaker
+39	189	471.3	471.74	Check.	Monica	Alright, check.	Monica	present	char_tracker_stage05	joey|monica	present	1.0000		medium	
+39	190	472.46	472.94	Check.	Joey	Check.	Joey	present	char_tracker_stage05	joey|monica	present	1.0000		high	
+39	191	473.34	474.7	I'm in for 50 cents.	Ross	I'm in for fifty cents. (throws it in)	Ross	present	char_tracker_stage05	chandler|joey|monica|ross	present	1.0000		medium	
+39	192	475.42	475.82	Call.	Chandler	Call.	Chandler	present	char_tracker_stage05	chandler|ross	present	1.0000		high	
+39	193	476.62	477.26	I'm in.	Phoebe	I'm in.	Phoebe	present	char_tracker_stage05	chandler|rachel|ross	absent	0.0000		low	speaker_offscreen
+39	194	478.78	484.94	I see your 50 cents and I raise you $5.	Rachel	I see your fifty cents... and I raise you... five dollars. (throws it in)	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+39	195	486.06	488.42	I thought it was a 50 cent limit.	Ross	I thought, uh... it was a fifty cent limit.	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+39	196	488.42	489.38	Well, I just lost a job.	Rachel	well i just lost a job does anybody have a problem with that	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		low	low_speaker_confidence
+39	197	489.38	491.18	And I'd like to raise the bet five bucks.	Rachel	Well, I just lost a job, and I'd like to raise the bet five bucks. Does anybody have a problem with that?	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+39	198	491.5	492.86	Does anybody have a problem with that?	Rachel	Does anybody have a problem with that	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+39	199	494.78	495.34	Not at all.				absent	char_tracker_stage05		unknown			low	missing_speaker
+39	200	495.34	495.54	No.				absent	char_tracker_stage05		unknown			low	missing_speaker
+39	201	495.54	496.86	No, we're holding right up.				absent	char_tracker_stage05		unknown			low	missing_speaker
+40	202	501.16	501.64	Loser.	Rachel	(to Ross) Loser?	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		high	
+41	203	510.44	511.24	No, I fold.	Ross	No, I fold. (lays cards down, and gets up)	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		high	
+41	204	511.8	513.08	What do you mean you fold?				present	char_tracker_stage05	rachel|ross	unknown			low	missing_speaker
+41	205	513.08	514.48	Hey, come on, what is this?	Rachel	What is this	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		medium	
+41	206	514.48	518.6	I thought that once the cards are dealt, I'm not a nice guy.	Rachel	What do you mean, you fold? Hey, come on! What is this? I thought that 'once the cards were dealt, I'm not a nice guy.' I mean, what, were you just full of it?	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+41	207	519.08	520.84	I mean, what, were you just full of it?	Rachel	' I mean, what, were you just full of it	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		medium	
+42	208	535.01	535.49	I'm in.	Ross	I'm in. (throws in chips)	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+42	209	536.69	537.57	How many you want?	Rachel	How many you want?	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		high	
+42	210	538.21	538.61	One.	Ross	One. (Rachel gives him the card.)	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		high	
+42	211	540.45	541.65	Dealer takes two.	Rachel	Dealer takes two. (she deals herself two cards) What do you bet?	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+42	212	542.69	543.49	What do you bet?	Rachel	What do you bet	Rachel	present	char_tracker_stage05	rachel|ross	present	0.5000		medium	
+42	213	543.89	545.01	I bet $2.	Ross	I bet two dollars. (throws it in)	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+42	214	547.09	547.73	Okay.	Rachel	OK	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+42	215	548.29	549.01	See you two.	Rachel	OK... see your two... and I raise you twenty. (throws it in)	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+42	216	550.62	554.86	And I raise you 20.	Rachel	and I raise you twenty	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+42	217	560.86	561.82	I see you're 20.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+42	218	563.74	564.78	Raise you 25.	Ross	I see your twenty, raise you twenty-five. (throws it in)	Ross	present	char_tracker_stage05	joey|monica|rachel|ross	present	1.0000		low	low_speaker_confidence
+42	219	571.18	572.46	I see you're 25.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+43	220	573.82	574.22	And.	Rachel	and	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+43	221	574.46	575.49	Monica, get my purse.	Rachel	See your twenty-five...and...uh, Monica, get my purse.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+44	222	581.4	583.0	Rachel, there's nothing in it.	Monica	Rachel, there's nothing in it.	Monica	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+44	223	585.0	586.6	Okay, then get me your purse.	Rachel	OK, then get me your purse.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+44	224	591.0	591.8	Okay, baby.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+45	225	592.44	593.04	Here you go.	Monica	OK, here you go. Good luck.	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		medium	
+45	226	593.04	593.64	Good luck.	Monica	Good luck	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+45	227	594.36	595.08	Thank you.	Rachel	(to Monica) Thank you. (to Ross) I saw your twenty-five, and I raise you... seven.	Rachel	present	char_tracker_stage05	monica|rachel	present	0.5000		medium	
+45	228	595.8	605.73	I saw you're 25 and I raised you seven teams.	Rachel	i saw your twenty five and i raise you seven	Rachel	present	char_tracker_stage05	monica|rachel	present	1.0000		low	low_speaker_confidence
+46	229	612.2	613.4	Joey, I'm a little shy.	Ross	(to Joey) Joey, I'm a little shy.	Ross	present	char_tracker_stage05	joey|ross	present	1.0000		high	
+46	230	615.0	616.04	That's okay, Ross.	Joey	that's ok ross what	Joey	present	char_tracker_stage05	joey|ross	present	1.0000		low	low_speaker_confidence
+46	231	616.04	616.84	You can ask me.	Joey	That's OK, Ross, you can ask me. What?	Joey	present	char_tracker_stage05	joey|ross	present	1.0000		medium	
+47	232	624.12	624.84	What do you need?	Chandler	(to Ross) What do you need, what do you need?	Chandler	present	char_tracker_stage05	joey|ross	absent	0.0000		low	speaker_offscreen
+47	233	624.84	625.56	What do you need?	Chandler	what do you need	Chandler	present	char_tracker_stage05	chandler|joey|ross	present	0.5000		low	low_speaker_confidence
+47	234	625.56	625.96	15.				present	char_tracker_stage05	chandler|joey|ross	unknown			low	missing_speaker
+47	235	626.28	627.04	All right, here's 10.	Chandler	Alright, here's ten. (gives it to him)	Chandler	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		medium	
+47	236	627.04	627.68	Here, I got five.	Joey	Here, I got five, I got five. (Ross takes the money)	Joey	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		high	
+47	237	627.68	628.28	I got five.	Joey	i got five	Joey	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		low	low_speaker_confidence
+47	238	628.44	629.08	Thank you.	Ross	Thank you.	Ross	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		high	
+47	239	629.24	629.96	Good luck.	Chandler	Good luck.	Chandler	present	char_tracker_stage05	joey|ross	absent	0.0000		low	speaker_offscreen
+47	240	631.57	633.65	Okay, I am calling your 17.	Ross	OK, I am calling your seventeen	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+47	241	634.45	635.17	What do you got?	Ross	(to Rachel) OK, I am calling your seventeen. What do you got?	Ross	present	char_tracker_stage05	monica|phoebe|rachel|ross	present	1.0000		medium	
+48	242	646.85	647.57	Full house.	Rachel	(lays down cards) Full house.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+49	243	655.25	656.05	You got me.	Ross	You got me.	Ross	present	char_tracker_stage05	monica|rachel|ross	present	0.5000		high	
+50	244	667.95	668.51	That's all right.	Joey	Ahhh, that's alright	Joey	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		medium	
+50	245	668.51	669.71	That's a tough hand to beat.	Joey	(to Ross) Ahhh, that's alright. Y'know, that's a tough hand to beat.	Joey	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		medium	
+50	246	669.71	670.59	I thought we had that.	Chandler	(to Ross) I thought we had them!	Chandler	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		high	
+50	247	670.59	672.99	Oh, when you don't have the cards, you don't have the cards, you know.	Ross	Oh, well, when you don't have the cards, you don't have the cards, you know. (looks at Rachel) But, uh... look how happy she is. (smiles)	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+50	248	673.15	676.03	But look how happy she is.	Ross	oh well but uh look how happy she is	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+53	249	687.55	688.11	Airplane.	Chandler	Airplane! Airport! Airport '75! Airport '77! Airport '79!	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+53	250	688.11	688.59	Airport.	Chandler	Airport	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+53	251	688.99	690.11	Airport 75.	Chandler	Airport '75	Chandler	partial	char_tracker_stage05		partial	0.3333		medium	partial_visual_presence
+53	252	690.4	691.28	Airport 77.	Chandler	Airport '77	Chandler	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		medium	
+53	253	691.28	692.32	Airport 79.	Chandler	Airport '79	Chandler	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		medium	
+54	254	694.48	695.2	Time's up.	Rachel	Oh, time's up.	Rachel	present	char_tracker_stage05	monica	absent	0.0000		low	speaker_offscreen
+54	255	695.84	698.72	Bye bye Birdie.	Monica	(pointing at the drawing, upset) Bye... bye... BIRDIE.	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+54	256	700.24	701.36	That's a bird.	Phoebe	That's a bird?	Phoebe	present	char_tracker_stage05	chandler|joey|monica|phoebe|rachel|ross	present	1.0000		high	
+55	257	702.48	703.68	That's a bird.	Phoebe	That's a bird!	Phoebe	present	char_tracker_stage05	monica|phoebe|rachel	present	1.0000		high	
+56	258	705.6	706.8	Okay, okay, it's my turn.	Rachel	OK, OK, it's my turn. (reads the answer)	Rachel	present	char_tracker_stage05	monica|phoebe|rachel	present	0.5000		high	
+56	259	709.68	713.76	Go Beam.	Chandler	Go.	Chandler	present	char_tracker_stage05	chandler|joey|ross	present	0.6000		medium	
+57	260	714.16	714.8	Bean.	Ross	Uh.... bean! Bean!	Ross	present	char_tracker_stage05	chandler|joey|rachel|ross	present	1.0000		medium	
+58	261	717.12	718.84	The Unbearable Likeness of Bean.	Joey	(triumphantly) The Unbearable Likeness of Being!	Joey	present	char_tracker_stage05	chandler|joey|rachel|ross	present	1.0000		high	
+58	262	718.84	719.36	Yes.	Rachel	Yes!	Rachel	present	char_tracker_stage05	chandler|joey|rachel|ross	present	1.0000		high	
+58	263	723.1	725.18	That you get that?	Monica	That, you get? That, you get?	Monica	present	char_tracker_stage05	monica|phoebe	present	1.0000		high	
+58	264	725.18	725.58	You.	Monica	you get	Monica	present	char_tracker_stage05	monica|phoebe	present	1.0000		low	low_speaker_confidence

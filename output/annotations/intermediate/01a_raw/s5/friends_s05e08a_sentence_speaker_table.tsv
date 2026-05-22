@@ -1,0 +1,219 @@
+scene_id	sentence_id	start	end	utterance	speaker	utterance_ct	speaker_ct	visual_presence	visual_presence_source	visual_presence_chars	speaker_visual_presence	speaker_visual_ratio	visual_presence_note	annotation_confidence	annotation_review_reason
+1	1	2.56	2.96	Oh.				absent	char_tracker_stage05		unknown			low	missing_speaker
+1	2	7.6	10.72	Oh, Monica, that was the best Thanksgiving dinner ever.	Rachel	Oh Monica that was the best Thanksgiving dinner ever! I think you killed us.	Rachel	present	char_tracker_stage05	rachel|ross	present	0.7500		high	
+1	3	10.8	11.92	It was so good.				present	char_tracker_stage05	rachel|ross	unknown			low	missing_speaker
+1	4	12.4	13.6	I think you killed us.				present	char_tracker_stage05	chandler|monica|rachel|ross	unknown			low	missing_speaker
+1	5	15.36	17.52	Couldn't possibly eat another bite.	Ross	I couldn't possibly eat another bite.	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		high	
+1	6	18.0	19.36	I need something sweet.	Joey	I need something sweet.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+1	7	21.6	22.96	Does anyone want to watch tv?	Phoebe	Does anyone wanna watch TV?	Phoebe	present	char_tracker_stage05	joey|phoebe	present	1.0000		high	
+1	8	23.04	23.52	Yeah.	All	Yeah, sure.	All	present	char_tracker_stage05	phoebe	unobserved			medium	
+2	9	27.04	28.72	Monica, your remote doesn't work.	Phoebe	Monica your remote doesn't work.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+2	10	29.03	31.59	Phoebe, you have to lift it and point.	Monica	Phoebe, you have to lift it and point.	Monica	present	char_tracker_stage05	chandler|monica|phoebe	present	1.0000		high	
+2	11	32.55	33.11	Oh.	Phoebe	Oh	Phoebe	present	char_tracker_stage05	chandler|monica|phoebe	present	1.0000		medium	
+2	12	35.11	36.07	Oh, forget it.	Phoebe	Oh. Aw, forget it.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+2	13	37.83	39.59	Hey, you know what we should all do?	Rachel	Yeah, you know what we should all do	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		medium	
+2	14	39.59	43.19	We should play that game where everyone says one thing that they're thankful for.	Rachel	Yeah, you know what we should all do? We should play that game where everyone says one thing that they're thankful for.	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		high	
+2	15	43.27	47.51	Oh, I. I am thankful for this beautiful fall we've been having.	Joey	Ooh-ooh, I! I am thankful for this beautiful fall we've been having.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+2	16	47.59	49.03	Oh, very sweet, Jeff.				present	char_tracker_stage05	chandler|joey|monica	unknown			low	missing_speaker
+2	17	50.15	56.71	Yeah, the other day I was at the bus stop and this lovely fall breeze came in out of nowhere and blew this chick's skirt right out.	Joey	Yeah, the other day I was at the bus-stop and this lovely fall breeze came in out of nowhere and blew this chick's skirt right up. Oh! Which reminds me, I'm also thankful for thongs. (Note: Actually, I think every guy is thankful for thongs. That and spandex. J )	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+2	18	58.63	62.05	Oh, which reminds me, I'm also thank thankful for thongs.	Joey	oh which reminds me i'm also thankful for thongs	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+4	19	112.03	115.87	I mean, it's not so much an underpant as it is a feat of engineering.	Joey	I mean, it's not so much an underpant as it is a feat of engineering. I mean, it's amazing how much they can do with so little material! And the way they play with your mind! Is it there? Is it not there?	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+4	20	117.15	121.07	I mean, it's amazing how much they can do with so little material.	Joey	I mean, it's amazing how much they can do with so little material	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+4	21	122.41	123.69	And the way they play with your mind.	Joey	And the way they play with your mind	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+4	22	123.69	124.65	I mean, is it there?	Joey	Is it there	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+4	23	124.65	125.61	Is it not there?	Joey	Is it not there	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+4	24	127.29	128.97	Are you aware that you're still talking?	Chandler	Are you aware that you're still talking?	Chandler	present	char_tracker_stage05	chandler|joey|monica	present	1.0000		high	
+4	25	130.89	133.61	Is anyone thankful for anything else besides a thong?	Monica	Is anyone thankful for anything else besides a thong?	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+4	26	134.81	135.21	Huh?	Ross	huh	Ross	present	char_tracker_stage05	chandler|monica|rachel|ross	present	0.5000		low	low_speaker_confidence
+4	27	135.21	136.17	I don't know what to pick.	Ross	Huh, I don't know what to pick	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		medium	
+4	28	136.17	138.97	Am I more thankful for my divorce or my eviction?	Ross	Huh, I don't know what to pick. Am I more thankful for my divorce or my eviction? Hmm.	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		high	
+4	29	138.97	139.45	Hmm.	Ross	Hmm	Ross	present	char_tracker_stage05	phoebe|rachel|ross	present	1.0000		medium	
+4	30	139.61	140.05	Wow.	Phoebe	wow	Phoebe	present	char_tracker_stage05	phoebe|rachel|ross	present	1.0000		low	low_speaker_confidence
+4	31	140.05	140.33	See?	Phoebe	wow see	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		low	low_speaker_confidence
+4	32	140.33	142.41	And I didn't think you'd be able to come up with anything.	Phoebe	Wow! See, and I didn't think you'd be able to come up with anything.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+4	33	145.29	146.25	I'm sorry, sis.	Ross	I'm sorry	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		medium	
+4	34	146.25	147.93	This is the worst Thanksgiving ever.	Ross	I'm sorry. It's just that this is the worse Thanksgiving ever.	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		medium	
+4	35	147.93	148.89	No, no, no, no.	Chandler	No-no-no	Chandler	present	char_tracker_stage05	rachel|ross	absent	0.0000		low	speaker_offscreen
+4	36	148.89	150.63	I am the king of bad Thanksgivings.	Chandler	I am the king of bad Thanksgivings	Chandler	present	char_tracker_stage05	chandler	present	0.6667		medium	
+4	37	150.94	153.98	You can't just swoop in here with your bad marriage and take that away from me.	Chandler	No-no-no! I am the king of bad Thanksgivings. You can't just swoop in here with your bad marriage and take that away from me.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+4	38	155.34	155.7	No.				present	char_tracker_stage05	chandler|rachel|ross	unknown			low	missing_speaker
+4	39	155.7	158.66	You're not gonna tell the whole story about how your parents got divorced again, are you?	Rachel	Oh, you're not gonna tell the whole story about how your parents got divorced again are you?	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		high	
+4	40	158.66	159.42	Oh, God, no.	Ross	Oh God, no.	Ross	present	char_tracker_stage05	chandler|monica|rachel|ross	present	1.0000		high	
+4	41	159.5	159.86	Really?				present	char_tracker_stage05	chandler|monica|rachel|ross	unknown			low	missing_speaker
+4	42	159.86	160.62	Oh, no, no.				present	char_tracker_stage05	chandler|monica|rachel|ross	unknown			low	missing_speaker
+4	43	160.62	162.06	Come on, I want to hear.	Joey	oh come on i wanna hear it it	Joey	present	char_tracker_stage05	chandler|joey|monica	present	0.6667		low	low_speaker_confidence
+4	44	165.3	167.74	Wouldn't be Thanksgiving without Chandler bumming us out.	Joey	Oh, come on! I wanna hear it! It wouldn't be Thanksgiving without Chandler bumming us out!	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+4	45	169.82	171.66	See, it's a tradition, like the parade.	Chandler	It's a tradition, like the parade	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+4	46	171.74	175.34	If the parade decided it was gay, moved out and abandoned its entire family.	Chandler	It's a tradition, like the parade. If the parade decided it was gay, moved out, and abandoned its entire family.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+7	47	179.42	185.02	Now, Chandler, dear, just because your father and I are getting a divorce doesn't mean we don't love you.	Mrs. Bing	Now Chandler dear, just because your father and I are getting a divorce it doesn't mean we don't love you. It just means he would rather sleep with the house-boy than me.	Mrs. Bing	absent	char_tracker_stage05		unobserved			high	
+7	48	185.58	189.74	It just means he would rather sleep with the houseboy than with me.	Mrs. Bing	It just means he would rather sleep with the house-boy than me	Mrs. Bing	absent	char_tracker_stage05		unobserved			medium	
+9	49	193.34	203.18	More turkey, Mr. Chandler, every time you tell that story, that guy's accent gets thicker and thicker.	Rachel	Every time you tell that story that guy's accent gets thicker and thicker.	Rachel	partial	char_tracker_stage05		partial	0.4545		medium	partial_visual_presence
+9	50	205.42	207.1	So are he and your dad still together?	Phoebe	So are he and your dad still together?	Phoebe	partial	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+9	51	207.53	207.97	No, no, no.				present	char_tracker_stage05	chandler|monica	unknown			low	missing_speaker
+9	52	207.97	208.89	After they got their own place.	Chandler	no no no after they got their own place you should of heard his accent	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		low	low_speaker_confidence
+9	53	208.89	210.49	The houseboy got his own houseboy.	Chandler	No no no. After they got their own place, the houseboy got his own houseboy..you should of heard his accent.	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		medium	
+9	54	211.85	213.29	You should have heard his accent.	Chandler	you should of heard his accent	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		medium	
+9	55	214.57	216.09	All right, yours is worse.	Ross	Yours is worse	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		medium	
+9	56	216.17	218.57	You are the king of bad Thanksgivings.	Ross	You're right. Yours is worse. You are the king of bad Thanksgivings.	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		high	
+9	57	218.97	219.93	I don't know about that.	Phoebe	I don't know about that	Phoebe	present	char_tracker_stage05	joey|phoebe|rachel|ross	present	1.0000		medium	
+9	58	219.93	221.13	I've got one that's worse.	Phoebe	I don't know about that. I've got one that's worse.	Phoebe	present	char_tracker_stage05	joey|phoebe	present	1.0000		high	
+9	59	221.29	221.61	Really?	Chandler	Really	Chandler	present	char_tracker_stage05	chandler|joey|phoebe	present	1.0000		medium	
+9	60	221.61	223.13	Worse than more turkey, Mr.	Chandler	"Really? Worse than, ""More turkey Mr. Chandler?"""	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+9	61	223.13	224.01	Challenger?	Chandler	Chandler	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+9	62	226.89	229.33	Did the little rich boy have a problem with the butler?	Phoebe	Oh, did the little rich boy have a problem with the butler? Yes, mine's worse!	Phoebe	present	char_tracker_stage05	joey|phoebe	present	1.0000		high	
+9	63	229.33	230.49	Yes, mine's worse.	Phoebe	Yes, mine's worse	Phoebe	present	char_tracker_stage05	joey|phoebe	present	1.0000		medium	
+9	64	236.97	238.17	More bandages.	Past Life Phoebe	bandages	Past Life Phoebe	present	char_tracker_stage05	phoebe	unobserved			low	low_speaker_confidence
+11	65	238.41	239.2	More ban.	Past Life Phoebe	More bandages	Past Life Phoebe	present	char_tracker_stage05	phoebe	unobserved			medium	
+11	66	239.27	239.75	Bandages.	Past Life Phoebe	More bandages	Past Life Phoebe	present	char_tracker_stage05	phoebe	unobserved			medium	
+11	67	240.79	243.35	Please can I get some more bandages in here?	Past Life Phoebe	More bandages! More bandages! Please, can I get some more bandages in here! This man is dying—(She is cut off by an exploding shell just outside the tent. When the smoke clears, she's missing an arm and the blood is pumping out like you'd see in a horror movie. And upon seeing her condition, she says…) Oh no.	Past Life Phoebe	present	char_tracker_stage05	phoebe	unobserved			medium	
+11	68	243.75	245.19	This man is not.	Past Life Phoebe	This man is dying— Oh no	Past Life Phoebe	partial	char_tracker_stage05		unobserved			medium	
+11	69	249.99	250.87	Oh, no.	Past Life Phoebe	dying oh no	Past Life Phoebe	present	char_tracker_stage05	phoebe	unobserved			low	low_speaker_confidence
+13	70	254.63	256.15	In this life, Phoebe.	Ross	In this life, Phoebe.	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+13	71	257.91	258.91	Oh, this life.	Phoebe	this life	Phoebe	present	char_tracker_stage05	joey|phoebe	present	1.0000		low	low_speaker_confidence
+13	72	258.91	259.63	Oh, okay.	Phoebe	Oh, this life	Phoebe	present	char_tracker_stage05	joey|phoebe	present	1.0000		medium	
+13	73	259.63	260.87	No, Chandler's is worse.	Phoebe	Oh, this life! Oh okay no, Chandler's is worse.	Phoebe	present	char_tracker_stage05	chandler|joey|monica|phoebe	present	1.0000		high	
+13	74	262.55	265.11	Man, it must be so cool remembering stuff like that.	Joey	Man, it must be so cool remembering stuff like that! I don't have any past life memories.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+13	75	265.36	266.96	I don't have any past life memories.	Joey	I don't have any past life memories	Joey	present	char_tracker_stage05	joey|phoebe	present	1.0000		medium	
+13	76	268.64	270.04	Of course you don't, sweetie.	Phoebe	Of course you don't sweetie. You're brand new.	Phoebe	present	char_tracker_stage05	joey|phoebe	present	1.0000		high	
+13	77	270.04	270.8	You're brand new.	Phoebe	You're brand new	Phoebe	present	char_tracker_stage05	joey|phoebe	present	1.0000		medium	
+13	78	273.84	274.32	I know.	Rachel	i know	Rachel	present	char_tracker_stage05	joey|phoebe|rachel	present	1.0000		low	low_speaker_confidence
+13	79	274.32	275.84	Monica's worst Thanksgiving.	Rachel	I know Monica's worst Thanksgiving.	Rachel	present	char_tracker_stage05	chandler|monica|rachel	present	1.0000		high	
+13	80	275.84	277.44	Oh, let's not tell the story.	Monica	Oh, let's not tell this story.	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+13	81	277.68	278.4	Oh, come on.	All	Oh, come on!	All	present	char_tracker_stage05	chandler|joey|monica|phoebe	unobserved			high	
+13	82	278.72	279.28	Oh, no.	Phoebe	Oh no, I know	Phoebe	present	char_tracker_stage05	chandler|joey|monica|phoebe	present	1.0000		medium	
+13	83	279.28	280.24	I know, I know.	Phoebe	I know	Phoebe	present	char_tracker_stage05	joey|phoebe	present	1.0000		medium	
+13	84	280.32	283.52	It's the one where Joey got Monica's turkey stuck on his head.	Phoebe	Oh no, I know! I know! It's the one where Joey got Monica's turkey stuck on his head!	Phoebe	present	char_tracker_stage05	joey|phoebe	present	1.0000		high	
+13	85	285.6	286.0	What?	Rachel	What	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		medium	
+13	86	286.48	289.2	Joey got a turkey stuck on his head?	Rachel	What?! Joey got a turkey stuck on his head?!	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		high	
+13	87	289.36	290.88	Hey, it's not like it sounds.	Joey	Hey, it's not like it sounds.	Joey	present	char_tracker_stage05	joey|phoebe|rachel|ross	present	1.0000		high	
+13	88	291.25	293.17	It's exactly like it sounds.	Chandler	It's exactly like it sounds.	Chandler	present	char_tracker_stage05	chandler|joey|phoebe	present	1.0000		high	
+15	89	300.45	301.01	Hello?	Joey	(muffled) Hello?	Joey	present	char_tracker_stage05	phoebe	absent	0.0000		low	speaker_offscreen
+15	90	303.89	304.45	Hello?	Phoebe	(surprised) Hello?	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+15	91	307.89	308.45	Phoebe?	Joey	Phoebe?	Joey	present	char_tracker_stage05	phoebe	absent	0.0000		low	speaker_offscreen
+15	92	309.73	310.29	Joey?	Phoebe	Joey	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+15	93	310.37	311.41	What's going on?	Phoebe	Joey? What's going on?	Phoebe	present	char_tracker_stage05	phoebe	present	0.5000		high	
+15	94	311.97	312.37	What?				absent	char_tracker_stage05		unknown			low	missing_speaker
+15	95	315.49	316.45	Oh, my God.	Phoebe	Oh my God!	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+15	96	316.93	317.49	I know.	Joey	I know	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+15	97	318.53	319.41	It's stuck.	Joey	I know! It's stuck!!!	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+15	98	322.2	324.2	Deb, how did it get on?	Phoebe	(walks him to the kitchen) Easy. Step. How did it get on?	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+15	99	324.68	326.76	I put it on to scare Chandler.	Joey	I put it on to scare Chandler!	Joey	present	char_tracker_stage05	phoebe	absent	0.0000		low	speaker_offscreen
+15	100	327.64	328.68	Oh, my God.	Phoebe	Oh my God	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+15	101	328.92	331.08	Monica's gonna totally freak out.	Phoebe	Oh my God! Monica's gonna totally freak out!	Phoebe	partial	char_tracker_stage05		partial	0.2500		medium	partial_visual_presence
+15	102	331.16	332.52	Well, then help me get it off.	Joey	Well then help me get it off	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+15	103	332.92	335.4	Plus, it smells really bad in here.	Joey	Well then help me get it off! Plus, it smells really bad in here.	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+15	104	337.0	338.2	Of course it smells bad.	Phoebe	Well, of course it smells really bad	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+15	105	338.2	340.6	You have your head up a dead animal's ass.	Phoebe	Well, of course it smells really bad. You have your head up a dead animal's ass!	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+15	106	342.28	342.68	Oh.				absent	char_tracker_stage05		unknown			low	missing_speaker
+15	107	342.68	343.72	Oh, Monica.				absent	char_tracker_stage05		unknown			low	missing_speaker
+16	108	343.72	352.42	Oh, hey, he to get the turkey ba.	Monica	hey did you get the turkey basted	Monica	partial	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+16	109	352.42	353.26	Oh, my God.	Monica	Hey, did you get the turkey basted—Oh my God	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+16	110	353.26	354.02	Oh, my God.	Monica	Oh my God	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+16	111	355.54	356.42	Who is that?	Monica	Hey, did you get the turkey basted—Oh my God! Oh my God! (She sees someone is stuck in the turkey.) Who is that?	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+16	112	356.98	357.94	It's Joey.	Joey	It's Joey.	Joey	present	char_tracker_stage05	monica|phoebe	absent	0.0000		low	speaker_offscreen
+16	113	359.46	359.86	What?	Monica	what	Monica	present	char_tracker_stage05	monica|phoebe	present	1.0000		low	low_speaker_confidence
+16	114	359.86	360.66	What are you doing?	Monica	What-what are you doing	Monica	present	char_tracker_stage05	monica|phoebe	present	1.0000		medium	
+16	115	360.74	361.94	Is this supposed to be funny?	Monica	What-what are you doing? Is this supposed to be funny?	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+16	116	362.1	363.58	No, it's not supposed to be funny.	Phoebe	No, it's not supposed to be funny, it's supposed to be scary.	Phoebe	present	char_tracker_stage05	monica|phoebe	present	1.0000		high	
+16	117	363.58	364.58	It's supposed to be scary.	Phoebe	it's supposed to be scary	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		low	low_speaker_confidence
+16	118	366.58	368.02	Get that off now.	Monica	Well, get it off now!	Monica	partial	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+16	119	368.18	368.9	I can't.	Joey	I can't	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+16	120	369.14	369.86	It's stuck.	Joey	I can't! It-it's stuck!	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+16	121	370.18	374.42	I don't care that that turkey has to feed 20 people at my parents house and they're not gonna eat it off your head.	Monica	Well, I don't care! That-that turkey has to feed 20 people at my parent's house and they're not gonna eat it off your head!	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+16	122	375.7	376.26	Hold on.	Phoebe	All right, hold on	Phoebe	present	char_tracker_stage05	monica|phoebe	present	1.0000		medium	
+16	123	376.26	377.21	Okay, let's just.	Phoebe	All right, hold on! Okay, let's just all think.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+16	124	377.76	378.4	I'll think.				present	char_tracker_stage05	phoebe	unknown			low	missing_speaker
+17	125	384.16	385.12	Okay, I got it.	Monica	Okay, I got it	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+17	126	385.2	385.76	Phoebe.	Monica	Phoebe	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+17	127	386.16	387.52	All right, you pull.	Monica	All right, you pull	Monica	present	char_tracker_stage05	monica	present	0.5000		medium	
+17	128	387.76	390.0	I'm gonna spread the legs as wide as I can.	Monica	Okay, I got it. Phoebe? All right, you pull. I'm gonna spread the legs as wide as I can. (Joey starts giggling.) Joey? Now is not the time!	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+17	129	393.279	394.96	Joey, no, it's not the time.				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+17	130	394.96	395.36	Sorry.				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+17	131	395.36	395.64	Right.				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+17	132	395.64	396.16	Sorry.	Joey	Sorry! Sorry.	Joey	present	char_tracker_stage05	monica	absent	0.0000		low	speaker_offscreen
+18	133	396.24	397.52	Okay, I count to three.	Monica	Okay, count to three. 1. 2. 3!	Monica	present	char_tracker_stage05	monica	present	0.5000		medium	
+18	134	397.92	400.48	One, two, three.				absent	char_tracker_stage05		unknown			low	missing_speaker
+19	135	405.04	405.84	It worked.	Joey	(pointing) It worked! I scared ya, I knew it! Ha-ha!	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+19	136	405.92	406.68	I scared you.	Joey	I scared ya, I knew it	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+19	137	406.68	407.2	I knew.	Joey	ya i knew it	Joey	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+19	138	410.54	411.62	Come over here, big guy.	Chandler	I'm over here big guy.	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+19	139	411.62	412.38	Yeah, you are.	Joey	Yeah, you are	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+19	140	413.98	415.26	I scared you.	Joey	(turning all the way around, and still not facing Chandler) Yeah, you are! (Starts dancing.) I scared you!	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+21	141	419.66	421.18	You did look like an idiot.	Chandler	(laughing) You did look like an idiot.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+21	142	422.78	424.62	I wasn't the only one who looked like an idiot.	Joey	hey i wasn't the only one who looked like an idiot squatternut buash	Joey	present	char_tracker_stage05	joey|phoebe|ross	present	1.0000		low	low_speaker_confidence
+21	143	424.62	431.66	All right, remember when Ross tried to say butternut squash and it came out squatter nut bosh?	Joey	"Hey, I wasn't the only one who looked like an idiot. All right? Remember when Ross tried to say, ""Butternut squash?"" And it came out, ""Squatternut buash?"""	Joey	present	char_tracker_stage05	joey|phoebe	present	1.0000		medium	
+21	144	434.54	435.74	Yeah, that's the same.	Ross	Yeah that's the same.	Ross	present	char_tracker_stage05	joey|phoebe|ross	present	1.0000		high	
+21	145	438.7	439.1	That's it.	Monica	That's it	Monica	present	char_tracker_stage05	joey|monica|phoebe|ross	present	1.0000		medium	
+21	146	439.1	440.46	That's my worst Thanksgiving.	Monica	That's it. That's my worse Thanksgiving.	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+21	147	440.54	443.54	Oh, wait, that can't be the one that Rachel was talking About?	Phoebe	Oh wait! That can't be the one Rachel's talking about. She didn't even know that happened. So which one was it?	Phoebe	present	char_tracker_stage05	joey|monica|phoebe	present	0.7500		medium	
+21	148	443.54	445.34	Cause she didn't even know that that happened.	Phoebe	She didn't even know that happened	Phoebe	present	char_tracker_stage05	joey|phoebe	present	1.0000		medium	
+21	149	445.82	447.5	All right, so what's it, Rachel?				present	char_tracker_stage05	joey|phoebe|rachel	unknown			low	missing_speaker
+21	150	447.82	448.38	Which one?	All	Which one?	All	present	char_tracker_stage05	monica|rachel	unobserved			high	
+21	151	448.86	450.86	I really don't want to tell this story.	Monica	Umm, I-I really don't want to tell this story.	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+21	152	450.94	452.06	Oh, come on, Monica.	Chandler	oh come on monica y'know for me anyway and of course the indians	Chandler	present	char_tracker_stage05	monica	partial	0.3333		low	partial_visual_presence
+21	153	452.06	455.1	Reliving past pain and getting depressed is what Thanksgiving's all about.	Chandler	Oh, come on Monica, reliving past pain and getting depressed is what Thanksgiving is all about. Y'know, for me anyway. And of course, the Indians.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+21	154	457.34	458.74	You know, for me anyway.	Chandler	Y'know, for me anyway	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		medium	
+21	155	458.74	460.06	And of course, the Indians.	Chandler	And of course, the Indians	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		medium	
+21	156	461.82	464.81	Look, of all people, you do not want me to tell this story.	Monica	Look umm, of all people, you do not want me to tell this story!	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+21	157	465.05	466.33	What is that supposed to mean?	Chandler	What is that supposed to mean?	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+23	158	467.53	469.61	Monica, I think Rachel's here.	Mrs. Geller	Monica! I think Rachel's here!	Mrs. Geller	absent	char_tracker_stage05		unobserved			high	
+23	159	470.09	470.89	I'll get it.	Monica	I'll get it	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+23	160	478.65	479.69	Happy Thanksgiving.	Monica	I'll get it! (She runs in, and she's her old fat self like The One With The Prom Video. Not only that, she's out of breath after running a short distance. She goes over and opens the door to reveal Rachel with her old nose.) Happy Thanksgiving!	Monica	present	char_tracker_stage05	rachel	absent	0.0000		low	speaker_offscreen
+23	161	480.01	480.89	Not for me.	Big Nosed Rachel	Not for me	Big Nosed Rachel	present	char_tracker_stage05	rachel	unobserved			medium	
+23	162	481.77	483.21	Chip and I broke up.	Big Nosed Rachel	Not for me. Chip and I broke up!	Big Nosed Rachel	present	char_tracker_stage05	rachel	unobserved			high	
+23	163	484.57	484.97	What?				present	char_tracker_stage05	monica|rachel	unknown			low	missing_speaker
+23	164	484.97	485.37	Why?	Fat Monica	Why	Fat Monica	present	char_tracker_stage05	monica|rachel	unobserved			medium	
+23	165	486.09	486.97	What happened?	Fat Monica	Oh, why? Why? What happened?	Fat Monica	present	char_tracker_stage05	rachel	unobserved			high	
+23	166	486.97	490.41	Well, you know how my parents are out of town and Chip was gonna come over?	Big Nosed Rachel	Well, you know that my parents are out of town and Chip was going to come over…	Big Nosed Rachel	present	char_tracker_stage05	rachel	unobserved			high	
+23	167	490.73	491.25	Yeah.				present	char_tracker_stage05	monica|rachel	unknown			low	missing_speaker
+23	168	491.25	491.57	Yeah.				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+23	169	491.57	492.45	And you were gonna give them.				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+23	170	492.45	493.98	You know, you flower.	Fat Monica	Yeah, yeah, and you were giving him y'know, your flower.	Fat Monica	present	char_tracker_stage05	monica	unobserved			medium	
+23	171	495.58	498.06	Okay, Monica, can you just call it sex?				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+23	172	498.06	500.54	It really creeps me out when you call it that.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+23	173	501.26	501.74	Okay.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+23	174	501.74	506.62	And by the way, while we're at it, a guy's thing is not called his tenderness.	Big Nosed Rachel	Okay, Monica, can you just call it sex?! It really creeps me out when you call it that! Okay, and by the way, while we're at it, a guy's thing is not called his tenderness. Believe me! (Walks into the living room and greets Monica's parents.) Hi!	Big Nosed Rachel	present	char_tracker_stage05	rachel	unobserved			medium	
+23	175	509.82	510.7	Believe me.	Big Nosed Rachel	Believe me	Big Nosed Rachel	present	char_tracker_stage05	monica	unobserved			medium	
+23	176	513.34	513.82	Hi.	Big Nosed Rachel	Hi	Big Nosed Rachel	absent	char_tracker_stage05		unobserved			medium	
+23	177	513.82	515.26	Hi, Rachel.	Mr. Geller	Hi Rachel!	Mr. Geller	absent	char_tracker_stage05		unobserved			high	
+23	178	515.34	517.54	Happy Thanksgiving, sweetheart.	Big Nosed Rachel	Happy Thanksgiving!	Big Nosed Rachel	absent	char_tracker_stage05		unobserved			high	
+23	179	517.54	518.73	Thank you.				absent	char_tracker_stage05		unknown			low	missing_speaker
+24	180	518.96	520.64	Oh, hi.	Mr. Geller	Oh my!	Mr. Geller	present	char_tracker_stage05	chandler|ross	unobserved			low	low_speaker_confidence
+24	181	524.8	530.8	Everyone, this is Chandler, my roommate and lead singer of our band.	Ross	Uh, everyone, this is Chandler! My roommate and lead singer of our band!	Ross	present	char_tracker_stage05	chandler|ross	present	0.5714		high	
+24	182	534.0	534.56	Ross.	Fat Monica	Ross! (Wanting to be introduced.)	Fat Monica	present	char_tracker_stage05	monica|rachel	unobserved			high	
+24	183	535.2	537.12	Oh, this is Monica.	Ross	Oh, this is Monica.	Ross	present	char_tracker_stage05	chandler|monica|rachel|ross	present	1.0000		high	
+24	184	537.44	537.88	Hi.	Fat Monica	hi	Fat Monica	present	char_tracker_stage05	chandler|monica|rachel|ross	unobserved			low	low_speaker_confidence
+24	185	537.88	539.28	I'm Ross's little sister.	Fat Monica	Hi, I'm Ross's little sister.	Fat Monica	present	char_tracker_stage05	chandler|monica|rachel	unobserved			high	
+24	186	540.48	541.2	Okay.	Chandler	(seeing her) Okay.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+24	187	544.0	546.32	I'm so glad you could come, Chandler.	Mrs. Geller	i'm so glad you could come chandler we've	Mrs. Geller	present	char_tracker_stage05	monica	unobserved			low	low_speaker_confidence
+24	188	546.32	548.4	We got plenty of food, so I hope you're hungry.	Mrs. Geller	I'm so glad you could come Chandler, we've got plenty of food so I hope you're hungry.	Mrs. Geller	present	char_tracker_stage05	monica	unobserved			medium	
+24	189	548.4	549.56	Oh, mom, no, no.	Ross	Mom	Ross	present	char_tracker_stage05	chandler|monica|ross	present	1.0000		medium	
+24	190	549.56	553.02	Chandler hates thank and doesn't eat any Thanksgiving food.	Ross	Oh, mom. Mom. Chandler hates Thanksgiving and doesn't eat any Thanksgiving food.	Ross	present	char_tracker_stage05	chandler|ross	present	1.0000		high	
+24	191	553.18	555.9	Oh, I'm so glad you brought him here then.	Mrs. Geller	Oh, well, I'm so glad you brought him here then.	Mrs. Geller	present	char_tracker_stage05	monica	unobserved			high	
+24	192	557.74	562.06	Chandler, if you want, I can make you some macaroni and cheese for dinner.	Fat Monica	Umm, Chandler, if you want I can make you some macaroni and cheese for dinner.	Fat Monica	present	char_tracker_stage05	monica	unobserved			high	
+24	193	562.3	564.54	Well, so long as the Pilgrims didn't eat it, then I'm in.	Chandler	Well, as long as the pilgrims didn't eat it, I'm in.	Chandler	present	char_tracker_stage05	chandler|ross	present	1.0000		high	
+24	194	568.7	569.42	Damn it.				absent	char_tracker_stage05		unknown			low	missing_speaker
+24	195	578.28	580.92	So, Rach, does it.	Ross	so uh rach does it y'know since i've been away at college	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		low	low_speaker_confidence
+26	196	581.32	583.16	Does it feel weird around here now?	Ross	So uh, Rach? Does it, does it feel weird around here now? Y'know since I've been away at college.	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+26	197	583.32	585.88	You know, since I've been away at college?	Ross	Y'know since I've been away at college	Ross	present	char_tracker_stage05	rachel	partial	0.3333		medium	partial_visual_presence
+26	198	586.52	588.68	Oh, no, not really.	Big Nosed Rachel	Oh! No, not really.	Big Nosed Rachel	present	char_tracker_stage05	rachel	unobserved			high	
+26	199	589.96	590.92	Well, that's cool.	Ross	Well, that's cool. So did… (She walks away from him and he shuts up.)	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+26	200	592.36	592.76	So.	Ross	So did	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+26	201	597.0	598.0	So that's Rachel, huh?				present	char_tracker_stage05	chandler|ross	unknown			low	missing_speaker
+26	202	598.0	599.48	The girl you've been writing all those songs about?				present	char_tracker_stage05	chandler|ross	unknown			low	missing_speaker
+26	203	599.64	600.12	Yeah.				present	char_tracker_stage05	chandler|ross	unknown			low	missing_speaker
+26	204	600.92	604.69	Might want to rethink the lyrics to she Feels Weird Since I've Been Gone.	Chandler	So that's Rachel, uh? The one girl you've been writing all those songs about? You might want to re-think the lyrics of She Feels Weird Since I've Been Gone.	Chandler	present	char_tracker_stage05	chandler|ross	present	1.0000		medium	
+27	205	609.25	614.33	I cannot believe Chip dumped me for that slut Nancy Branson.	Big Nosed Rachel	Ugh! I cannot believe Chip dumped me for that slut Nancy Branson. I am never going out with him again. I don't care how much he begs!	Big Nosed Rachel	partial	char_tracker_stage05		unobserved			medium	
+27	206	614.33	615.65	I am never going out with him again.	Big Nosed Rachel	I am never going out with him again	Big Nosed Rachel	present	char_tracker_stage05	rachel	unobserved			medium	
+27	207	615.65	617.97	You know, I don't care how much he begs.	Big Nosed Rachel	I don't care how much he begs	Big Nosed Rachel	present	char_tracker_stage05	rachel	unobserved			medium	
+27	208	618.85	622.29	I think his begging days are over now that he's going out with Nancy Branson.	Fat Monica	I think his begging days are over now that he's going out with Nancy Branson.	Fat Monica	present	char_tracker_stage05	monica	unobserved			high	
+27	209	624.45	625.05	You know what?	Big Nosed Rachel	Y'know what	Big Nosed Rachel	present	char_tracker_stage05	monica|rachel	unobserved			medium	
+27	210	625.05	627.05	I've just had it with high school boys.	Big Nosed Rachel	Y'know what? I've just had it with high school boys! They are just silly. (Ross is overhearing this.) Silly, stupid boys! I'm going to start dating men!	Big Nosed Rachel	present	char_tracker_stage05	monica|rachel	unobserved			medium	
+27	211	627.05	628.81	They're just silly.	Big Nosed Rachel	They are just silly	Big Nosed Rachel	present	char_tracker_stage05	monica|rachel	unobserved			medium	
+27	212	628.81	631.74	They're just silly, stupid boys.	Big Nosed Rachel	Silly, stupid boys	Big Nosed Rachel	present	char_tracker_stage05	monica	unobserved			medium	
+27	213	632.06	633.26	I'm gonna start dating men.	Big Nosed Rachel	I'm going to start dating men	Big Nosed Rachel	present	char_tracker_stage05	monica|rachel|ross	unobserved			medium	
+27	214	636.14	637.38	I'm sorry, Judy.	Ross	umm i'm sorry judy	Ross	present	char_tracker_stage05	monica|ross	present	1.0000		low	low_speaker_confidence
+27	215	637.38	640.62	I couldn't find that bowl you and Jack were looking for.	Ross	Umm, I'm sorry Judy, I couldn't find that bowl that you and Jack were looking for.	Ross	present	char_tracker_stage05	monica|ross	present	1.0000		high	
+27	216	643.42	645.579	Call them mom and dad, you loser.	Fat Monica	Call them mom and dad you loser!	Fat Monica	present	char_tracker_stage05	monica	unobserved			high	
+27	217	648.06	648.78	Wanna cook?				present	char_tracker_stage05	monica|ross	unknown			low	missing_speaker
+28	218	654.06	655.98	Hey, Chandler, that.	Fat Monica	Hey Chandler! Did you like the macaroni and cheese?	Fat Monica	present	char_tracker_stage05	chandler	unobserved			medium	

@@ -1,0 +1,232 @@
+scene_id	sentence_id	start	end	utterance	speaker	utterance_ct	speaker_ct	visual_presence	visual_presence_source	visual_presence_chars	speaker_visual_presence	speaker_visual_ratio	visual_presence_note	annotation_confidence	annotation_review_reason
+1	1	1.12	1.44	Hi.				absent	char_tracker_stage05		unknown			low	missing_speaker
+12	2	1.52	2.0	Hey.	Chandler	Hey!	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+12	3	3.68	9.52	So, Estelle, line up a bunch of auditions for me tomorrow, and I'll have my health insurance back in no time.	Joey	(in obvious pain) Hey! So Estelle lined up a bunch of auditions for me tomorrow and I’ll have my health insurance back in no time.	Joey	present	char_tracker_stage05	joey	present	0.8571		high	
+12	4	10.96	14.56	That's great, but shouldn't you be on the toilet right now?	Chandler	That’s great, but shouldn’t you be on the toilet right now?	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+12	5	18.16	18.56	What?	Joey	What?!	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+12	6	19.04	20.16	What's wrong with you?	Chandler	What’s wrong with you?	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+12	7	20.96	21.52	Nothing.	Joey	Nothing	Joey	present	char_tracker_stage05	joey	present	0.5000		medium	
+12	8	21.76	31.63	Well, I got this blinding pain in my stomach when I was lifting weights before, and then I passed out and haven't been able to stand up since.	Joey	Nothing! Well, I-I got this blinding pain in my stomach when I was lifting weights before, then I uh passed out and uh, haven’t been able to stand up since. But um, I don’t think it’s anything serious.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+12	9	32.51	34.27	But I don't think it's anything serious.	Joey	But um, I don't think it's anything serious	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+12	10	35.39	36.59	This sounds like a hernia.	Chandler	This sounds like a hernia. You have to—you-you go to the doctor!	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		medium	
+12	11	36.59	37.15	You have to.	Chandler	You have to—you-you go to the doctor	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+12	12	37.15	38.51	You go to the doctor.	Chandler	you you go to the doctor	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		low	low_speaker_confidence
+12	13	38.51	39.15	No way.	Joey	No way	Joey	present	char_tracker_stage05	chandler|joey	present	1.0000		medium	
+12	14	39.55	44.27	Okay, look, if I'm gonna go to the doctor for anything, it's gonna be for this thing sticking out of my stomach.	Joey	No way! ‘Kay look, if I have to go to the doctor for anything it’s gonna be for this thing sticking out of my stomach! (Rolls over and shows Chandler.)	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+12	15	48.51	49.63	That's a hernia.	Chandler	That’s a hernia.	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		high	
+12	16	50.03	51.79	I'd have to start working out again.	Joey	Why did I have to start working out again? (Looks at the weights he was using.) Damn you 15s!	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+12	17	53.39	54.83	Damn you, 15s.	Joey	Damn you 15s	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+13	18	57.71	58.67	What the hell are.	Monica	What the hell are you doing?!	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+13	19	60.81	62.33	Look, I was nervous.	Ross	Look, I was nervous	Ross	present	char_tracker_stage05	ross	present	0.6667		medium	
+13	20	62.57	64.81	You guys had me all worried I was gonna be boring.	Ross	You guys had me all worried I was going to be boring	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+13	21	65.53	68.97	I got up there and they were all, like, staring at me.	Ross	I got up there and they were all like staring at me	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+13	22	69.05	72.09	I opened my mouth and this British accent just came out.	Ross	Look, I was nervous! You guys had me all worried I was going to be boring! I got up there and they were all like staring at me. I opened my mouth and this British accent just came out.	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+13	23	73.77	75.29	Yeah, not a very good one.	Rachel	Yeah, and not a very good one.	Rachel	present	char_tracker_stage05	monica|rachel	present	1.0000		high	
+13	24	76.65	77.53	Will you please.	Ross	Will you-will you please?	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+13	25	78.01	78.97	Dr. Geller?				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+13	26	78.97	80.01	Gert Rathman.				partial	char_tracker_stage05		unknown			low	missing_speaker
+14	27	80.17	82.73	I'm a professor in the paleontology department here.	The Professor	Dr. Geller, Kurt Rathman, I’m a professor in the paleontology department here.	The Professor	partial	char_tracker_stage05		unobserved			high	
+14	28	83.29	84.97	Do you have a moment to talk about your lecture?	The Professor	Do you have a moment to talk about your lecture?	The Professor	present	char_tracker_stage05	ross	unobserved			high	
+14	29	86.23	88.55	I'm sorry, I've got plans with my sister.	Ross	(in his British accent) I’m sorry, I’ve got plans with my sister.	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+14	30	89.19	93.19	Monica Geller, right?	Monica	(in an Irish accent) Monica Gellerrr. (She rolls her ‘R’)	Monica	present	char_tracker_stage05	monica|rachel|ross	present	0.6000		medium	
+14	31	93.19	95.27	Will you excuse us for one moment?	Ross	(in accent) Right, will you excuse us for one moment? (Takes Monica aside.) (In his normal voice.) What are you doing?	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+14	32	96.39	97.19	What are you doing?	Ross	What are you doing	Ross	present	char_tracker_stage05	monica	absent	0.0000		low	speaker_offscreen
+14	33	97.19	98.95	Oh, you can have an accent, but I can't.	Monica	(normal voice) Oh, you can have an accent and I can’t?! (To an exiting student in accent.) Top ‘O the morning to ya laddies!	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+14	34	99.75	101.75	How about the morning to you Larries?				partial	char_tracker_stage05		unknown			low	missing_speaker
+14	35	103.27	105.03	Just please stop.	Ross	Just please stop!	Ross	present	char_tracker_stage05	ross	present	0.6667		high	
+14	36	106.39	107.19	Yes, yes.	Rachel	yes yes time of year	Rachel	present	char_tracker_stage05	monica	absent	0.0000		low	speaker_offscreen
+15	37	107.19	108.87	Bombay is very, very nice.	Rachel	(in an Indian accent) Yes, yes, Bombay is bery, bery nice time of year.	Rachel	present	char_tracker_stage05	monica|rachel|ross	present	0.5000		medium	
+15	38	108.87	109.19	This.				present	char_tracker_stage05	monica|rachel|ross	unknown			low	missing_speaker
+15	39	117.41	118.21	Pick me up.				absent	char_tracker_stage05		unknown			low	missing_speaker
+16	40	127.17	128.69	Hey, will you grab me a cruller?	Chandler	Hey, will you grab me a cruller? (Joey starts to groan and get up.) Sit down! Will you go to the hospital?!	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		medium	
+16	41	130.93	131.57	Sit down.	Chandler	Sit down	Chandler	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+16	42	133.17	134.53	Will you go to the hospital?	Chandler	Will you go to the hospital	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+16	43	134.85	139.53	Dude, hernia operations cost, like, a lot probably, okay?	Joey	Hernia operations cost like, a lot probably	Joey	present	char_tracker_stage05	joey	present	0.8333		medium	
+16	44	139.53	142.21	Besides, it's getting darker and more painful.	Joey	Dude! Hernia operations cost like, a lot probably. Besides it’s getting darker and more painful, that means it’s healing.	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+16	45	142.21	143.49	That means it's healing.	Joey	dude hernia operations cost like a lot probably that means it's healing	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+16	46	145.62	146.98	I will loan you the money.	Chandler	I will loan you the money	Chandler	present	char_tracker_stage05	chandler	present	0.5000		medium	
+16	47	147.14	151.62	Just go to the hospital and let's just get that thing pushed back in.	Chandler	I will loan you the money. Just go to the hospital and let’s just get that thing…pushed back in.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+16	48	152.98	158.98	Thank you, but it would take me forever to pay that money back, and I don't want that hanging over my head, okay?	Joey	Thank you, but it would take me forever to pay you that money back and I don’t want that hanging over my head. Okay? Besides, as soon as my insurance kicks in I can get all the free operations I want! Yeah, I’m thinking I’ll probably start with that laser eye surgery too.	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+16	49	158.98	163.46	Besides, as soon as my insurance kicks in, I get all the free operations I want.	Joey	besides as soon as my insurance kicks in i can get all the free operations i want yeah i'm thinking i'll probably start with that laser eye surgery too	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+16	50	163.94	164.38	Okay?				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+16	51	164.38	167.06	I think I'll probably start with that laser eye surgery thing.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+17	52	169.7	171.3	Hey, hey, hey.	Joey	Hey!	Joey	present	char_tracker_stage05	chandler	absent	0.0000		low	speaker_offscreen
+17	53	171.54	172.5	What's going on?	Phoebe	What’s going on?	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+17	54	172.78	176.7	Well, Joey's got a really bad hernia, but it's nothing that a little laser eye surgery won't fix.	Chandler	Oh Joey’s got a really bad hernia, but that’s nothing a little laser eye surgery won’t fix!	Chandler	present	char_tracker_stage05	chandler	present	0.6000		high	
+17	55	178.3	182.54	Look, I'm telling you, if I put my hand on my stomach right here, it doesn't hurt that bad.	Joey	Look, I’m telling you if I put my hand on my stomach right here (He puts his hand down his pants, like Al Bundy on Married…With Children always used to do.) it doesn’t hurt that bad.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+17	56	183.9	185.26	Hey, maybe you'll die.	Phoebe	Hey! Maybe you’ll die!	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+17	57	188.22	189.5	Jim, I'm scared.	Joey	Sure, now I’m scared.	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+17	58	190.62	191.82	No, we can go together.	Phoebe	No, we can go together	Phoebe	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+17	59	192.22	193.94	Just don't wait too long, though, okay?	Phoebe	No, we can go together! Just don’t wait too long though, okay? ‘Cause I’m outta here sometime before Friday.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+17	60	193.94	195.66	Cause I'm out of here sometime before Friday.	Phoebe	'Cause I'm outta here sometime before Friday	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+17	61	197.58	198.78	But I don't want to die.	Joey	Yeah, but I don’t wanna die!	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+17	62	198.78	200.02	No, no, It'll be fun.	Phoebe	No-no, it'll be fun	Phoebe	present	char_tracker_stage05	joey|phoebe	present	0.6667		medium	
+17	63	200.02	201.98	We can come back and we can haunt these guys.	Phoebe	No-no, it’ll be fun! We can come back and we can haunt these guys!	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+17	64	204.06	204.46	Wa.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+17	65	205.02	207.98	Could I come back and haunt Monica and Rachel when they were in the shower?	Joey	Ooh wait. Could I come back and haunt Monica and Rachel when they're in the shower?	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+17	66	209.34	210.38	That's my girlfriend.	Chandler	That's my girlfriend.	Chandler	present	char_tracker_stage05	chandler|joey|phoebe	present	1.0000		high	
+17	67	210.38	211.34	Hey, I'm dead.	Joey	Hey, I'm dead!	Joey	present	char_tracker_stage05	chandler|joey	present	1.0000		high	
+17	68	217.98	218.78	Give me em.				absent	char_tracker_stage05		unknown			low	missing_speaker
+18	69	218.78	220.14	No, they are mine.	Rachel	No! They are mine!	Rachel	present	char_tracker_stage05	rachel	present	0.6667		high	
+18	70	220.22	221.3	You stole them from me.	Monica	You stole them from me!	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		high	
+18	71	221.3	222.46	You stole them from me.	Rachel	You stole them from me!!	Rachel	present	char_tracker_stage05	monica|rachel	present	1.0000		high	
+18	72	222.46	222.98	Give me.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+18	73	222.98	223.5	Kids.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+19	74	226.94	228.22	You just want to each take one.	Monica	You just wanna each take one?	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+19	75	229.1	229.94	Yeah, that seems fair.	Rachel	Yeah that seems fair. We never use them.	Rachel	present	char_tracker_stage05	monica|rachel	present	1.0000		high	
+19	76	229.94	230.78	We never use them.	Rachel	We never use them	Rachel	present	char_tracker_stage05	monica|rachel	present	1.0000		medium	
+19	77	233.42	236.24	Look, I really need some help, okay?	Ross	Look, I really need some help, okay	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+19	78	236.24	236.6	Why?	Ross	Why	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+19	79	236.76	239.72	Why did I have to speak in a British accent?	Ross	(entering) Look, I really need some help, okay? Why? Why did I have to speak in a British accent?! What do I do?	Ross	partial	char_tracker_stage05		partial	0.2500		medium	partial_visual_presence
+19	80	240.84	241.68	What do I do?	Ross	What do I do	Ross	present	char_tracker_stage05	monica|rachel|ross	present	1.0000		medium	
+19	81	241.68	243.72	Well, why don't you call Mommy and Daddy?	Monica	(in a British accent) Well why don't you call Mummy and Daddy?	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		high	
+19	82	245.48	246.4	I'm serious.	Ross	I'm serious	Ross	present	char_tracker_stage05	monica|rachel|ross	present	1.0000		medium	
+19	83	246.4	249.4	Someone's gonna find out I'm a fake and then they're never gonna offer me a job.	Ross	I'm serious! Someone's gonna find out I'm a fake and then they're never gonna offer me a job!	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+19	84	249.48	250.76	Why don't you phase it out?	Monica	why don't you phase it out yeah fade and	Monica	present	char_tracker_stage05	monica|rachel|ross	present	1.0000		low	low_speaker_confidence
+19	85	250.92	252.16	Yeah, phase the accent out.	Monica	why don't you phase it out yeah fade the accent out and	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		low	low_speaker_confidence
+19	86	252.16	255.32	People will think that you're, you know, just adjusting to life in America.	Monica	Why don’t you phase it out? Yeah, fade the accent out and people will think you’re, y’know, that you’re adjusting to life in America.	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		medium	
+19	87	255.8	256.12	Yeah.	Rachel	yeah	Rachel	present	char_tracker_stage05	monica|ross	absent	0.0000		low	speaker_offscreen
+19	88	256.12	257.08	I mean, come on, Ross.	Rachel	yeah i mean come on ross	Rachel	present	char_tracker_stage05	monica|rachel|ross	present	0.5000		low	low_speaker_confidence
+19	89	257.08	258.12	No one will even notice.	Rachel	Yeah, I mean, come on Ross, no one will even notice	Rachel	present	char_tracker_stage05	monica|rachel|ross	present	1.0000		medium	
+19	90	258.12	260.28	I mean, they're probably not even listening to you.	Rachel	Yeah, I mean, come on Ross, no one will even notice. I mean they’re probably not even listening to you!	Rachel	present	char_tracker_stage05	monica|rachel	present	1.0000		medium	
+19	91	262.52	264.2	They're not listening to me?	Ross	They’re not listening to me?	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+19	92	264.28	265.8	Of course they're listen.	Rachel	Of course they're listening to you	Rachel	present	char_tracker_stage05	monica|rachel|ross	present	1.0000		medium	
+19	93	267.7	268.82	Everybody listens to you.	Rachel	Of course they’re listening to you! Everybody listens to you.	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		medium	
+19	94	269.46	270.18	Monica.	Ross	monica	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+19	95	270.34	272.58	You really think I should try this phasing out thing?	Ross	Monica you really think I should try this phasing out thing?	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+19	96	272.66	273.94	I think you look fine.	Monica	I think you look fine.	Monica	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+20	97	278.42	279.46	Whenever you're ready.	Casting Director #1	Whenever you’re ready.	Casting Director #1	absent	char_tracker_stage05		unobserved			high	
+20	98	279.46	280.02	Okay.	Joey	Okay	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+20	99	282.1	287.78	Hey, Timmy, I've got a surprise for you.	Joey	"(in a gravely, painful voice) Okay. ""Hey, Timmy, I’ve got a surprise for you."""	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+20	100	288.82	289.42	Hold it.	Casting Director #1	hold it	Casting Director #1	present	char_tracker_stage05	joey	unobserved			low	low_speaker_confidence
+20	101	289.42	290.1	I'm sorry.	Casting Director #1	hold it i'm sorry	Casting Director #1	present	char_tracker_stage05	joey	unobserved			low	low_speaker_confidence
+20	102	290.26	291.94	The surprise is a new swing set.	Casting Director #1	hold it i'm sorry the surprise is a new swing set	Casting Director #1	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+20	103	292.18	294.19	If you could play a little less intense.	Casting Director #1	Hold it. I’m sorry, the surprise is a new swing set, if you could play it a little less…intense?	Casting Director #1	partial	char_tracker_stage05		unobserved			medium	
+20	104	294.35	295.95	Well, yeah, sure, no problem.	Joey	oh yeah sure no problem i'll	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+20	105	296.19	297.71	Just hold on one second.	Joey	Oh yeah, sure, no problem, I'll just—hold on one second	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+20	106	305.31	309.63	Hey, Timmy, I've got a surprise for you.	Joey	"Oh yeah, sure, no problem, I’ll just—hold on one second. (He turns around and puts his hand in his pants and groans in relief.) (In a relaxed voice.) ""Hey Timmy, I’ve got a surprise for you!"""	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+20	107	310.83	311.71	Oh, my God.	Casting Director #1	Oh my God!!	Casting Director #1	present	char_tracker_stage05	joey	unobserved			high	
+22	108	318.43	321.23	So that's why I feed my dog Purina 1.	Joey	So that’s why I feed my dog Purina One! Pick up a bag today! (He turns, looks at the bag and realizes he won’t be able to pick it up.)	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+22	109	322.37	323.65	Pick up a bag today?	Joey	Pick up a bag today	Joey	present	char_tracker_stage05	joey	present	0.5000		medium	
+22	110	325.73	327.17	That's where you pick up the bag.	Casting Director #2	That’s where you pick up the bag.	Casting Director #2	present	char_tracker_stage05	joey	unobserved			high	
+22	111	327.17	327.97	Exactly.	Joey	Exactly.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+22	112	329.65	331.73	No, the line is pick up a bag.	Casting Director #2	no the line is pick a bag	Casting Director #2	partial	char_tracker_stage05		unobserved			low	low_speaker_confidence
+22	113	331.73	333.57	So you need to pick up the bag.	Casting Director #2	No, the line is pick a bag, so you need to pick up the bag.	Casting Director #2	partial	char_tracker_stage05		unobserved			high	
+22	114	333.89	337.09	Or I could just point to it, huh?	Joey	Or, I could just point to it! Huh? Blah, blah, blah, Purina One, point to a bag today. (She just looks at him.) I didn’t get it, did I?	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+22	115	337.249	338.21	Blah, blah, blah.	Joey	blah blah blah purina one point to a bag today i didn't get it did i	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+22	116	338.21	339.25	Purina won.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+22	117	339.57	341.17	Point to a bag today.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+22	118	346.21	347.33	I didn't get it, did I?				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+22	119	347.49	347.85	No.	Casting Director #2	No.	Casting Director #2	present	char_tracker_stage05	joey	unobserved			high	
+22	120	347.85	348.29	Yeah.	Joey	Yeah, okay. (Leaves)	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+23	121	352.37	355.83	Hi, I'm Joey Tribbiani.	Joey	I'm Joey Tribbiani	Joey	present	char_tracker_stage05	joey	present	0.7500		medium	
+23	122	355.83	357.63	I'm here to audition for Man.	Joey	Hi. I’m Joey Tribbiani; I’m here to audition for (Groans) man.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+23	123	359.31	360.51	You mean Dying Man?	Casting Director #3	You mean dying man?	Casting Director #3	present	char_tracker_stage05	joey	unobserved			high	
+23	124	361.55	362.11	Yes.	Joey	Yes!	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+24	125	364.99	365.63	Okay, come on.	Monica	Okay, come on, do it one more time!	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+24	126	365.63	366.31	Do it one more time, please.	Monica	do it one more time	Monica	present	char_tracker_stage05	rachel	absent	0.0000		low	speaker_offscreen
+24	127	366.31	366.63	Really?	Rachel	really	Rachel	present	char_tracker_stage05	rachel	present	1.0000		low	low_speaker_confidence
+24	128	366.63	366.91	Really?	Rachel	Really? Really?!	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+24	129	366.91	367.23	Yes.	Monica	Yes!	Monica	present	char_tracker_stage05	rachel	absent	0.0000		low	speaker_offscreen
+24	130	367.23	367.79	Okay.	Rachel	Okay	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+24	131	371.95	375.23	Hello, Ross, this is Dr. McNeely from the fake Accent University.	Rachel	"Okay! (Picks up the phone and starts dialing.) (In an Irish accent) ""Hello Ross, this is Dr. McNeeley from the Fake Accent University, we’d like you to come on board with us full time! (Hangs up.)"	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+24	132	376.67	378.91	We'd like you to come on board with us full time.	Rachel	McNeeley from the Fake Accent University, we'd like you to come on board with us full time	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+24	133	379.15	379.71	Hello?				present	char_tracker_stage05	monica|rachel	unknown			low	missing_speaker
+24	134	382.84	383.16	Hey.	Phoebe	(entering) Hey!	Phoebe	present	char_tracker_stage05	monica|rachel	absent	0.0000		low	speaker_offscreen
+24	135	383.24	385.48	Hey, listen to this.	Rachel	Hey!	Rachel	present	char_tracker_stage05	monica|rachel	present	0.6667		medium	
+24	136	386.6	387.68	My reading was wrong.	Phoebe	Listen to this! My reading was wrong, I’m not going die!	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+24	137	387.68	388.76	I'm not going to die.	Phoebe	listen to this i'm not going die	Phoebe	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+24	138	389.16	389.52	Really?	Rachel	Really	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+24	139	389.52	390.28	How do you know?	Rachel	Really?! How do you know?	Rachel	present	char_tracker_stage05	phoebe|rachel	present	1.0000		high	
+24	140	390.28	391.8	Because my psychic is dead.	Phoebe	Because my psychic is dead! She must’ve read the cards wrong!	Phoebe	present	char_tracker_stage05	monica|phoebe|rachel	present	1.0000		medium	
+24	141	394.2	395.8	She must have read the cards wrong.	Phoebe	She must've read the cards wrong	Phoebe	present	char_tracker_stage05	rachel	absent	0.0000		low	speaker_offscreen
+24	142	396.36	397.88	Oh, I'm sorry.	Rachel	Oh, I’m sorry.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+24	143	397.88	399.24	Eh, better her than me.	Phoebe	Eh, better her than me! Hey, let’s bake cookies!	Phoebe	present	char_tracker_stage05	phoebe	present	0.6667		medium	
+24	144	400.28	401.4	Hey, let's make cookies.	Phoebe	Hey, let's bake cookies	Phoebe	present	char_tracker_stage05	phoebe|rachel	present	1.0000		medium	
+25	145	408.28	413.74	Listen, I'm really glad you got the part, but are you sure you can do this?	Chandler	Listen, I’m really glad you got the part.	Chandler	present	char_tracker_stage05	chandler	present	0.8333		high	
+25	146	413.9	414.38	Yeah.	Joey	Yeah	Joey	present	char_tracker_stage05	chandler|joey	present	0.5000		medium	
+25	147	414.38	416.3	And, hey, man, thanks for coming with me.	Joey	And hey, thanks for coming with me	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+25	148	416.78	418.78	And thanks again for helping me take a shower.	Joey	Yeah! And hey, thanks for coming with me. And thanks again for helping me take a shower.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+26	149	421.98	424.54	Now, is that never talking about it again?	Chandler	Now, is that never talking about it again?!	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+26	150	427.02	427.5	Yeah.				present	char_tracker_stage05	chandler|joey	unknown			low	missing_speaker
+26	151	427.58	428.14	Hey, Joey.	The Director	hey joey ya	The Director	present	char_tracker_stage05	chandler|joey	unobserved			low	low_speaker_confidence
+26	152	428.14	428.86	We're ready for you.	The Director	Hey Joey, we're ready for ya	The Director	absent	char_tracker_stage05		unobserved			medium	
+26	153	430.14	431.46	Joey, this is Alex.	The Director	Hey Joey, we’re ready for ya! (Joey stumbles over) Joey, this is Alex he’s going to be playing your son.	The Director	absent	char_tracker_stage05		unobserved			medium	
+26	154	431.46	432.62	He's gonna be playing your son.	The Director	hey joey we're ready for ya he's going to be playing your son	The Director	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+26	155	432.7	433.5	Hi, Alex.	Joey	Hi Alex	Joey	present	char_tracker_stage05	joey	present	0.5000		medium	
+26	156	434.22	436.46	As you can see, my hands are not in my pants.	Joey	Hi Alex! (to the director) And uh, as you can see my hands are not in my pants. (Holds them both up.)	Joey	present	char_tracker_stage05	chandler|joey	present	1.0000		high	
+26	157	439.1	439.74	Okay.				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+26	158	441.66	442.22	All right.				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+26	159	442.3	448.2	Ale now, when Joey says his line, take good care of your mama, son, that's your cue to cry.	The Director	"Okay. (to Alex) All right uh, Alex now when Joey says his line, ""Take good care of your Momma son,"" that’s your cue to cry. Got it? (Alex nods yes.) All right, let’s do this."	The Director	partial	char_tracker_stage05		unobserved			medium	
+26	160	448.2	448.84	Got it?	The Director	Got it	The Director	absent	char_tracker_stage05		unobserved			medium	
+26	161	449.0	450.28	All right, let's do this.	The Director	All right, let's do this	The Director	absent	char_tracker_stage05		unobserved			medium	
+27	162	454.92	456.68	Scene five, take one.	A Crew Member	(with that board thingy) Scene 5, take 1.	A Crew Member	absent	char_tracker_stage05		unobserved			medium	
+27	163	458.679	459.4	And action.	The Director	And Action!	The Director	present	char_tracker_stage05	joey	unobserved			high	
+27	164	460.04	461.88	Take good care of your mama, son.	Joey	take could care of your momma son come on son your momma's good people	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+27	165	470.69	472.29	Take good care of your mama, son.	Joey	"""Take could care of your Momma son."" (Alex just looks at him and the director motions for him to continue so he tries it again.) ""Take could care of your Momma son."" (Alex does nothing.) ""Come on son! Your Momma’s good people!"""	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+27	166	476.61	477.57	Come on, son.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+27	167	478.29	479.41	Mama's good people.				absent	char_tracker_stage05		unknown			low	missing_speaker
+27	168	482.45	485.33	Alex, remember, you're supposed to cry.	The Director	Cut! Alex, remember you’re supposed to cry. Can you cry for us this time?	The Director	present	char_tracker_stage05	joey	unobserved			high	
+27	169	485.33	486.77	Can you cry for us this time?	The Director	Can you cry for us this time	The Director	absent	char_tracker_stage05		unobserved			medium	
+27	170	487.17	489.49	Okay, Kyra, from the top.	Alex	Okay.	Alex	absent	char_tracker_stage05		unobserved			medium	
+27	171	492.85	494.77	Scene five, take two.	A Crew Member	Scene 5, take 2.	A Crew Member	absent	char_tracker_stage05		unobserved			medium	
+28	172	496.06	497.34	Take 36 is up.	A Crew Member	Take 36 is up!	A Crew Member	absent	char_tracker_stage05		unobserved			high	
+28	173	498.86	500.38	All right, let's try this again.	The Director	All right! Let’s try this again! You ready Joe?	The Director	present	char_tracker_stage05	chandler	unobserved			high	
+28	174	500.78	501.3	You ready?	The Director	You ready Joe	The Director	present	char_tracker_stage05	chandler	unobserved			medium	
+28	175	501.3	502.62	Joan, one thing.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+28	176	502.94	506.54	Is it all right with you if I scream right up until you say action?	Joey	Ah, just one thing umm, is it all right with you if I, if I scream right up until you say action?	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+28	177	507.98	508.38	Sure.	The Director	Uh sure.	The Director	present	char_tracker_stage05	joey	unobserved			high	
+28	178	511.42	511.82	Action.	The Director	Action!	The Director	absent	char_tracker_stage05		unobserved			high	
+28	179	512.14	513.18	I take good care.	Joey	"(he stops screaming at action) ""Take good care of your Momma son."" (Again Alex does nothing.)"	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+28	180	517.26	517.66	Cut.	The Director	Cut!!!!!!!!!! (Joey starts screaming again.)	The Director	absent	char_tracker_stage05		unobserved			high	
+28	181	519.66	520.34	I'm sorry.				absent	char_tracker_stage05		unknown			low	missing_speaker
+28	182	520.34	521.3	Hey, hey, Joe.				absent	char_tracker_stage05		unknown			low	missing_speaker
+29	183	521.3	522.82	Why don't you lift up your shirt?	Chandler	I’m sorry! Hey-hey Joe, why don’t you uh, lift up your shirt? (He does.) Take a look at this kiddo. (Alex finally starts crying.) We have a crying child! Roll the damn cameras!	Chandler	present	char_tracker_stage05	chandler|ross	present	0.5000		medium	
+29	184	522.82	523.98	Take a look at this, kiddo.	Chandler	Take a look at this kiddo	Chandler	present	char_tracker_stage05	chandler|ross	present	1.0000		medium	
+29	185	528.19	529.07	We have a crime.	Chandler	We have a crying child	Chandler	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+29	186	529.07	530.83	John, roll the damn cameras.	Chandler	Roll the damn cameras	Chandler	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+30	187	537.15	537.71	Hello?	Rachel	(answering it) Hello?	Rachel	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+30	188	537.95	539.15	Hello, is Ross there?	Russell	(Ross’s divorce lawyer.) Hello, is Ross there?	Russell	partial	char_tracker_stage05		unobserved			high	
+30	189	539.31	539.83	No, he's not.	Rachel	Uh no, he's not	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+30	190	539.83	540.83	Can I take a message?	Rachel	Uh no, he’s not. Can I take a message?	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+30	191	540.83	543.07	Yes, this is Russell Ross, divorce lawyer.	Russell	yes this russell ross's divorce lawyer	Russell	present	char_tracker_stage05	rachel	unobserved			low	low_speaker_confidence
+30	192	543.31	547.79	Just tell him that since I haven't heard from him I assume he's decided to give the marriage a try.	Russell	Yes, this Russell, Ross’s divorce lawyer, just tell him that since I haven’t heard from him, I assume he’s decided to give the marriage a try.	Russell	partial	char_tracker_stage05		unobserved			high	
+30	193	548.35	549.63	Ross got married again?	Rachel	Ross got married again—Nooooooo!!!!!!!!!	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+30	194	550.27	550.67	No.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+30	195	553.95	555.11	All right, keep going.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+30	196	555.11	557.37	We are phase phasing the accent out.	Ross	we are phasing the accent out	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+31	197	557.61	558.57	Phasing it out.	Ross	We are phasing the accent out, phasing it out	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+31	198	560.01	574.49	So without retesting their results in the laboratory the team would never have identified the initial errors in their carbon dating.	Ross	(in his head) All right, keep going. We are phasing the accent out, phasing it out. So without out re-testing the results in the laboratory (pronounced the British way) the team would never have identified (British) the initial errors in their carbon dating analysis (British). Were there any questions at this point? (One student raises his hand.) Yes. (Points to him.)	Ross	present	char_tracker_stage05	ross	present	0.8667		medium	
+31	199	574.81	575.77	A null result.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+31	200	578.65	580.41	Were there any questions at this point?				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+31	201	582.11	582.43	Yes.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+31	202	582.59	584.03	What's happening to your accent?	A Student	What’s happening to your accent?	A Student	present	char_tracker_stage05	ross	unobserved			high	
+31	203	587.39	588.03	Come again?				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+31	204	588.35	589.79	What's this nonsense?				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+31	205	594.51	596.59	All right, I'm not English.				absent	char_tracker_stage05		unknown			low	missing_speaker
+31	206	598.83	600.19	I'm from Long Island.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+31	207	601.71	604.43	I was really nervous and the accent just.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+31	208	604.99	605.95	Just came out.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+31	209	607.07	607.87	I'm sorry.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+31	210	610.69	621.25	So if we could just get back to the lecture, were there any questions about paleontology?				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+31	211	624.85	627.97	Look, I was just trying to make a good first impression.	Ross	All right, look I was just trying to make a good first impression	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+31	212	628.05	629.97	Obviously, I screwed up.	Ross	Obviously, I screwed up	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+31	213	630.37	635.01	But what you guys think of me is really important because I'm hoping to get a permanent job here.	Ross	(British) Come again? What’s-what’s this nonsense? (Giggles.) (American.) All right, I’m-I’m not English. I’m from Long Island. I was really nervous and the accent just uh, just came out. I’m sorry. So, if we could just get back to the lecture. Umm, were there any questions? (Everyone raises their hands) About paleontology. (They all put their hands down.) All right, look I was just trying to make a good first impression. Obviously, I screwed up. But what you guys think of me is really important because I’m-I’m hoping to get a permanent job here. So if you just give me another chance to make a good impression…	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+31	214	635.73	639.65	So if you just give me another chance to make a good impression.	Ross	So if you just give me another chance to make a good impression	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+32	215	640.53	642.77	Ross, are you crazy?	Rachel	Are you crazy	Rachel	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+32	216	642.85	644.37	I am still your wife.	Rachel	I am still your wife	Rachel	partial	char_tracker_stage05		partial	0.3333		medium	partial_visual_presence
+32	217	644.53	646.37	What, Were you just never gonna tell me?	Rachel	Ross!! Are you crazy?! I am still your wife!! What, were you just never gonna tell me?!! What the hell is wrong with you?!!!! Ugh, I could just kill you!!!!	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+32	218	646.37	647.89	What the hell is wrong with you?	Rachel	What the hell is wrong with you	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		medium	
+32	219	648.85	650.45	Oh, I could just kill you.	Rachel	Ugh, I could just kill you	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		medium	
+34	220	656.37	667.89	Well, Rachel, so you've really done this before?	Phoebe	Have you really done this before?	Phoebe	partial	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+34	221	667.89	668.36	Ye.	Joey	Yeah	Joey	present	char_tracker_stage05	joey	present	0.5000		medium	
+34	222	668.43	669.35	Yeah, yeah, yeah.	Joey	Yeah	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+34	223	669.35	672.19	You just take a big, big swing, okay?	Joey	You just take a big, big swing	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+34	224	672.19	673.11	Now, don't hold back.	Joey	Yeah! Yeah! Yeah! You just take a big, big swing. Now, don’t hold back. (He dons his protective helmet (Why, I have no clue.) and Phoebe picks up a wooden baseball bat and starts to swing as Chandler and Monica enter.)	Joey	present	char_tracker_stage05	joey|phoebe	present	1.0000		medium	
+34	225	673.11	673.63	Okay.				present	char_tracker_stage05	joey|phoebe	unknown			low	missing_speaker
+34	226	676.51	677.71	Hey, hey.	Joey	Hey-hey-hey!	Joey	present	char_tracker_stage05	phoebe	absent	0.0000		low	speaker_offscreen
+34	227	679.07	679.87	What are you doing?	Chandler	What are you doing?	Chandler	present	char_tracker_stage05	chandler|monica|phoebe	present	1.0000		high	
+34	228	680.03	682.83	We're just celebrating that Joey got his health insurance back.	Phoebe	We’re just celebrating that Joey got his health insurance back.	Phoebe	present	char_tracker_stage05	joey|phoebe	present	1.0000		high	
+34	229	684.67	685.47	Oh, all right.	Chandler	Oh, all right.	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+34	230	692.19	692.55	See?	Joey	see	Joey	unknown	char_tracker_stage05		unavailable		sentence_outside_visual_data_range	low	low_speaker_confidence
+36	231	692.55	694.1	Now let's try one without the helmet.	Joey	See, now let's try one without the helmet.	Joey	unknown	char_tracker_stage05		unavailable		sentence_outside_visual_data_range	high	

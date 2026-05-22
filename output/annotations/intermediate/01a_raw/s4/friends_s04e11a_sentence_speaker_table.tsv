@@ -1,0 +1,254 @@
+scene_id	sentence_id	start	end	utterance	speaker	utterance_ct	speaker_ct	visual_presence	visual_presence_source	visual_presence_chars	speaker_visual_presence	speaker_visual_ratio	visual_presence_note	annotation_confidence	annotation_review_reason
+1	1	2.24	3.04	Oh, my God.	Phoebe	oh my god	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		low	low_speaker_confidence
+1	2	3.04	5.16	I can't believe my little brother's married.	Phoebe	Oh my god, can't believe my little brother is married!	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+1	3	5.16	6.16	Finally.				present	char_tracker_stage05	phoebe	unknown			low	missing_speaker
+1	4	8.64	9.36	You guys.	Phoebe	you guys	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		low	low_speaker_confidence
+1	5	9.36	11.04	Why didn't you tell me you were eloping?	Phoebe	You guys, why didn't you tell me you were eloping?	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+1	6	11.2	12.84	Cause it just sort of happened, you know?	Frank Jr	Cause it just sort of happened	Frank Jr	present	char_tracker_stage05	phoebe	unobserved			medium	
+1	7	12.84	13.76	We were at the courthouse.	Frank Jr	Cause it just sort of happened. Y'know, we were at the courthouse, and we were having lunch...	Frank Jr	absent	char_tracker_stage05		unobserved			medium	
+1	8	13.76	14.52	We were having lunch.	Frank Jr	cause it just sort of happened y'know and we were having lunch	Frank Jr	present	char_tracker_stage05	phoebe	unobserved			low	low_speaker_confidence
+1	9	14.52	16.239	Hey, wait, why were you at the courthouse?	Phoebe	Wait, wait. Why were you at the courthouse?	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+1	10	16.8	17.84	We were having lunch.				present	char_tracker_stage05	phoebe	unknown			low	missing_speaker
+1	11	19.68	20.0	Yeah.				present	char_tracker_stage05	phoebe	unknown			low	missing_speaker
+1	12	20.0	23.24	And then all of a sudden, we were like, hey, you know, we're here, we're having lunch.	Frank Jr	"We were having lunch. Yeah, and then, all of a sudden, we were like, ""We're here, we're having lunch, let's get married, right!"""	Frank Jr	present	char_tracker_stage05	phoebe	unobserved			medium	
+1	13	23.24	24.08	Let's get married.	Frank Jr	we were having lunch yeah let's get married right	Frank Jr	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+1	14	24.08	24.48	Right.				absent	char_tracker_stage05		unknown			low	missing_speaker
+1	15	25.52	27.92	A year and a half ago, I didn't even know I had a brother.	Phoebe	Wow, a year and a half ago I didn't even know I had a brother. Now I have a sister too!	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+1	16	28.0	28.87	Now I have a sister.	Phoebe	Now I have a sister too	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+1	17	29.02	29.66	Sister too.	Phoebe	too	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		low	low_speaker_confidence
+1	18	33.18	33.74	Lord.				absent	char_tracker_stage05		unknown			low	missing_speaker
+1	19	33.82	34.62	So great.				absent	char_tracker_stage05		unknown			low	missing_speaker
+2	20	34.62	40.62	Oh, okay, okay.	Phoebe	Okay	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+2	21	42.22	42.78	Stop it.	Phoebe	Okay. Okay. Stop it. Don't!	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+2	22	42.78	43.18	Don't.	Phoebe	Don't	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+3	23	45.34	47.18	So I'm gonna get you a gift now.	Phoebe	So, ooh, I'm going to get you a gift now	Phoebe	partial	char_tracker_stage05		partial	0.3333		medium	partial_visual_presence
+3	24	47.18	48.46	Is there anything you need?	Phoebe	So, ooh, I'm going to get you a gift now. Is there anything you need?	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+3	25	49.26	50.3	Oh, yeah.	Frank Jr	Uh, yeah.	Frank Jr	present	char_tracker_stage05	phoebe	unobserved			medium	
+3	26	52.86	56.81	We've been trying to get pregnant pretty much ever since we got engaged.	Alice	We've been trying to get pregnant, uh, pretty much ever since we got engaged. We thought we'd get a jump on things. You know, no one's getting any younger. (laughs)	Alice	present	char_tracker_stage05	phoebe	unobserved			medium	
+3	27	56.97	59.17	Thought we'd get a jump on things, you know?	Alice	We thought we'd get a jump on things	Alice	present	char_tracker_stage05	phoebe	unobserved			medium	
+3	28	59.17	60.49	No one's getting any younger.	Alice	You know, no one's getting any younger	Alice	present	char_tracker_stage05	phoebe	unobserved			medium	
+3	29	62.33	66.53	Because the thing is, we're not able to, you know, conceive.	Frank Jr	'cause the thing is, uh, we're not able to, you know, uh, conceive, you know.	Frank Jr	partial	char_tracker_stage05		unobserved			high	
+3	30	66.53	67.05	You know?	Frank Jr	you know	Frank Jr	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+3	31	67.21	68.13	And we've tried everything.	Alice	We've tried everything	Alice	absent	char_tracker_stage05		unobserved			medium	
+3	32	68.13	69.45	We've seen a bunch of doctors.	Alice	We've tried everything; we've seen a bunch of doctors.	Alice	absent	char_tracker_stage05		unobserved			high	
+3	33	69.61	70.09	Yeah.				absent	char_tracker_stage05		unknown			low	missing_speaker
+3	34	70.25	80.65	And they say that our only chance to have a baby is that if they take my sperm, her egg, and put it together in a dish and then put it into another girl.	Frank Jr	Yeah, and they say, they say that our only chance to have a baby is if they take my sperm, her egg, and put it together in a dish, and then put it into another girl. So we were wondering if you could be the girl that we could put it into.	Frank Jr	absent	char_tracker_stage05		unobserved			high	
+3	35	80.65	83.21	So we were wondering if you could be the girl that we could put it.	Frank Jr	So we were wondering if you could be the girl that we could put it into	Frank Jr	absent	char_tracker_stage05		unobserved			medium	
+4	36	88.63	89.99	That's a really nice gift.	Phoebe	That's a really nice gift	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+4	37	92.55	94.47	I was thinking of, like, a gravy boat.	Phoebe	That's a really nice gift. I was thinking of, like, a gravy boat.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+4	38	96.39	96.87	We know.	Alice	know	Alice	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+4	39	96.87	97.15	We.	Alice	we know	Alice	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+4	40	97.15	98.87	We know it's a lot to ask.	Alice	We know-we know it's a lot to ask	Alice	absent	char_tracker_stage05		unobserved			medium	
+4	41	99.43	101.27	We don't have anyone else to go to.	Alice	We don't have anyone else to go to	Alice	absent	char_tracker_stage05		unobserved			medium	
+4	42	101.27	104.07	We could pay someone to do it, but we don't have that kind of money.	Alice	We know-we know it's a lot to ask.  We don't have anyone else to go to. We could pay someone to do it but we don't have that kind of money.	Alice	absent	char_tracker_stage05		unobserved			medium	
+4	43	104.39	107.87	Plus, you know, your family and, you know, I don't know.	Frank Jr.	plus y'know you're family and y'know i don't know y'know	Frank Jr.	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+4	44	107.87	110.91	I just don't want my baby to grow into some chick I don't know.	Frank Jr.	Plus, y'know, you're family and, y'know. I don't know. I just don't want my baby to grow into some chick I don't know, y'know?	Frank Jr.	absent	char_tracker_stage05		unobserved			high	
+4	45	110.91	114.74	You know, don't give us an answer yet.	Alice	don't give us an answer yet but	Alice	present	char_tracker_stage05	phoebe	unobserved			low	low_speaker_confidence
+4	46	114.74	115.58	Think about it.	Alice	Don't give us an answer yet, but think about it	Alice	present	char_tracker_stage05	phoebe	unobserved			medium	
+4	47	116.06	120.62	And if you say no, we will totally understand.	Alice	Don't give us an answer yet, but think about it.  And, umm, if you say no, we will  totally understand.	Alice	absent	char_tracker_stage05		unobserved			medium	
+4	48	121.74	122.38	Okay?	Phoebe	okay	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		low	low_speaker_confidence
+4	49	123.34	123.98	Okay.	Phoebe	Okay. Okay.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+4	50	126.06	130.14	Oh, and also, we were wondering if you could give us a ride down to the train station.	Frank Jr.	Oh, and also, we were wondering if you could give us a ride down to the train station.  (Phoebe is not even paying attention.) Well, actually, we kind of need an answer to that one right now.	Frank Jr.	partial	char_tracker_stage05		unobserved			high	
+4	51	133.5	135.9	Well, actually, we kind of need an answer to that one.	Frank Jr.	Well, actually, we kind of need an answer to that one right now	Frank Jr.	absent	char_tracker_stage05		unobserved			medium	
+4	52	147.27	149.23	Hey, you guys, check it out.				absent	char_tracker_stage05		unknown			low	missing_speaker
+6	53	149.23	149.79	Check it out.	Joey	Check it out! Check it out! Guess what job I got? (smoothes the blue blazer he's wearing and has a big grin on his face)	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+6	54	149.79	151.03	Guess what job I just got.	Joey	check it out guess what job i got	Joey	partial	char_tracker_stage05		partial	0.3333		low	partial_visual_presence
+6	55	153.43	155.91	I don't know, but Donald Trump wants his blue blazer black.	Chandler	I don't know, but Donald Trump wants his blue blazer black. (stops)	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+6	56	159.59	159.99	What?	Ross	What?	Ross	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		high	
+6	57	160.55	161.75	Blue blazer back.	Chandler	Blue blazer *back*	Chandler	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		medium	
+6	58	162.15	163.03	He wants it back.	Chandler	Blue blazer *back*. He, he wants it *back*.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+6	59	164.95	166.15	But you said black.	Rachel	Well you said *black*	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+6	60	166.86	168.3	Why would he want his blue blazer black?	Rachel	Well you said *black*. Why would he want his blue blazer black?	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+6	61	170.38	170.94	Well, you.	Chandler	well you	Chandler	present	char_tracker_stage05	chandler	present	1.0000		low	low_speaker_confidence
+6	62	171.18	172.22	You know what I meant.	Chandler	Well, you, you know what I meant.	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+6	63	172.62	173.98	No, you messed it up.	Monica	No, you've messed it up	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		medium	
+6	64	175.66	176.86	You're stupid.	Monica	No, you've messed it up. You're stupid.	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		medium	
+6	65	180.14	181.66	So, what job did you get, Joe?	Chandler	(Chandler glares at her and then changes the subject.) So what job did you get Joe?	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+6	66	182.379	184.06	Oh, a tour guide at the museum.	Joey	Oh, tour guide at the Museum	Joey	present	char_tracker_stage05	joey|ross	present	1.0000		medium	
+6	67	184.06	185.18	Yeah, Ross got it for me.	Joey	Oh, tour guide at the Museum. Yeah, Ross got it for me.	Joey	present	char_tracker_stage05	joey|rachel|ross	present	1.0000		medium	
+6	68	185.18	186.38	Well, how can you be a tour guide?	Rachel	well how could you be a tour guide	Rachel	present	char_tracker_stage05	joey|rachel|ross	present	1.0000		low	low_speaker_confidence
+6	69	186.38	188.86	I mean, don't you have to be a dinosaur expert or something?	Rachel	Well how could you be a tour guide, don't you have to be a dinosaur expert or something?	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+6	70	189.02	189.78	No, not really.	Joey	No, not really	Joey	present	char_tracker_stage05	joey|ross	present	1.0000		medium	
+6	71	189.78	190.86	They give you all the information.	Joey	"No, not really. They give you all the information. It's like memorizing a script. (demonstrates) ""And on your left, you have Tyrannosaurus rex, a carnivore from the Jurassic period."""	Joey	present	char_tracker_stage05	joey|ross	present	1.0000		medium	
+6	72	191.42	192.78	It's like memorizing a script.	Joey	It's like memorizing a script	Joey	present	char_tracker_stage05	joey|ross	present	1.0000		medium	
+6	73	193.03	193.35	Yeah.	Chandler, Monica and Rachel	(nodding appreciatively) Nice, all right, yeah!	Chandler, Monica and Rachel	present	char_tracker_stage05	joey|ross	unobserved			medium	
+6	74	193.75	198.23	And on your left you have Tyrannosaurus Rex, a carnivore from the Jurassic period.				partial	char_tracker_stage05		unknown			low	missing_speaker
+6	75	198.71	200.31	Hey, very nice.				present	char_tracker_stage05	chandler|monica	unknown			low	missing_speaker
+6	76	200.95	203.43	Actually, Julie, it's the Cretaceous Period.	Ross	Uh, actually Joey, it's the Cretaceous period.	Ross	present	char_tracker_stage05	joey|ross	present	1.0000		high	
+6	77	205.75	207.51	Yeah, but I can pronounce Jurassic.	Joey	"Yeah, but I can pronounce ""Jurassic""."	Joey	present	char_tracker_stage05	joey|ross	present	1.0000		high	
+7	78	209.27	211.19	Hey, guess what?	All	Hey!	All	partial	char_tracker_stage05		unobserved			medium	
+7	79	211.59	213.59	Frank Jr. And Alice got married.	Phoebe	Guess what? Frank Jr. and Alice got married.	Phoebe	partial	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+7	80	213.99	214.95	Oh, my God.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+7	81	215.43	217.27	And they're gonna have a baby.	Phoebe	And they're going to have a baby!	Phoebe	present	char_tracker_stage05	phoebe	present	0.6667		high	
+7	82	218.55	218.95	And?				present	char_tracker_stage05	phoebe	unknown			low	missing_speaker
+7	83	219.11	221.89	And they want me to grow it for them in my uterus.	Phoebe	Yeah! And they want me to grow it for them in my uterus.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+7	84	225.81	226.61	My God.	Ross	Oh my God.	Ross	present	char_tracker_stage05	joey|monica|ross	present	1.0000		high	
+7	85	227.09	228.05	Are you serious?	Monica	Are you serious?	Monica	present	char_tracker_stage05	joey|monica|phoebe|ross	present	1.0000		high	
+7	86	228.45	228.93	Yeah.	Phoebe	Yeah.	Phoebe	present	char_tracker_stage05	joey|monica|phoebe|ross	present	1.0000		high	
+7	87	229.17	231.41	You really thinking of having sex with your brother?	Joey	(disgustedly) You're really thinking of having sex with your brother?	Joey	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		high	
+8	88	235.809	236.49	Ew.	Phoebe	Eww	Phoebe	present	char_tracker_stage05	phoebe|ross	present	1.0000		medium	
+8	89	236.49	236.81	And?	Phoebe	Eww! And no, no! They want me to be the surrogate. It's her egg and his sperm. I'm just the oven. It's totally their bun.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		low	low_speaker_confidence
+8	90	236.81	239.45	Oh, no, they just.	Joey	Oh.	Joey	present	char_tracker_stage05	phoebe	absent	0.0000		low	speaker_offscreen
+8	91	239.45	240.93	They want me to be the surrogate.				present	char_tracker_stage05	phoebe	unknown			low	missing_speaker
+8	92	241.17	243.65	It's her egg and his sperm, and I'm just.				present	char_tracker_stage05	phoebe	unknown			low	missing_speaker
+8	93	243.65	244.13	The oven.				present	char_tracker_stage05	phoebe	unknown			low	missing_speaker
+8	94	244.13	245.33	It's totally their bun.				present	char_tracker_stage05	chandler|joey|phoebe|ross	unknown			low	missing_speaker
+8	95	246.93	247.97	What did you tell them?	Monica	What did you tell them?	Monica	present	char_tracker_stage05	chandler|joey|monica|ross	present	1.0000		high	
+8	96	248.49	250.73	Well, they said that I had to think about it first.	Phoebe	Well, they said I had to think about it first	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+8	97	250.73	252.33	But what is there to think of?	Phoebe	But what is there to think of	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+8	98	252.33	255.77	I'm gonna be giving someone the greatest gift you can possibly give.	Phoebe	Well, they said I had to think about it first. But what is there to think of? I'm going to be giving someone the greatest gift you can possibly give.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+8	99	256.09	258.97	You're gonna carry their child and get them a Sony PlayStation?	Chandler	You're going to carry their child and get them a Sony Play Station?	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+8	100	261.85	265.41	Honey, this really is an incredible thing to do for them.	Rachel	Honey, this is really an incredible thing to do for them but there are things to think about.	Rachel	present	char_tracker_stage05	monica|rachel	present	1.0000		high	
+8	101	265.41	267.21	But there are things to think about.	Rachel	but there are things to think about	Rachel	present	char_tracker_stage05	monica	partial	0.3333		low	partial_visual_presence
+8	102	267.45	269.13	Yeah, I mean, you'd be pregnant.	Monica	Yeah, I mean you'd be pregnant. I mean, pregnant.	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+8	103	269.77	270.97	I mean, pregnant.	Monica	I mean, pregnant	Monica	present	char_tracker_stage05	monica|phoebe	present	1.0000		medium	
+8	104	271.45	272.09	I know.	Phoebe	I know.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+8	105	274.01	277.01	Pheebs, you're talking about putting your body through an awful lot.	Ross	Pheebs, you're talking about putting your body through an awful lot. I mean, morning sickness, uh, labor. And it's all for somebody else.	Ross	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		high	
+8	106	277.01	282.51	I mean, morning sickness, labor, and it's all for somebody else.	Ross	I mean, morning sickness, uh, labor	Ross	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		medium	
+8	107	282.83	284.03	Yeah, what's your point?	Phoebe	Yeah, what's your point? (goes to sit on the couch)	Phoebe	present	char_tracker_stage05	chandler|joey|phoebe|ross	present	1.0000		high	
+8	108	285.31	287.63	Well, the stuff I just mentioned.	Ross	The stuff I just mentioned.	Ross	present	char_tracker_stage05	chandler|joey|ross	present	1.0000		high	
+8	109	289.23	289.63	Wow.	Rachel	wow	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		low	low_speaker_confidence
+8	110	289.63	291.11	I don't know if I could ever do that.	Rachel	Wow, I don't know if I could ever do that	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+8	111	291.11	295.27	You know, I always figured the first time I had a baby it would be with someone I love.	Rachel	Wow, I don't know if I could ever do that. You know, I always figured the first time I had a baby, it would be with someone I love and that baby would be like, a keeper.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+8	112	295.27	298.75	And that baby was, you know, a keeper.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+8	113	300.11	303.71	You know, you guys were a lot more supportive when I wanted to make denim furniture.	Phoebe	You know, you guys were a lot more supportive when I wanted to make denim furniture.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+8	114	305.56	308.6	Listen, if you decide to do this, we'll be supportive like crazy.	Joey	Pheebs, listen, if you decide to do this, we'll be supportive like crazy.	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+8	115	308.76	310.4	Yeah, we just want you to think it through.				partial	char_tracker_stage05		unknown			low	missing_speaker
+8	116	310.4	310.72	Yeah.	All	Yeah.	All	present	char_tracker_stage05	joey|rachel	unobserved			high	
+8	117	310.72	313.0	Honey, maybe you can talk to somebody who's had a baby.	Rachel	Why don't you talk to someone who's had a baby	Rachel	present	char_tracker_stage05	joey|rachel	present	1.0000		medium	
+8	118	313.0	313.8	Like your mom.	Rachel	Why don't you talk to someone who's had a baby. Like your mom.	Rachel	present	char_tracker_stage05	joey|phoebe|rachel	present	1.0000		medium	
+8	119	314.04	315.48	My mom never gave birth.	Phoebe	My mom never gave birth. Oh, but my birth mom did!	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+8	120	316.28	316.76	Oh.	Phoebe	Oh, but my birth mom did	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+8	121	317.16	318.76	But my birth mom did.	Phoebe	but my birth mom did	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		low	low_speaker_confidence
+8	122	324.36	325.0	Mmm.				absent	char_tracker_stage05		unknown			low	missing_speaker
+9	123	325.24	327.0	I love this tushy.	Kathy	Mmmm, I love this tushie	Kathy	absent	char_tracker_stage05		unobserved			medium	
+9	124	327.96	329.08	Take it to work with me.	Kathy	(grabbing his tushy) Mmmm, I love this tushie. Can I take it to work with me?	Kathy	absent	char_tracker_stage05		unobserved			medium	
+9	125	329.81	330.45	Uh, yeah, sure.	Chandler	Oh, yeah, sure	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+9	126	330.45	331.49	It's not mine anyway.	Chandler	Oh, yeah, sure. It's not mine anyway. It came with the pants.	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+9	127	331.97	332.89	Came with the pants.	Chandler	It came with the pants	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+9	128	332.89	340.21	Oh, I am so jealous.	Kathy	Oh! (kisses him again and then leaves)	Kathy	partial	char_tracker_stage05		unobserved			medium	
+10	129	340.45	343.17	You guys are really just right there, aren't you?	Rachel	I am so jealous. You guys are just, really, right *there*, aren't you?	Rachel	present	char_tracker_stage05	monica|rachel	present	1.0000		high	
+10	130	343.41	343.89	Yes.	Chandler	Yes	Chandler	present	char_tracker_stage05	chandler|monica|rachel	present	1.0000		medium	
+10	131	345.65	346.29	Right where?	Chandler	Yes. Right where?	Chandler	present	char_tracker_stage05	chandler|monica|rachel	present	1.0000		high	
+10	132	348.05	353.97	Beginning where, you know, it's all sex and talking and sex and talking.	Monica	In the beginning, you know, where it's all sex and talking and sex and talking...	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		high	
+10	133	355.09	359.71	Yeah, you gotta love the talking and the sex.	Chandler	Yeah, you've, you've got to love the talking.	Chandler	present	char_tracker_stage05	chandler|monica|rachel	present	0.6000		medium	
+10	134	359.71	361.15	All right, we haven't had sex yet.				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+10	135	362.19	363.99	Okay, but what's the big deal, you know?				present	char_tracker_stage05	chandler|ross	unknown			low	missing_speaker
+10	136	363.99	364.67	This is special.				present	char_tracker_stage05	chandler|ross	unknown			low	missing_speaker
+11	137	364.67	368.67	And I want our love to grow before we move on to the next level.	Chandler	Oh, we haven't had sex yet. Okay, but what's the big deal, you know? This is special, and I want our love to grow, before we move to the next level.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+12	138	369.07	371.23	Oh, Chandler, that is so nice.	Rachel	Chandler, that is so nice.	Rachel	present	char_tracker_stage05	monica|rachel	present	1.0000		high	
+12	139	371.47	374.35	That is really nice lying.	Ross	Yeah, that is really nice......lying!! No way is that the reason.	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+12	140	376.43	379.07	No way is that the reason why?	Ross	yeah no way is that the reason	Ross	partial	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+12	141	379.39	382.43	Just because you're not mature enough to understand something like that?	Rachel	Why, just because you're not mature enough to understand something like that?	Rachel	present	char_tracker_stage05	monica|rachel	present	1.0000		high	
+12	142	382.76	383.32	No, he's right.	Chandler	no he's right	Chandler	present	char_tracker_stage05	monica|rachel	absent	0.0000		low	speaker_offscreen
+12	143	383.32	384.28	I'm totally lying.	Chandler	No, he's right, I'm totally lying.	Chandler	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+13	144	389.8	390.92	Then what is it?	Monica	Then what is it?	Monica	present	char_tracker_stage05	monica|rachel|ross	present	1.0000		high	
+13	145	390.92	393.32	Well, Kathy's last boyfriend was Joey.	Chandler	Well, Kathy's last girlfriend was Joey.	Chandler	present	char_tracker_stage05	chandler|monica|rachel	present	0.7500		high	
+13	146	393.8	398.36	And you're afraid you won't be able to fill his shoes?	Ross	"And you're afraid you won't be able to ""fill his shoes"". (grins)"	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+13	147	400.84	403.24	No, I'm afraid I won't be able to make love as well as him.	Chandler	No, I'm afraid I won't be able to make love as well as him.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+13	148	404.92	406.96	Yeah, I was going for the metaphor.	Ross	(stops grinning) Yeah, I was going for the metaphor.	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+13	149	406.96	408.6	Yes, and I was saying the actual words.	Chandler	Yes and I was saying the actual words.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+13	150	410.76	411.52	Well, big deal.				present	char_tracker_stage05	monica|rachel|ross	unknown			low	missing_speaker
+14	151	411.52	412.88	So Joey's had a lot of girlfriends.	Monica	Big deal, so Joey's had a lot of girlfriends. That doesn't mean he's good in bed.	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		medium	
+14	152	412.88	414.28	It doesn't mean that he's great in bed.	Monica	That doesn't mean he's good in bed	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		medium	
+14	153	414.85	415.81	We share a wall.	Chandler	We share a wall	Chandler	present	char_tracker_stage05	chandler|monica|rachel	present	1.0000		medium	
+14	154	418.85	422.05	So either he's great in bed or she just liked to agree with him a lot.	Chandler	We share a wall. So either he's great in bed or she just liked to agree with him a lot.  Loudly and a lot! All night long she'd agree!	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+14	155	426.13	427.33	Loudly and a lot.	Chandler	Loudly and a lot	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+14	156	428.45	429.89	All night long, she'd agree.	Chandler	All night long she'd agree	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+14	157	432.13	433.65	Sweetie, with you it's gonna be different.	Monica	Sweetie, with you it's going to be different. The sex is going to be great 'cause you guys are in love.	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		medium	
+14	158	433.97	435.05	The sex is gonna be great.	Monica	the sex is going to be great 'cause you guys are in love	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		low	low_speaker_confidence
+14	159	435.05	436.45	Cause you guys are in love.	Monica	'cause you guys are in love	Monica	present	char_tracker_stage05	chandler|monica|rachel	present	1.0000		low	low_speaker_confidence
+14	160	438.37	438.85	Yeah.	Chandler	Yeah?	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+14	161	438.85	439.41	Yeah.	Rachel	Yeah.	Rachel	present	char_tracker_stage05	chandler|ross	absent	0.0000		low	speaker_offscreen
+14	162	439.65	440.97	Just go for it, Chandler.	Ross	Just go for it Chandler.	Ross	present	char_tracker_stage05	chandler|monica|rachel|ross	present	1.0000		high	
+14	163	440.97	441.65	Yeah, you should.	Monica and Rachel	Yeah, you should.	Monica and Rachel	present	char_tracker_stage05	monica|rachel|ross	unobserved			high	
+14	164	442.37	442.93	All right.	Chandler	all right	Chandler	present	char_tracker_stage05	monica|rachel	absent	0.0000		low	speaker_offscreen
+14	165	442.93	443.37	All right.	Chandler	all right all right	Chandler	present	char_tracker_stage05	monica|rachel	absent	0.0000		low	speaker_offscreen
+14	166	443.37	444.69	I'll sleep with my girlfriend.	Chandler	All right, all right, I'll sleep with my girlfriend	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+14	167	446.45	447.81	But I'm just doing it for you guys.	Chandler	(gets up to leave) All right, all right, I'll sleep with my girlfriend. But I'm just doing it for you guys. (leaves)	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+14	168	451.81	452.25	Okay.	Joey	okay	Joey	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+15	169	452.25	455.97	Now, the mastodon is from the semi late Jurassic Period.	Joey	(gesturing to what I'm presuming is the Mastodon) Okay, now the Mastodon is from the semi-late Jurassic period.	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+15	170	458.05	460.61	Is it the mastodon from the Pliocene epic?	Kid	Isn't the Mastodon from the Pliocene Epoch?	Kid	partial	char_tracker_stage05		unobserved			medium	
+15	171	461.49	461.89	Sh.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+15	172	462.53	463.53	This is a museum.	Joey	shhhh this is a museum okay now	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+15	173	463.53	464.29	No talking.	Joey	shhhh this is a museum no talking okay now	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+15	174	466.37	470.05	Right down here we have a large foot.	Joey	(looks nervous) Shhhh. This is a museum. No talking. (moves group along and gestures to a three legged foot) Okay, now right down here we have, uh... a large foot.	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+16	175	474.31	476.39	And over here we have Ross Gellert.	Joey	Uh, and and over here we have Ross Geller	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+16	176	477.43	478.87	Everyone wave hi to Ross.	Joey	Everyone wave hi to Ross	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+16	177	479.67	481.99	Ross is one of our most important scientists.	Joey	Uh, and and over here we have Ross Geller. (He knocks on the glass and Ross turns around.) Everyone wave hi to Ross. (all the kids wave) Ross is one of our most important scientists. Look at him hard at work.	Joey	present	char_tracker_stage05	joey	present	0.6667		medium	
+16	178	481.99	483.03	Look at him hard at work.	Joey	Look at him hard at work	Joey	present	char_tracker_stage05	joey	present	0.6667		medium	
+16	179	488.15	489.51	Okay, moving right along.	Joey	Okay, moving right along. (moves group away) Come on.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+17	180	494.95	495.59	It's open.	Phoebe Sr.	It's open, come in.	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			high	
+17	181	495.67	496.23	Come in.	Phoebe Sr.	come in	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			low	low_speaker_confidence
+17	182	497.43	497.91	Hi.	Phoebe	(enters) Hi.	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+17	183	497.99	498.35	Hi.	Phoebe Sr.	Hi.	Phoebe Sr.	absent	char_tracker_stage05		unobserved			high	
+17	184	498.35	499.35	I'm sorry I'm late.	Phoebe	Sorry I'm late.	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+17	185	499.51	500.51	Oh, that's okay.	Phoebe Sr.	Oh, that's okay	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			medium	
+17	186	500.51	502.87	It gave me time to finish blazing my nipples.	Phoebe Sr.	Oh, that's okay. It gave me time to, uh, finish glazing my nipples.	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			high	
+17	187	504.31	504.79	Wow.	Phoebe	Wow, you really go all out for company.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+17	188	504.87	508.65	Can we go all out when you're expecting company now?				present	char_tracker_stage05	phoebe	unknown			low	missing_speaker
+17	189	508.65	510.05	I was working on my pottery.	Phoebe Sr.	No, I was working on my pottery.	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			high	
+17	190	510.29	510.77	Oh.				present	char_tracker_stage05	phoebe	unknown			low	missing_speaker
+17	191	510.85	511.41	Oh.	Phoebe	oh	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		low	low_speaker_confidence
+17	192	512.37	512.73	Oh.	Phoebe	Oh, OH	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+17	193	512.73	515.41	I didn't know that you did pot.	Phoebe	Oh, OH! Oh, I didn't know you did...pot.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+17	194	517.81	518.45	Well, yeah.	Phoebe Sr.	Y-yeah	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			medium	
+17	195	518.45	519.49	I'm mostly nudes.	Phoebe Sr.	Mostly nudes	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			medium	
+17	196	519.65	522.93	It combines my two passions, pottery and erotica.	Phoebe Sr.	Y-yeah. Mostly nudes. It combines my two passions, pottery and erotica.	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			high	
+17	197	523.25	524.29	Oh, erotary.	Phoebe	Oh, ooh! Erottery!	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+17	198	524.85	525.33	Hey.				present	char_tracker_stage05	phoebe	unknown			low	missing_speaker
+17	199	525.65	528.61	Okay, well, thanks for coming out to see me.	Phoebe Sr.	Well, thanks for coming out to see me	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			medium	
+17	200	529.25	533.12	I just thought it would be a very good idea to talk about this baby stuff in person, you know?	Phoebe Sr.	Hey! Okay! (gives her a hug) Well, thanks for coming out to see me. I just thought it would be a very good idea to talk about this baby stuff in person.	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			medium	
+17	201	533.12	533.6	Okay.	Phoebe	Okay. (they both sit on the couch)	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+17	202	535.68	537.76	I really don't think it's a very good idea, Phoebe.	Phoebe Sr.	(sighs) I really don't think it's a very good idea Phoebe.	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			high	
+17	203	539.04	539.68	Why not?	Phoebe	Why not?	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+17	204	540.48	544.72	Well, because you'd be giving up a baby, and I really don't.	Phoebe Sr.	Well, because, you'd be giving up a baby	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			medium	
+17	205	545.2	551.92	I don't know if there's anything that I could say that could make you understand the pain of giving up a baby, so.	Phoebe Sr.	Well, because, you'd be giving up a baby. And, uh, I don't know if there's anything I can say that can make you understand the pain of giving up a baby, so, um... (reaches into a large cardboard box next to her and brings out an adorable puppy.)	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			high	
+17	206	555.76	556.92	Oh, no, no, no.				present	char_tracker_stage05	phoebe	unknown			low	missing_speaker
+17	207	556.92	558.0	I understand the pain.				present	char_tracker_stage05	phoebe	unknown			low	missing_speaker
+17	208	558.0	559.12	Don't hurt the puppy.	Phoebe	(gasps) Oh, I understand. Don't, don't hurt the puppy.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+17	209	560.64	561.4	No, no, no.	Phoebe Sr.	no no for you	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			low	low_speaker_confidence
+17	210	561.4	562.56	The puppy is yours.	Phoebe Sr.	No no, the puppy is for you. (hands her the puppy)	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			medium	
+17	211	562.95	564.31	Oh, I get a puppy?	Phoebe	Oh, I get a puppy?	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+17	212	564.47	565.11	Well, yeah.	Phoebe Sr.	Well, yeah	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			medium	
+17	213	565.11	566.87	I mean, yeah, but for only three days.	Phoebe Sr.	Well, yeah. But, only for three days.	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			medium	
+17	214	567.35	567.75	Why?	Phoebe	Why? (the puppy starts wriggling in her arms and she plays with him)	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+17	215	569.75	575.99	Well, you know, I realize that I don't have any right to start getting all parenty on you and everything now, but.	Phoebe Sr.	Well, you know, I realize that I don't have any right to start getting all parenty on you and everything, but, um, (Phoebe is clearly not listening, only playing around with the puppy) er, .. Phoebe, would you please look at me and not the puppy, it's very important.	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			high	
+17	216	581.99	583.95	Phoebe, would you please look at me and not the puppy?	Phoebe Sr.	Phoebe, would you please look at me and not the puppy, it's very important	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			medium	
+17	217	583.95	586.23	It's very poor, okay?	Phoebe	Okay. (puts the puppy in her lap and tries not to play with it.)	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+17	218	586.71	588.31	I mean, I know what I'm talking about.	Phoebe Sr.	I mean, I know what I'm talking about	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			medium	
+17	219	589.84	594.12	I gave up two babies and I only wish that I had someone there.	Phoebe Sr.	I gave up two babies	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			medium	
+17	220	594.12	598.88	Who had given up babies that could have told me how terrible it is to give up babies.	Phoebe Sr.	I mean, I know what I'm talking about. I gave up two babies. And I only wish that I had someone there who had given up babies who could have told me how terrible it is to give up a babies. (Phoebe is playing with the puppy again.) I really shouldn't have given you the puppy first.	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			medium	
+17	221	601.68	603.68	I really shouldn't have given you the puppy first.	Phoebe Sr.	I really shouldn't have given you the puppy first	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			medium	
+17	222	606.96	607.84	That's okay.	Phoebe	That's ok	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+17	223	608.0	608.96	No, we're listening.	Phoebe	That's ok. No we're listening.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+17	224	610.0	614.4	I just think that it would be something that you would regret every single day for the rest of your life.	Phoebe Sr.	I just think it would be something that you would regret every day for the rest of your life	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			medium	
+17	225	617.71	624.27	So however hard it is for you to give up this puppy it would be like a million times harder to give up a child.	Phoebe Sr.	I just think it would be something that you would regret every day for the rest of your life. (reaches over to pet the puppy) So, however hard it is for you to give up this puppy, it would be like a million times harder to give up a child.	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			high	
+17	226	626.43	627.07	Okay.	Phoebe	okay three days	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		low	low_speaker_confidence
+17	227	627.31	628.03	Fair enough.	Phoebe	Okay, fair enough. Three days.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+17	228	628.27	628.91	Three days.	Phoebe	Three days	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+18	229	632.03	634.43	Ah, it's time to take my ass out of the kiln.	Phoebe Sr.	Oh, it's time to take my ass out of the kiln.	Phoebe Sr.	present	char_tracker_stage05	phoebe	unobserved			high	
+19	230	640.9	642.66	Oh, would you mind sitting there?	Joey	Oh, uh, would you mind sitting here	Joey	partial	char_tracker_stage05		partial	0.3333		medium	partial_visual_presence
+19	231	642.66	644.34	I'm saving this seat for my friend ross.	Joey	Oh, uh, would you mind sitting here? (gesturing across from him) I'm saving this seat for my friend Ross.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+19	232	644.66	646.18	You mean Dr. Geller?	Rhonda	You mean Dr. Geller?	Rhonda	present	char_tracker_stage05	joey	unobserved			high	
+19	233	646.5	647.06	Doctor?	Joey	Doctor	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+19	234	647.3	649.3	Oh, I didn't know he had a nickname.	Joey	Doctor? I didn't know he had a nickname.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+19	235	650.74	652.18	Oh, he won't sit here.	Rhonda	oh he won't sit here	Rhonda	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+19	236	652.5	654.98	Only the people in the white coat sit over there.	Rhonda	oh he won't sit here only the people in the white coats sit over there	Rhonda	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+19	237	655.14	658.18	And only the people in the blue blazers sit over here.	Rhonda	Oh, he won't sit here. Only the people in the white coats sit over there (gesturing to the other end table) and only the people with the blue blazers sit over here.	Rhonda	partial	char_tracker_stage05		unobserved			medium	
+19	238	658.82	660.02	Well, how come?	Joey	Well, uh, how come?	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+19	239	660.26	661.38	That's just the way it is.	Rhonda	That's just the way it is.	Rhonda	present	char_tracker_stage05	joey	unobserved			high	
+19	240	662.26	663.3	That's crazy.	Joey	That's crazy.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+19	241	663.54	668.49	Maybe it's crazy in a perfect world a world without lab coats and blazers.	Rhonda	Maybe it's crazy in a perfect world -- a world without lab coats or blazers. But you not in a perfect world. You in a museum now. (looks behind her) See that scientist with the glasses? (Joey looks at him) He and I used to play together all the time in grade school. Hmph, but now... (turns around and yells) PETER! HEY PETER! (the scientist looks nervously at her but doesn't respond) IT'S ME RHONDA, FROM P.S. 129. I SHARED MY PUDDING WITH YOU, MAN! I GAVE YOU MY SNACK PACK! (turns around back to Joey)  See, he pretend he (turns back to the scientist) DON'T EVEN HEAR ME.	Rhonda	partial	char_tracker_stage05		unobserved			medium	
+19	242	669.21	670.97	But you not in a perfect world.	Rhonda	But you not in a perfect world	Rhonda	absent	char_tracker_stage05		unobserved			medium	
+19	243	671.21	672.57	You in a museum now.	Rhonda	You in a museum now	Rhonda	present	char_tracker_stage05	joey	unobserved			medium	
+19	244	674.97	676.73	See that scientist with the glasses?	Rhonda	See that scientist with the glasses	Rhonda	present	char_tracker_stage05	joey	unobserved			medium	
+19	245	676.89	681.29	He and I used to play together all the time in grade school, but now.	Rhonda	He and I used to play together all the time in grade school	Rhonda	partial	char_tracker_stage05		unobserved			medium	
+19	246	682.41	683.13	Peter.				absent	char_tracker_stage05		unknown			low	missing_speaker
+19	247	684.09	685.13	Hey, Peter.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+19	248	685.85	688.81	It's me, Rhonda, from PS129.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+19	249	690.09	692.09	I shared my pudding with you, man.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+19	250	694.09	695.29	I gave you my.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+19	251	698.49	701.29	See, he pretend he don't even hear me.				absent	char_tracker_stage05		unknown			low	missing_speaker
+19	252	703.45	705.77	I. I think everybody's pretending they don't hear you.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+19	253	707.85	713.29	Anyway, look, I don't know about you and your jackets and your separate tables but Ross is one of my best friends.				present	char_tracker_stage05	joey	unknown			low	missing_speaker

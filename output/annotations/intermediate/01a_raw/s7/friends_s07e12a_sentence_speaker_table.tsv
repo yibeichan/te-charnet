@@ -1,0 +1,201 @@
+scene_id	sentence_id	start	end	utterance	speaker	utterance_ct	speaker_ct	visual_presence	visual_presence_source	visual_presence_chars	speaker_visual_presence	speaker_visual_ratio	visual_presence_note	annotation_confidence	annotation_review_reason
+1	1	3.92	5.76	Ross, when's this comet thing start?	Monica	(looking up) Ross, when’s this comet thing start?	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+1	2	6.0	9.12	Well, technically, it started 7 billion years ago.	Ross	Well, technically it seven billion years ago… (Well, technically you’d be able to see it for days, well nights; that is if you could see it with all of the bright lights of New York.)	Ross	present	char_tracker_stage05	joey|ross	present	1.0000		high	
+1	3	9.12	9.6	Oh, no.	All	(groaning) Oh no! Oh no! (They all start to get up a leave.)	All	present	char_tracker_stage05	joey|ross	unobserved			medium	
+1	4	10.4	11.92	Okay, okay, fine.				absent	char_tracker_stage05		unknown			low	missing_speaker
+1	5	11.92	12.48	I'll stop.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+1	6	12.64	13.68	No teaching.	Ross	no teaching	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+1	7	13.68	14.24	Okay?	Ross	No teaching, okay	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+1	8	14.24	17.92	We'll just watch the pretty light streaking across the sky.	Ross	Okay! Okay! Fine, I’ll stop! No teaching, okay? We’ll just watch the pretty light streaking across the sky. (Comets don’t streak across the sky, meteors do.) Okay? Who’s official name is Bapstein-King.	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+1	9	17.92	18.72	Okay, okay.	All	Okay! Okay! (They start to leave again.)	All	present	char_tracker_stage05	rachel|ross	unobserved			high	
+1	10	20.0	21.84	Whose official name is Bapstien.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+1	11	22.64	24.16	Okay, okay, good point.				partial	char_tracker_stage05		unknown			low	missing_speaker
+1	12	26.16	26.88	There it is.	Phoebe	There it is	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+1	13	27.52	29.28	Oh, look at that.	Phoebe	Oh, look at that	Phoebe	present	char_tracker_stage05	phoebe	present	0.6667		medium	
+1	14	29.68	31.76	Isn't Mother Nature amazing?	Phoebe	(looking up) There it is! Oh, look at that! Isn’t Mother Nature amazing?	Phoebe	present	char_tracker_stage05	chandler|phoebe	present	1.0000		medium	
+1	15	34.62	35.5	That's a plane.	Chandler	(looking up with her) That’s a plane!	Chandler	present	char_tracker_stage05	chandler|phoebe	present	1.0000		high	
+1	16	37.18	38.06	Well, all right.	Phoebe	Well, all right	Phoebe	present	char_tracker_stage05	chandler|phoebe	present	1.0000		medium	
+1	17	38.38	41.38	1700 bags of peanuts flying that high?	Phoebe	Well, all right. 1700 bags of peanuts flying that high, that’s pretty amazing too.	Phoebe	present	char_tracker_stage05	chandler|phoebe	present	1.0000		medium	
+1	18	41.38	42.62	That's pretty amazing too.	Phoebe	well all right that's pretty amazing too	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		low	low_speaker_confidence
+1	19	44.78	47.02	Hey, I wonder if you can see my apartment from up here.	Tag	Hey, I wonder if you can see my apartment from up here.	Tag	present	char_tracker_stage05	rachel	unobserved			high	
+1	20	47.02	47.38	No.	Rachel	No	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+1	21	47.38	48.22	No, you can't.	Rachel	No. No, you can’t.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+1	22	50.06	50.46	What?	Tag	What?	Tag	present	char_tracker_stage05	rachel	unobserved			high	
+1	23	51.18	51.9	I don't know.	Rachel	Oh I don’t-I don’t know.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+1	24	54.38	56.38	Man, look at all those stars.	Ross	Man, look at all those stars	Ross	partial	char_tracker_stage05		partial	0.3333		medium	partial_visual_presence
+1	25	56.86	57.98	Infinite space.	Ross	Infinite space	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+1	26	59.18	61.34	Really, really makes you wonder, doesn't it?	Ross	Man, look at all those stars! (Yeah, you can see what? Five of them from the city?) Infinite space. It really, really makes you wonder, doesn’t it?	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+1	27	61.9	64.16	Uh, yeah.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+1	28	64.16	65.4	You know what else makes you wonder?	Joey	(looking through his binoculars at a nearby building) Y’know what else makes you wonder?	Joey	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+1	29	66.28	68.12	Check out the rack on that chick.				present	char_tracker_stage05	joey|ross	unknown			low	missing_speaker
+1	30	68.12	68.6	You think.				present	char_tracker_stage05	joey|ross	unknown			low	missing_speaker
+1	31	73.08	74.52	You think those babies are real?	Joey	Check out the rack on this chick! Do you think those babies are real? (Turns around to point it out to Ross and finds that Ross is glaring at him. So he quickly puts his binoculars to his eyes and starts looking for the comet.)	Joey	present	char_tracker_stage05	joey|ross	present	1.0000		medium	
+3	32	117.46	121.5	Okay, we've been out here for two hours and we haven't seen any stupid comets.	Monica	Okay, we’ve been out here for two hours and we haven’t seen any stupid comets. Can we go now? I mean, Chandler’s getting chilly. (She walks over to where Chandler is bundled up in a big coat and shivering.)	Monica	partial	char_tracker_stage05		partial	0.2000		medium	partial_visual_presence
+3	33	121.5	122.5	Can we go now?	Monica	Can we go now	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+3	34	123.22	125.62	I mean, Chandler's getting chilly.	Monica	I mean, Chandler's getting chilly	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+3	35	129.78	130.74	No, I'm not.	Chandler	(with a quivering voice) No, I’m not!	Chandler	present	char_tracker_stage05	chandler|joey|monica	present	1.0000		high	
+3	36	133.06	134.82	Then why are you wearing Monica's jacket?	Joey	Then why are you wearing Monica’s jacket?	Joey	present	char_tracker_stage05	chandler|joey	present	1.0000		high	
+3	37	136.5	138.26	Because it's flattering.	Chandler	Because it’s flattering! (Shivers harder) Come on Monica! Come on Monica! (He goes inside.)	Chandler	present	char_tracker_stage05	chandler|joey|monica	present	1.0000		medium	
+3	38	140.26	141.18	Come on, Monica.	Chandler	Come on Monica	Chandler	present	char_tracker_stage05	chandler|joey|monica	present	1.0000		medium	
+3	39	141.18	142.02	Come on, Monica.	Chandler	Come on Monica	Chandler	present	char_tracker_stage05	chandler|joey|monica	present	0.5000		medium	
+3	40	142.58	143.74	Yeah, you know what?				present	char_tracker_stage05	joey|monica	unknown			low	missing_speaker
+3	41	143.74	144.74	I think we're gonna take off too.	Rachel	Yeah actually, I think we’re gonna take off too. We rented a movie.	Rachel	present	char_tracker_stage05	joey|monica|rachel	present	0.5000		medium	
+3	42	144.74	145.66	We rented a movie.	Rachel	We rented a movie	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+3	43	145.66	147.42	Oh, I won't say no to a movie.	Phoebe	Oh! I won’t say, ‘no’ to a movie!	Phoebe	present	char_tracker_stage05	rachel	absent	0.0000		low	speaker_offscreen
+3	44	147.42	150.42	Oh, we just actually kind of wanted to be alone.	Rachel	Uh Pheebs, we just actually kinda wanted to be alone.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+3	45	150.5	150.98	Shh.	Phoebe	Shh	Phoebe	present	char_tracker_stage05	joey|phoebe|rachel	present	1.0000		medium	
+3	46	150.98	151.62	Get me out of here.	Phoebe	Shh! Get me out of here.	Phoebe	present	char_tracker_stage05	joey|phoebe|rachel	present	1.0000		high	
+3	47	151.62	157.28	O hey, Ross.	Joey	(whispering) Ross!	Joey	partial	char_tracker_stage05		partial	0.1429		medium	partial_visual_presence
+3	48	157.28	157.68	What?	Ross	What?	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+3	49	157.68	158.16	Come here.	Joey	come here	Joey	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+3	50	158.16	158.64	Check this out.	Joey	Come here, check this out!	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+3	51	158.64	159.16	What is it?	Ross	What? Is it the comet? (Runs over to where Joey’s standing.)	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+3	52	159.16	159.76	The comet?	Ross	Is it the comet	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+3	53	160.0	160.92	No, no, no.	Joey	no no no	Joey	present	char_tracker_stage05	joey|ross	present	1.0000		low	low_speaker_confidence
+3	54	160.92	161.16	Look.	Joey	no no no look	Joey	present	char_tracker_stage05	joey|ross	present	1.0000		low	low_speaker_confidence
+3	55	161.16	163.12	There's a bug stuck in tar right here.	Joey	No! No-no. Look, there’s a bug stuck in tar right here. (Bends down to get a closer look.)	Joey	present	char_tracker_stage05	joey|ross	present	0.6667		high	
+3	56	164.96	169.12	Joey, I can't believe I bring you here to see the Bapstien King Comet.	Ross	joey come i can't believe i bring you here to see the bapstein king comet	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+3	57	169.12	175.44	One of nature's most spectacular phenomena and all you care about are bugs stuck in tar and some woman.	Ross	Joey come—I can’t believe—I bring you here to see the Bapstein-King comet, one of nature’s most spectacular phenomenon, and all you care about are bugs stuck in tar and-and some woman!	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+3	58	179.2	181.36	You know there's two women, dude.	Joey	(standing up) Y’know, there’s two women dude.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+3	59	183.44	184.16	Show me where.	Ross	Show me where?	Ross	present	char_tracker_stage05	joey|ross	present	1.0000		high	
+3	60	185.76	187.02	Right here.	Joey	Right-right up here. (Starts looking at them through a piece of pipe.)	Joey	present	char_tracker_stage05	joey|ross	present	0.6667		high	
+3	61	193.82	196.14	Joey, where's the pipe that was holding the door open?	Ross	(noticing the pipe and looking at the door) Joey where’s the pipe that was holding the door open?	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+3	62	197.02	197.82	I don't know.	Joey	(annoyed) I don’t know! (Goes back to looking through the pipe.) (Pause) Yeah, I do.	Joey	present	char_tracker_stage05	joey|ross	present	1.0000		high	
+3	63	206.86	207.82	Yeah, I do.	Joey	Yeah, I do	Joey	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+3	64	211.58	212.14	Joey.	Ross	Joey!	Ross	present	char_tracker_stage05	ross	present	0.5000		high	
+3	65	212.3	212.58	Well.				absent	char_tracker_stage05		unknown			low	missing_speaker
+3	66	212.58	213.02	No, no.				absent	char_tracker_stage05		unknown			low	missing_speaker
+3	67	213.02	213.9	Hey, don't look at me.	Joey	Don't look at me	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+3	68	213.9	217.95	You're the one that wanted to come up here and look for some stupid Burger King comet.	Joey	What?! All right—Hey! Don’t look at me! You’re the one who wanted to come up and look for some stupid Burger King comet!	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+3	69	219.71	222.91	It's called the Bapstein King Comet, okay?	Ross	It’s called the Bapstein-King comet, okay? (Joey starts to groan.) Hey! Hey! Bapstein was a very well respected astronomer!	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+3	70	222.99	223.39	Hey.	Ross	Hey	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+3	71	223.39	223.75	Hey.	Ross	Hey	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+3	72	223.75	226.51	Bapstein was a very well respected astronomer.	Ross	Bapstein was a very well respected astronomer	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+4	73	238.11	238.91	Monica?	Chandler	(whispering) Monica!	Chandler	present	char_tracker_stage05	phoebe	absent	0.0000		low	speaker_offscreen
+4	74	239.63	240.51	She's sleeping.	Monica	She’s sleeping.	Monica	present	char_tracker_stage05	phoebe	absent	0.0000		low	speaker_offscreen
+4	75	244.33	244.65	I know.	Chandler	i know	Chandler	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+4	76	244.65	246.41	Just quick, quick question, quick question.	Chandler	I know, just quick-quick question, quick question	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+4	77	246.89	250.49	Which one was Deep Impact and which one was Armageddon?	Chandler	I know, just quick-quick question, quick question. Which one was Deep Impact and which one was Armageddon?	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+4	78	253.85	256.49	Deep Impact was the one with Robert Duvall.	Monica	deep impact was the one with robert duval	Monica	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+4	79	257.13	260.01	Armageddon is what's going to happen to you if you wake me up.	Monica	Deep Impact was the one with Robert Duval, Armageddon is what’s going to happen to you if you wake me up.	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+4	80	261.61	264.01	Sorry, I Just can't sleep.	Chandler	sorry i just can't sleep because every time i look at that cover i'm like	Chandler	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+4	81	266.01	276.98	Ooh, where is that book that you were reading with the two women who were ice skating and wearing those hats with the flowers on it?	Chandler	Sorry, I just…can’t sleep. Ooh! (Turns on the light and Monica groans.) Where is that book that you are reading with the two women who were ice-skating and wearing, wearing those hats with the flowers on it? Because every time I look at that cover I’m like…(Fake snores.)	Chandler	present	char_tracker_stage05	chandler|monica	present	0.8182		high	
+4	82	276.98	287.14	Because every time I look at that cover, I'm like, it is in the living room where there is also a light and no one will kick you in the shin.	Monica	It is in the living room where there is also a light! And no one will kick you in the shin.	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+4	83	289.38	289.78	What?	Chandler	What?! (Monica kicks him in the shin.) Ow! (He gets out of bed and heads into the living room.)	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+4	84	290.34	290.82	Ow.	Chandler	Ow	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+5	85	303.07	304.19	Please don't be a spaceship.	Phoebe	Please don't be a space ship	Phoebe	present	char_tracker_stage05	phoebe	present	0.5000		medium	
+5	86	304.19	305.39	Please don't be a spaceship.	Phoebe	Please don't be a space ship	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+5	87	314.03	315.15	Oh, thank God.	Phoebe	(crossing her fingers and closing her eyes) Please don’t be a space ship. Please don’t be a space ship. (She turns on the light and looks around and finds that it’s the smoke detector that’s beeping.) Oh thank God! (She moves a chair over and starts to investigate how to make the beeping turn off, in frustration she yanks the thing off of the wall. She sets it down and heads for bed, just as she gets there it beeps again. She opens the cover and removes the battery, but it still beeps.) How could you be beeping?! I just disconnected you! I took out your battery! How can…	Phoebe	present	char_tracker_stage05	phoebe	present	0.5000		medium	
+5	88	350.07	351.51	How could you be beeping?	Phoebe	How could you be beeping	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+5	89	351.51	352.95	I just disconnected you.	Phoebe	I just disconnected you	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+5	90	352.95	354.39	I took out your battery.	Phoebe	I took out your battery	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+5	91	354.55	355.11	How can.	Phoebe	How can	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+5	92	355.11	355.67	Don't inter.	Phoebe	Don’t interrupt me!!	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+5	93	356.05	356.45	Mate.				present	char_tracker_stage05	phoebe	unknown			low	missing_speaker
+6	94	358.29	358.93	Rachel.	Ross	Rachel	Ross	present	char_tracker_stage05	phoebe	absent	0.0000		low	speaker_offscreen
+6	95	359.81	360.61	Monica.	Ross	Rachel!! Monica!!	Ross	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+6	96	361.49	362.21	Come on.	Joey	Come on!	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+7	97	366.05	367.41	I can't believe this.	Ross	I can’t believe this!!	Ross	present	char_tracker_stage05	joey|ross	present	1.0000		high	
+7	98	368.45	371.81	All right, well, you know, I guess we know what we have to do to get down.	Joey	All right well, y’know…I guess we know what we have to do to get down.	Joey	present	char_tracker_stage05	joey|ross	present	1.0000		high	
+7	99	372.29	374.13	Yeah, I guess we don't have a choice.	Ross	Yeah, I guess we don't have a choice	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+7	100	376.05	376.77	Help us.	Ross	Help us	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+7	101	377.57	378.77	Please help us.	Ross	Please help us	Ross	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+7	102	379.41	382.61	We're stuck up on the roof and we can't get down.	Ross	(standing at the edge of the roof) Yeah, I guess we don’t have a choice. (Screaming to the street) Help us! Please help us! We’re stuck up on the roof and we can’t get down!!!	Ross	present	char_tracker_stage05	ross	present	0.5000		medium	
+7	103	385.52	389.84	Ross, I was thinking we'd just go down the fire escape.	Joey	Ross. I was thinking we could just go down the fire escape. (Points it out.)	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+7	104	392.4	393.08	I know.	Ross	i know	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+7	105	393.08	394.24	I wasn't finished.	Ross	i know i wasn't finished	Ross	present	char_tracker_stage05	joey|ross	present	1.0000		low	low_speaker_confidence
+7	106	397.6	410.26	But don't worry, we're gonna go down the fire escape.	Ross	(To Joey) I know, I wasn’t finished. (Joey motions him to finish.) (Yelling at the street) But don’t worry! We’re gonna go down the fire escape!!	Ross	present	char_tracker_stage05	ross	present	0.5714		high	
+7	107	419.37	419.93	I'm sorry.	Chandler	shhhhhhhhh i'm sorry	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		low	low_speaker_confidence
+8	108	419.93	423.29	I thought maybe I'd make some warm milk and it would help me sleep.	Chandler	Shhhhhhhhh!!! (Monica enters) I’m sorry, I thought maybe I’d make some warm milk and it would help me sleep.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+8	109	423.53	424.41	With a wok.	Monica	With a wok	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		medium	
+8	110	426.49	428.33	I thought you were gonna read my boring book.	Monica	With a wok? (Chandler’s holding a wok.) I thought you were going to read my boring book to put you asleep.	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+8	111	428.33	429.37	To put you to sleep.	Monica	with a wok to put you asleep	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		low	low_speaker_confidence
+8	112	429.45	430.89	It got interesting.	Chandler	It got interesting! Damn you Oprah!	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+8	113	432.17	433.53	Damn you, Oprah.	Chandler	Damn you Oprah	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+8	114	435.45	436.93	Here, let me make the milk.	Monica	Here, let me make the milk, I’m up anyway.	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+8	115	437.24	438.04	I'm up anyway.	Monica	i'm up anyway	Monica	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+8	116	438.36	439.52	Hey, you know what we could do?				absent	char_tracker_stage05		unknown			low	missing_speaker
+8	117	439.52	443.56	You know, now that we're up we can just, like, talk to each other all night long.	Chandler	Hey, y’know what we can do? Y’know, now that we are up? We can just like talk to each other all night long, y’know like we did when we were first going out. It’d be fun!	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+8	118	443.56	445.64	You know, like we did when we were first going out.	Chandler	hey y'know what we can do y'know y'know like we did when we were first going out it'd be fun	Chandler	present	char_tracker_stage05	chandler	present	0.6667		low	low_speaker_confidence
+8	119	445.64	446.36	It'd be fun.	Chandler	hey y'know what we can do y'know y'know it'd be fun	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		low	low_speaker_confidence
+8	120	446.84	448.12	Okay, that does sound fun.	Monica	Okay that does sound like fun.	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+8	121	448.12	448.6	Yeah.				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+8	122	448.84	452.28	So, I mean, how bummed were you when the second sister died, huh?	Chandler	Okay, so how bummed were you when the second sister died huh?	Chandler	present	char_tracker_stage05	chandler	present	0.8000		high	
+8	123	452.28	453.88	The second sister dies?	Monica	The second sister dies?!	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+8	124	459.48	463.07	No, no.	Chandler	No	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+8	125	463.63	465.55	I was talking about the book I was reading.	Chandler	(Pause) No. No, I-I was, I was talking about the book I was reading.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+8	126	465.63	469.07	The second sister dies in Archie and Jughead Double Digest.	Monica	The second sister dies in Archie and Jughead Double Digest?	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+8	127	472.11	472.99	That's correct.	Chandler	That’s correct.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+9	128	479.79	481.15	You wanna go in the bedroom?	Rachel	You wanna go in the bedroom? It’s a little more comfortable.	Rachel	present	char_tracker_stage05	rachel	present	0.6667		medium	
+9	129	481.47	482.59	A little more comfortable?	Rachel	It's a little more comfortable	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+9	130	482.91	483.31	Sure.	Tag	Sure.	Tag	present	char_tracker_stage05	rachel	unobserved			high	
+9	131	483.47	484.11	Okay.	Rachel	Okay	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+9	132	486.19	486.91	Oh, wait.	Rachel	Oh wait	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+9	133	487.79	489.4	Did you send those contracts to Milan?	Rachel	Okay. (They start to head for the bedroom) Oh wait! Umm, did you send those contracts to Milan?	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+9	134	490.83	492.59	If this is your idea of sexy talk.	Tag	If this is your idea of sexy talk? (Shakes his head that it’s not working.)	Tag	absent	char_tracker_stage05		unobserved			high	
+9	135	494.35	495.11	No, seriously.	Rachel	no seriously y'know	Rachel	present	char_tracker_stage05	rachel	present	1.0000		low	low_speaker_confidence
+9	136	495.11	496.15	You know the contracts I gave you?	Rachel	no seriously y'know the contracts i gave you	Rachel	present	char_tracker_stage05	rachel	present	1.0000		low	low_speaker_confidence
+9	137	496.15	497.07	Did you overnight them?	Rachel	No seriously, y’know the contracts I gave you, did you overnight them?	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+9	138	497.23	498.19	What contracts?	Tag	What contracts?	Tag	present	char_tracker_stage05	rachel	unobserved			high	
+9	139	498.19	501.63	Okay, please tell me this is just one of your jokes that you do that I don't get.	Rachel	Okay please tell me that this is just one of your jokes that you do that I don’t get.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+9	140	502.43	503.07	Like what?	Tag	Like what?	Tag	present	char_tracker_stage05	rachel	unobserved			high	
+9	141	503.15	505.39	You know, like the thing when you put the phone in your pants.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+9	142	508.27	510.11	Come on, Tag, are you serious?				partial	char_tracker_stage05		unknown			low	missing_speaker
+9	143	510.11	511.11	This isn't funny.	Rachel	This isn't funny	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+9	144	511.11	513.39	Those contracts absolutely had to go out today.	Rachel	Y’know, like the thing when you put the phone in your pants? (He starts laughing.) Tag! I’m serious! This isn’t funny! Those contracts absolutely had to go out today!	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+9	145	513.63	515.79	Rachel, I'm sorry, but you didn't give me any contract.	Tag	Rach, I’m sorry, but you didn’t give me any contracts!	Tag	partial	char_tracker_stage05		unobserved			high	
+9	146	516.03	516.87	Yes, I did.	Rachel	yes i did and	Rachel	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+9	147	516.87	520.819	And I put a little post it on it that said, must go out today.	Rachel	yes i did and i put a little post it on it that said must go out today and	Rachel	present	char_tracker_stage05	rachel	present	0.6000		low	low_speaker_confidence
+9	148	520.819	522.979	And I underlined today three times.	Rachel	yes i did and i put a little post it on it that said must go out today and underlined today three times and	Rachel	present	char_tracker_stage05	rachel	present	1.0000		low	low_speaker_confidence
+9	149	522.979	526.939	And then I put a little heart in the corner because I didn't want to seem too bossy.	Rachel	"Yes I did! And I put a little Post-It on it that said, ""Must go out today,"" and underlined today three times and, and then I put a little heart in the corner because I didn’t want to seem to bossy."	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+9	150	528.379	530.379	I'm telling you, you never Gave them to me.	Tag	I’m telling you, you never gave them to me.	Tag	absent	char_tracker_stage05		unobserved			high	
+9	151	530.379	531.099	You know what, Tag?	Rachel	y'know what tag	Rachel	present	char_tracker_stage05	rachel	present	0.5000		low	low_speaker_confidence
+9	152	531.099	535.099	If we went down to the office, you would see those contracts sitting on your desk.	Rachel	Y’know what Tag, if we went down to the office you would see those contracts sitting on your desk.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+9	153	535.339	539.339	No, I would see you looking embarrassed because they are not on my desk.	Tag	No, I would see you looking embarrassed because they are not on my desk!	Tag	partial	char_tracker_stage05		unobserved			high	
+9	154	539.339	543.499	Or maybe you would see me looking embarrassed because you are talking on the phone with your crotch.	Rachel	Or maybe you would see me looking embarrassed because you are talking on the phone with your crotch!	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+9	155	545.259	546.859	Do you want to go down to the office right now?	Tag	You wanna go down to the office right now?	Tag	absent	char_tracker_stage05		unobserved			high	
+9	156	546.859	547.259	No.	Rachel	no	Rachel	present	char_tracker_stage05	rachel	present	0.5000		low	low_speaker_confidence
+9	157	547.54	548.18	Come on, it's late.	Rachel	no come on its late	Rachel	present	char_tracker_stage05	rachel	present	1.0000		low	low_speaker_confidence
+9	158	548.18	549.54	We're not gonna go down to the office.	Rachel	No! Come on its late, we’re not gonna go down to the office.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+9	159	550.98	551.78	Yeah, I understand.	Tag	Okay I understand	Tag	present	char_tracker_stage05	rachel	unobserved			medium	
+9	160	553.46	555.22	I wouldn't want to be proved wrong either.	Tag	Okay I understand. (Sits down.) I wouldn’t want to be proved wrong either.	Tag	absent	char_tracker_stage05		unobserved			high	
+9	161	555.22	556.42	All right, get your coat.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+9	162	558.42	560.9	Oh, when did you unhook this?	Rachel	Okay get your coat! (They get their coats and start to leave. Rachel suddenly stops and sticks the hand up the back of her shirt.) Oh! When did you unhook this? (Her bra.) Nice work!	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+9	163	561.7	562.5	Nice work.	Rachel	Nice work	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+10	164	570.66	572.18	I won't go down any further.	Joey	All right, it won’t go down any further. It’s stuck.	Joey	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+10	165	574.78	576.22	Well, we're just gonna have to jump.				present	char_tracker_stage05	joey|ross	unknown			low	missing_speaker
+10	166	578.46	584.38	Now, we're gonna have to make sure to land to the right of that patch of ice, okay?	Ross	Ugh. Well, we’re just gonna have to jump. (Joey looks at him.) Yeah. Now, we’re gonna have to make sure to land to the right of that patch of ice, okay? Not hit the dumpster on the other side and uh, and try to avoid that-that weird brownish red stuff in the middle. So, when you get down there…you go up to the roof and you let me in.	Ross	present	char_tracker_stage05	joey|ross	present	1.0000		medium	
+10	167	584.86	587.42	Not hit the dumpster on the other side.	Ross	Not hit the dumpster on the other side and uh, and try to avoid that-that weird brownish red stuff in the middle	Ross	present	char_tracker_stage05	joey|ross	present	1.0000		medium	
+10	168	588.54	593.74	And try to avoid that weird brownish red stuff in the middle.	Ross	and uh and try to avoid that that weird brownish red stuff in the middle	Ross	present	char_tracker_stage05	joey|ross	present	1.0000		low	low_speaker_confidence
+10	169	594.14	604.33	So when you get down there, you go up to the roof and you let me in.				present	char_tracker_stage05	joey|ross	unknown			low	missing_speaker
+10	170	605.77	606.73	Whoa, wait a minute.	Joey	Oh whoa-whoa wait a minute! I have to do it?!	Joey	present	char_tracker_stage05	joey|ross	present	1.0000		medium	
+10	171	606.73	607.61	I have to do it?	Joey	I have to do it	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+10	172	607.61	607.93	Yeah.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+10	173	607.93	608.97	Oh, yeah, you'll be fine.				present	char_tracker_stage05	joey|ross	unknown			low	missing_speaker
+10	174	609.05	611.69	It'll be just like bungee jumping, you know?				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+10	175	611.69	614.33	But instead of bouncing back up, you.	Ross	Yeah! Oh yeah, you’ll be fine! It-it’ll be uh, just like bungy jumping. Y’know? But instead of bouncing back up you-you won’t.	Ross	present	char_tracker_stage05	joey|ross	present	1.0000		medium	
+10	176	614.33	615.05	You won't.				present	char_tracker_stage05	joey|ross	unknown			low	missing_speaker
+10	177	618.57	620.81	What if I smack my head on the concrete?	Joey	What if I smack my head on the concrete?	Joey	present	char_tracker_stage05	joey|ross	present	1.0000		high	
+10	178	621.53	623.21	Well, I'm not gonna lie to you, Joey.	Ross	Well, I’m gonna lie to you Joey, it’s a possibility.	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+10	179	623.21	624.09	It's a possibility.	Ross	it's a possibility	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+10	180	628.37	629.25	I don't know, Ross.				present	char_tracker_stage05	joey|ross	unknown			low	missing_speaker
+10	181	629.41	630.21	I'll tell you what.				present	char_tracker_stage05	joey|ross	unknown			low	missing_speaker
+10	182	630.21	632.05	Let's flip to see who does it, okay?	Joey	(looks at the ground and at Ross) I don’t know Ross! I-I tell you what, let’s flip to see who does it, okay? You-you call it in the air, all right?	Joey	present	char_tracker_stage05	joey|ross	present	1.0000		medium	
+10	183	632.05	633.13	You call it in the hair.	Joey	You-you call it in the air, all right	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+10	184	633.13	633.53	All right.	Joey	you air all right	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+10	185	633.53	634.05	All right.	Ross	oh all right tails can you	Ross	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+10	186	639.41	640.53	Can you see what it is?	Ross	Oh, all right. (Joey flips the coin.) Tails! (The coin bounces off of the landing above them and falls to the ground.) Can you-can you see what it is?	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+10	187	641.97	642.37	No.	Joey	No.	Joey	present	char_tracker_stage05	ross	absent	0.0000		low	speaker_offscreen
+10	188	642.449	643.89	Okay, Will you be careful?	Ross	Okay. Well, you be careful.	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+10	189	644.21	644.57	No.				present	char_tracker_stage05	joey|ross	unknown			low	missing_speaker
+10	190	644.57	645.29	No, Ross.	Joey	No	Joey	present	char_tracker_stage05	joey|ross	present	1.0000		medium	
+10	191	645.29	645.57	No.	Joey	No Ross	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+10	192	645.57	645.89	No.	Joey	No-no	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+10	193	645.89	646.25	Stop.	Joey	Stop	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+10	194	646.25	648.01	I'm not jumping, okay?	Joey	I'm not jumping	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+10	195	648.01	651.61	Look, I have an audition tomorrow and I can't go if I break my leg.	Joey	What? No! No Ross! No-no! Stop! I’m not jumping! Okay, look I have an audition tomorrow and I can’t go if I break my leg.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+10	196	651.61	652.69	Well, I'm not jumping.	Ross	well i'm jumping	Ross	present	char_tracker_stage05	joey|ross	present	1.0000		low	low_speaker_confidence
+10	197	653.01	654.41	I have a son, okay?	Ross	well i'm jumping i have a son okay	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+10	198	654.41	656.53	He won't have a father if I die.	Ross	Well I’m jumping! I have a son! Okay? He won’t have a father if-if I die!	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+10	199	656.61	658.13	All right, so it looks like we're even.	Joey	Well all right so, it looks like we’re even!	Joey	present	char_tracker_stage05	joey|ross	present	1.0000		high	
+11	200	663.65	665.65	Okay, so this wire.	Phoebe	Okay. So, this wire is connected to this wire which plugs into here. (She points at each as she says it.) Okay so, to get the beeping to stop all I have to do… (She picks up a shoe and proceeds to pummel the smoke detector. She then gets up and heads to bed, stops, quickly turns around, and is satisfied that the beeping has stopped.) Well done, Pheebs. (She resumes her trek to bed, but is stopped at the entrance to the hallway by the now steady and extremely loud tone emanating from the smoke detector.) (Yelling.) What do you want from me?!!!!!!!	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	

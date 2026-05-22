@@ -11,25 +11,42 @@ the per-method distribution looks like across all seven seasons of Friends.
 
 ## Where the data lives
 
-All 341 per-episode speaker tables ship inside this repo at:
+All annotation-pipeline outputs ship inside this repo under `output/annotations/`:
 
 ```
-output/annotations/sentences/
-├── s1/   48 files — friends_s01eNN[a|b]_sentence_speaker_table.tsv
-├── s2/   48 files
-├── s3/   50 files
-├── s4/   48 files
-├── s5/   48 files
-├── s6/   50 files
-└── s7/   49 files
+output/annotations/
+├── sentences/              341 files — FINAL per-sentence speaker tables (primary review artifact)
+│   ├── s1/   48 files
+│   ├── s2/   48 files
+│   ├── s3/   50 files
+│   ├── s4/   48 files
+│   ├── s5/   48 files
+│   ├── s6/   50 files
+│   └── s7/   49 files
+├── scenes/                 341 files — per-scene summaries (descriptions, boundaries, shot IDs)
+│   └── s1/ … s7/           friends_sNNeNN[a|b]_scene_summary.tsv
+└── intermediate/           per-stage outputs (debugging trail)
+    ├── 01a_raw/            341 files — stage 01a output BEFORE the 01b QA pass (16 cols)
+    └── 01b_enhanced/       341 files — stage 01b output AFTER speaker fill, BEFORE final cleanup
 ```
 
-Each filename has the form `friends_sNNeNN[a|b]_sentence_speaker_table.tsv`,
-where `a` is the first half of a Friends episode and `b` is the second half
-(this is the show's broadcast/Speech2Text segmentation, not an internal split).
-Each file is one tab-separated UTF-8 table with a header row — see the
-[Output schema](#output-schema--what-the-reviewer-sees) section at the bottom
-of this document for every column's meaning.
+Each filename uses the form `friends_sNNeNN[a|b]_sentence_speaker_table.tsv`
+(or `_scene_summary.tsv` under `scenes/`), where `a` is the first half of a
+Friends episode and `b` is the second half (this is the show's broadcast /
+Speech2Text segmentation, not an internal split — the s07e23 finale is a
+2-hour special split into a/b/c/d). All files are tab-separated UTF-8 with a
+header row.
+
+### Which tree to read
+
+| Tree | Purpose for the reviewer |
+|---|---|
+| `sentences/` | **Primary** — the final speaker assignment per sentence, with confidence and visual audit. This is what most review questions should target. |
+| `scenes/` | Useful context — joins to `sentences/` via `scene_id`. Each row has `scene_desc` (a brief LLM-generated description like *"Central Perk, Chandler, Joey, Phoebe, and Monica are there."*), `start`, `end`, and `shot_ids`. |
+| `intermediate/01a_raw/` | Optional — what stage 01a produced before the 01b global QA pass touched it. Use this to see which rows changed during QA and which method tag the QA upgraded. |
+| `intermediate/01b_enhanced/` | Optional — stage 01b output before the final cleanup column-selection step. Same row count and most columns as `sentences/`. |
+
+The expected reviewer path is: read `sentences/`, join in `scenes/` when needed for context, and only dip into `intermediate/` if a specific row's history is in question.
 
 **To load one file:**
 

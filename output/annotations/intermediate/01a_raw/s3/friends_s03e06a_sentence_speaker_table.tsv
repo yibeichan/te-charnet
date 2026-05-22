@@ -1,0 +1,259 @@
+scene_id	sentence_id	start	end	utterance	speaker	utterance_ct	speaker_ct	visual_presence	visual_presence_source	visual_presence_chars	speaker_visual_presence	speaker_visual_ratio	visual_presence_note	annotation_confidence	annotation_review_reason
+1	1	2.24	3.36	Janice has a question.	Janice	Janice has a question	Janice	absent	char_tracker_stage05		unobserved			medium	
+1	2	3.68	9.36	Who of the six of you has slept with who of the six of you?	Janice	Janice has a question. Who of the six of you has sleep with the six of you?	Janice	present	char_tracker_stage05	chandler	unobserved			medium	
+1	3	11.12	12.88	Wow, it's like a dirty math problem.	Phoebe	Wow, it’s like a dirty math problem.	Phoebe	present	char_tracker_stage05	monica|phoebe	present	1.0000		high	
+1	4	14.72	17.84	I'm sorry, the answer there would be none of us.	Ross	I’m sorry the answer there would be...none of us.	Ross	present	char_tracker_stage05	rachel|ross	present	1.0000		high	
+1	5	18.32	19.48	Yeah, and you know what?	Rachel	And you know what	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		medium	
+1	6	19.48	22.32	If that doesn't change soon I'm gonna dump you for somebody who puts out.	Rachel	Yeah. And you know what? If that doesn't change soon, I'm going to dump you for somebody who puts out.	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		high	
+1	7	23.04	23.68	Come on.	Janice	come on	Janice	present	char_tracker_stage05	chandler|rachel|ross	unobserved			low	low_speaker_confidence
+1	8	23.68	26.44	Over the years, none of you ever got, you know, drunk and stupid?	Janice	Come on over the years none of you ever y'know, got drunk and stupid.	Janice	present	char_tracker_stage05	chandler	unobserved			high	
+1	9	27.23	28.67	Well, that's really a different question.	Joey	Well, that’s really a different question.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+1	10	30.59	31.23	I'm sorry.	Janice	i'm sorry	Janice	present	char_tracker_stage05	chandler	unobserved			low	low_speaker_confidence
+1	11	31.23	36.91	I find it hard to believe that a group of people who spends as much time together as you guys do has never bumped uglies.	Janice	I’m sorry I find it hard to believe that a group of people who spends as much time together as you guys do has never bumped uglies.	Janice	present	char_tracker_stage05	chandler	unobserved			high	
+1	12	39.23	41.79	There was that one time that Monica and Rachel got together.	Joey	Well, there was that one time that Monica and Rachel got together.	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+1	13	42.99	43.39	What?	Monica and Rachel	What?!!	Monica and Rachel	present	char_tracker_stage05	joey	unobserved			high	
+1	14	44.51	45.55	Excuse me?	Rachel	excuse me	Rachel	present	char_tracker_stage05	rachel|ross	present	1.0000		low	low_speaker_confidence
+1	15	45.55	46.67	There was no time.	Rachel	Excuse me, there was no time!	Rachel	present	char_tracker_stage05	joey|rachel|ross	present	1.0000		high	
+1	16	46.99	48.35	Okay, but let's say there was.	Joey	Okay, but let’s say there was. How might that go?	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+1	17	49.87	51.23	How might that go?	Joey	How might that go	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+1	18	53.31	53.91	Okay.				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+1	19	53.91	54.43	Okay.				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+1	20	54.43	55.71	Well, then answer me this.	Janice	Okay, okay, well then answer me this. Has any of you ever.... almost?	Janice	present	char_tracker_stage05	chandler	unobserved			medium	
+1	21	56.34	59.22	Have any of you ever almost.	Janice	Has any of you ever	Janice	present	char_tracker_stage05	chandler	unobserved			medium	
+1	22	62.98	64.26	Anybody need more colleagues?	Rachel	Does anybody need more coffee?	Rachel	present	char_tracker_stage05	joey|phoebe|rachel|ross	present	0.6667		medium	
+1	23	64.26	64.46	Yeah.	Ross	Yeah, I’ll take some.	Ross	present	char_tracker_stage05	joey|phoebe	absent	0.0000		low	speaker_offscreen
+1	24	64.46	65.78	I'll tell you, there's a dog out there.	Joey	Hey, there’s a dog out there!	Joey	present	char_tracker_stage05	joey|phoebe	present	0.5000		medium	
+3	25	76.9	78.82	Oh, that is so unfortunate.	Phoebe	Oh, that is so unfortunate.	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+3	26	78.98	79.38	What?	Ross	What?	Ross	present	char_tracker_stage05	phoebe	absent	0.0000		low	speaker_offscreen
+3	27	79.46	81.78	The cute naked guy's really starting to put on weight.	Phoebe	Cute naked guy is really starting to put on weight.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+3	28	84.14	85.58	Okay, I'll be back in just a minute.	Monica	Okay, I'll be back in just a minute	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+3	29	86.14	90.54	Oh, Phoebe, I'm sorry that I left lipstick marks on the phone.	Monica	(entering from bedroom) Okay, I’ll be back in just a minute. Oh, Phoebe I’m sorry that I left lipstick marks on the phone.	Monica	present	char_tracker_stage05	monica	present	0.6000		high	
+3	30	90.54	92.46	You didn't leave lipstick marks on the phone.	Phoebe	You didn’t leave lipstick marks on the phone.	Phoebe	present	char_tracker_stage05	monica|phoebe	present	1.0000		high	
+3	31	92.62	94.62	Oh, then it must have been you.	Monica	Oh, then it must’ve been you. Bye. (leaves)	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+3	32	97.34	97.7	Bye.	Monica	Bye	Monica	present	char_tracker_stage05	phoebe	absent	0.0000		low	speaker_offscreen
+3	33	97.7	98.06	Bye.	Phoebe	Bye-bye	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+3	34	100.06	101.1	That's why I moved out.	Phoebe	(angrily) Bye-bye! (to Ross) That’s why I moved out.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+3	35	101.42	105.66	Hey, you know, while we're on that when are you gonna tell my sister that you don't live here anymore?	Ross	Hey, y'know while we’re on that, when are you gonna tell my sister that you don’t live here anymore.	Ross	partial	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+3	36	107.02	109.18	I think on some level, she already knows.	Phoebe	I think on some levels she already knows.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+3	37	109.42	111.74	Phoebe, she doesn't know that you sneak out every night.	Ross	phoebe she doesn't know that you sneak out every night	Ross	present	char_tracker_stage05	phoebe	partial	0.3333		low	partial_visual_presence
+3	38	111.9	113.9	She doesn't know that you sneak back every morning.	Ross	phoebe she doesn't know that you sneak out every night she doesn't know that you sneak back every morning	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+3	39	113.9	116.7	And she doesn't know that you've been living at your grandmother's for a week now.	Ross	Phoebe, she doesn’t know that you sneak out every night, she doesn’t know that you sneak back every morning, and she doesn’t know that you’ve been living with your Grandmother’s for a week now.	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+3	40	117.34	119.02	Okay, well, maybe not on those levels.	Phoebe	Okay, well maybe not on those levels.	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+3	41	119.98	121.94	You have got to tell her, okay?	Ross	You have got to tell her	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+3	42	121.94	124.22	The longer you wait, the harder it's gonna be on her.	Ross	You have got to tell her. Okay, the longer you wait the harder it's going to be on her.	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+3	43	124.3	124.94	You're right.				present	char_tracker_stage05	phoebe|ross	unknown			low	missing_speaker
+3	44	124.94	125.659	You're right.				present	char_tracker_stage05	phoebe|ross	unknown			low	missing_speaker
+3	45	127.02	128.22	Anyway, listen.				present	char_tracker_stage05	phoebe|ross	unknown			low	missing_speaker
+3	46	128.54	130.18	Tonight's bag is really bulky.	Phoebe	you're right you're right anyway listen umm tonight's bag is really bulky so it's just like a clock radio and some sanitary dirt	Phoebe	present	char_tracker_stage05	ross	partial	0.3333		low	partial_visual_presence
+3	47	130.18	131.7	So could you sneak some stuff out for me?	Phoebe	You're right, you're right. (grabs her bag) Anyway, listen..umm...tonight's bag is really bulky so you could sneak some stuff out for me? (pulls out the stuff) It's just like a clock radio and some sanitary dirt.	Phoebe	present	char_tracker_stage05	phoebe|ross	present	1.0000		medium	
+3	48	131.7	134.3	It's just like a clock radio and some cemetery dirt.	Phoebe	It's just like a clock radio and some sanitary dirt	Phoebe	present	char_tracker_stage05	phoebe|ross	present	1.0000		medium	
+3	49	136.78	137.18	He.	Ross	Hey.	Ross	present	char_tracker_stage05	chandler|ross	present	0.5000		low	low_speaker_confidence
+3	50	141.72	143.08	I'm never gonna find a roommate.	Chandler	I’m never gonna find a roommate, ever.	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+3	51	143.4	143.8	Ever.	Chandler	ever	Chandler	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+3	52	144.28	145.48	Well, nobody good.	Phoebe	Why, nobody good?	Phoebe	present	char_tracker_stage05	chandler	absent	0.0000		low	speaker_offscreen
+3	53	145.56	146.32	Well, let's see.				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+3	54	146.32	147.72	There was the guy with the ferrets.				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+3	55	148.44	149.24	That's plural.				present	char_tracker_stage05	chandler|phoebe|ross	unknown			low	missing_speaker
+3	56	151.08	151.8	Spitter.				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+3	57	151.96	152.36	Oh.				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+3	58	152.36	152.8	Oh.				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+3	59	152.8	153.28	And yes.				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+3	60	153.28	157.24	The guy who enjoyed my name so much he felt the need to make a little noise every time he said it.	Chandler	Well let’s see, there was the guy with the ferrets, that’s plural. The spitter. Oh-ho, and yes, the guy that enjoyed my name so much he felt the need to make a little noise every time he said it. Nice to meet you, Chandler Bing Bing! Great apartment Chandler Bing, Bing!	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+3	61	157.32	158.68	Nice to meet you, Chandler Bing.	Chandler	Nice to meet you, Chandler Bing Bing	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+3	62	158.68	159.16	Bing.	Chandler	Great apartment Chandler Bing, Bing	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+3	63	160.36	161.8	Great apartment, Chandler Bing.	Chandler	great apartment chandler bing	Chandler	present	char_tracker_stage05	chandler	present	1.0000		low	low_speaker_confidence
+3	64	162.12	162.6	Bing.				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+3	65	163.88	165.4	So how many more do you have tomorrow?	Ross	So how many more do you have tomorrow?	Ross	present	char_tracker_stage05	chandler|phoebe|ross	present	1.0000		high	
+3	66	165.56	165.96	Two.				present	char_tracker_stage05	chandler|phoebe|ross	unknown			low	missing_speaker
+3	67	166.04	167.72	This photographer who seemed really.	Chandler	two this photographer who seemed really dull short message '	Chandler	present	char_tracker_stage05	chandler	present	1.0000		low	low_speaker_confidence
+3	68	168.7	171.14	And this actor guy who I'm not sure about.	Chandler	two this photographer who seemed really dull and this actor guy who i'm not sure about short message '	Chandler	present	char_tracker_stage05	chandler	present	1.0000		low	low_speaker_confidence
+3	69	171.14	175.02	Because when he called and I answered the phone, Chandler Bing he said, whoa.	Chandler	Two. This photographer, who seemed really dull. And this actor guy, who I’m not sure about, because when he called and I answered the phone ‘Chandler Bing,’ he said ‘Whoa-whoa, short message.’	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+3	70	175.02	175.9	Short message.				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+3	71	178.62	181.74	Ross, float on the floor or come over no more.	Monica	(entering) Ross (who has his foot on the coffee table), foot on the floor or come over no more!	Monica	present	char_tracker_stage05	monica|phoebe|ross	present	1.0000		high	
+3	72	183.5	183.86	Sure.	Ross	sure	Ross	present	char_tracker_stage05	ross	present	1.0000		low	low_speaker_confidence
+3	73	183.86	186.14	Your Dresser is missing, but this she notices.	Ross	(to Phoebe) Sure, your dresser is missing but this she notices.	Ross	present	char_tracker_stage05	ross	present	1.0000		high	
+3	74	186.94	187.34	What?	Monica	What?	Monica	present	char_tracker_stage05	monica|phoebe|ross	present	1.0000		high	
+3	75	187.58	188.46	I have to go.	Ross	I have to go	Ross	present	char_tracker_stage05	monica|phoebe|ross	present	1.0000		medium	
+3	76	191.42	193.5	Yeah, Carol should be home by now, so.	Ross	I have to go. Yeah, Carol should be home by now, soo...	Ross	partial	char_tracker_stage05		partial	0.3333		medium	partial_visual_presence
+3	77	193.91	194.15	Hmm.				present	char_tracker_stage05	chandler	unknown			low	missing_speaker
+3	78	194.15	195.19	How's it going with you guys?	Chandler	Umm, how’s it going with you guys?	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+3	79	195.27	196.39	Well, better, actually.	Ross	Oh, better, actually	Ross	present	char_tracker_stage05	chandler	absent	0.0000		low	speaker_offscreen
+3	80	196.63	200.31	You know, I think I finally figured out why we were having so much trouble lately.	Ross	Oh, better, actually. Y'know I-I-I think I finally figured out why we were having so much trouble lately.	Ross	present	char_tracker_stage05	ross	present	0.8000		high	
+3	81	200.31	200.87	Oh, really?	Phoebe	Oh, really?	Phoebe	present	char_tracker_stage05	phoebe|ross	present	1.0000		high	
+3	82	200.95	201.31	Yeah.				present	char_tracker_stage05	monica|phoebe|ross	unknown			low	missing_speaker
+3	83	201.31	202.95	You know how I have you guys?				present	char_tracker_stage05	monica|phoebe|ross	unknown			low	missing_speaker
+3	84	203.11	205.83	Well, she doesn't have any close friends that are just hers.	Ross	Yeah, y'know how I have you guys, well she doesn’t really have any close friends that are just hers, but last week she meet this woman at the gym, Susan something, and they really hit it off, and I-I-I think it’s gonna make a difference	Ross	present	char_tracker_stage05	monica|ross	present	1.0000		medium	
+3	85	205.83	209.35	But last week she met this woman at the gym, Susan something.	Ross	yeah y'know how i have you guys but last week she meet this woman at the gym susan something and they really hit it off and i i i think it's gonna make a difference	Ross	present	char_tracker_stage05	monica|ross	present	1.0000		low	low_speaker_confidence
+3	86	210.87	212.27	And they really hit it off.	Ross	yeah y'know how i have you guys and they really hit it off and i i i think it's gonna make a difference	Ross	present	char_tracker_stage05	monica|ross	present	1.0000		low	low_speaker_confidence
+3	87	212.27	214.15	And I think it's gonna make a difference.	Ross	yeah y'know how i have you guys and i i i think it's gonna make a difference	Ross	present	char_tracker_stage05	monica|ross	present	1.0000		low	low_speaker_confidence
+4	88	218.47	222.09	So, Eric, what kind of photography do you do?	Chandler	Soo, ah, Eric, what kind of photography do ya do?	Chandler	partial	char_tracker_stage05		partial	0.4000		medium	partial_visual_presence
+4	89	222.25	223.53	Oh, mostly fashion.	Eric	oh mostly fashion i hope that's cool	Eric	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+4	90	223.77	225.77	So there may be models here from time to time.	Eric	Oh, mostly fashion, so there may be models here from time to time, I hope that’s cool.	Eric	absent	char_tracker_stage05		unobserved			high	
+4	91	225.85	226.89	I hope that's cool.	Eric	oh mostly fashion i hope that's cool	Eric	present	char_tracker_stage05	chandler	unobserved			low	low_speaker_confidence
+4	92	229.05	235.69	Yes, that is cool, because I have models here, you know, never.	Chandler	Yes, that is cool. Because I have models here y'know......never.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+4	93	237.21	237.93	What else?				absent	char_tracker_stage05		unknown			low	missing_speaker
+4	94	238.33	242.09	Yeah, during the summer, I spend most weekends at my sister's beach house.	Eric	Oh, yeah, during the summer, I spend most weekends at my sister’s beach house, which you are welcome to use by the way. Although, I should probably tell you, she’s a porn star. (Chandler breaks his pencil in half)	Eric	absent	char_tracker_stage05		unobserved			medium	
+4	95	242.25	243.85	Which you are welcome to use, by the way.	Eric	oh which you are welcome to use by the way although i should probably tell you she's a porn star	Eric	present	char_tracker_stage05	chandler	unobserved			low	low_speaker_confidence
+4	96	244.49	246.65	Although, I should probably tell you, she's a porn star.	Eric	oh although i should probably tell you she's a porn star	Eric	present	char_tracker_stage05	chandler	unobserved			low	low_speaker_confidence
+4	97	250.76	258.52	Well, listen, I still have one more person to meet, but unless it turns out to be your sister, I think your chances are pretty good.	Chandler	Well, listen I ah, still have one more person to ah meet, but unless it turns out to be your sister, I think you’re chances are pretty good. (Eric offers to shake hands) All right. (Chandler hugs him.)	Chandler	present	char_tracker_stage05	chandler	present	0.6667		high	
+4	98	260.04	260.6	All right.	Chandler	All right	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+5	99	265.8	267.76	Bedroom, bathroom, living room.	Chandler	Living room	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+5	100	267.76	269.12	This right here is the kitchen.	Chandler	(running around the apartment pointing out things) Bedroom. Bathroom. Living room. This right here is the kitchen, and thanks for coming by, (opens door) Bye-bye.	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+5	101	269.12	270.36	And thanks for coming by.	Chandler	bedroom bathroom living room and thanks for coming by bye bye	Chandler	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+5	102	270.36	270.64	Bye.				absent	char_tracker_stage05		unknown			low	missing_speaker
+5	103	270.64	271.0	Bye.				absent	char_tracker_stage05		unknown			low	missing_speaker
+5	104	272.28	272.92	Don't you.	Joey	don't you ah	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+5	105	273.48	274.92	Don't you want to ask me any questions?	Joey	Don’t you ah, don’t you wanna ask me any questions?	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+5	106	277.33	277.57	Sure.	Chandler	sure ummm	Chandler	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+5	107	280.37	281.09	What's up?	Chandler	Sure. Ummm. What’s up?	Chandler	present	char_tracker_stage05	chandler	present	1.0000		medium	
+5	108	282.85	284.77	Well, I'm an actor.	Joey	Well, ah, I'm an actor	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+5	109	285.41	286.45	I'm fairly neat.	Joey	I'm fairly neat	Joey	present	char_tracker_stage05	chandler	absent	0.0000		low	speaker_offscreen
+5	110	286.93	288.93	I got my own tv.	Joey	I ah, I got my own TV	Joey	present	char_tracker_stage05	chandler|joey	present	0.6667		medium	
+5	111	289.65	292.77	Oh, and don't worry, I'm totally okay with the gay thing.	Joey	Well, ah, I’m an actor. I’m fairly neat. I ah, I got my own TV. Oh, and don’t worry I’m totally okay with the gay thing.	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+5	112	296.61	297.57	What gay thing?	Chandler	What gay thing?	Chandler	present	char_tracker_stage05	chandler|joey	present	1.0000		high	
+5	113	298.85	300.13	Just, you know, in general.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+5	114	300.13	302.85	The whole people being gay thing.				present	char_tracker_stage05	joey	unknown			low	missing_speaker
+5	115	305.12	306.0	Totally cool with that.	Joey	Ah, y'know just in general people being gay, thing. I’m totally cool with that.	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+5	116	310.16	311.32	Well, okay, Jerry.	Chandler	well okay jerry	Chandler	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+6	117	311.32	312.24	Thanks for stopping by.	Chandler	Well okay Jerry, thanks for stopping by.	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+7	118	315.68	316.16	Hi.	Monica	Hi.	Monica	present	char_tracker_stage05	joey|monica	present	1.0000		high	
+7	119	317.12	317.6	Hey.	Joey	Hey!	Joey	present	char_tracker_stage05	joey	present	1.0000		high	
+9	120	330.64	331.28	Hey, Mon.	Chandler	Hey, Mon.	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+9	121	332.64	334.24	You wanna hear something that sucks?	Monica	Hey-hey-hey. You wanna hear something that sucks.	Monica	present	char_tracker_stage05	chandler	absent	0.0000		low	speaker_offscreen
+9	122	334.64	335.2	Do I?	Chandler	Do I ever.	Chandler	present	char_tracker_stage05	chandler	present	0.5000		medium	
+9	123	337.5	339.02	Chris says they're closing down the bar.	Monica	Chris says they’re closing down the bar.	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+9	124	339.26	339.9	No way.	Chandler	No way!	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+9	125	339.9	342.54	Yeah, apparently they're turning it into some kind of coffee place.	Monica	Yeah, apparently they’re turning it into some kinda coffee place.	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+9	126	342.7	343.58	Just coffee?	Chandler	Just coffee	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		medium	
+9	127	344.78	346.14	Where are we gonna hang out now?	Chandler	Just coffee! Where are we gonna hang out now?	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+9	128	346.7	347.5	Got me.	Monica	Got me.	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+9	129	347.66	348.78	Can I get a beer, please?	Chandler	(to bartender) Can I get a beer.	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+9	130	348.94	350.38	Hey, did you pick a roommate?	Monica	Hey, did you pick a roommate?	Monica	present	char_tracker_stage05	chandler	absent	0.0000		low	speaker_offscreen
+9	131	350.62	351.46	You betcha.	Chandler	You betcha!	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+9	132	351.46	352.699	Is it the Italian guy?	Monica	Is it the Italian guy?	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+9	133	352.699	353.26	Mm.	Chandler	um mm	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		low	low_speaker_confidence
+9	134	353.26	353.9	Yeah, right.	Chandler	Um-mm, yeah right!	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+9	135	355.58	356.62	He's so cute.	Monica	He’s so cute.	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+9	136	356.86	358.38	Oh, yes, and that's what I want.	Chandler	oh yes and that's what i want	Chandler	present	char_tracker_stage05	chandler|monica	present	0.6667		low	low_speaker_confidence
+9	137	358.38	361.34	A roommate that I can walk around with and be referred to as the funny one.	Chandler	Oh yes, and that’s what I want a roommate that I can walk around with and be referred to as the funny one.	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+9	138	362.62	363.46	Pool table's free.	Monica	Oh look, the pool table's free	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+9	139	363.46	364.02	Rack him up.	Monica	Rack 'em up	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+9	140	364.02	365.1	I'll be back in just a minute.	Monica	I'll be back in just a minute	Monica	present	char_tracker_stage05	chandler|monica	present	0.5000		medium	
+9	141	365.1	366.94	Get ready for me to whip your butt.	Monica	Oh look, the pool table’s free. Rack ‘em up. I’ll be back in just a minute. Get ready for me to whip your butt.	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		medium	
+9	142	367.74	368.53	Okay, but after.	Chandler	okay but	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		low	low_speaker_confidence
+9	143	368.6	369.8	After that, we're shooting some pool.	Chandler	Okay, but after that, we’re shootin’ some pool.	Chandler	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+9	144	371.96	373.56	Oh, no, no, no, no, no.				absent	char_tracker_stage05		unknown			low	missing_speaker
+9	145	373.56	374.2	Excuse me.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+9	146	374.2	374.68	Hello.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+9	147	375.0	375.48	Hi.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+9	148	377.32	381.32	My friend ordered an onion, not an olive.	Rachel	oh um no no no no excuse me hello hi my friend ordered an onion not an olive	Rachel	present	char_tracker_stage05	rachel	present	1.0000		low	low_speaker_confidence
+9	149	381.88	386.36	And I ordered a rum and Diet Coke, which I don't think this is.	Rachel	(sitting at a table with some of her friends) (to waitress) Oh, um, no, no, no, no excuse me, hello. Hi. My friend ordered an onion, not an olive, and uh I ordered a rum and Diet Coke, which I don’t think this is.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+9	150	387.4	388.6	I am so sorry.	Waitress	I am so sorry.	Waitress	present	char_tracker_stage05	rachel	unobserved			high	
+9	151	388.6	389.48	That's all right.	Rachel	That's all right	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+9	152	390.84	393.4	I mean, how hard is it to get a couple drinks right, huh?	Rachel	That’s all right. (to her friends) I mean hard is it to get a couple drinks right, huh?	Rachel	present	char_tracker_stage05	rachel	present	0.7500		high	
+9	153	395.88	405.86	Well, I would like to propose to the woman who in one year from today will become Mrs. Dr. Berry Barber.	Friend No. 1	Well, I would like to propose a toast to the woman, who in one year from today, become Mrs. Dr. Barry Farber DDS	Friend No. 1	absent	char_tracker_stage05		unobserved			high	
+9	154	405.94	407.46	DDS mmm.				partial	char_tracker_stage05		unknown			low	missing_speaker
+9	155	407.86	410.02	I think it's time to see the ring again.	Rachel	Ummm, I think it’s time to see the ring again. (holds her hand out and they all scream)	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+9	156	414.66	415.82	Isn't it exciting?	Friend No. 2	oh isn't it exciting	Friend No. 2	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+9	157	415.82	418.82	I mean, it's like having a boyfriend for life.	Friend No. 2	Oh, isn’t it exciting, I mean it’s like having a boyfriend for life.	Friend No. 2	absent	char_tracker_stage05		unobserved			high	
+9	158	422.66	424.74	Yeah, I know.	Rachel	Yeah, I know.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+9	159	425.78	426.18	Why?				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+9	160	426.66	428.58	Oh, I don't know.	Rachel	Oh, I don't know	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+9	161	429.78	435.05	Well, maybe it's just the idea of Barry for the rest of my life.	Rachel	Oh, I don’t know. Well maybe it’s just the idea of Barry for the rest of my life. I don’t know I think I feel like I need to have one last fling, y'know, just to sorta get it out of my system. (Chandler is listening in very intensely)	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+9	162	435.77	436.37	I don't know.	Rachel	I don't know I think I feel like I need to have one last fling, y'know, just to sorta get it out of my system	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+9	163	436.37	439.45	I think I feel like I need to have one last fling.	Rachel	i think i feel like i need to have one last fling y'know just to sorta get it out of my system	Rachel	present	char_tracker_stage05	rachel	present	1.0000		low	low_speaker_confidence
+9	164	439.45	441.61	You know, just to sort of get it out of my system.	Rachel	y'know just to sorta get it out of my system	Rachel	present	char_tracker_stage05	rachel	present	1.0000		low	low_speaker_confidence
+9	165	444.81	445.69	Rachel, stop.	Friend No. 1	Rachel stop!	Friend No. 1	present	char_tracker_stage05	chandler	unobserved			high	
+9	166	445.77	446.73	You're so bad.	Friend No. 2	You’re so bad!	Friend No. 2	absent	char_tracker_stage05		unobserved			high	
+9	167	447.45	448.41	I'm serious.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+9	168	448.41	448.93	I really.				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+9	169	448.93	453.77	I think I need to just have some meaningless sex.	Rachel	I’m serious, I really, I think I need just to have some...meaningless, sex y'know, with the next guy that I see.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+9	170	453.77	456.01	You know, with the next guy I see.	Rachel	meaningless, sex y'know, with the next guy that I see	Rachel	present	char_tracker_stage05	rachel	present	0.7500		medium	
+9	171	463.27	463.67	Excuse me.	Chandler	excuse	Chandler	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+10	172	463.67	465.67	I seem to have dropped my ball.	Chandler	Excuse, I seem to have dropped my ball.	Chandler	present	char_tracker_stage05	chandler	present	0.6667		high	
+10	173	468.55	469.43	Yeah, so?	Rachel	Yeah, so?	Rachel	present	char_tracker_stage05	chandler|rachel	present	1.0000		high	
+10	174	472.47	474.23	And now I've picked it up again.	Chandler	(picks it up) And now I’ve picked it up again. (walks over to Monica.)	Chandler	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+10	175	477.91	479.11	Oh, my God.	Monica	oh my god rachel hi	Monica	present	char_tracker_stage05	monica	present	0.6667		low	low_speaker_confidence
+10	176	479.269	480.71	I went to high school with her.	Monica	Oh my God, I went to high school with her. (to Rachel) Rachel! Hi!	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+10	177	481.19	481.83	Rachel.	Monica	Rachel	Monica	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+10	178	482.87	485.27	Hi, Monica.	Rachel	Monica! (sticks up her ring finger)	Rachel	present	char_tracker_stage05	rachel	present	0.5000		high	
+10	179	488.55	489.83	Is she giving me the finger?	Monica	(to Chandler) Is she giving me the finger?	Monica	present	char_tracker_stage05	chandler|monica	present	1.0000		high	
+10	180	491.11	493.11	Monica, look.	Rachel	Monica! Look! Hi! What do ya think? (shows her, her ring)	Rachel	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+10	181	493.35	493.83	Hi.				absent	char_tracker_stage05		unknown			low	missing_speaker
+10	182	494.15	495.03	What do you think?				present	char_tracker_stage05	chandler|monica	unknown			low	missing_speaker
+10	183	495.57	496.53	Oh, my God.	Monica	oh my god	Monica	present	char_tracker_stage05	chandler|monica|rachel	present	1.0000		low	low_speaker_confidence
+10	184	496.85	498.85	You can't even see where the Titanic hit it.	Monica	Oh my God, you can’t even see where the Titanic hit it.	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		high	
+10	185	500.21	501.73	Yes, his name is Barry.	Rachel	Yes, his name is Barry, he’s a doctor, thank you very much.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+10	186	501.73	502.77	He's a doctor.	Rachel	he's a doctor thank you very much	Rachel	present	char_tracker_stage05	rachel	present	1.0000		low	low_speaker_confidence
+10	187	502.77	503.81	Thank you very much.	Rachel	thank you very much	Rachel	present	char_tracker_stage05	monica|rachel	present	1.0000		low	low_speaker_confidence
+10	188	504.21	505.41	Just like you always wanted.	Monica	Awww, just like you always wanted. Congratulations	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+10	189	505.57	506.45	Congratulations.	Monica	Congratulations	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		medium	
+10	190	506.45	507.17	Thank you.				present	char_tracker_stage05	monica|rachel	unknown			low	missing_speaker
+10	191	507.65	508.77	So, how about you?				present	char_tracker_stage05	rachel	unknown			low	missing_speaker
+10	192	509.17	510.45	Are you seeing anybody?	Rachel	Thank you. So how-how ‘bout you, are-are you seeing anybody?	Rachel	present	char_tracker_stage05	monica|rachel	present	1.0000		medium	
+10	193	510.45	511.57	Oh, not right now.	Monica	Aww, not right now.	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		medium	
+10	194	512.45	513.65	Oh, well, that's okay.	Rachel	Oh, but that’s okay.	Rachel	present	char_tracker_stage05	rachel	present	1.0000		medium	
+10	195	515.57	516.21	I know.	Monica	I know.	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		high	
+10	196	521.41	523.49	So I think I'll get back to my friend.				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+10	197	523.57	524.29	Oh, yeah.	Rachel	Yeah.	Rachel	present	char_tracker_stage05	chandler|monica	absent	0.0000		low	speaker_offscreen
+11	198	524.29	525.41	Sure, sure, sure, sure.	Rachel	Oh, yeah, sure, sure, sure, sure	Rachel	present	char_tracker_stage05	chandler	absent	0.0000		low	speaker_offscreen
+11	199	529.84	532.96	Listen, can we please have lunch the next time I'm in the city?	Rachel	Oh, yeah, sure, sure, sure, sure. (points at Chandler, who holds up the cue ball as a ‘Remember me?’ thing) Listen, can we please have lunch the next time I’m in the city?	Rachel	present	char_tracker_stage05	rachel	present	1.0000		high	
+11	200	532.96	534.16	Oh, that'd be great.	Monica	Oh, that’d be great.	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		high	
+11	201	534.16	534.72	Okay.	Rachel	Okay!	Rachel	present	char_tracker_stage05	monica|rachel	present	1.0000		high	
+11	202	534.72	535.12	Thanks.	Monica	Thanks.	Monica	present	char_tracker_stage05	monica|rachel	present	1.0000		high	
+11	203	535.2	535.68	Bye.				present	char_tracker_stage05	monica|rachel	unknown			low	missing_speaker
+11	204	535.68	536.24	Bye.	Rachel	Bye!	Rachel	present	char_tracker_stage05	monica|rachel	present	1.0000		high	
+11	205	537.6	540.0	10 bucks says I never see that woman again in my life.	Monica	Bye! (to Chandler) Ten bucks says, I never see that woman again in my life.	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+11	206	542.08	544.56	No, honey, really, it's fine.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+11	207	544.56	547.52	Just go with Susan.				partial	char_tracker_stage05		unknown			low	missing_speaker
+11	208	547.84	548.2	Really.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+11	209	548.2	548.72	I think.				present	char_tracker_stage05	ross	unknown			low	missing_speaker
+12	210	549.44	552.0	No, I think girls night out is a great idea.	Ross	No real-, honey, really it’s fine, just g-go with Susan. Really, I, no, I think girls night out is a great idea. Okay, okay, bye	Ross	present	char_tracker_stage05	ross	present	1.0000		medium	
+12	211	554.16	554.76	Okay.	Ross	Okay, okay, bye	Ross	present	char_tracker_stage05	phoebe|ross	present	1.0000		medium	
+12	212	554.76	555.24	Okay.	Ross	okay bye	Ross	present	char_tracker_stage05	phoebe|ross	present	1.0000		low	low_speaker_confidence
+12	213	555.24	555.6	Bye.	Ross	bye	Ross	present	char_tracker_stage05	phoebe|ross	present	1.0000		low	low_speaker_confidence
+12	214	556.32	557.12	So what are they doing?	Phoebe	So what are they doing?	Phoebe	present	char_tracker_stage05	phoebe|ross	present	1.0000		high	
+12	215	557.28	557.88	I don't know.	Ross	I don’t know, something girlie.	Ross	present	char_tracker_stage05	phoebe|ross	present	1.0000		medium	
+12	216	557.88	558.8	Something girly.	Ross	something girlie	Ross	present	char_tracker_stage05	phoebe|ross	present	1.0000		low	low_speaker_confidence
+12	217	563.36	563.76	Hey.	Phoebe	hey	Phoebe	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+12	218	563.76	564.32	You're early.	Phoebe	(to Monica, who’s entering) Hey, you’re early.	Phoebe	absent	char_tracker_stage05		absent	0.0000		medium	speaker_no_face
+12	219	564.88	566.0	What are you doing with the lamp?	Monica	What are you doing with the lamp?	Monica	present	char_tracker_stage05	phoebe|ross	absent	0.0000		low	speaker_offscreen
+12	220	567.44	569.28	I'm just taking it to get rewired.	Phoebe	I’m just taking it to be re-wired.	Phoebe	present	char_tracker_stage05	phoebe|ross	present	1.0000		high	
+12	221	571.44	573.12	Don't take it to the same place you took the stereo.	Monica	Oh, well don’t take it to the same place you took the stereo, ‘cause they’ve had that thing for over a week.	Monica	present	char_tracker_stage05	monica	present	1.0000		medium	
+12	222	573.12	574.64	Cause they've had that thing for over a week.	Monica	oh well 'cause they've had that thing for over a week	Monica	present	char_tracker_stage05	monica|phoebe	present	1.0000		low	low_speaker_confidence
+13	223	583.61	584.33	No, no.	Phoebe	No, no, Mr	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		medium	
+13	224	584.33	586.89	Mr. Heckles, no one is making any noise up here.	Phoebe	No, no, Mr. Heckles no one is making any noise up here.	Phoebe	present	char_tracker_stage05	phoebe|ross	present	1.0000		high	
+13	225	587.29	589.21	You're disturbing my oboe practice.	Mr. Heckles	You’re disturbing my oboe practice.	Mr. Heckles	partial	char_tracker_stage05		unobserved			high	
+13	226	590.01	591.33	You don't play the oboe.	Phoebe	You don’t play the oboe!	Phoebe	present	char_tracker_stage05	phoebe	present	1.0000		high	
+13	227	591.33	592.73	I could play the oboe.	Mr. Heckles	I could play the oboe!	Mr. Heckles	present	char_tracker_stage05	phoebe	unobserved			high	
+13	228	594.09	596.17	Then I'm going to have to ask you to keep it down.	Phoebe	Then I’m gonna have to ask you to keep it down. (slams the door in his face.)	Phoebe	present	char_tracker_stage05	phoebe|ross	present	1.0000		high	
+14	229	602.25	602.97	Who are you?	Mr. Heckles	(to Eric) Who are you?	Mr. Heckles	absent	char_tracker_stage05		unobserved			high	
+14	230	603.93	604.69	Hi, I'm Eric.	Eric	hi i'm eric	Eric	absent	char_tracker_stage05		unobserved			low	low_speaker_confidence
+14	231	604.69	606.09	I'm gonna be Chandler's new roommate.	Eric	Hi, I’m Eric, I’m gonna be Chandler’s new roommate.	Eric	absent	char_tracker_stage05		unobserved			high	
+14	232	606.09	607.21	I'm Chandler's new roommate.	Mr. Heckles	I’m Chandler’s new roommate.	Mr. Heckles	absent	char_tracker_stage05		unobserved			high	
+14	233	609.6	610.32	I don't think so.	Eric	I-I-I don’t think so.	Eric	absent	char_tracker_stage05		unobserved			high	
+14	234	610.32	611.92	I could be Chandler's new roommate.	Mr. Heckles	I could be Chandler’s new roommate.	Mr. Heckles	absent	char_tracker_stage05		unobserved			high	
+14	235	612.96	614.28	But he told me over the phone.	Eric	But, he told me over the phone.	Eric	absent	char_tracker_stage05		unobserved			high	
+14	236	614.28	615.2	He told me in person.	Mr. Heckles	He told me in person.	Mr. Heckles	absent	char_tracker_stage05		unobserved			high	
+14	237	617.28	618.16	That's weird.	Eric	That’s weird.	Eric	absent	char_tracker_stage05		unobserved			high	
+14	238	618.4	621.6	Well, I'm going to go into my new apartment now.	Mr. Heckles	Well, I’m going to go into my new apartment now. (goes over to the door and opens it) Ehh! (Eric leaves)	Mr. Heckles	absent	char_tracker_stage05		unobserved			high	
+14	239	625.6	632.48	Eh, Pop?				absent	char_tracker_stage05		unknown			low	missing_speaker
+14	240	641.82	642.06	Hi.	Monica	hi	Monica	present	char_tracker_stage05	monica	present	1.0000		low	low_speaker_confidence
+16	241	642.06	642.38	Again.	Monica	Hi, again.	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+16	242	643.9	644.38	Hey.	Joey	Hey! (goes into the apartment)	Joey	present	char_tracker_stage05	joey|monica	present	1.0000		high	
+16	243	649.98	650.46	Hey.	Chandler	(leaving to go to work) Hey!	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+16	244	651.02	652.26	Thank you so much.	Monica	Thank you soo, much.	Monica	present	char_tracker_stage05	monica	present	1.0000		high	
+16	245	652.26	653.3	Oh, no, no, no, no.				present	char_tracker_stage05	monica	unknown			low	missing_speaker
+16	246	653.3	653.9	Don't thank me.	Chandler	oh don't thank me never showed up	Chandler	present	char_tracker_stage05	monica	absent	0.0000		low	speaker_offscreen
+16	247	653.9	655.58	Thank the jerk that didn't show up.	Chandler	oh don't thank me thank the jerk that never showed up	Chandler	present	char_tracker_stage05	monica	absent	0.0000		low	speaker_offscreen
+16	248	656.78	664.14	Okay, I gotta get to work and not just for the money, but also because every now and then, somebody walks out of the bathroom with a little bit of toilet paper on their shoe.	Chandler	Oh, don’t thank me, thank the jerk that never showed up. Okay, I gotta get to get to work. And not just for the money.  But also because every now and then somebody walks out of the bathroom with a little bit of toilet paper on their shoe. (laughs as he leaves)	Chandler	present	char_tracker_stage05	chandler	present	1.0000		high	
+17	249	669.74	670.46	You need some?	Monica	You want some help with that?	Monica	present	char_tracker_stage05	joey	absent	0.0000		low	speaker_offscreen
+17	250	671.09	671.61	Oh, no, thanks.	Joey	oh no thanks	Joey	present	char_tracker_stage05	joey	present	1.0000		low	low_speaker_confidence
+17	251	671.61	672.21	I got it.	Joey	Oh, no thanks, I got it	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
+17	252	672.93	673.73	Oh, no, I don't.	Joey	Oh, no thanks, I got it. (picks it up) No I don’t!	Joey	present	char_tracker_stage05	joey	present	0.5000		medium	
+17	253	673.73	675.65	Oh, okay.	Monica	Whoa! Are you okay?	Monica	absent	char_tracker_stage05		absent	0.0000		low	speaker_no_face
+17	254	677.65	678.13	Whew.	Joey	whew	Joey	present	char_tracker_stage05	joey|monica	present	1.0000		low	low_speaker_confidence
+17	255	679.01	679.89	Stood up too fast.	Joey	whew stood up to fast	Joey	present	char_tracker_stage05	joey|monica	present	1.0000		low	low_speaker_confidence
+17	256	679.89	680.77	Got a little head rush.	Joey	Whew! Stood up to fast, got a little head rush.	Joey	present	char_tracker_stage05	joey|monica	present	1.0000		medium	
+17	257	682.85	688.45	The heat and the humidity.	Monica	It’s the heat. (has her hand on his chest, and then pulls it away) And-and the humidity.	Monica	present	char_tracker_stage05	joey|monica	present	1.0000		high	
+17	258	691.41	692.13	That's a.	Joey	That’s a uh, that’s a tough combination.	Joey	present	char_tracker_stage05	joey	present	1.0000		medium	
