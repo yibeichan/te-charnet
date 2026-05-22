@@ -209,12 +209,21 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
-# Output: figures and binary exports are large; JSON/CSV results are committed
-output/
+# Output: heavy artefacts ignored; specific text results are tracked.
+# Use content-level excludes (output/**) instead of a bare directory exclude
+# (output/) so we can re-include selected paths below — git won't descend
+# into a directory whose name itself is excluded.
+output/**
+!output/.gitkeep
+# Track the per-season sentence-level speaker tables so reviewers can
+# inspect the pipeline output alongside docs/speaker_identification_summary.md
+!output/annotations/
+!output/annotations/sentences/
+!output/annotations/sentences/**
+# Re-exclude binary/figure outputs even inside re-included paths
 output/**/figures/
 output/**/*.png
 output/**/*.gexf
-!output/.gitkeep
 
 # Local agent/specification artifacts
 .specify/

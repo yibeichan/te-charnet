@@ -9,6 +9,61 @@ the per-method distribution looks like across all seven seasons of Friends.
 - **Scope:** Seasons 1–7, 341 episodes, 86,370 sentences
 - **Visual source:** char-tracker stage-05 per-character per-second timestamps
 
+## Where the data lives
+
+All 341 per-episode speaker tables ship inside this repo at:
+
+```
+output/annotations/sentences/
+├── s1/   48 files — friends_s01eNN[a|b]_sentence_speaker_table.tsv
+├── s2/   48 files
+├── s3/   50 files
+├── s4/   48 files
+├── s5/   48 files
+├── s6/   50 files
+└── s7/   49 files
+```
+
+Each filename has the form `friends_sNNeNN[a|b]_sentence_speaker_table.tsv`,
+where `a` is the first half of a Friends episode and `b` is the second half
+(this is the show's broadcast/Speech2Text segmentation, not an internal split).
+Each file is one tab-separated UTF-8 table with a header row — see the
+[Output schema](#output-schema--what-the-reviewer-sees) section at the bottom
+of this document for every column's meaning.
+
+**To load one file:**
+
+```python
+# Python
+import pandas as pd
+df = pd.read_csv(
+    "output/annotations/sentences/s1/friends_s01e01a_sentence_speaker_table.tsv",
+    sep="\t",
+)
+```
+
+```r
+# R
+df <- read.delim(
+  "output/annotations/sentences/s1/friends_s01e01a_sentence_speaker_table.tsv"
+)
+```
+
+In Excel / Numbers: File → Open, choose "Text (Tab delimited)".
+
+**To load all of a season** (Python):
+
+```python
+from pathlib import Path
+import pandas as pd
+season_dir = Path("output/annotations/sentences/s1")
+df = pd.concat(
+    [pd.read_csv(p, sep="\t").assign(episode=p.stem.replace("_sentence_speaker_table",""))
+     for p in sorted(season_dir.glob("*.tsv"))],
+    ignore_index=True,
+)
+```
+
 ## What the pipeline produces
 
 For every sentence in every episode, the pipeline writes:
