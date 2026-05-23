@@ -242,6 +242,71 @@ in two-config mode (with / without the flag), and read the bucket diagnostics.
 Promote to full pipeline only if the `charact_entry` / `charact_leave` rows
 move in the right direction without hurting precision.
 
+## Prototype #1 results: char-presence subdivision
+
+**Implementation** (`scripts/augment_scenes_char_presence.py`):
+
+- For each fan-transcript scene, tile into 5-second windows. For each tile,
+  compute the set of main-cast characters present in ≥20% of tile seconds.
+- Detect tile-to-tile Jaccard distance ≥ τ. Require the new set to persist
+  over ≥ P additional tiles (kills transient flickers).
+- Optionally snap each candidate boundary to the nearest shot transition
+  from TSVpyscene within ±W seconds.
+- Apply min-spacing M from existing boundaries and from each other.
+
+**Tuned parameters** (selected on a 10-ep panel, then validated at scale):
+τ = 0.7, P = 2 tiles, M = 30 s, shot-snap window = 3 s.
+
+**Full-sweep result (292 eps) vs baseline:**
+
+| Metric | Baseline | Augmented (τ=0.7 P=2 M=30) | Augmented + shot-snap |
+|---|---|---|---|
+| Segment F1@5s | **0.498** | 0.497 | 0.495 |
+| Segment P@5s | 0.617 | 0.566 | 0.566 |
+| Segment R@5s | 0.441 | 0.463 | 0.460 |
+| Scene F1@5s | 0.402 | 0.372 | 0.373 |
+| Overall match@5s | 0.497 | 0.521 | 0.517 |
+| Predicted scenes / ep | 16.0 ± 5.7 | 17.8 ± 5.2 | 17.7 ± 5.2 |
+| charact_entry (single) | 0.386 | 0.402 | 0.399 |
+| charact_leave (single) | 0.364 | 0.408 | 0.389 |
+| goal_change (single) | 0.307 | 0.357 | 0.355 |
+
+**Interpretation.** The targeted buckets responded in the predicted
+direction (overall match@5s +2.4 pp; charact_leave / goal_change each up
+4–5 pp). But segment F1 is essentially flat (−0.1 pp) because precision
+fell by 5 pp while recall only rose by 2.2 pp. On the 615 newly proposed
+boundaries, only ~141 (23%) landed within ±5 s of any gold boundary —
+versus 62% baseline precision. Most new boundaries are within-scene
+character flickering from short cuts, not genuine story-beat changes.
+
+Scene-unit F1 dropped 3 pp (78% of episodes degraded) — adding boundaries
+inside fan-marked scenes mechanically lowers scene-unit precision while
+leaving scene-unit recall unchanged.
+
+Shot-snap (snap proposed boundaries to the nearest TSVpyscene shot
+transition) was effectively a no-op because shot density (~4 s / shot)
+means almost every tile boundary already has a shot within ±3 s. Tightening
+the snap window does not separate signal from noise.
+
+**Honest assessment.** The prototype demonstrates that char-presence
+*carries* signal — but a tile+threshold extraction is too coarse to convert
+it into a net F1 gain. The 10-ep panel showed +1.2 pp F1; at full scale
+that was selection bias.
+
+**Implications for the ranking.** Direction #1 in the ranking above
+**does not** stand on its own. Two avenues remain:
+
+1. **Combine with #2 (topic-shift):** require both a char-set change AND a
+   dialogue topic shift to fire a boundary. The intersection should be
+   high-precision; this prototype would become a sub-component.
+2. **Stronger restriction:** restrict to specific patterns ("main-cast
+   character newly enters an empty/sparse scene", "ensemble → 2-person
+   split") rather than any char-set change. Narrower signal, higher
+   precision per candidate.
+
+Pursuing #2 (topic-shift) next is the cleaner next move — it would either
+yield a usable independent signal, or open up the combined AND-logic path.
+
 ## What this evaluation does NOT measure
 
 - **Content quality of scene descriptions.** Our pipeline produces a

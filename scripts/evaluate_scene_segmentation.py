@@ -31,7 +31,8 @@ import pandas as pd
 
 REPO = Path(__file__).resolve().parent.parent
 MANUAL_DIR = REPO / "data/friends_annotations/annotation_results/manual_segmentation"
-OURS_DIR = REPO / "output/annotations/scenes"
+DEFAULT_OURS_DIR = REPO / "output/annotations/scenes"
+OURS_DIR = DEFAULT_OURS_DIR  # mutable; overridden by --ours-dir
 OUT_DIR = REPO / "output/evaluation/scene_segmentation"
 
 TOLERANCES = (2.0, 5.0, 10.0)
@@ -56,6 +57,11 @@ def manual_path(episode: str) -> Path:
 
 def ours_path(episode: str) -> Path:
     return OURS_DIR / f"s{int(episode[1:3])}" / f"friends_{episode}_scene_summary.tsv"
+
+
+def set_ours_dir(path: Path) -> None:
+    global OURS_DIR
+    OURS_DIR = path
 
 
 def discover_episodes() -> list[str]:
@@ -358,9 +364,13 @@ def main() -> None:
         help="Comma-separated episode ids, or 'ALL' (s1-s6 intersection).",
     )
     ap.add_argument("--out-dir", default=str(OUT_DIR))
+    ap.add_argument("--ours-dir", default=str(DEFAULT_OURS_DIR),
+                    help="Directory of predicted scene_summary.tsv files "
+                         "(default: output/annotations/scenes).")
     args = ap.parse_args()
 
-    out_dir = Path(args.out_dir)
+    set_ours_dir(Path(args.ours_dir).resolve())
+    out_dir = Path(args.out_dir).resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
 
     if args.episodes == "ALL":
