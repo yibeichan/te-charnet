@@ -2,8 +2,18 @@
 
 Companion document for the per-episode scene summaries in
 `output/annotations/scenes/sN/*_scene_summary.tsv`. Quantifies how well our
-LLM-clustered scenes align with a human rater's hand-labelled scene/segment
+scene boundaries align with a human rater's hand-labelled scene/segment
 structure, and traces residual disagreement to specific boundary-type signals.
+
+**Mechanism note.** Our scenes are not LLM-generated. They come from
+parsing community-written fan transcripts at `[Scene: ...]`, `(...)`, and
+unrecognised-line markers (see `parse_community_transcript` in
+`src/charnet/transcript_align.py`). Each Speech2Text sentence inherits a
+scene id from monotonic alignment to a community-transcript dialogue, and
+scene `start`/`end` are the min/max sentence timestamps per scene id. So
+"our segmentation" is, operationally, the *fan transcript-writer's* scene
+markers projected onto Speech2Text timestamps — not the output of any model
+or clustering algorithm.
 
 - **Pipeline commit (predictions):** `e245441` on `main` (2026-05-23)
 - **Evaluator:** `scripts/evaluate_scene_segmentation.py`
@@ -69,7 +79,7 @@ similar across units (0.44–0.49), bounded by our scene cardinality (below).
 ranges 0.36–0.45 — small season-to-season variation despite the s1-4 vs s5-6
 shift in theme-song handling.
 
-## Finding 1 — Fixed-cardinality output
+## Finding 1 — Cardinality mismatch between fan transcripts and manual
 
 | Quantity | Mean ± SD |
 |---|---|
@@ -82,15 +92,17 @@ shift in theme-song handling.
 | pred vs gold_scenes | −0.026 |
 | pred vs gold_segments | 0.201 |
 
-Our pipeline produces a roughly constant number of scenes regardless of how
-many actual narrative units the episode contains. The near-zero correlation
-with gold-scene count and the only-weak correlation with gold-segment count
-indicate the segmenter is not responding to actual narrative density. Recall
-is consequently bounded — on a 33-segment episode, 16 predictions cannot
-cover all the boundaries.
+Predicted cardinality lies between gold scenes and gold segments and is
+nearly uncorrelated with either. This is the fan transcript-writer's choice
+of what to mark with `[...]` brackets — primarily location changes, music
+interludes, and time-lapse cards, with occasional character-entry notes and
+essentially no goal/topic markers (see Finding 2). The transcript-writer is
+not following manual's scene/segment definition; they are following their own
+dramaturgical convention.
 
-This is almost certainly an LLM artefact: the cluster-budget is implicit in
-the prompt / model, not derived from the input's information content.
+This re-frames the improvement question: not "calibrate a model's cluster
+count" but "augment the transcript-writer's coverage with the boundary types
+they don't mark."
 
 ## Finding 2 — Boundary-type performance
 
@@ -122,64 +134,113 @@ The any-reason marginals (any boundary that carries the reason among others)
 show the same ordering with smaller gaps, suggesting boundaries with
 multiple reasons tend to be detected if at least one reason is exogenous.
 
-## Improvement directions
+## Improvement directions (ranked)
 
-Each direction below is grounded in a specific failure mode above.
+Each direction targets a specific failure mode from Findings 1–2. Directions
+are ranked by expected-F1-lift × inverse-cost × diagnosability. #1 and #2
+are independent and can be developed in parallel.
 
-### Calibrate output cardinality
+### 1. Character-presence subdivision  [highest priority]
 
-**Evidence:** Finding 1 — corr(pred, gold) = 0.02 / 0.20; std 5.7 with no
-correlation to episode complexity.
+**Evidence.** Finding 2: `charact_entry` and `charact_leave` are the worst
+exogenously-attributable buckets (match@5s 0.39 / 0.36) and together account
+for **1,133 single-reason boundaries** (19% of gold).
 
-**Options:**
-- Prompt-side: instruct the LLM to produce more scenes when the input has
-  more shots / sentences / character changes; provide cardinality guidance
-  scaled to input length.
-- Post-hoc subdivision: split predicted scenes whose internal character set
-  or topic embedding variance exceeds a learned threshold.
-- Hierarchical generation: ask the LLM to first produce coarse
-  location-stable blocks, then subdivide each into story beats.
+**Mechanism.** char-tracker stage-05 already provides per-second
+per-character timestamps and is already consumed by the speaker-fill cascade.
+Compute Jaccard distance between the character set in consecutive shots (or
+fixed-width windows). When the set changes substantially inside an existing
+fan-transcript scene, propose a candidate sub-boundary at the nearest
+sentence end. Threshold-tunable.
 
-### Add character-presence signal
+**Expected lift.** Bounded above by [bucket size] × [target match rate
+delta]. Pushing the two character buckets from ~37% to ~60% (the exogenous
+tier) recovers ~260 boundaries → roughly **+4 to +5 pp absolute F1@5s** on
+the segment unit, before counting cross-category boundaries that also carry
+a character reason among others.
 
-**Evidence:** Finding 2 — charact_entry / charact_leave match at 38% / 36%.
+**Cost.** Low. char-tracker outputs are already loaded; new code is
+~50 lines in `transcript_align.py` plus threshold validation against a
+held-out episode set.
 
-We already consume char-tracker stage-05 (per-second per-character
-timestamps) for speaker disambiguation. The same signal can yield a
-character-set-change feature: when `set(chars at t)` differs from
-`set(chars at t-ε)`, propose a candidate boundary. Cheap, deterministic,
-directly targets the weakest single-reason category.
+**Risk.** Over-firing on background-character drift. Mitigations: require
+the changed character to be a known main character; require persistence
+over a minimum number of shots.
 
-### Add topic-shift signal
+**Diagnosability.** Direct: rerun the evaluator and read the bucket rows
+for `charact_entry` / `charact_leave` in `boundary_diagnostics.tsv`.
 
-**Evidence:** Finding 2 — goal_change is the worst category (31%).
+**Reversibility.** Trivial — gate behind a flag.
 
-Compute sentence-level embeddings (already produced upstream for the
-speaker-fill cascade?) and detect topic shifts via embedding distance over a
-sliding window. Combine with character-set change to disambiguate
-"goal_change with no other cue" boundaries.
+### 2. Topic-shift subdivision  [secondary]
 
-### Two-stage segmentation
+**Evidence.** Finding 2: `goal_change` is the lowest-detected category
+(0.31, 417 single-reason boundaries). Fan transcripts essentially never mark
+goal/topic shifts within a continuous-location scene.
 
-**Evidence:** Findings 1 + 2 — exogenous cues are reliable; story-internal
-ones need more signal.
+**Mechanism.** Sentence embeddings + sliding-window cosine distance over each
+fan-transcript scene's dialogue. Propose a sub-boundary where distance
+exceeds threshold for a minimum window length.
 
-Stage A: detect location / shot / music boundaries with high precision
-(could be deterministic from char-tracker + shot table). Stage B: inside
-each location-stable block, subdivide via character-set and topic-shift
-signals. Lets each stage use its appropriate signal and makes errors
-attributable.
+**Expected lift.** Smaller bucket; pushing `goal_change` to 0.50 adds ~80
+TPs → ~+1.4 pp F1. Modest but addresses the most semantically meaningful
+boundary type for downstream character-network / social-cognition consumers.
 
-### Multi-task / multi-output framing
+**Cost.** Medium. Pick an embedding model (sentence-transformers MiniLM is
+a sensible default), one-time forward pass over 86k sentences, threshold
+calibration. New dependency.
 
-**Evidence:** Finding 2 — different boundary types have wildly different
-detectabilities and require different signals.
+**Risk.** Conversational dialogue is short and lexically sparse; embeddings
+may not reliably separate story beats from in-beat reply variation. Pilot
+first.
 
-Rather than collapse all signals into a single "is this a boundary?" output,
-predict each boundary type separately (location / character / topic / time
-jump). This matches the manual annotation schema and lets downstream
-consumers weight reasons by application (e.g., a network of conversational
-turns probably cares more about character / goal boundaries than location).
+### 3. Spurious-marker filter  [investigative, lower priority]
+
+**Evidence.** Predicted cardinality (16) > gold scene cardinality (11). Fan
+transcripts mark stage-direction parentheticals and short interstitials that
+manual annotators don't count.
+
+**Mechanism.** Drop predicted scenes that (a) are shorter than N seconds,
+or (b) match known interstitial patterns (`[Time Lapse]`, parenthesised stage
+directions without a location). Tune N against scene-unit precision.
+
+**Expected lift.** Precision-side; bounded — only ~5-scene gap to close at
+the scene unit. Could *hurt* segment-unit metrics by removing fine-grained
+boundaries that happen to align with manual segments.
+
+**Cost.** Low logic, careful calibration needed.
+
+### 4. Multi-task reason tagging  [orthogonal]
+
+**Evidence.** Finding 2: different reasons have wildly different
+detectabilities and likely matter differently to downstream consumers.
+
+**Mechanism.** Tag each predicted boundary with its likely reason set
+(location / character / topic / time) using char-tracker, shot transitions,
+and embedding signals. Doesn't change segmentation itself.
+
+**Expected lift.** Zero on these F1 metrics; enables consumers to weight
+boundaries by application (e.g., a conversational-turn network probably
+cares more about character/goal boundaries than music transitions).
+
+**Cost.** Medium; mostly bookkeeping once #1 + #2 are built.
+
+### Deferred: supervised model trained on manual annotations
+
+The 292 manually-labelled episodes could train a boundary classifier over
+shot / sentence / character-interval features. Defer until #1 + #2 set a
+deterministic-signal ceiling — otherwise we won't know whether a learned
+model is adding genuine value or just memorising the available signals.
+Cross-validation on s1–s6 has to be designed carefully to avoid episode-arc
+leakage.
+
+### Suggested next step
+
+Build #1 on a small held-out set first: pick ~10 episodes spanning seasons,
+implement char-set Jaccard subdivision behind a flag, rerun the evaluator
+in two-config mode (with / without the flag), and read the bucket diagnostics.
+Promote to full pipeline only if the `charact_entry` / `charact_leave` rows
+move in the right direction without hurting precision.
 
 ## What this evaluation does NOT measure
 
