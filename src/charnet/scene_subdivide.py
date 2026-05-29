@@ -20,6 +20,12 @@ _EP_RE = re.compile(r"friends_(s\d{2}e\d{2}[a-z])_scene_summary\.tsv")
 
 
 def _all_episodes(scenes_in_dir: Path) -> list[str]:
+    """Return sorted episode ids discovered under *scenes_in_dir*.
+
+    *scenes_in_dir* must be the *root* of the per-season scene tree (e.g.
+    ``output/scenes/``); the function discovers episodes recursively via
+    ``rglob``, so callers should pass the root, not a season subdirectory.
+    """
     eps = []
     for p in scenes_in_dir.rglob(SCENE_GLOB):
         m = _EP_RE.match(p.name)
@@ -46,4 +52,9 @@ def expand_episode_spec(spec: str, scenes_in_dir: Path) -> list[str]:
     if single_m:
         n = int(single_m.group(1))
         return [e for e in _all_episodes(scenes_in_dir) if int(e[1:3]) == n]
-    return [e.strip() for e in spec.split(",") if e.strip()]
+    _ID_RE = re.compile(r"^s\d{2}e\d{2}[a-z]$")
+    ids = [e.strip() for e in spec.split(",") if e.strip()]
+    for e in ids:
+        if not _ID_RE.match(e):
+            raise ValueError(f"Invalid episode id: {e!r}")
+    return ids

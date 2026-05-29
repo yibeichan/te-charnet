@@ -1,6 +1,8 @@
 import sys
 from pathlib import Path
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 from charnet.scene_subdivide import expand_episode_spec
 
@@ -31,3 +33,8 @@ def test_expand_episode_spec_season_range(tmp_path):
 def test_expand_episode_spec_explicit_list(tmp_path):
     _touch_scene_files(tmp_path, ["s01e01a", "s02e03b"])
     assert expand_episode_spec("s01e01a,s02e03b", tmp_path) == ["s01e01a", "s02e03b"]
+
+
+def test_expand_episode_spec_rejects_malformed_id(tmp_path):
+    with pytest.raises(ValueError):
+        expand_episode_spec("s01e01a,garbage", tmp_path)
