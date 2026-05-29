@@ -129,6 +129,13 @@ def test_embed_texts_cached_invalidates_on_text_change(tmp_path):
     assert enc.calls == 2
 
 
+def test_embed_texts_cached_invalidates_on_model_change(tmp_path):
+    enc = _FakeEncoder()
+    embed_texts_cached("s01e01a", ["a", "b"], enc, tmp_path, model_id="m1")
+    embed_texts_cached("s01e01a", ["a", "b"], enc, tmp_path, model_id="m2")  # diff model → re-encode
+    assert enc.calls == 2
+
+
 def test_embed_texts_cached_recovers_from_corrupt_file(tmp_path):
     enc = _FakeEncoder()
     # write a garbage file where the cache npz would live

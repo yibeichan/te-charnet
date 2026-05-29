@@ -165,8 +165,11 @@ def propose_topic_boundaries(
 Encoder = Callable[[list[str]], np.ndarray]
 
 
-def _texts_hash(texts: list[str]) -> str:
+def _texts_hash(texts: list[str], model_id: str = "") -> str:
     h = hashlib.sha256()
+    if model_id:
+        h.update(model_id.encode("utf-8"))
+        h.update(b"\xff")  # separator distinct from \x00 used between texts
     for t in texts:
         h.update(t.encode("utf-8"))
         h.update(b"\x00")
@@ -174,17 +177,24 @@ def _texts_hash(texts: list[str]) -> str:
 
 
 def embed_texts_cached(
-    episode: str, texts: list[str], encoder: Encoder, cache_dir: Path
+    episode: str,
+    texts: list[str],
+    encoder: Encoder,
+    cache_dir: Path,
+    *,
+    model_id: str = "all-MiniLM-L6-v2",
 ) -> np.ndarray:
-    """Encode *texts*, caching by (episode, texts-hash) under *cache_dir*.
+    """Encode *texts*, caching by (episode, model_id, texts-hash) under *cache_dir*.
 
     Cache layout: ``<cache_dir>/<season>/<episode>.npz`` storing the vectors
-    plus the text hash; a hash mismatch (texts changed) forces a re-encode.
+    plus the text hash; a hash mismatch (texts changed or model changed) forces
+    a re-encode. *model_id* is folded into the hash so swapping models never
+    silently returns stale vectors.
     """
     cache_dir = Path(cache_dir)
     season = f"s{int(episode[1:3])}"
     path = cache_dir / season / f"{episode}.npz"
-    key = _texts_hash(texts)
+    key = _texts_hash(texts, model_id)
     if path.exists():
         try:
             cached = np.load(path, allow_pickle=False)

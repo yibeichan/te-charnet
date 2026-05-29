@@ -101,6 +101,10 @@ def main() -> None:
     scenes_out = Path(args.scenes_out)
     sentences_in = Path(args.sentences_in)
     ct_dir = resolve_char_tracker_dir(args.char_tracker_dir) or Path(DEFAULT_CHAR_TRACKER_DIR)
+    # NOTE: both proposers receive the same min_spacing value but interpret it slightly differently.
+    # char: gates between scene endpoints AND between accepted boundaries (3 checks per candidate).
+    # topic: gates only between accepted boundaries; scene endpoints are implicitly handled because
+    #        propose_topic_boundaries already requires ≥ 2w+1 turns before producing any boundary.
     params = {"w": args.w, "tau_depth": args.tau_depth, "min_spacing": args.min_spacing}
     char_params = {
         "jaccard": args.char_jaccard,
