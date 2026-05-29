@@ -20,17 +20,25 @@ class Turn:
     end: float
 
 
+def _clean_str(val) -> str:
+    """NaN-safe strip: returns '' for None/NaN, else str(val).strip().
+
+    Per the repo gotcha, never let NaN become the string 'nan'.
+    """
+    if val is None:
+        return ""
+    if isinstance(val, float) and pd.isna(val):
+        return ""
+    return str(val).strip()
+
+
 def build_text(utterance_ct, utterance) -> str:
     """Best-available turn text: community transcript, else Speech2Text.
 
     NaN-safe per the repo gotcha — never stringify NaN to "nan".
     """
     for val in (utterance_ct, utterance):
-        if val is None:
-            continue
-        if isinstance(val, float) and pd.isna(val):
-            continue
-        s = str(val).strip()
+        s = _clean_str(val)
         if s:
             return s
     return ""
@@ -47,13 +55,13 @@ def group_turns_for_scene(scene_rows: pd.DataFrame) -> list[Turn]:
     prev_ct_key: str | None = None
     for _, row in scene_rows.iterrows():
         ct_raw = row.get("utterance_ct")
-        ct = "" if (ct_raw is None or (isinstance(ct_raw, float) and pd.isna(ct_raw))) else str(ct_raw).strip()
+        ct = _clean_str(ct_raw)
         text = build_text(ct_raw, row.get("utterance"))
         start, end = float(row["start"]), float(row["end"])
         mergeable = ct != "" and ct == prev_ct_key
         if mergeable and turns:
             last = turns[-1]
-            turns[-1] = Turn(text=last.text, start=last.start, end=max(last.end, end))
+            turns[-1] = Turn(text=last.text, start=last.start, end=max(last.end, end))  # text shared by all rows with same ct key
         else:
             turns.append(Turn(text=text, start=start, end=end))
         prev_ct_key = ct if ct != "" else None

@@ -35,3 +35,13 @@ def test_group_turns_blank_ct_uses_utterance_and_does_not_merge():
     ])
     turns = group_turns_for_scene(df)
     assert [t.text for t in turns] == ["first asr", "second asr"]
+
+
+def test_group_turns_nan_ct_uses_utterance_fallback():
+    df = pd.DataFrame([
+        {"utterance_ct": np.nan, "utterance": "asr one", "start": 1.0, "end": 2.0},
+        {"utterance_ct": np.nan, "utterance": "asr two", "start": 2.0, "end": 3.0},
+    ])
+    turns = group_turns_for_scene(df)
+    # NaN ct → no merge; each row falls back to its own utterance
+    assert [t.text for t in turns] == ["asr one", "asr two"]
