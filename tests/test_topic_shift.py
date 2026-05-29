@@ -166,3 +166,18 @@ def test_turns_by_scene_groups_by_scene_id():
     assert set(by_scene) == {1, 2}
     assert [t.text for t in by_scene[1]] == ["a", "b"]
     assert [t.text for t in by_scene[2]] == ["c"]
+
+
+def test_intersect_within_exact_eps_boundary():
+    # exactly eps away counts (closed interval)
+    assert intersect_within([10.0], [13.0], eps=3.0) == [13.0]
+
+
+def test_turns_by_scene_sorts_unordered_rows():
+    df = pd.DataFrame([
+        {"scene_id": 1, "utterance_ct": "second", "utterance": "second", "start": 5.0, "end": 6.0},
+        {"scene_id": 1, "utterance_ct": "first", "utterance": "first", "start": 1.0, "end": 2.0},
+    ])
+    by_scene = turns_by_scene(df)
+    # rows fed out of time order → sorted by start before grouping
+    assert [t.text for t in by_scene[1]] == ["first", "second"]

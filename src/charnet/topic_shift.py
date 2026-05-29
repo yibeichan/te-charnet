@@ -199,7 +199,7 @@ def embed_texts_cached(
 
 
 def intersect_within(char_times, topic_times, *, eps: float) -> list[float]:
-    """Topic times that have a char time within *eps*; placed at the topic time."""
+    """Topic times t with some char time c such that |t - c| <= eps (closed); placed at the topic time. Result sorted."""
     out = [t for t in topic_times if any(abs(t - c) <= eps for c in char_times)]
     return sorted(out)
 
@@ -207,7 +207,7 @@ def intersect_within(char_times, topic_times, *, eps: float) -> list[float]:
 def turns_by_scene(sentences: pd.DataFrame) -> dict[int, list[Turn]]:
     """Group an episode's sentence table into per-scene turn sequences.
 
-    Rows are ordered by ``start`` within each ``scene_id`` before grouping.
+    Rows are sorted by ``start`` within each scene group before turn collapsing.
     """
     out: dict[int, list[Turn]] = {}
     for scene_id, grp in sentences.groupby("scene_id", sort=True):
