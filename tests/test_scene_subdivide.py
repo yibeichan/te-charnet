@@ -38,3 +38,41 @@ def test_expand_episode_spec_explicit_list(tmp_path):
 def test_expand_episode_spec_rejects_malformed_id(tmp_path):
     with pytest.raises(ValueError):
         expand_episode_spec("s01e01a,garbage", tmp_path)
+
+
+import pandas as pd
+from charnet.scene_subdivide import Scene, subdivide_episode
+
+
+def _write_scene_table(root: Path, episode: str, rows: list[dict]) -> None:
+    season = int(episode[1:3])
+    d = root / f"s{season}"
+    d.mkdir(parents=True, exist_ok=True)
+    pd.DataFrame(rows).to_csv(
+        d / f"friends_{episode}_scene_summary.tsv", sep="\t", index=False
+    )
+
+
+def test_subdivide_splits_and_renumbers(tmp_path):
+    in_dir, out_dir = tmp_path / "in", tmp_path / "out"
+    _write_scene_table(in_dir, "s01e01a", [
+        {"scene_id": 1, "scene_desc": "Central Perk", "start": 0.0, "end": 100.0, "shot_ids": "1|2"},
+        {"scene_id": 2, "scene_desc": "Monica's", "start": 100.0, "end": 150.0, "shot_ids": "3"},
+    ])
+
+    # propose one interior boundary at t=50 inside the first scene only
+    def propose(scene: Scene) -> list[float]:
+        return [50.0] if scene.scene_id == 1 else []
+
+    stats = subdivide_episode("s01e01a", in_dir, out_dir, propose, aug_tag="topic_aug")
+
+    out = pd.read_csv(out_dir / "s1" / "friends_s01e01a_scene_summary.tsv", sep="\t")
+    assert list(out["scene_id"]) == [1, 2, 3]          # renumbered contiguously
+    assert list(out["start"]) == [0.0, 50.0, 100.0]
+    assert list(out["end"]) == [50.0, 100.0, 150.0]
+    # first sub-scene inherits desc + shot_ids; the new sub-scene is tagged, shot_ids cleared
+    assert out.loc[0, "scene_desc"] == "Central Perk"
+    assert out.loc[1, "scene_desc"] == "Central Perk [topic_aug 1]"
+    assert str(out.loc[1, "shot_ids"]) in ("", "nan")
+    assert stats["n_new_boundaries"] == 1
+    assert stats["n_output_scenes"] == 3
