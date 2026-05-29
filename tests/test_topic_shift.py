@@ -6,6 +6,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 from charnet.topic_shift import Turn, build_text, group_turns_for_scene, block_distance_trace, peak_depths, propose_topic_boundaries
+from charnet.topic_shift import embed_texts_cached
 
 
 def test_build_text_prefers_ct_falls_back_to_utterance():
@@ -94,3 +95,34 @@ def test_propose_topic_boundaries_min_spacing_suppresses_nearby_peak():
     assert near == [2.0]            # shallower gap-3 peak suppressed (2.0s < 2.5s)
     far = propose_topic_boundaries(turns, vecs, w=1, tau_depth=0.1, min_spacing=0.5)
     assert far == [2.0, 4.0]        # loose spacing retains both
+
+
+class _FakeEncoder:
+    """Deterministic 2-d encoder: returns [len(text), n_vowels]. Counts calls."""
+    def __init__(self):
+        self.calls = 0
+
+    def __call__(self, texts):
+        self.calls += 1
+        return np.array(
+            [[float(len(t)), float(sum(c in "aeiou" for c in t.lower()))] for t in texts]
+        )
+
+
+def test_embed_texts_cached_round_trip_and_reuse(tmp_path):
+    enc = _FakeEncoder()
+    texts = ["hello world", "topic shift"]
+    v1 = embed_texts_cached("s01e01a", texts, enc, tmp_path)
+    assert v1.shape == (2, 2)
+    assert enc.calls == 1
+    # second call hits cache → no new encode
+    v2 = embed_texts_cached("s01e01a", texts, enc, tmp_path)
+    assert enc.calls == 1
+    assert np.allclose(v1, v2)
+
+
+def test_embed_texts_cached_invalidates_on_text_change(tmp_path):
+    enc = _FakeEncoder()
+    embed_texts_cached("s01e01a", ["a", "b"], enc, tmp_path)
+    embed_texts_cached("s01e01a", ["a", "c"], enc, tmp_path)  # changed → re-encode
+    assert enc.calls == 2

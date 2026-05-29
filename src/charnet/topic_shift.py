@@ -8,7 +8,10 @@ boundaries at local-maximum gaps whose TextTiling depth exceeds a threshold.
 """
 from __future__ import annotations
 
+import hashlib
+from collections.abc import Callable
 from dataclasses import dataclass
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -157,3 +160,54 @@ def propose_topic_boundaries(
             continue
         accepted_idx.append(gap_i)
     return sorted(turns[i].end for i in accepted_idx)
+
+
+Encoder = Callable[[list[str]], np.ndarray]
+
+
+def _texts_hash(texts: list[str]) -> str:
+    h = hashlib.sha256()
+    for t in texts:
+        h.update(t.encode("utf-8"))
+        h.update(b"\x00")
+    return h.hexdigest()
+
+
+def embed_texts_cached(
+    episode: str, texts: list[str], encoder: Encoder, cache_dir: Path
+) -> np.ndarray:
+    """Encode *texts*, caching by (episode, texts-hash) under *cache_dir*.
+
+    Cache layout: ``<cache_dir>/<season>/<episode>.npz`` storing the vectors
+    plus the text hash; a hash mismatch (texts changed) forces a re-encode.
+    """
+    cache_dir = Path(cache_dir)
+    season = f"s{int(episode[1:3])}"
+    path = cache_dir / season / f"{episode}.npz"
+    key = _texts_hash(texts)
+    if path.exists():
+        cached = np.load(path, allow_pickle=False)
+        if str(cached["key"]) == key and cached["vecs"].shape[0] == len(texts):
+            return cached["vecs"]
+    vecs = np.asarray(encoder(texts), dtype=np.float32)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    np.savez(path, vecs=vecs, key=np.array(key))
+    return vecs
+
+
+def minilm_encoder(model_name: str = "all-MiniLM-L6-v2") -> Encoder:
+    """Build a CPU MiniLM encoder. Imported lazily so tests need no model."""
+    from sentence_transformers import SentenceTransformer
+
+    model = SentenceTransformer(model_name, device="cpu")
+
+    def encode(texts: list[str]) -> np.ndarray:
+        if not texts:
+            return np.zeros((0, model.get_sentence_embedding_dimension()), dtype=np.float32)
+        return np.asarray(
+            model.encode(texts, batch_size=64, show_progress_bar=False,
+                         normalize_embeddings=False),
+            dtype=np.float32,
+        )
+
+    return encode
