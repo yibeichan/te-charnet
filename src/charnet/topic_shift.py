@@ -78,7 +78,7 @@ def _cosine_distance(a: np.ndarray, b: np.ndarray) -> float:
     na, nb = np.linalg.norm(a), np.linalg.norm(b)
     if na == 0.0 or nb == 0.0:
         return 0.0
-    return float(1.0 - np.dot(a, b) / (na * nb))
+    return float(max(0.0, 1.0 - np.dot(a, b) / (na * nb)))
 
 
 def block_distance_trace(vecs: np.ndarray, w: int) -> np.ndarray:
@@ -111,6 +111,7 @@ def peak_depths(trace: np.ndarray) -> list[tuple[int, float]]:
         right_ok = i == n - 1 or trace[i] >= trace[i + 1]
         if not (left_ok and right_ok):
             continue
+        # at an endpoint the walk can't move, so lv stays == trace[i] and that side contributes 0 depth (one-sided)
         # walk left to the local valley
         lv = trace[i]
         j = i
@@ -144,7 +145,7 @@ def propose_topic_boundaries(
     accepted boundaries. Each boundary is placed at the end time of the turn
     before the gap (a sentence end).
     """
-    if len(turns) < 2 * w + 1 or len(vecs) != len(turns):
+    if len(turns) < 2 * w + 1 or len(vecs) != len(turns):  # require at least one full w-width block available on each side of some interior gap
         return []
     trace = block_distance_trace(vecs, w)
     accepted_idx: list[int] = []

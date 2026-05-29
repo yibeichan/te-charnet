@@ -80,3 +80,17 @@ def test_propose_topic_boundaries_too_few_turns():
     vecs = np.zeros((3, 2))
     turns = [Turn("t", float(i), float(i) + 1.0) for i in range(3)]
     assert propose_topic_boundaries(turns, vecs, w=2, tau_depth=0.3, min_spacing=0.5) == []
+
+
+def test_propose_topic_boundaries_min_spacing_suppresses_nearby_peak():
+    A = np.array([1.0, 0.0])
+    B = np.array([0.0, 1.0])
+    C = np.array([1.0, 1.0]) / np.sqrt(2)
+    vecs = np.stack([A, A, B, B, C, C])
+    turns = [Turn("t", float(i), float(i) + 1.0) for i in range(6)]
+    # trace = [0, 1.0, 0, ~0.293, 0]: deep peak at gap 1 (turns[1].end=2.0),
+    # shallow peak at gap 3 (turns[3].end=4.0), 2.0 s apart.
+    near = propose_topic_boundaries(turns, vecs, w=1, tau_depth=0.1, min_spacing=2.5)
+    assert near == [2.0]            # shallower gap-3 peak suppressed (2.0s < 2.5s)
+    far = propose_topic_boundaries(turns, vecs, w=1, tau_depth=0.1, min_spacing=0.5)
+    assert far == [2.0, 4.0]        # loose spacing retains both
