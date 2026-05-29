@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
-from charnet.topic_shift import Turn, build_text, group_turns_for_scene
+from charnet.topic_shift import Turn, build_text, group_turns_for_scene, block_distance_trace, peak_depths, propose_topic_boundaries
 
 
 def test_build_text_prefers_ct_falls_back_to_utterance():
@@ -45,3 +45,38 @@ def test_group_turns_nan_ct_uses_utterance_fallback():
     turns = group_turns_for_scene(df)
     # NaN ct → no merge; each row falls back to its own utterance
     assert [t.text for t in turns] == ["asr one", "asr two"]
+
+
+def test_block_distance_trace_flags_the_topic_change():
+    # 6 turns: first 3 ≈ vector A, last 3 ≈ vector B. W=2 → gap at index 2 (turn2|turn3) is largest.
+    A = np.array([1.0, 0.0])
+    B = np.array([0.0, 1.0])
+    vecs = np.stack([A, A, A, B, B, B])
+    trace = block_distance_trace(vecs, w=2)
+    assert len(trace) == 5                       # n_turns - 1
+    assert np.argmax(trace) == 2                 # boundary between the two halves
+    assert trace[2] > 0.9                         # near-orthogonal blocks
+
+
+def test_peak_depths_picks_local_maxima():
+    trace = np.array([0.1, 0.2, 0.9, 0.2, 0.15, 0.8, 0.1])
+    peaks = dict(peak_depths(trace))             # {gap_index: depth}
+    assert 2 in peaks and 5 in peaks
+    assert peaks[2] > peaks[5]                    # deeper peak first
+
+
+def test_propose_topic_boundaries_returns_turn_end_time():
+    A, B = np.array([1.0, 0.0]), np.array([0.0, 1.0])
+    vecs = np.stack([A, A, A, B, B, B])
+    turns = [Turn("t", float(i), float(i) + 1.0) for i in range(6)]  # each 1s, contiguous
+    subs = propose_topic_boundaries(
+        turns, vecs, w=2, tau_depth=0.3, min_spacing=0.5,
+    )
+    # gap index 2 → boundary at turns[2].end == 3.0
+    assert subs == [3.0]
+
+
+def test_propose_topic_boundaries_too_few_turns():
+    vecs = np.zeros((3, 2))
+    turns = [Turn("t", float(i), float(i) + 1.0) for i in range(3)]
+    assert propose_topic_boundaries(turns, vecs, w=2, tau_depth=0.3, min_spacing=0.5) == []
