@@ -60,6 +60,9 @@ def subdivide_episode(
     interior boundary times. Output rows are renumbered 1..N; sub-scenes after
     the first inherit ``scene_desc`` with a ``[<aug_tag> k]`` suffix and an
     empty ``shot_ids``.
+
+    Returns a stats dict; "n_new_boundaries" is the total count of interior
+    cut-points inserted across all scenes.
     """
     season = int(episode[1:3])
     in_path = scenes_in_dir / f"s{season}" / f"friends_{episode}_scene_summary.tsv"
@@ -79,7 +82,7 @@ def subdivide_episode(
             end=float(row["end"]),
             shot_ids=str(row.get("shot_ids", "") or ""),
         )
-        subs = [b for b in sorted(propose(scene)) if scene.start < b < scene.end]
+        subs = [b for b in sorted(set(propose(scene))) if scene.start < b < scene.end]
         if not subs:
             new_rows.append({
                 "scene_id": next_id, "scene_desc": scene.scene_desc,
