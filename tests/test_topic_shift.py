@@ -7,6 +7,7 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 from charnet.topic_shift import Turn, build_text, group_turns_for_scene, block_distance_trace, peak_depths, propose_topic_boundaries
 from charnet.topic_shift import embed_texts_cached
+from charnet.topic_shift import intersect_within, turns_by_scene
 
 
 def test_build_text_prefers_ct_falls_back_to_utterance():
@@ -142,3 +143,26 @@ def test_embed_texts_cached_recovers_from_corrupt_file(tmp_path):
     assert enc.calls == 1
     import numpy as _np
     assert _np.allclose(v, v2)
+
+
+def test_intersect_within_keeps_topic_time_when_char_agrees():
+    char_times = [10.0, 50.0, 90.0]
+    topic_times = [12.0, 70.0]          # 12 is within 3s of 10; 70 has no char within 3s
+    assert intersect_within(char_times, topic_times, eps=3.0) == [12.0]
+
+
+def test_intersect_within_empty_side():
+    assert intersect_within([], [12.0], eps=3.0) == []
+    assert intersect_within([10.0], [], eps=3.0) == []
+
+
+def test_turns_by_scene_groups_by_scene_id():
+    df = pd.DataFrame([
+        {"scene_id": 1, "utterance_ct": "a", "utterance": "a", "start": 0.0, "end": 1.0},
+        {"scene_id": 1, "utterance_ct": "b", "utterance": "b", "start": 1.0, "end": 2.0},
+        {"scene_id": 2, "utterance_ct": "c", "utterance": "c", "start": 2.0, "end": 3.0},
+    ])
+    by_scene = turns_by_scene(df)
+    assert set(by_scene) == {1, 2}
+    assert [t.text for t in by_scene[1]] == ["a", "b"]
+    assert [t.text for t in by_scene[2]] == ["c"]

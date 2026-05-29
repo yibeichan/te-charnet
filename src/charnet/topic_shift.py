@@ -198,6 +198,24 @@ def embed_texts_cached(
     return vecs
 
 
+def intersect_within(char_times, topic_times, *, eps: float) -> list[float]:
+    """Topic times that have a char time within *eps*; placed at the topic time."""
+    out = [t for t in topic_times if any(abs(t - c) <= eps for c in char_times)]
+    return sorted(out)
+
+
+def turns_by_scene(sentences: pd.DataFrame) -> dict[int, list[Turn]]:
+    """Group an episode's sentence table into per-scene turn sequences.
+
+    Rows are ordered by ``start`` within each ``scene_id`` before grouping.
+    """
+    out: dict[int, list[Turn]] = {}
+    for scene_id, grp in sentences.groupby("scene_id", sort=True):
+        grp = grp.sort_values("start")
+        out[int(scene_id)] = group_turns_for_scene(grp)
+    return out
+
+
 def minilm_encoder(model_name: str = "all-MiniLM-L6-v2") -> Encoder:
     """Build a CPU MiniLM encoder. Imported lazily so tests need no model."""
     from sentence_transformers import SentenceTransformer
