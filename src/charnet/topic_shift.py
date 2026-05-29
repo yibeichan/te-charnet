@@ -186,9 +186,12 @@ def embed_texts_cached(
     path = cache_dir / season / f"{episode}.npz"
     key = _texts_hash(texts)
     if path.exists():
-        cached = np.load(path, allow_pickle=False)
-        if str(cached["key"]) == key and cached["vecs"].shape[0] == len(texts):
-            return cached["vecs"]
+        try:
+            cached = np.load(path, allow_pickle=False)
+            if str(cached["key"]) == key and cached["vecs"].shape[0] == len(texts):
+                return cached["vecs"]
+        except Exception:
+            pass  # corrupted/partial write — fall through to re-encode and overwrite
     vecs = np.asarray(encoder(texts), dtype=np.float32)
     path.parent.mkdir(parents=True, exist_ok=True)
     np.savez(path, vecs=vecs, key=np.array(key))

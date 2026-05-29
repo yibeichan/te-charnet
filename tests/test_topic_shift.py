@@ -126,3 +126,19 @@ def test_embed_texts_cached_invalidates_on_text_change(tmp_path):
     embed_texts_cached("s01e01a", ["a", "b"], enc, tmp_path)
     embed_texts_cached("s01e01a", ["a", "c"], enc, tmp_path)  # changed → re-encode
     assert enc.calls == 2
+
+
+def test_embed_texts_cached_recovers_from_corrupt_file(tmp_path):
+    enc = _FakeEncoder()
+    # write a garbage file where the cache npz would live
+    bad = tmp_path / "s1" / "s01e01a.npz"
+    bad.parent.mkdir(parents=True, exist_ok=True)
+    bad.write_bytes(b"not a real npz")
+    v = embed_texts_cached("s01e01a", ["hello", "world"], enc, tmp_path)
+    assert v.shape == (2, 2)        # re-encoded despite the corrupt file
+    assert enc.calls == 1
+    # and the file is now a valid cache that reloads without re-encoding
+    v2 = embed_texts_cached("s01e01a", ["hello", "world"], enc, tmp_path)
+    assert enc.calls == 1
+    import numpy as _np
+    assert _np.allclose(v, v2)
