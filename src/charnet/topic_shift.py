@@ -166,6 +166,7 @@ Encoder = Callable[[list[str]], np.ndarray]
 
 
 def _texts_hash(texts: list[str], model_id: str = "") -> str:
+    # model_id="" → no prefix (caller supplies it); embed_texts_cached always passes one.
     h = hashlib.sha256()
     if model_id:
         h.update(model_id.encode("utf-8"))
@@ -189,7 +190,8 @@ def embed_texts_cached(
     Cache layout: ``<cache_dir>/<season>/<episode>.npz`` storing the vectors
     plus the text hash; a hash mismatch (texts changed or model changed) forces
     a re-encode. *model_id* is folded into the hash so swapping models never
-    silently returns stale vectors.
+    silently returns stale vectors. (Caches written before model_id was added
+    to the key mismatch on first run and re-encode once — expected, one-time.)
     """
     cache_dir = Path(cache_dir)
     season = f"s{int(episode[1:3])}"
