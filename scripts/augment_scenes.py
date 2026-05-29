@@ -25,7 +25,7 @@ from charnet.visual_presence import (  # noqa: E402
 DEFAULT_SCENES_IN = REPO / "output/annotations/scenes"
 DEFAULT_SENTENCES_IN = REPO / "output/annotations/sentences"
 DEFAULT_CACHE_DIR = REPO / "output/intermediate/sentence_embeddings"
-HYBRID_EPS = 3.0
+HYBRID_EPS = 3.0  # seconds: max gap for a char and topic boundary to count as agreeing
 
 
 def _sentences_path(sentences_in: Path, episode: str) -> Path:
@@ -56,6 +56,8 @@ def _build_topic_propose(episode, sentences_in, encoder, cache_dir, params):
     if not spath.exists():
         return None
     sents = pd.read_csv(spath, sep="\t")
+    if "scene_id" not in sents.columns:
+        raise ValueError(f"{spath}: missing 'scene_id' column")
     by_scene = ts.turns_by_scene(sents)
     # encode every turn text in the episode once (cached)
     flat_texts, index = [], {}
@@ -84,8 +86,6 @@ def main() -> None:
     ap.add_argument("--scenes-out", required=True)
     ap.add_argument("--sentences-in", default=str(DEFAULT_SENTENCES_IN))
     ap.add_argument("--char-tracker-dir", default=None)
-    ap.add_argument("--shots-dir", default=str(cp.DEFAULT_SHOTS_DIR),
-                    help="(unused; kept for backwards-compat)")
     ap.add_argument("--cache-dir", default=str(DEFAULT_CACHE_DIR))
     ap.add_argument("--w", type=int, default=2)
     ap.add_argument("--tau-depth", type=float, default=0.3)
@@ -130,8 +130,9 @@ def main() -> None:
                 def propose(scene: Scene, _c=char_propose, _t=topic_propose) -> list[float]:
                     return ts.intersect_within(_c(scene), _t(scene), eps=args.eps)
 
+        # propose is None when a builder found no input data (no char grid or
+        # no sentence table) → pass the scene through unchanged.
         if propose is None:
-            # missing inputs → copy through with no boundaries
             propose = lambda scene: []  # noqa: E731
             totals["skipped"] += 1
 
