@@ -1,8 +1,9 @@
 """Grid-search topic-shift params on the s1-s2 calibration split.
 
-For each (W, tau_depth, min_spacing) combo: augment s1-s2 in topic mode to a
-temp tree, run evaluate_scene_segmentation.py against it, parse aggregate.json,
-and record segment F1@5s. Prints a sorted grid and the best combo.
+For each (W, tau_depth, min_spacing) combo: augment s1-s2 in the chosen mode
+(topic or hybrid) to a temp tree, run evaluate_scene_segmentation.py against
+it, parse aggregate.json, and record segment F1@5s, P@5s, R@5s plus the number
+of new boundaries added. Prints a baseline row, a sorted grid, and the best combo.
 
 The embedding cache is shared (default output/intermediate/sentence_embeddings),
 so turns are encoded once on the first combo and reused thereafter.
@@ -16,11 +17,18 @@ pass the explicit comma-list to both scripts for consistency.
 The expansion is done once at module load via
 ``charnet.scene_subdivide.expand_episode_spec`` against the annotations/scenes
 directory.
+
+Usage
+-----
+    python scripts/calibrate_topic_shift.py --mode topic
+    python scripts/calibrate_topic_shift.py --mode hybrid
 """
 from __future__ import annotations
 
+import argparse
 import itertools
 import json
+import re
 import subprocess
 import sys
 import tempfile
@@ -42,12 +50,39 @@ EPISODES: list[str] = expand_episode_spec("s1-s2", _ANNOTATIONS_SCENES)
 EP_CSV: str = ",".join(EPISODES)
 
 
-def _seg_f1_at_5s(agg_path: Path) -> float:
+def _parse_agg(agg_path: Path) -> dict:
     agg = json.loads(agg_path.read_text())
-    return float(agg["segment"]["F1@5s_mean"])
+    return {
+        "seg_f1": float(agg["segment"]["F1@5s_mean"]),
+        "seg_p": float(agg["segment"]["P@5s_mean"]),
+        "seg_r": float(agg["segment"]["R@5s_mean"]),
+    }
 
 
-def _run_combo(w: int, tau: float, spacing: float) -> dict:
+def _baseline_metrics() -> dict:
+    """Evaluate the un-augmented annotations/scenes tree (no augment step)."""
+    _calib_tmp = REPO / "output" / "_calib_tmp"
+    _calib_tmp.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(dir=_calib_tmp) as tmp:
+        eval_out = Path(tmp) / "eval"
+        subprocess.run(
+            [
+                sys.executable,
+                str(REPO / "scripts/evaluate_scene_segmentation.py"),
+                "--episodes",
+                EP_CSV,
+                "--ours-dir",
+                str(_ANNOTATIONS_SCENES),
+                "--out-dir",
+                str(eval_out),
+            ],
+            check=True,
+        )
+        return _parse_agg(eval_out / "aggregate.json")
+
+
+def _run_combo(w: int, tau: float, spacing: float, mode: str = "topic") -> dict:
+    """Augment in *mode*, evaluate, return metrics dict with n_new."""
     # Use a temp dir under output/ so evaluate_scene_segmentation.py's
     # relative_to(REPO) display logic doesn't crash on /tmp paths.
     _calib_tmp = REPO / "output" / "_calib_tmp"
@@ -55,12 +90,13 @@ def _run_combo(w: int, tau: float, spacing: float) -> dict:
     with tempfile.TemporaryDirectory(dir=_calib_tmp) as tmp:
         scenes_out = Path(tmp) / "scenes"
         eval_out = Path(tmp) / "eval"
-        subprocess.run(
+
+        aug_result = subprocess.run(
             [
                 sys.executable,
                 str(REPO / "scripts/augment_scenes.py"),
                 "--mode",
-                "topic",
+                mode,
                 "--episodes",
                 EP_CSV,
                 "--scenes-out",
@@ -73,7 +109,19 @@ def _run_combo(w: int, tau: float, spacing: float) -> dict:
                 str(spacing),
             ],
             check=True,
+            capture_output=True,
+            text=True,
         )
+
+        # Parse total new boundaries from the "Totals: A → B (+N); ..." line.
+        n_new = 0
+        for line in aug_result.stdout.splitlines():
+            if line.startswith("Totals:"):
+                matches = re.findall(r"\(\+(\d+)\)", line)
+                if matches:
+                    n_new = int(matches[0])
+                break
+
         subprocess.run(
             [
                 sys.executable,
@@ -87,29 +135,57 @@ def _run_combo(w: int, tau: float, spacing: float) -> dict:
             ],
             check=True,
         )
-        return {
-            "seg_f1": _seg_f1_at_5s(eval_out / "aggregate.json"),
-        }
+        metrics = _parse_agg(eval_out / "aggregate.json")
+        metrics["n_new"] = n_new
+        return metrics
 
 
 def main() -> None:
+    ap = argparse.ArgumentParser(
+        description="Calibrate topic-shift (or hybrid) params on the s1-s2 split."
+    )
+    ap.add_argument(
+        "--mode",
+        choices=["topic", "hybrid"],
+        default="topic",
+        help="Augmentation mode passed to augment_scenes.py (default: topic).",
+    )
+    args = ap.parse_args()
+    mode = args.mode
+
+    # --- Baseline (no augmentation) ---
+    print("Computing baseline (no augmentation) …", flush=True)
+    base = _baseline_metrics()
+    print(
+        f"BASELINE (no aug): segment F1@5s={base['seg_f1']:.4f}"
+        f"  P@5s={base['seg_p']:.4f}  R@5s={base['seg_r']:.4f}\n",
+        flush=True,
+    )
+
+    # --- Grid search ---
     results = []
     for w, tau, spacing in itertools.product(W_GRID, TAU_GRID, SPACING_GRID):
-        m = _run_combo(w, tau, spacing)
-        results.append((m["seg_f1"], w, tau, spacing))
+        m = _run_combo(w, tau, spacing, mode=mode)
+        results.append((m["seg_f1"], m["seg_p"], m["seg_r"], m["n_new"], w, tau, spacing))
         print(
-            f"W={w} tau={tau} spacing={spacing} -> seg_F1@5s={m['seg_f1']:.4f}",
+            f"W={w} tau={tau} spacing={spacing} ->"
+            f" F1@5s={m['seg_f1']:.4f} P={m['seg_p']:.4f} R={m['seg_r']:.4f}"
+            f" (+{m['n_new']} boundaries)",
             flush=True,
         )
 
     results.sort(reverse=True)
-    print("\nTop 5 combos (segment F1@5s):")
-    for f1, w, tau, spacing in results[:5]:
-        print(f"  {f1:.4f}  W={w} tau_depth={tau} min_spacing={spacing}")
+    print("\nTop 5 combos (sorted by segment F1@5s):")
+    for f1, p, r, n_new, w, tau, spacing in results[:5]:
+        print(
+            f"  F1={f1:.4f} P={p:.4f} R={r:.4f} +{n_new:>4}b"
+            f"  W={w} tau_depth={tau} min_spacing={spacing}"
+        )
     best = results[0]
     print(
-        f"\nBEST: W={best[1]} tau_depth={best[2]} min_spacing={best[3]}"
-        f" (seg_F1@5s={best[0]:.4f})"
+        f"\nBEST: W={best[4]} tau_depth={best[5]} min_spacing={best[6]}"
+        f"  F1@5s={best[0]:.4f} P={best[1]:.4f} R={best[2]:.4f}"
+        f" (+{best[3]} boundaries)"
     )
 
 
