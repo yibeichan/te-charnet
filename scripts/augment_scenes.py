@@ -33,22 +33,20 @@ def _sentences_path(sentences_in: Path, episode: str) -> Path:
     return sentences_in / f"s{season}" / f"friends_{episode}_sentence_speaker_table.tsv"
 
 
-def _build_char_propose(episode, ct_dir, shots_dir, params):
+def _build_char_propose(episode, ct_dir, char_params):
     grid_path = char_tracker_csv_path(ct_dir, f"friends_{episode}")
     if grid_path is None:
         return None  # signal: no char data
     chars, rows = load_char_tracker_grid(grid_path)
-    shot_times = cp.load_shot_transitions(episode, shots_dir)
 
     def propose(scene: Scene) -> list[float]:
         return cp.propose_sub_boundaries(
             scene.start, scene.end, chars, rows,
-            tile_secs=cp.TILE_SECS, presence_frac=cp.PRESENCE_FRAC,
-            jaccard_thresh=cp.JACCARD_THRESH, min_spacing=cp.MIN_SPACING_SECS,
-            persistence_tiles=cp.PERSISTENCE_TILES,
-            shot_times=shot_times if shot_times else None,
-            shot_snap_window=cp.SHOT_SNAP_WINDOW, shot_snap_required=False,
-            min_scene_length=cp.MIN_SCENE_LENGTH,
+            tile_secs=cp.TILE_SECS, presence_frac=char_params["presence_frac"],
+            jaccard_thresh=char_params["jaccard"], min_spacing=char_params["min_spacing"],
+            persistence_tiles=char_params["persistence"],
+            shot_times=None, shot_snap_window=cp.SHOT_SNAP_WINDOW,
+            shot_snap_required=False, min_scene_length=cp.MIN_SCENE_LENGTH,
         )
     return propose
 
@@ -86,20 +84,30 @@ def main() -> None:
     ap.add_argument("--scenes-out", required=True)
     ap.add_argument("--sentences-in", default=str(DEFAULT_SENTENCES_IN))
     ap.add_argument("--char-tracker-dir", default=None)
-    ap.add_argument("--shots-dir", default=str(cp.DEFAULT_SHOTS_DIR))
+    ap.add_argument("--shots-dir", default=str(cp.DEFAULT_SHOTS_DIR),
+                    help="(unused; kept for backwards-compat)")
     ap.add_argument("--cache-dir", default=str(DEFAULT_CACHE_DIR))
     ap.add_argument("--w", type=int, default=2)
     ap.add_argument("--tau-depth", type=float, default=0.3)
     ap.add_argument("--min-spacing", type=float, default=20.0)
     ap.add_argument("--eps", type=float, default=HYBRID_EPS)
+    ap.add_argument("--char-jaccard", type=float, default=0.7)
+    ap.add_argument("--char-min-spacing", type=float, default=30.0)
+    ap.add_argument("--char-persistence", type=int, default=2)
+    ap.add_argument("--char-presence-frac", type=float, default=0.20)
     args = ap.parse_args()
 
     scenes_in = Path(args.scenes_in)
     scenes_out = Path(args.scenes_out)
     sentences_in = Path(args.sentences_in)
-    shots_dir = Path(args.shots_dir)
     ct_dir = resolve_char_tracker_dir(args.char_tracker_dir) or Path(DEFAULT_CHAR_TRACKER_DIR)
     params = {"w": args.w, "tau_depth": args.tau_depth, "min_spacing": args.min_spacing}
+    char_params = {
+        "jaccard": args.char_jaccard,
+        "min_spacing": args.char_min_spacing,
+        "persistence": args.char_persistence,
+        "presence_frac": args.char_presence_frac,
+    }
     aug_tag = {"char": "char_aug", "topic": "topic_aug", "hybrid": "hybrid_aug"}[args.mode]
 
     episodes = expand_episode_spec(args.episodes, scenes_in)
@@ -108,7 +116,7 @@ def main() -> None:
     print(f"Augmenting {len(episodes)} eps | mode={args.mode} → {scenes_out}")
     totals = {"in": 0, "out": 0, "new": 0, "skipped": 0}
     for ep in episodes:
-        char_propose = _build_char_propose(ep, ct_dir, shots_dir, params) if args.mode in ("char", "hybrid") else None
+        char_propose = _build_char_propose(ep, ct_dir, char_params) if args.mode in ("char", "hybrid") else None
         topic_propose = _build_topic_propose(ep, sentences_in, encoder, Path(args.cache_dir), params) if args.mode in ("topic", "hybrid") else None
 
         if args.mode == "char":
