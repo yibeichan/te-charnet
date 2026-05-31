@@ -307,6 +307,84 @@ that was selection bias.
 Pursuing #2 (topic-shift) next is the cleaner next move — it would either
 yield a usable independent signal, or open up the combined AND-logic path.
 
+## Prototype #2 results: topic-shift subdivision + char×topic hybrid
+
+**Implementation** (`scripts/augment_scenes.py --mode {char,topic,hybrid}`,
+`src/charnet/topic_shift.py`):
+
+- Group each scene's sentence rows into community-transcript *turns*
+  (consecutive rows sharing the same `utterance_ct`; this avoids the
+  Speech2Text segmentation artifact that per-row embedding would introduce).
+- Embed each turn with `sentence-transformers` `all-MiniLM-L6-v2` (CPU,
+  cached per episode under `output/intermediate/sentence_embeddings/`).
+- TextTiling-style detection: at each inter-turn gap, cosine distance between
+  the mean-pooled blocks of W turns on either side; boundaries are
+  local-maximum gaps whose depth (rise above the valleys on each side)
+  exceeds τ, subject to min-spacing M, placed at the turn's sentence end.
+- **Hybrid** fires a boundary only where a char-presence candidate (frozen
+  prototype-#1 params) and a topic-shift candidate agree within ε = 3 s,
+  placed at the topic time.
+
+**Calibration protocol.** To avoid the prototype-#1 selection-bias trap (the
+10-ep panel over-stated F1), topic parameters were grid-searched on the
+**s1–s2 calibration split** and the headline below is reported only on the
+disjoint **s3–s6 test split** (196 half-episodes the parameters never saw).
+char parameters and ε were frozen, not tuned. On calibration, every
+topic-standalone combo scored *below* the s1–s2 baseline (0.5065); the grid
+was monotonic toward fewer boundaries (best W=3 τ=0.5 M=30 = 0.4426, −6.4 pp).
+The hybrid was then re-calibrated on its own objective — its best combo
+(W=1 τ=0.5 M=30 = 0.5059) was flat vs the s1–s2 baseline. Each config is
+reported below at its own calibration-best parameters.
+
+**Held-out result (s3–s6, 196 half-episodes) vs baseline:**
+
+| Metric | Baseline | char (τ=0.7 P=2 M=30) | topic (W=3 τ=0.5 M=30) | hybrid (W=1 τ=0.5 M=30) |
+|---|---|---|---|---|
+| Segment F1@5s | **0.4940** | 0.4943 | 0.4390 | 0.4941 |
+| Segment P@5s | 0.6203 | 0.5694 | 0.4041 | 0.6114 |
+| Segment R@5s | 0.4322 | 0.4562 | 0.5008 | 0.4360 |
+| Scene F1@5s | 0.4089 | 0.3768 | 0.2971 | 0.4044 |
+| Predicted scenes added | — | +375 | +2028 | +54 |
+| charact_entry (single, n=540) | 0.3556 | 0.3722 | 0.4926 | 0.3611 |
+| charact_leave (single, n=325) | 0.3723 | 0.4154 | 0.4615 | 0.3723 |
+| goal_change (single, n=192) | 0.3281 | 0.3646 | 0.4688 | 0.3333 |
+
+**Interpretation.**
+
+- **Topic-shift standalone is net-negative (−5.5 pp segment F1).** The signal
+  is real — topic boundaries move every targeted bucket the most
+  (`goal_change` 0.328 → 0.469, `charact_entry` 0.356 → 0.493) and lift recall
+  0.432 → 0.501. But at +2028 boundaries (≈10/episode) precision collapses
+  0.620 → 0.404. This is the prototype-#1 failure mode amplified: sentence
+  embeddings over short conversational turns flag far more "shifts" than are
+  real story beats.
+- **The char×topic hybrid is neutral (+0.01 pp).** Requiring char-presence
+  agreement filters topic's 2028 candidates down to **54** that coincide with
+  a character-set change within ε = 3 s. This restores precision to 0.611
+  (≈ baseline 0.620) — the agreement gate **does** prevent the precision
+  collapse, exactly as the prototype-#1 assessment hoped. But the surviving
+  boundaries are break-even (recall +0.4 pp, precision −0.9 pp vs baseline):
+  the hybrid neither helps nor hurts segment F1.
+- **char reproduces prototype #1** (flat, +0.03 pp; precision down, recall up)
+  on this split, as expected.
+
+**Honest assessment.** Neither topic-shift standalone nor the char×topic
+hybrid improves scene-segmentation F1. The hybrid is the "least-bad" outcome
+and validates one mechanism claim — char∧topic agreement is high-precision
+enough to avoid the precision collapse — but the intersection is too small
+(54 boundaries over 196 episodes) and too break-even to move the metric.
+Both topic-standalone and the hybrid join char-presence (#1) as documented
+negative results.
+
+**Implications for the ranking.** Directions #1 (char-presence) and #2
+(topic-shift), and their AND-logic hybrid, are now all exhausted as
+deterministic-signal subdividers without net F1 gain. The remaining avenues
+from the ranking are untouched: the spurious-marker *filter* (#3, a
+precision-side rather than recall-side intervention), and the deferred
+supervised classifier — which, with the deterministic-signal ceiling now
+established as ≈ baseline, can be evaluated for whether a learned model adds
+genuine value over these hand-built signals.
+
 ## What this evaluation does NOT measure
 
 - **Content quality of scene descriptions.** Our pipeline produces a

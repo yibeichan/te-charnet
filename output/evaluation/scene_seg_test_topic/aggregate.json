@@ -1,0 +1,143 @@
+{
+  "n_episodes": 196,
+  "scene": {
+    "F1@2s_mean": 0.1057,
+    "F1@5s_mean": 0.2971,
+    "F1@10s_mean": 0.3829,
+    "P@5s_mean": 0.2153,
+    "R@5s_mean": 0.523,
+    "iou_mean_mean": 0.3392,
+    "iou_ge_0.5_mean": 0.2921,
+    "by_season": {
+      "3": {
+        "n_eps": 50,
+        "F1@5s_mean": 0.2992,
+        "iou_mean_mean": 0.358
+      },
+      "4": {
+        "n_eps": 48,
+        "F1@5s_mean": 0.2948,
+        "iou_mean_mean": 0.3319
+      },
+      "5": {
+        "n_eps": 48,
+        "F1@5s_mean": 0.273,
+        "iou_mean_mean": 0.3136
+      },
+      "6": {
+        "n_eps": 50,
+        "F1@5s_mean": 0.3202,
+        "iou_mean_mean": 0.3519
+      }
+    }
+  },
+  "segment": {
+    "F1@2s_mean": 0.1826,
+    "F1@5s_mean": 0.439,
+    "F1@10s_mean": 0.5538,
+    "P@5s_mean": 0.4041,
+    "R@5s_mean": 0.5008,
+    "iou_mean_mean": 0.423,
+    "iou_ge_0.5_mean": 0.4194,
+    "by_season": {
+      "3": {
+        "n_eps": 50,
+        "F1@5s_mean": 0.4131,
+        "iou_mean_mean": 0.4293
+      },
+      "4": {
+        "n_eps": 48,
+        "F1@5s_mean": 0.4367,
+        "iou_mean_mean": 0.4187
+      },
+      "5": {
+        "n_eps": 48,
+        "F1@5s_mean": 0.455,
+        "iou_mean_mean": 0.4243
+      },
+      "6": {
+        "n_eps": 50,
+        "F1@5s_mean": 0.4521,
+        "iou_mean_mean": 0.4195
+      }
+    }
+  },
+  "counts": {
+    "pred_n_scenes_mean": 25.92,
+    "pred_n_scenes_std": 5.33,
+    "gold_n_scenes_mean": 10.9,
+    "gold_n_scenes_std": 2.98,
+    "gold_n_segments_mean": 21.36,
+    "gold_n_segments_std": 5.07,
+    "corr_pred_vs_gold_scenes": -0.2041,
+    "corr_pred_vs_gold_segments": 0.179
+  },
+  "diagnostics": {
+    "n_boundaries": 3961,
+    "overall_match_rate@5s": 0.5635,
+    "single_reason": {
+      "location": {
+        "n": 83,
+        "match_rate@5s": 0.6506
+      },
+      "charact_entry": {
+        "n": 540,
+        "match_rate@5s": 0.4926
+      },
+      "charact_leave": {
+        "n": 325,
+        "match_rate@5s": 0.4615
+      },
+      "time_jump": {
+        "n": 189,
+        "match_rate@5s": 0.5714
+      },
+      "goal_change": {
+        "n": 192,
+        "match_rate@5s": 0.4688
+      },
+      "music_transit": {
+        "n": 664,
+        "match_rate@5s": 0.6642
+      },
+      "theme_song": {
+        "n": 96,
+        "match_rate@5s": 0.7396
+      },
+      "none": {
+        "n": 11,
+        "match_rate@5s": 0.5455
+      }
+    },
+    "any_reason": {
+      "location": {
+        "n": 1341,
+        "match_rate@5s": 0.6025
+      },
+      "charact_entry": {
+        "n": 1059,
+        "match_rate@5s": 0.5024
+      },
+      "charact_leave": {
+        "n": 561,
+        "match_rate@5s": 0.4759
+      },
+      "time_jump": {
+        "n": 1357,
+        "match_rate@5s": 0.5954
+      },
+      "goal_change": {
+        "n": 819,
+        "match_rate@5s": 0.4896
+      },
+      "music_transit": {
+        "n": 665,
+        "match_rate@5s": 0.6632
+      },
+      "theme_song": {
+        "n": 96,
+        "match_rate@5s": 0.7396
+      }
+    }
+  }
+}
