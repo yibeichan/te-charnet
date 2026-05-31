@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
-from charnet.topic_shift import Turn, build_text, group_turns_for_scene, block_distance_trace, peak_depths, propose_topic_boundaries
+from charnet.topic_shift import Turn, build_text, group_turns_for_scene, block_distance_trace, peak_depths, propose_topic_boundaries, _accepted_peak_indices
 from charnet.topic_shift import embed_texts_cached
 from charnet.topic_shift import intersect_within, turns_by_scene
 
@@ -188,3 +188,17 @@ def test_turns_by_scene_sorts_unordered_rows():
     by_scene = turns_by_scene(df)
     # rows fed out of time order → sorted by start before grouping
     assert [t.text for t in by_scene[1]] == ["first", "second"]
+
+
+def test_accepted_peak_indices_matches_propose_boundaries():
+    A = np.array([1.0, 0.0])
+    B = np.array([0.0, 1.0])
+    C = np.array([1.0, 1.0]) / np.sqrt(2)
+    vecs = np.stack([A, A, B, B, C, C])
+    turns = [Turn("t", float(i), float(i) + 1.0) for i in range(6)]
+    trace = block_distance_trace(vecs, 1)
+    idx = _accepted_peak_indices(trace, turns, tau_depth=0.1, min_spacing=0.5)
+    times = sorted(turns[i].end for i in idx)
+    assert times == propose_topic_boundaries(turns, vecs, w=1, tau_depth=0.1, min_spacing=0.5)
+    idx_tight = _accepted_peak_indices(trace, turns, tau_depth=0.1, min_spacing=2.5)
+    assert sorted(turns[i].end for i in idx_tight) == [2.0]

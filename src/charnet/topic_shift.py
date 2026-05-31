@@ -133,6 +133,30 @@ def peak_depths(trace: np.ndarray) -> list[tuple[int, float]]:
     return out
 
 
+def _accepted_peak_indices(
+    trace: np.ndarray,
+    turns: list[Turn],
+    *,
+    tau_depth: float,
+    min_spacing: float,
+) -> list[int]:
+    """Gap indices the detector accepts as boundaries, given a precomputed trace.
+
+    Greedy by descending depth: keep a local-maximum gap if its depth ≥
+    *tau_depth* and it is ≥ *min_spacing* seconds from every already-accepted
+    gap. Returns the accepted gap indices, sorted ascending.
+    """
+    accepted: list[int] = []
+    for gap_i, depth in peak_depths(trace):
+        if depth < tau_depth:
+            continue
+        t = turns[gap_i].end
+        if any(abs(t - turns[j].end) < min_spacing for j in accepted):
+            continue
+        accepted.append(gap_i)
+    return sorted(accepted)
+
+
 def propose_topic_boundaries(
     turns: list[Turn],
     vecs: np.ndarray,
@@ -151,15 +175,8 @@ def propose_topic_boundaries(
     if len(turns) < 2 * w + 1 or len(vecs) != len(turns):  # require at least one full w-width block available on each side of some interior gap
         return []
     trace = block_distance_trace(vecs, w)
-    accepted_idx: list[int] = []
-    for gap_i, depth in peak_depths(trace):
-        if depth < tau_depth:
-            continue
-        t = turns[gap_i].end
-        if any(abs(t - turns[j].end) < min_spacing for j in accepted_idx):
-            continue
-        accepted_idx.append(gap_i)
-    return sorted(turns[i].end for i in accepted_idx)
+    idx = _accepted_peak_indices(trace, turns, tau_depth=tau_depth, min_spacing=min_spacing)
+    return sorted(turns[i].end for i in idx)
 
 
 Encoder = Callable[[list[str]], np.ndarray]
