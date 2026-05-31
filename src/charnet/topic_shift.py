@@ -269,7 +269,7 @@ def _scene_trace_rows(
             "scene_id": scene_id,
             "onset": turns[i].end,
             "block_distance": float(trace[i]),
-            "depth": float(depth_by_idx[i]) if i in depth_by_idx else float("nan"),
+            "depth": float(depth_by_idx[i]) if i in depth_by_idx else np.nan,
             "is_peak": i in accepted,
             "w": w,
             "tau_depth": tau_depth,
@@ -290,6 +290,7 @@ def episode_topic_trace(
 
     One row per inter-turn gap within each scene, in scene then time order.
     Scenes with fewer than ``2*w + 1`` turns contribute no rows.
+    A scene whose embeddings are missing or length-mismatched in *vecs_by_scene* contributes no rows.
     """
     rows: list[dict] = []
     for scene_id in sorted(turns_by_scene):

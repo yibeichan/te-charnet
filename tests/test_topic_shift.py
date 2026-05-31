@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
-from charnet.topic_shift import Turn, build_text, group_turns_for_scene, block_distance_trace, peak_depths, propose_topic_boundaries, _accepted_peak_indices, episode_topic_trace
+from charnet.topic_shift import Turn, build_text, group_turns_for_scene, block_distance_trace, peak_depths, propose_topic_boundaries, _accepted_peak_indices, episode_topic_trace, TRACE_COLUMNS
 from charnet.topic_shift import embed_texts_cached
 from charnet.topic_shift import intersect_within, turns_by_scene
 
@@ -211,6 +211,7 @@ def test_episode_topic_trace_rows_and_fields():
     assert math.isnan(df.loc[df["onset"] == 1.0, "depth"].iloc[0])
     assert bool(df.loc[df["onset"] == 2.0, "is_peak"].iloc[0]) is True
     assert bool(df.loc[df["onset"] == 1.0, "is_peak"].iloc[0]) is False
+    assert list(df.columns) == TRACE_COLUMNS
     assert set(df["w"]) == {1} and set(df["tau_depth"]) == {0.1} and set(df["min_spacing"]) == {0.5}
 
 
@@ -218,7 +219,7 @@ def test_episode_topic_trace_empty_when_all_scenes_too_short():
     turns_by_scene = {1: [Turn("a", 0.0, 1.0), Turn("b", 1.0, 2.0)]}  # 2 turns < 2*w+1 (=3) for w=1
     vecs_by_scene = {1: np.zeros((2, 2))}
     df = episode_topic_trace(turns_by_scene, vecs_by_scene, w=1, tau_depth=0.1, min_spacing=0.5)
-    assert list(df.columns) == ["scene_id", "onset", "block_distance", "depth", "is_peak", "w", "tau_depth", "min_spacing"]
+    assert list(df.columns) == TRACE_COLUMNS
     assert len(df) == 0
 
 
