@@ -66,6 +66,25 @@ def test_main_writes_tsv_and_sidecars(tmp_path, monkeypatch):
     assert desc["DatasetType"] == "derivative"
 
 
+def test_episode_trace_multi_scene_slicing(tmp_path):
+    # two scenes of different lengths -> guards the flat-encode / per-scene-slice seam
+    sent = tmp_path / "sentences" / "s1"
+    sent.mkdir(parents=True)
+    rows = (
+        [{"scene_id": 1, "utterance_ct": w, "utterance": w, "start": float(i), "end": float(i) + 1.0}
+         for i, w in enumerate(["a", "b", "c", "d"])]                       # scene 1: 4 turns -> 3 gaps
+        + [{"scene_id": 2, "utterance_ct": w, "utterance": w, "start": 10.0 + i, "end": 11.0 + i}
+           for i, w in enumerate(["e", "f", "g"])]                          # scene 2: 3 turns -> 2 gaps
+    )
+    pd.DataFrame(rows).to_csv(sent / "friends_s01e01a_sentence_speaker_table.tsv", sep="\t", index=False)
+
+    df = E._episode_trace("s01e01a", tmp_path / "sentences", _fake_encoder, tmp_path / "cache",
+                          w=1, tau_depth=0.1, min_spacing=0.5)
+    assert df["scene_id"].tolist() == [1, 1, 1, 2, 2]
+    # onsets come from the correct per-scene turn ends (no cross-scene index bleed)
+    assert df["onset"].tolist() == [1.0, 2.0, 3.0, 11.0, 12.0]
+
+
 def test_missing_sentence_table_returns_none(tmp_path):
     out = E._episode_trace("s09e99z", tmp_path / "sentences", _fake_encoder, tmp_path / "cache",
                            w=1, tau_depth=0.1, min_spacing=0.5)
