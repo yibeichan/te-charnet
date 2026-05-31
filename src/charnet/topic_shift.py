@@ -245,6 +245,61 @@ def turns_by_scene(sentences: pd.DataFrame) -> dict[int, list[Turn]]:
     return out
 
 
+TRACE_COLUMNS = ["scene_id", "onset", "block_distance", "depth", "is_peak", "w", "tau_depth", "min_spacing"]
+
+
+def _scene_trace_rows(
+    scene_id: int,
+    turns: list[Turn],
+    vecs: np.ndarray,
+    *,
+    w: int,
+    tau_depth: float,
+    min_spacing: float,
+) -> list[dict]:
+    """Per-gap trace rows for one scene; empty if the scene is too short."""
+    if len(turns) < 2 * w + 1 or len(vecs) != len(turns):
+        return []
+    trace = block_distance_trace(vecs, w)
+    depth_by_idx = dict(peak_depths(trace))
+    accepted = set(_accepted_peak_indices(trace, turns, tau_depth=tau_depth, min_spacing=min_spacing))
+    rows: list[dict] = []
+    for i in range(len(trace)):  # one gap per i in [0, n_turns-1)
+        rows.append({
+            "scene_id": scene_id,
+            "onset": turns[i].end,
+            "block_distance": float(trace[i]),
+            "depth": float(depth_by_idx[i]) if i in depth_by_idx else float("nan"),
+            "is_peak": i in accepted,
+            "w": w,
+            "tau_depth": tau_depth,
+            "min_spacing": min_spacing,
+        })
+    return rows
+
+
+def episode_topic_trace(
+    turns_by_scene: dict[int, list[Turn]],
+    vecs_by_scene: dict[int, np.ndarray],
+    *,
+    w: int,
+    tau_depth: float,
+    min_spacing: float,
+) -> pd.DataFrame:
+    """Assemble the per-gap topic-shift trace for one episode.
+
+    One row per inter-turn gap within each scene, in scene then time order.
+    Scenes with fewer than ``2*w + 1`` turns contribute no rows.
+    """
+    rows: list[dict] = []
+    for scene_id in sorted(turns_by_scene):
+        rows.extend(_scene_trace_rows(
+            scene_id, turns_by_scene[scene_id], vecs_by_scene.get(scene_id, np.empty((0,))),
+            w=w, tau_depth=tau_depth, min_spacing=min_spacing,
+        ))
+    return pd.DataFrame(rows, columns=TRACE_COLUMNS)
+
+
 def minilm_encoder(model_name: str = "all-MiniLM-L6-v2") -> Encoder:
     """Build a CPU MiniLM encoder. Imported lazily so tests need no model."""
     from sentence_transformers import SentenceTransformer
