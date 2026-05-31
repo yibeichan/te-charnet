@@ -82,9 +82,11 @@ def main() -> None:
     args = ap.parse_args()
 
     out_dir = Path(args.out_dir)
+    sentences_in = Path(args.sentences_in)
     episodes = expand_episode_spec(args.episodes, Path(args.scenes_in))
     encoder = ts.minilm_encoder()
 
+    # write schema sidecars first so the output dir is self-describing even on partial/zero-episode runs
     write_data_dictionary(out_dir / "topic_trace.json", DATA_DICTIONARY)
     write_dataset_description(
         out_dir.parent / "dataset_description.json",
@@ -96,7 +98,7 @@ def main() -> None:
     print(f"Exporting topic trace for {len(episodes)} eps → {out_dir}")
     n_written = n_skipped = 0
     for ep in episodes:
-        df = _episode_trace(ep, Path(args.sentences_in), encoder, Path(args.cache_dir),
+        df = _episode_trace(ep, sentences_in, encoder, Path(args.cache_dir),
                             w=args.w, tau_depth=args.tau_depth, min_spacing=args.min_spacing)
         if df is None:
             n_skipped += 1
