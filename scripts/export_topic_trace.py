@@ -30,7 +30,7 @@ DATA_DICTIONARY = {
     "onset": {"Description": "Gap time: end of the turn before the gap, relative to episode start. Mapping to fMRI run time / TRs is the consumer's responsibility.", "Units": "s"},
     "block_distance": {"Description": "Cosine distance between mean-pooled w-turn blocks on either side of the gap; continuous topic-shift regressor. Higher = larger semantic shift.", "Units": "arbitrary (0-1 for normalized embeddings)"},
     "depth": {"Description": "TextTiling depth (rise above neighboring valleys) at local maxima of block_distance; NaN at non-maxima."},
-    "is_peak": {"Description": "Gap accepted as a boundary by the topic-shift detector at the recorded params. NOTE: the detector is a documented negative result (docs/scene_segmentation_evaluation.md, Prototype #2); is_peak is an audit trail, not a validated boundary.", "Levels": {"true": "accepted", "false": "not accepted"}},
+    "is_peak": {"Description": "Gap accepted as a boundary by the topic-shift detector at the recorded params. NOTE: the detector is a documented negative result (docs/scene_segmentation_evaluation.md, Prototype #2); is_peak is an audit trail, not a validated boundary.", "Levels": {"True": "accepted", "False": "not accepted"}},  # keys match pandas' bool serialization in the TSV
     "w": {"Description": "Block half-width in turns used to compute block_distance and is_peak."},
     "tau_depth": {"Description": "Depth threshold for is_peak."},
     "min_spacing": {"Description": "Minimum seconds between accepted peaks (greedy, deepest-first).", "Units": "s"},
@@ -76,6 +76,12 @@ def main() -> None:
     ap.add_argument("--sentences-in", default=str(DEFAULT_SENTENCES_IN))
     ap.add_argument("--out-dir", default=str(DEFAULT_OUT_DIR))
     ap.add_argument("--cache-dir", default=str(DEFAULT_CACHE_DIR))
+    # NOTE: these defaults are independent of augment_scenes.py's (w=2, tau=0.3,
+    # min_spacing=20) and are NOT tuned to reproduce its boundaries. is_peak/depth
+    # here are an audit trail over the continuous block_distance regressor (the
+    # detector is a documented negative result), not a validated segmentation —
+    # so the two entry points need not agree. The exported params are recorded in
+    # the trace's w/tau_depth/min_spacing columns for provenance.
     ap.add_argument("--w", type=int, default=1)
     ap.add_argument("--tau-depth", type=float, default=0.5)
     ap.add_argument("--min-spacing", type=float, default=30.0)

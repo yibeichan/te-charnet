@@ -29,6 +29,7 @@ import argparse
 import itertools
 import json
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -44,6 +45,9 @@ TAU_GRID = [0.2, 0.3, 0.4, 0.5]
 SPACING_GRID = [15.0, 20.0, 30.0]
 
 _ANNOTATIONS_SCENES = REPO / "output" / "annotations" / "scenes"
+# Temp parent under output/ (not /tmp) so evaluate_scene_segmentation.py's
+# relative_to(REPO) display logic doesn't crash; cleaned up at end of main().
+_CALIB_TMP = REPO / "output" / "_calib_tmp"
 
 # Expand once; both subprocesses get the same explicit episode CSV.
 EPISODES: list[str] = expand_episode_spec("s1-s2", _ANNOTATIONS_SCENES)
@@ -61,9 +65,8 @@ def _parse_agg(agg_path: Path) -> dict:
 
 def _baseline_metrics() -> dict:
     """Evaluate the un-augmented annotations/scenes tree (no augment step)."""
-    _calib_tmp = REPO / "output" / "_calib_tmp"
-    _calib_tmp.mkdir(parents=True, exist_ok=True)
-    with tempfile.TemporaryDirectory(dir=_calib_tmp) as tmp:
+    _CALIB_TMP.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(dir=_CALIB_TMP) as tmp:
         eval_out = Path(tmp) / "eval"
         subprocess.run(
             [
@@ -83,11 +86,8 @@ def _baseline_metrics() -> dict:
 
 def _run_combo(w: int, tau: float, spacing: float, mode: str = "topic") -> dict:
     """Augment in *mode*, evaluate, return metrics dict with n_new."""
-    # Use a temp dir under output/ so evaluate_scene_segmentation.py's
-    # relative_to(REPO) display logic doesn't crash on /tmp paths.
-    _calib_tmp = REPO / "output" / "_calib_tmp"
-    _calib_tmp.mkdir(parents=True, exist_ok=True)
-    with tempfile.TemporaryDirectory(dir=_calib_tmp) as tmp:
+    _CALIB_TMP.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(dir=_CALIB_TMP) as tmp:
         scenes_out = Path(tmp) / "scenes"
         eval_out = Path(tmp) / "eval"
 
@@ -187,6 +187,9 @@ def main() -> None:
         f"  F1@5s={best[0]:.4f} P={best[1]:.4f} R={best[2]:.4f}"
         f" (+{best[3]} boundaries)"
     )
+
+    # Drop the now-empty temp parent so it doesn't linger in the worktree.
+    shutil.rmtree(_CALIB_TMP, ignore_errors=True)
 
 
 if __name__ == "__main__":
