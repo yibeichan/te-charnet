@@ -15,11 +15,6 @@ from charnet.io import save_temporal_network  # noqa: E402
 from charnet.models import EdgeData, SceneGraph  # noqa: E402
 
 
-def nx_exp_columns():
-    import export_network_metrics as _E
-    return _E.nx_exp.SCENE_NETWORK_COLUMNS
-
-
 def _write_network(network_root: Path, dirname: str, ep_scene_id=1):
     sg = SceneGraph(
         scene_id=ep_scene_id, start=0.0, end=10.0,
@@ -84,7 +79,7 @@ def test_main_writes_tsvs_and_sidecars(tmp_path, monkeypatch):
     assert scene_tsv.exists() and char_tsv.exists()
 
     sdf = pd.read_csv(scene_tsv, sep="\t")
-    assert list(sdf.columns) == nx_exp_columns()
+    assert list(sdf.columns) == E.nx_exp.SCENE_NETWORK_COLUMNS
     cdf = pd.read_csv(char_tsv, sep="\t")
     assert list(cdf.columns) == ["scene_id", "start", "end", "character",
                                  "degree", "betweenness"]
@@ -98,5 +93,5 @@ def test_main_writes_tsvs_and_sidecars(tmp_path, monkeypatch):
 def test_main_explicit_missing_episode_errors(tmp_path, monkeypatch):
     root = tmp_path / "02_build_network"  # empty: no episode dirs
     out_dir = tmp_path / "network_metrics"
-    with pytest.raises(SystemExit):
+    with pytest.raises(SystemExit, match=r"s01e01a"):
         _run_main(monkeypatch, tmp_path, "s01e01a", root, out_dir)

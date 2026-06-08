@@ -81,7 +81,8 @@ def main() -> None:
     out_dir = Path(args.out_dir)
     network_root = Path(args.network_root)
     measures = [m.strip().lower() for m in args.measures.split(",") if m.strip()]
-    episodes = expand_episode_spec(args.episodes, Path(args.scenes_in))
+    scenes_in = Path(args.scenes_in)
+    episodes = expand_episode_spec(args.episodes, scenes_in)
     explicit = _is_explicit_list(args.episodes)
 
     # write schema sidecars first so the dir is self-describing on partial runs
@@ -120,8 +121,8 @@ def main() -> None:
         sys.exit(f"error: no temporal_network.json for explicitly-named episode(s): "
                  f"{', '.join(missing)} (checked under {network_root})")
     if n_written == 0:
-        sys.exit(f"error: 0 episodes written — check --network-root ({network_root}) "
-                 f"and SCRATCH_DIR")
+        sys.exit(f"error: 0 episodes written — check --scenes-in ({scenes_in}) has "
+                 f"episode files, or --network-root ({network_root}) / SCRATCH_DIR")
 
 
 if __name__ == "__main__":
