@@ -51,6 +51,20 @@ def scene_network_trace(scene_graphs: list[SceneGraph]) -> pd.DataFrame:
 CHARACTER_CENTRALITY_BASE_COLUMNS = ["scene_id", "start", "end", "character"]
 
 
+def validate_measures(measures: list[str]) -> None:
+    """Raise ValueError if any measure is unsupported.
+
+    Centralizes the check (``compute_centralities`` only logs unknown measures)
+    so callers can fail fast up front, before doing any I/O.
+    """
+    unknown = [m for m in measures if m not in metrics.SUPPORTED_CENTRALITY_MEASURES]
+    if unknown:
+        raise ValueError(
+            f"unknown centrality measure(s): {', '.join(unknown)}. "
+            f"Supported: {', '.join(metrics.SUPPORTED_CENTRALITY_MEASURES)}"
+        )
+
+
 def character_centrality_trace(
     scene_graphs: list[SceneGraph],
     measures: list[str],
@@ -62,12 +76,7 @@ def character_centrality_trace(
     unknown measure (``compute_centralities`` only logs). Returns an empty
     frame carrying the declared columns when there are no rows.
     """
-    unknown = [m for m in measures if m not in metrics.SUPPORTED_CENTRALITY_MEASURES]
-    if unknown:
-        raise ValueError(
-            f"unknown centrality measure(s): {', '.join(unknown)}. "
-            f"Supported: {', '.join(metrics.SUPPORTED_CENTRALITY_MEASURES)}"
-        )
+    validate_measures(measures)
     columns = CHARACTER_CENTRALITY_BASE_COLUMNS + list(measures)
     df = metrics.centrality_timeseries(scene_graphs, measures=measures)
     if df.empty:

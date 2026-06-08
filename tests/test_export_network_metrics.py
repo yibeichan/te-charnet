@@ -56,16 +56,20 @@ def _make_scenes_dir(tmp_path):
     return tmp_path / "scenes"
 
 
-def _run_main(monkeypatch, tmp_path, episodes, network_root, out_dir):
+def _run_main_with_measures(monkeypatch, tmp_path, episodes, network_root, out_dir, measures):
     scenes_in = _make_scenes_dir(tmp_path)
     monkeypatch.setattr(sys, "argv", [
         "export_network_metrics.py", "--episodes", episodes,
         "--scenes-in", str(scenes_in),
         "--network-root", str(network_root),
         "--out-dir", str(out_dir),
-        "--measures", "degree,betweenness",
+        "--measures", measures,
     ])
     E.main()
+
+
+def _run_main(monkeypatch, tmp_path, episodes, network_root, out_dir):
+    _run_main_with_measures(monkeypatch, tmp_path, episodes, network_root, out_dir, "degree,betweenness")
 
 
 def test_main_writes_tsvs_and_sidecars(tmp_path, monkeypatch):
@@ -179,3 +183,15 @@ def test_main_invalid_measure_raises(tmp_path, monkeypatch):
     ])
     with pytest.raises(ValueError, match="unknown"):
         E.main()
+
+
+def test_main_invalid_measure_validated_up_front(tmp_path, monkeypatch):
+    # bad --measures must raise even when NO episode resolves (validation precedes
+    # the loop) — not silently fall through to the "0 episodes written" exit — and
+    # must fail before any sidecar is written
+    root = tmp_path / "02_build_network"  # empty: nothing resolves
+    out_dir = tmp_path / "network_metrics"
+    with pytest.raises(ValueError, match="unknown"):
+        _run_main_with_measures(monkeypatch, tmp_path, "ALL", root, out_dir, "bogus")
+    assert not (out_dir / "scene_network.json").exists()
+    assert not (out_dir.parent / "dataset_description.json").exists()

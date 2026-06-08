@@ -81,6 +81,7 @@ def main() -> None:
     out_dir = Path(args.out_dir)
     network_root = Path(args.network_root)
     measures = [m.strip().lower() for m in args.measures.split(",") if m.strip()]
+    nx_exp.validate_measures(measures)  # fail fast on a bad --measures, before any I/O
     scenes_in = Path(args.scenes_in)
     episodes = expand_episode_spec(args.episodes, scenes_in)
     explicit = _is_explicit_list(args.episodes)
