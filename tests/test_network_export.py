@@ -2,7 +2,6 @@
 import sys
 from pathlib import Path
 
-import pandas as pd
 import pytest  # noqa: E402
 
 REPO = Path(__file__).resolve().parent.parent
