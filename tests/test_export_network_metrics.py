@@ -95,3 +95,61 @@ def test_main_explicit_missing_episode_errors(tmp_path, monkeypatch):
     out_dir = tmp_path / "network_metrics"
     with pytest.raises(SystemExit, match=r"s01e01a"):
         _run_main(monkeypatch, tmp_path, "s01e01a", root, out_dir)
+
+
+def test_main_resolves_bare_episode_dir(tmp_path, monkeypatch):
+    root = tmp_path / "02_build_network"
+    _write_network(root, "s01e01a")  # bare dir, not friends_-prefixed
+    out_dir = tmp_path / "network_metrics"
+    _run_main(monkeypatch, tmp_path, "s01e01a", root, out_dir)
+    assert (out_dir / "s1" / "friends_s01e01a_scene_network.tsv").exists()
+    assert (out_dir / "s1" / "friends_s01e01a_character_centrality.tsv").exists()
+
+
+def _write_multiscene_network(network_root: Path, dirname: str):
+    scenes = []
+    for sid, start in [(1, 0.0), (2, 10.0)]:
+        scenes.append(SceneGraph(
+            scene_id=sid, start=start, end=start + 5.0,
+            nodes=["A", "B", "C"],
+            edges=[
+                EdgeData(source="A", target="B", weight=2.0, adjacency=1.0, proximity=0.0, copresence=0.0),
+                EdgeData(source="B", target="C", weight=1.0, adjacency=1.0, proximity=0.0, copresence=0.0),
+            ],
+        ))
+    path = network_root / dirname / "temporal_network.json"
+    save_temporal_network(scenes, path)
+    return path
+
+
+def test_main_multiscene_row_counts(tmp_path, monkeypatch):
+    root = tmp_path / "02_build_network"
+    _write_multiscene_network(root, "friends_s01e01a")
+    out_dir = tmp_path / "network_metrics"
+    _run_main(monkeypatch, tmp_path, "s01e01a", root, out_dir)
+    sdf = pd.read_csv(out_dir / "s1" / "friends_s01e01a_scene_network.tsv", sep="\t")
+    cdf = pd.read_csv(out_dir / "s1" / "friends_s01e01a_character_centrality.tsv", sep="\t")
+    assert len(sdf) == 2          # 2 scenes
+    assert len(cdf) == 6          # 2 scenes x 3 characters
+    assert sorted(sdf["scene_id"]) == [1, 2]
+
+
+def test_main_season_spec_skips_missing_without_error(tmp_path, monkeypatch):
+    # two episodes discoverable by expand_episode_spec, only one has a network dir
+    scenes = tmp_path / "scenes" / "s1"
+    scenes.mkdir(parents=True)
+    (scenes / "friends_s01e01a_scene_summary.tsv").write_text("scene_id\tstart\tend\n")
+    (scenes / "friends_s01e01b_scene_summary.tsv").write_text("scene_id\tstart\tend\n")
+    root = tmp_path / "02_build_network"
+    _write_network(root, "friends_s01e01a")  # only e01a present; e01b missing
+    out_dir = tmp_path / "network_metrics"
+    monkeypatch.setattr(sys, "argv", [
+        "export_network_metrics.py", "--episodes", "s1",
+        "--scenes-in", str(tmp_path / "scenes"),
+        "--network-root", str(root),
+        "--out-dir", str(out_dir),
+        "--measures", "degree,betweenness",
+    ])
+    E.main()  # must NOT raise — season spec, partial coverage is allowed
+    assert (out_dir / "s1" / "friends_s01e01a_scene_network.tsv").exists()
+    assert not (out_dir / "s1" / "friends_s01e01b_scene_network.tsv").exists()
