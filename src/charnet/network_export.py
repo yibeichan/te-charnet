@@ -1,0 +1,40 @@
+# src/charnet/network_export.py
+"""Builders for the network-metric brain export (per-scene + per-character).
+
+Pure assembly over charnet.metrics — no metric logic, no I/O. Owns the stable
+column schemas, empty-frame behavior, and measure validation that the export
+script and its consumers rely on.
+"""
+from __future__ import annotations
+
+import pandas as pd
+
+from charnet import metrics
+from charnet.models import SceneGraph
+
+SCENE_NETWORK_COLUMNS = [
+    "scene_id",
+    "start",
+    "end",
+    "duration",
+    "n_nodes",
+    "n_edges",
+    "density",
+    "n_components",
+    "n_interaction_edges",
+    "interaction_density",
+    "interaction_entropy",
+]
+
+
+def scene_network_trace(scene_graphs: list[SceneGraph]) -> pd.DataFrame:
+    """One row per scene of structural network metrics, timestamped.
+
+    Wraps ``metrics.scene_metrics``. ``start``/``end`` are stage-2
+    network-coverage windows (speaker-bearing rows), not necessarily full
+    01a scene spans. Returns an empty frame carrying SCENE_NETWORK_COLUMNS
+    when ``scene_graphs`` is empty.
+    """
+    rows = [metrics.scene_metrics(sg) for sg in scene_graphs]
+    df = pd.DataFrame(rows, columns=SCENE_NETWORK_COLUMNS)
+    return df
