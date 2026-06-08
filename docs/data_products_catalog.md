@@ -61,10 +61,12 @@ by-products:
 To become brain-analysis-ready, three products need a documented, timestamped
 export. Each is scoped as its own feature-export spec (lightest first):
 
-1. **Topic-shift trace** *(planned — first export)* — persist
-   `block_distance_trace` per episode as a timestamped continuous signal
-   (turn-gap time → semantic-distance score). Currently computed during
-   detection and discarded. Spec: `docs/brain_features/` (forthcoming).
+1. **Topic-shift trace** *(shipped)* — `scripts/export_topic_trace.py` persists
+   the per-episode `block_distance_trace` as a timestamped continuous signal
+   (turn-gap time → semantic-distance score) under
+   `output/annotations/topic_shift/`, with a BIDS-inspired `topic_trace.json`
+   sidecar. The detector's `is_peak`/`depth` columns are an audit trail over a
+   documented negative result, not a validated segmentation.
 2. **Network-metric features** *(shipped)* — `scripts/export_network_metrics.py`
    reads the stage-2 `temporal_network.json` and writes two timestamped TSVs to
    `output/annotations/network_metrics/`: a per-scene structural summary

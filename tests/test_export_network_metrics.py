@@ -153,3 +153,29 @@ def test_main_season_spec_skips_missing_without_error(tmp_path, monkeypatch):
     E.main()  # must NOT raise — season spec, partial coverage is allowed
     assert (out_dir / "s1" / "friends_s01e01a_scene_network.tsv").exists()
     assert not (out_dir / "s1" / "friends_s01e01b_scene_network.tsv").exists()
+
+
+def test_main_zero_written_exits(tmp_path, monkeypatch):
+    # non-explicit ALL spec but no network dirs at all -> zero written -> nonzero exit,
+    # so a bad --network-root / SCRATCH_DIR cannot masquerade as a successful empty run
+    root = tmp_path / "02_build_network"  # never created -> no episode resolves
+    out_dir = tmp_path / "network_metrics"
+    with pytest.raises(SystemExit, match="0 episodes written"):
+        _run_main(monkeypatch, tmp_path, "ALL", root, out_dir)
+
+
+def test_main_invalid_measure_raises(tmp_path, monkeypatch):
+    # an unsupported --measures value surfaces as an error, not a silent empty column
+    root = tmp_path / "02_build_network"
+    _write_network(root, "friends_s01e01a")
+    out_dir = tmp_path / "network_metrics"
+    scenes_in = _make_scenes_dir(tmp_path)
+    monkeypatch.setattr(sys, "argv", [
+        "export_network_metrics.py", "--episodes", "s01e01a",
+        "--scenes-in", str(scenes_in),
+        "--network-root", str(root),
+        "--out-dir", str(out_dir),
+        "--measures", "bogus",
+    ])
+    with pytest.raises(ValueError, match="unknown"):
+        E.main()

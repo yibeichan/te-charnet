@@ -35,6 +35,18 @@ def test_scene_network_trace_columns_and_rows():
     assert row["interaction_entropy"] >= 0.0
 
 
+def test_scene_network_trace_all_zero_weight_edges_no_crash():
+    # degenerate input: edges present but all weights 0 -> entropy 0.0, no ZeroDivisionError
+    sg = SceneGraph(
+        scene_id=1, start=0.0, end=5.0, nodes=["A", "B"],
+        edges=[EdgeData(source="A", target="B", weight=0.0, adjacency=0.0,
+                        proximity=0.0, copresence=0.0)],
+    )
+    df = nx_exp.scene_network_trace([sg])
+    assert len(df) == 1
+    assert df.iloc[0]["interaction_entropy"] == 0.0
+
+
 def test_scene_network_trace_empty_keeps_columns():
     df = nx_exp.scene_network_trace([])
     assert list(df.columns) == nx_exp.SCENE_NETWORK_COLUMNS
