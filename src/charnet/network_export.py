@@ -36,5 +36,13 @@ def scene_network_trace(scene_graphs: list[SceneGraph]) -> pd.DataFrame:
     when ``scene_graphs`` is empty.
     """
     rows = [metrics.scene_metrics(sg) for sg in scene_graphs]
-    df = pd.DataFrame(rows, columns=SCENE_NETWORK_COLUMNS)
-    return df
+    if not rows:
+        return pd.DataFrame(columns=SCENE_NETWORK_COLUMNS)
+    df = pd.DataFrame(rows)
+    missing = set(SCENE_NETWORK_COLUMNS) - set(df.columns)
+    extra = set(df.columns) - set(SCENE_NETWORK_COLUMNS)
+    if missing or extra:
+        raise ValueError(
+            f"scene_metrics schema mismatch: missing={sorted(missing)}, extra={sorted(extra)}"
+        )
+    return df[SCENE_NETWORK_COLUMNS]

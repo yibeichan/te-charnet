@@ -31,6 +31,8 @@ def test_scene_network_trace_columns_and_rows():
     assert row["start"] == 0.0 and row["end"] == 10.0
     assert row["n_nodes"] == 3 and row["n_edges"] == 2
     assert row["n_components"] == 1
+    assert 0.0 < row["density"] <= 1.0
+    assert row["interaction_entropy"] >= 0.0
 
 
 def test_scene_network_trace_empty_keeps_columns():
