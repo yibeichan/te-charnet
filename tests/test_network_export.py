@@ -66,3 +66,13 @@ def test_character_centrality_trace_empty_keeps_columns():
 def test_character_centrality_trace_rejects_unknown_measure():
     with pytest.raises(ValueError, match="unknown"):
         nx_exp.character_centrality_trace([_scene(1, 0.0, 10.0)], measures=["bogus"])
+
+
+def test_data_dictionaries_cover_columns():
+    # every column is described; coverage guards silent schema drift
+    for col in nx_exp.SCENE_NETWORK_COLUMNS:
+        assert col in nx_exp.SCENE_NETWORK_DD
+    for col in nx_exp.CHARACTER_CENTRALITY_BASE_COLUMNS:
+        assert col in nx_exp.CHARACTER_CENTRALITY_DD
+    # start/end documented as network-coverage windows, not full scene spans
+    assert "coverage" in nx_exp.SCENE_NETWORK_DD["start"]["Description"].lower()

@@ -73,3 +73,37 @@ def character_centrality_trace(
     if df.empty:
         return pd.DataFrame(columns=columns)
     return df.reindex(columns=columns)
+
+
+_COVERAGE_NOTE = (
+    "Stage-2 network-coverage window (from speaker-bearing rows), not "
+    "necessarily the full 01a scene span. Mapping to fMRI run time / TRs is "
+    "the consumer's responsibility."
+)
+
+SCENE_NETWORK_DD = {
+    "scene_id": {"Description": "Scene index within the episode."},
+    "start": {"Description": f"Scene start. {_COVERAGE_NOTE}", "Units": "s"},
+    "end": {"Description": f"Scene end. {_COVERAGE_NOTE}", "Units": "s"},
+    "duration": {"Description": "end - start.", "Units": "s"},
+    "n_nodes": {"Description": "Characters present in the scene interaction graph."},
+    "n_edges": {"Description": "Edges (character pairs) in the scene graph."},
+    "density": {"Description": "networkx graph density of the scene graph (0-1)."},
+    "n_components": {"Description": "Connected components in the scene graph."},
+    "n_interaction_edges": {"Description": "Edges with nonzero adjacency or proximity (true interaction, not pure co-presence)."},
+    "interaction_density": {"Description": "n_interaction_edges / possible edges (0-1)."},
+    "interaction_entropy": {"Description": "Shannon entropy (bits) of the scene's edge-weight distribution; higher = speech/interaction more evenly spread.", "Units": "bits"},
+}
+
+CHARACTER_CENTRALITY_DD = {
+    "scene_id": {"Description": "Scene index within the episode."},
+    "start": {"Description": f"Scene start. {_COVERAGE_NOTE}", "Units": "s"},
+    "end": {"Description": f"Scene end. {_COVERAGE_NOTE}", "Units": "s"},
+    "character": {"Description": "Character (node) the centrality row describes."},
+    "degree": {"Description": "Weighted degree centrality (node strength share, 0-1, sums to 1 across nodes in a scene)."},
+    "degree_unweighted": {"Description": "Unweighted networkx degree centrality (singleton scene = 0)."},
+    "degree_weighted": {"Description": "Alias of degree (weighted strength share)."},
+    "strength": {"Description": "Alias of degree (weighted strength share)."},
+    "betweenness": {"Description": "Betweenness centrality on inverse-weight distances (stronger ties = shorter paths)."},
+    "eigenvector": {"Description": "Eigenvector centrality (weighted); falls back to degree centrality on non-convergence."},
+}
