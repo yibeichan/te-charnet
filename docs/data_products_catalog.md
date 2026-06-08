@@ -24,6 +24,8 @@ catalog is the map of what `charnet` can feed that pipeline.
 | `<network_dir>/temporal_network.json` | `02_build_network.py` | per-scene graph | per scene: `scene_id, start, end, nodes, edges` (weighted speaker adjacency / proximity) | yes (per-scene `start`/`end`) | **available-not-yet-exported** |
 | `<network_dir>/episode_network.json` | `02_build_network.py` | per-episode graph | aggregated weighted interaction graph | episode-level only | available-not-yet-exported |
 | `<analysis_dir>/centrality_timeseries.csv` | `03_analyze.py` (`metrics.centrality_timeseries`) | per-scene × character | `scene_id, start, end, character, degree, betweenness, eigenvector` | yes (`start`/`end` s) | **available-not-yet-exported** (highest-value social product) |
+| `annotations/network_metrics/sN/friends_<ep>_scene_network.tsv` | `export_network_metrics.py` (`network_export.scene_network_trace`) | per-scene | `scene_id, start, end, duration, n_nodes, n_edges, density, n_components, n_interaction_edges, interaction_density, interaction_entropy` | yes (`start`/`end` s) | **exported** (per-scene social-structure regressors) |
+| `annotations/network_metrics/sN/friends_<ep>_character_centrality.tsv` | `export_network_metrics.py` (`network_export.character_centrality_trace`) | per-scene × character | `scene_id, start, end, character, <measures…>` (default `degree`, `betweenness`, `eigenvector`) | yes (`start`/`end` s) | **exported** (per-character centrality regressors) |
 | `<viz_dir>/*.gexf`, plots | `04_visualize.py` | episode graph | Gephi export, figures | — | not brain-relevant (presentation) |
 | `intermediate/sentence_embeddings/sN/<ep>.npz` | `charnet.topic_shift` (this session) | per-turn | `vecs` (MiniLM `all-MiniLM-L6-v2`), `key` (cache hash) | **no** (timestamps not stored in npz) | **available-not-yet-exported** (needs turn timestamps to be a product) |
 | topic-shift trace (block cosine-distance over turns) | `charnet.topic_shift.block_distance_trace` | per-turn-gap | continuous semantic-change score | derivable (turn `end`), **not persisted** | **planned** |
@@ -59,14 +61,21 @@ by-products:
 To become brain-analysis-ready, three products need a documented, timestamped
 export. Each is scoped as its own feature-export spec (lightest first):
 
-1. **Topic-shift trace** *(planned — first export)* — persist
-   `block_distance_trace` per episode as a timestamped continuous signal
-   (turn-gap time → semantic-distance score). Currently computed during
-   detection and discarded. Spec: `docs/brain_features/` (forthcoming).
-2. **Network-metric features** *(available, needs export)* —
-   `centrality_timeseries.csv` is already timestamped per scene and per
-   character; the export task is mainly to document it as a brain product and,
-   if needed, reshape per-character columns into a fixed feature layout.
+1. **Topic-shift trace** *(shipped)* — `scripts/export_topic_trace.py` persists
+   the per-episode `block_distance_trace` as a timestamped continuous signal
+   (turn-gap time → semantic-distance score) under
+   `output/annotations/topic_shift/`, with a BIDS-inspired `topic_trace.json`
+   sidecar. The detector's `is_peak`/`depth` columns are an audit trail over a
+   documented negative result, not a validated segmentation.
+2. **Network-metric features** *(shipped)* — `scripts/export_network_metrics.py`
+   reads the stage-2 `temporal_network.json` and writes two timestamped TSVs to
+   `output/annotations/network_metrics/`: a per-scene structural summary
+   (`friends_<ep>_scene_network.tsv`: density, component count, interaction
+   entropy, etc.) and a per-scene × character centrality table
+   (`friends_<ep>_character_centrality.tsv`). BIDS-inspired sidecars
+   (`scene_network.json`, `character_centrality.json`,
+   `dataset_description.json`) document each column. `start`/`end` are
+   stage-2 network-coverage windows (not raw scene boundaries).
 3. **Dialogue embeddings** *(available, needs export — heaviest)* — the
    `.npz` cache holds per-turn MiniLM vectors but **no turn timestamps or
    text**, so it cannot stand alone as a feature product. The export task is to

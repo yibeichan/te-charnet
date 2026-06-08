@@ -131,10 +131,12 @@ def scene_metrics(scene_graph: SceneGraph) -> dict[str, Any]:
     result["n_interaction_edges"] = n_interaction_edges
     result["interaction_density"] = interaction_density
 
-    # Scene-level entropy (how distributed is speech)
+    # Scene-level entropy (how distributed is speech). Guard total <= 0 so an
+    # all-zero-weight edge set (degenerate input) yields 0.0 rather than a
+    # ZeroDivisionError — mirrors the singleton guard in degree_centrality.
     weights = [e.weight for e in scene_graph.edges]
-    if weights:
-        total = sum(weights)
+    total = sum(weights)
+    if total > 0:
         probs = [w / total for w in weights]
         entropy = -sum(p * math.log2(p) for p in probs if p > 0)
     else:
