@@ -3,6 +3,7 @@ import sys
 from pathlib import Path
 
 import pandas as pd
+import pytest  # noqa: E402
 
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO / "src"))
@@ -39,3 +40,29 @@ def test_scene_network_trace_empty_keeps_columns():
     df = nx_exp.scene_network_trace([])
     assert list(df.columns) == nx_exp.SCENE_NETWORK_COLUMNS
     assert len(df) == 0
+
+
+def test_character_centrality_trace_columns_and_rows():
+    df = nx_exp.character_centrality_trace([_scene(1, 0.0, 10.0)], measures=["degree"])
+    assert list(df.columns) == ["scene_id", "start", "end", "character", "degree"]
+    assert sorted(df["character"]) == ["A", "B", "C"]
+    assert (df["scene_id"] == 1).all()
+
+
+def test_character_centrality_trace_multi_measure_order():
+    df = nx_exp.character_centrality_trace([_scene(1, 0.0, 10.0)],
+                                           measures=["betweenness", "degree"])
+    assert list(df.columns) == ["scene_id", "start", "end", "character",
+                                "betweenness", "degree"]
+
+
+def test_character_centrality_trace_empty_keeps_columns():
+    df = nx_exp.character_centrality_trace([], measures=["degree", "eigenvector"])
+    assert list(df.columns) == ["scene_id", "start", "end", "character",
+                                "degree", "eigenvector"]
+    assert len(df) == 0
+
+
+def test_character_centrality_trace_rejects_unknown_measure():
+    with pytest.raises(ValueError, match="unknown"):
+        nx_exp.character_centrality_trace([_scene(1, 0.0, 10.0)], measures=["bogus"])

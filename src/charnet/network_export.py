@@ -46,3 +46,30 @@ def scene_network_trace(scene_graphs: list[SceneGraph]) -> pd.DataFrame:
             f"scene_metrics schema mismatch: missing={sorted(missing)}, extra={sorted(extra)}"
         )
     return df[SCENE_NETWORK_COLUMNS]
+
+
+CHARACTER_CENTRALITY_BASE_COLUMNS = ["scene_id", "start", "end", "character"]
+
+
+def character_centrality_trace(
+    scene_graphs: list[SceneGraph],
+    measures: list[str],
+) -> pd.DataFrame:
+    """Per-scene x character centrality, timestamped, stable column order.
+
+    Wraps ``metrics.centrality_timeseries``. Validates ``measures`` against
+    ``metrics.SUPPORTED_CENTRALITY_MEASURES`` and raises ValueError on an
+    unknown measure (``compute_centralities`` only logs). Returns an empty
+    frame carrying the declared columns when there are no rows.
+    """
+    unknown = [m for m in measures if m not in metrics.SUPPORTED_CENTRALITY_MEASURES]
+    if unknown:
+        raise ValueError(
+            f"unknown centrality measure(s): {', '.join(unknown)}. "
+            f"Supported: {', '.join(metrics.SUPPORTED_CENTRALITY_MEASURES)}"
+        )
+    columns = CHARACTER_CENTRALITY_BASE_COLUMNS + list(measures)
+    df = metrics.centrality_timeseries(scene_graphs, measures=measures)
+    if df.empty:
+        return pd.DataFrame(columns=columns)
+    return df.reindex(columns=columns)
