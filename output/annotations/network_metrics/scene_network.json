@@ -1,0 +1,39 @@
+{
+  "scene_id": {
+    "Description": "Scene index within the episode."
+  },
+  "start": {
+    "Description": "Scene start. Stage-2 network-coverage window (from speaker-bearing rows), not necessarily the full 01a scene span. Mapping to fMRI run time / TRs is the consumer's responsibility.",
+    "Units": "s"
+  },
+  "end": {
+    "Description": "Scene end. Stage-2 network-coverage window (from speaker-bearing rows), not necessarily the full 01a scene span. Mapping to fMRI run time / TRs is the consumer's responsibility.",
+    "Units": "s"
+  },
+  "duration": {
+    "Description": "end - start.",
+    "Units": "s"
+  },
+  "n_nodes": {
+    "Description": "Characters present in the scene interaction graph."
+  },
+  "n_edges": {
+    "Description": "All edges (character pairs) in the scene graph, including pure co-presence edges (contrast n_interaction_edges)."
+  },
+  "density": {
+    "Description": "networkx graph density of the scene graph (0-1)."
+  },
+  "n_components": {
+    "Description": "Connected components in the scene graph."
+  },
+  "n_interaction_edges": {
+    "Description": "Edges with nonzero adjacency or proximity (true interaction, not pure co-presence)."
+  },
+  "interaction_density": {
+    "Description": "n_interaction_edges / possible edges (0-1)."
+  },
+  "interaction_entropy": {
+    "Description": "Shannon entropy (bits) of the scene's edge-weight distribution; higher = speech/interaction more evenly spread.",
+    "Units": "bits"
+  }
+}

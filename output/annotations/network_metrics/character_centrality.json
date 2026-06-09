@@ -1,0 +1,34 @@
+{
+  "scene_id": {
+    "Description": "Scene index within the episode."
+  },
+  "start": {
+    "Description": "Scene start. Stage-2 network-coverage window (from speaker-bearing rows), not necessarily the full 01a scene span. Mapping to fMRI run time / TRs is the consumer's responsibility.",
+    "Units": "s"
+  },
+  "end": {
+    "Description": "Scene end. Stage-2 network-coverage window (from speaker-bearing rows), not necessarily the full 01a scene span. Mapping to fMRI run time / TRs is the consumer's responsibility.",
+    "Units": "s"
+  },
+  "character": {
+    "Description": "Character (node) the centrality row describes."
+  },
+  "degree": {
+    "Description": "Weighted degree centrality (node strength share, 0-1; sums to 1 across nodes in a scene when total edge weight > 0, else all 0)."
+  },
+  "degree_unweighted": {
+    "Description": "Unweighted networkx degree centrality (singleton scene = 0)."
+  },
+  "degree_weighted": {
+    "Description": "Alias of degree (weighted strength share); included so callers using this measure name get a documented column."
+  },
+  "strength": {
+    "Description": "Alias of degree (weighted strength share); included so callers using this measure name get a documented column."
+  },
+  "betweenness": {
+    "Description": "Betweenness centrality on inverse-weight distances (stronger ties = shorter paths)."
+  },
+  "eigenvector": {
+    "Description": "Eigenvector centrality (weighted); falls back to degree centrality on non-convergence."
+  }
+}

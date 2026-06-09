@@ -227,6 +227,12 @@ output/**
 !output/annotations/scenes/**
 !output/annotations/intermediate/
 !output/annotations/intermediate/**
+# Track the brain-export products (TSV + JSON sidecars) so the brain-states
+# pipeline and reviewers consume a versioned, validated copy. Stage-2 inputs
+# (02_build_network) remain ignored — regenerable, and verified against this
+# product by scripts/verify_network_export.py.
+!output/annotations/network_metrics/
+!output/annotations/network_metrics/**
 # Track scene-segmentation evaluation results so reviewers can verify the
 # numbers in docs/scene_segmentation_evaluation.md without rerunning.
 !output/evaluation/
