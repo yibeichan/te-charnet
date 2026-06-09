@@ -76,6 +76,15 @@ export. Each is scoped as its own feature-export spec (lightest first):
    (`scene_network.json`, `character_centrality.json`,
    `dataset_description.json`) document each column. `start`/`end` are
    stage-2 network-coverage windows (not raw scene boundaries).
+   The full 341-episode (seasons 1–7) export is **committed** under
+   `output/annotations/network_metrics/`; every value and the per-scene/character
+   row set were verified against an independent recomputation off the stage-2
+   networks (all 341 match within `1e-6`) via `scripts/verify_network_export.py`.
+   The stage-2 inputs (`output/02_build_network/`) are **not** tracked — they are
+   regenerable intermediates. To re-run the verifier on a fresh clone, first
+   rebuild stage 2 (`python scripts/run_pipeline.py --season sN
+   --skip-stages 1a,1b,3,4`, ~19 s/season), then
+   `python scripts/verify_network_export.py`.
 3. **Dialogue embeddings** *(available, needs export — heaviest)* — the
    `.npz` cache holds per-turn MiniLM vectors but **no turn timestamps or
    text**, so it cannot stand alone as a feature product. The export task is to
