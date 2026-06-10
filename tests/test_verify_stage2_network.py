@@ -201,3 +201,53 @@ def test_check_episode_extra_committed_scene_fails(tmp_path):
     temporal.write_text(json.dumps(data), encoding="utf-8")
     fails = v.check_episode("s00e00a", table, temporal, episode, v.DEFAULTS, tol=1e-6)
     assert any("99" in f and "not reconstructed" in f for f in fails), fails
+
+
+def _build_tables_root(tmp_path):
+    """tables-root/<season>/<ep>_..._table.tsv + network-root/friends_<ep>/*.json."""
+    tables_root = tmp_path / "sentences"
+    season = tables_root / "s0"
+    season.mkdir(parents=True)
+    rows = [
+        {"scene_id": "1", "start": "0", "end": "1", "speaker": "A"},
+        {"scene_id": "1", "start": "1", "end": "2", "speaker": "B"},
+        {"scene_id": "1", "start": "2", "end": "3", "speaker": "A"},
+    ]
+    _write_table(season / "friends_s00e00a_sentence_speaker_table.tsv", rows)
+    net_root = tmp_path / "02_build_network"
+    net_dir = net_root / "friends_s00e00a"
+    net_dir.mkdir(parents=True)
+    temporal = [{"scene_id": 1, "start": 0.0, "end": 3.0, "nodes": ["A", "B"],
+                 "edges": [{"source": "A", "target": "B", "weight": 3.25,
+                            "adjacency": 2.0, "proximity": 2.0, "copresence": 1.0}]}]
+    episode = {"episode": "friends_s00e00a", "start": 0.0, "end": 3.0, "n_scenes": 1,
+               "nodes": ["A", "B"],
+               "edges": [{"source": "A", "target": "B", "weight": 3.25,
+                          "adjacency": 2.0, "proximity": 2.0, "copresence": 1.0}]}
+    (net_dir / "temporal_network.json").write_text(json.dumps(temporal), encoding="utf-8")
+    (net_dir / "episode_network.json").write_text(json.dumps(episode), encoding="utf-8")
+    return tables_root, net_root
+
+
+def test_main_exit_0_on_clean(tmp_path):
+    tables_root, net_root = _build_tables_root(tmp_path)
+    rc = v.main(["--tables-root", str(tables_root), "--network-root", str(net_root)])
+    assert rc == 0
+
+
+def test_main_exit_1_on_mismatch(tmp_path):
+    tables_root, net_root = _build_tables_root(tmp_path)
+    p = net_root / "friends_s00e00a" / "temporal_network.json"
+    data = json.loads(p.read_text())
+    data[0]["edges"][0]["weight"] = 9.99
+    p.write_text(json.dumps(data), encoding="utf-8")
+    rc = v.main(["--tables-root", str(tables_root), "--network-root", str(net_root)])
+    assert rc == 1
+
+
+def test_main_exit_2_when_nothing_checkable(tmp_path):
+    tables_root, _ = _build_tables_root(tmp_path)
+    empty_net = tmp_path / "empty_net"
+    empty_net.mkdir()
+    rc = v.main(["--tables-root", str(tables_root), "--network-root", str(empty_net)])
+    assert rc == 2   # table found but stage-2 absent -> skipped -> nothing checked

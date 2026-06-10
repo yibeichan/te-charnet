@@ -19,8 +19,10 @@ holds; 1 on any mismatch/violation; 2 if nothing could be checked.
 """
 from __future__ import annotations
 
+import argparse
 import itertools
 import json
+import sys
 from pathlib import Path
 
 import pandas as pd
@@ -295,3 +297,84 @@ def check_episode(ep: str, table_path: Path, temporal_json: Path, episode_json: 
     # --- structural invariants on committed graphs ---
     _check_invariants(ep, committed_scenes, recon_by_id, params, tol, fails)
     return fails
+
+
+def _episode_key(table_path: Path) -> str:
+    name = table_path.name.removesuffix("_sentence_speaker_table.tsv")
+    return name.removeprefix("friends_")
+
+
+def resolve_network_files(network_root: Path, ep: str) -> tuple[Path, Path] | None:
+    """Probe friends_<ep>/ then bare <ep>/ for both stage-2 JSON files."""
+    for cand in (network_root / f"friends_{ep}", network_root / ep):
+        temporal = cand / "temporal_network.json"
+        episode = cand / "episode_network.json"
+        if temporal.exists() and episode.exists():
+            return temporal, episode
+    return None
+
+
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    ap.add_argument("--tables-root", type=Path, default=Path("output/annotations/sentences"))
+    ap.add_argument("--network-root", type=Path, default=Path("output/02_build_network"))
+    ap.add_argument("--tol", type=float, default=1e-6)
+    ap.add_argument("--weight-adjacency", type=float, default=DEFAULTS["weight_adjacency"])
+    ap.add_argument("--weight-proximity", type=float, default=DEFAULTS["weight_proximity"])
+    ap.add_argument("--weight-copresence", type=float, default=DEFAULTS["weight_copresence"])
+    ap.add_argument("--proximity-window", type=int, default=DEFAULTS["proximity_window"])
+    args = ap.parse_args(argv)
+
+    params = {
+        "weight_adjacency": args.weight_adjacency,
+        "weight_proximity": args.weight_proximity,
+        "weight_copresence": args.weight_copresence,
+        "proximity_window": args.proximity_window,
+    }
+
+    tables = sorted(args.tables_root.glob("*/*_sentence_speaker_table.tsv"))
+    if not tables:
+        print(f"No *_sentence_speaker_table.tsv under {args.tables_root}", file=sys.stderr)
+        return 2
+
+    total = checked = 0
+    skipped: list[str] = []
+    all_fails: list[str] = []
+    for table in tables:
+        ep = _episode_key(table)
+        total += 1
+        resolved = resolve_network_files(args.network_root, ep)
+        if resolved is None:
+            skipped.append(f"{ep}: stage-2 JSON not found under {args.network_root} (regenerate stage 2)")
+            continue
+        temporal, episode = resolved
+        fails = check_episode(ep, table, temporal, episode, params, args.tol)
+        checked += 1
+        all_fails.extend(fails)
+
+    print(f"Episodes found:   {total}")
+    print(f"Episodes checked: {checked}")
+    if skipped:
+        print(f"Skipped ({len(skipped)}):")
+        for s in skipped:
+            print(f"  - {s}")
+
+    if all_fails:
+        print(f"\nMISMATCHES ({len(all_fails)}):")
+        for f in all_fails[:50]:
+            print(f"  ✗ {f}")
+        if len(all_fails) > 50:
+            print(f"  ... and {len(all_fails) - 50} more")
+        return 1
+    if checked == 0:
+        print("\nNo episodes could be checked (all skipped).")
+        return 2
+    print(f"\n✓ All {checked} episodes match within tol={args.tol} "
+          f"(independent reconstruction + structural invariants).")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
