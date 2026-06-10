@@ -182,6 +182,8 @@ def aggregate_episode(scenes: list[dict]) -> dict:
 
 
 def _close(a, b, tol: float) -> bool:
+    # Mixed abs+rel tolerance; the relative term uses abs(b), so pass the
+    # reference (reconstruction) value as b. Sufficient for weights ~0-10 / counts.
     return abs(float(a) - float(b)) <= tol + tol * abs(float(b))
 
 
@@ -192,20 +194,20 @@ def _edges_by_pair(edge_list: list[dict]) -> dict[tuple[str, str], dict]:
 _VALUE_COLS = ("weight", "adjacency", "proximity", "copresence")
 
 
-def _compare_edges(label: str, ep: str, sid, exp_edges: dict, got_edges: dict,
+def _compare_edges(label: str, ep: str, sid, recon_edges: dict, committed_edges: dict,
                    tol: float, fails: list[str]) -> None:
-    missing = set(exp_edges) - set(got_edges)
-    extra = set(got_edges) - set(exp_edges)
+    missing = set(recon_edges) - set(committed_edges)
+    extra = set(committed_edges) - set(recon_edges)
     for pair in sorted(missing):
         fails.append(f"{ep} {label} {sid}: edge MISSING from committed JSON: {pair}")
     for pair in sorted(extra):
         fails.append(f"{ep} {label} {sid}: edge in committed JSON but not reconstructed: {pair}")
-    for pair in sorted(set(exp_edges) & set(got_edges)):
+    for pair in sorted(set(recon_edges) & set(committed_edges)):
         for col in _VALUE_COLS:
-            if not _close(got_edges[pair][col], exp_edges[pair][col], tol):
+            if not _close(committed_edges[pair][col], recon_edges[pair][col], tol):
                 fails.append(
                     f"{ep} {label} {sid} {pair} {col}: "
-                    f"committed={got_edges[pair][col]!r} expected={exp_edges[pair][col]!r}"
+                    f"committed={committed_edges[pair][col]!r} expected={recon_edges[pair][col]!r}"
                 )
 
 
@@ -235,7 +237,7 @@ def _check_invariants(ep: str, committed_scenes: list[dict], recon_by_id: dict,
             if e["copresence"] not in (0.0, 1.0):
                 fails.append(f"{ep} scene {sid} {pair}: copresence {e['copresence']} not in {{0,1}}")
             adj = e["adjacency"]
-            if adj < 0 or adj != int(adj):
+            if adj < 0 or adj % 1 != 0:
                 fails.append(f"{ep} scene {sid} {pair}: adjacency {adj} not a non-negative integer")
             n_turns = recon_by_id.get(sid, {}).get("n_turns")
             if n_turns is not None and adj > n_turns - 1:
