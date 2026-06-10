@@ -273,3 +273,22 @@ def test_episode_key_strips_prefix_and_suffix(tmp_path):
     assert v._episode_key(Path("friends_s01e01a_sentence_speaker_table.tsv")) == "s01e01a"
     # no friends_ prefix -> removeprefix is a no-op
     assert v._episode_key(Path("s01e01a_sentence_speaker_table.tsv")) == "s01e01a"
+
+
+def test_check_episode_scene_missing_from_committed_fails(tmp_path):
+    table, temporal, episode = _build_fixture(tmp_path)
+    data = json.loads(temporal.read_text())
+    # drop scene 1 entirely from committed JSON; reconstruction still has it
+    data = [s for s in data if s["scene_id"] != 1]
+    temporal.write_text(json.dumps(data), encoding="utf-8")
+    fails = v.check_episode("s00e00a", table, temporal, episode, v.DEFAULTS, tol=1e-6)
+    assert any("absent from committed JSON" in f for f in fails), fails
+
+
+def test_check_episode_duplicate_scene_id_fails(tmp_path):
+    table, temporal, episode = _build_fixture(tmp_path)
+    data = json.loads(temporal.read_text())
+    data.append(dict(data[0]))  # duplicate scene 1
+    temporal.write_text(json.dumps(data), encoding="utf-8")
+    fails = v.check_episode("s00e00a", table, temporal, episode, v.DEFAULTS, tol=1e-6)
+    assert any("duplicate scene_id" in f for f in fails), fails

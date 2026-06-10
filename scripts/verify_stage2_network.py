@@ -266,6 +266,8 @@ def check_episode(ep: str, table_path: Path, temporal_json: Path, episode_json: 
 
     committed_scenes = json.loads(temporal_json.read_text())
     committed_by_id = {s["scene_id"]: s for s in committed_scenes}
+    if len(committed_by_id) != len(committed_scenes):
+        fails.append(f"{ep}: committed temporal_network.json has duplicate scene_id(s)")
 
     # --- temporal_network.json ---
     exp_ids, got_ids = set(recon_by_id), set(committed_by_id)
@@ -285,6 +287,9 @@ def check_episode(ep: str, table_path: Path, temporal_json: Path, episode_json: 
 
     # --- episode_network.json ---
     cepi = json.loads(episode_json.read_text())
+    committed_ep = cepi.get("episode")
+    if committed_ep is not None and not str(committed_ep).endswith(ep):
+        fails.append(f"{ep} episode: label {committed_ep!r} does not match episode key {ep!r}")
     if set(expected_epi["nodes"]) != set(cepi.get("nodes", [])):
         fails.append(f"{ep} episode: node set mismatch")
     if expected_epi["n_scenes"] != cepi.get("n_scenes"):
