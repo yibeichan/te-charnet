@@ -149,3 +149,32 @@ def reconstruct_scenes(rows: list[dict], params: dict) -> list[dict]:
             "n_turns": len(turns),   # carried for the adjacency-bound invariant (Task 4)
         })
     return scenes
+
+
+def aggregate_episode(scenes: list[dict]) -> dict:
+    """Re-aggregate reconstructed scenes into the expected episode graph.
+
+    Sums the already-rounded scene weight/proximity and raw adjacency/copresence
+    (matching aggregate_episode_graph, which sums EdgeData.weight — already
+    rounded), then rounds all four fields to 4 dp (matching 02_build_network's
+    write-time rounding). Summing raw values and rounding once would diverge.
+    """
+    nodes: set[str] = set()
+    agg: dict[tuple[str, str], dict] = {}
+    for s in scenes:
+        nodes.update(s["nodes"])
+        for pair, e in s["edges"].items():
+            tot = agg.setdefault(
+                pair, {"weight": 0.0, "adjacency": 0.0, "proximity": 0.0, "copresence": 0.0}
+            )
+            for k in ("weight", "adjacency", "proximity", "copresence"):
+                tot[k] += e[k]
+    edges = {
+        pair: {k: _round4(val) for k, val in attrs.items()} for pair, attrs in agg.items()
+    }
+    if scenes:
+        start = min(s["start"] for s in scenes)
+        end = max(s["end"] for s in scenes)
+    else:
+        start, end = 0.0, 0.0
+    return {"start": start, "end": end, "n_scenes": len(scenes), "nodes": sorted(nodes), "edges": edges}

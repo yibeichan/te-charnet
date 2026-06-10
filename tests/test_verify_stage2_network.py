@@ -81,3 +81,28 @@ def test_reconstruct_scene_proximity_rounds_to_4dp():
     assert ab["proximity"] == 0.3333
     assert ab["adjacency"] == 0.0
     assert ab["weight"] == 0.4167   # round(0 + 0.5*(1/3) + 0.25, 4)
+
+
+def test_aggregate_episode_sums_rounded_scene_values():
+    # Two identical [A,C,D,B] scenes. Per-scene A-B proximity stored 0.3333.
+    # Correct aggregate sums ROUNDED scene values: 0.3333+0.3333 -> 0.6666.
+    # Raw-summed-once would give round(1/3+1/3,4)=0.6667. Verifier must give 0.6666.
+    def scene_rows(scene_id, t0):
+        return [
+            {"scene_id": scene_id, "start": float(t0 + i), "end": float(t0 + i + 1), "speaker": s}
+            for i, s in enumerate(["A", "C", "D", "B"])
+        ]
+    rows = scene_rows(1, 0) + scene_rows(2, 100)
+    scenes = v.reconstruct_scenes(rows, v.DEFAULTS)
+    epi = v.aggregate_episode(scenes)
+    assert epi["n_scenes"] == 2
+    assert epi["start"] == 0.0 and epi["end"] == 104.0
+    assert epi["nodes"] == ["A", "B", "C", "D"]
+    assert epi["edges"][("A", "B")]["proximity"] == 0.6666   # NOT 0.6667
+    assert epi["edges"][("A", "B")]["weight"] == 0.8334
+    assert epi["edges"][("A", "B")]["copresence"] == 2.0
+
+
+def test_aggregate_episode_empty():
+    epi = v.aggregate_episode([])
+    assert epi == {"start": 0.0, "end": 0.0, "n_scenes": 0, "nodes": [], "edges": {}}
