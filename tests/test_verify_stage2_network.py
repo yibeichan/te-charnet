@@ -251,3 +251,25 @@ def test_main_exit_2_when_nothing_checkable(tmp_path):
     empty_net.mkdir()
     rc = v.main(["--tables-root", str(tables_root), "--network-root", str(empty_net)])
     assert rc == 2   # table found but stage-2 absent -> skipped -> nothing checked
+
+
+def test_main_partial_skip_still_exit_0(tmp_path, capsys):
+    tables_root, net_root = _build_tables_root(tmp_path)
+    # second episode table with NO matching stage-2 dir -> should be skipped
+    rows = [
+        {"scene_id": "1", "start": "0", "end": "1", "speaker": "A"},
+        {"scene_id": "1", "start": "1", "end": "2", "speaker": "B"},
+    ]
+    _write_table(tables_root / "s0" / "friends_s00e01a_sentence_speaker_table.tsv", rows)
+    rc = v.main(["--tables-root", str(tables_root), "--network-root", str(net_root)])
+    out = capsys.readouterr().out
+    assert rc == 0
+    assert "Episodes found:   2" in out
+    assert "Episodes checked: 1" in out
+    assert "Skipped (1)" in out
+
+
+def test_episode_key_strips_prefix_and_suffix(tmp_path):
+    assert v._episode_key(Path("friends_s01e01a_sentence_speaker_table.tsv")) == "s01e01a"
+    # no friends_ prefix -> removeprefix is a no-op
+    assert v._episode_key(Path("s01e01a_sentence_speaker_table.tsv")) == "s01e01a"

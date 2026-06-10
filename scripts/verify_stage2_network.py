@@ -311,6 +311,10 @@ def resolve_network_files(network_root: Path, ep: str) -> tuple[Path, Path] | No
         episode = cand / "episode_network.json"
         if temporal.exists() and episode.exists():
             return temporal, episode
+        if temporal.exists() != episode.exists():
+            present = "temporal_network.json" if temporal.exists() else "episode_network.json"
+            print(f"WARNING: {cand}: only {present} present (need both) — skipping {ep}",
+                  file=sys.stderr)
     return None
 
 
