@@ -106,3 +106,27 @@ def test_aggregate_episode_sums_rounded_scene_values():
 def test_aggregate_episode_empty():
     epi = v.aggregate_episode([])
     assert epi == {"start": 0.0, "end": 0.0, "n_scenes": 0, "nodes": [], "edges": {}}
+
+
+def test_aggregate_episode_partial_overlap_pair():
+    # Scene 1 has an A-B edge; scene 2 has only A-C (A and B both appear as nodes
+    # somewhere, but A-B exists in just one scene). A-B must reflect scene 1 only.
+    rows = [
+        # scene 1: A,B,A -> A-B edge (adjacency 2, proximity 2.0, weight 3.25)
+        {"scene_id": 1, "start": 0.0, "end": 1.0, "speaker": "A"},
+        {"scene_id": 1, "start": 1.0, "end": 2.0, "speaker": "B"},
+        {"scene_id": 1, "start": 2.0, "end": 3.0, "speaker": "A"},
+        # scene 2: A,C,A -> A-C edge only (no B at all here)
+        {"scene_id": 2, "start": 10.0, "end": 11.0, "speaker": "A"},
+        {"scene_id": 2, "start": 11.0, "end": 12.0, "speaker": "C"},
+        {"scene_id": 2, "start": 12.0, "end": 13.0, "speaker": "A"},
+    ]
+    scenes = v.reconstruct_scenes(rows, v.DEFAULTS)
+    epi = v.aggregate_episode(scenes)
+    assert epi["nodes"] == ["A", "B", "C"]
+    # A-B only in scene 1 -> not doubled
+    assert epi["edges"][("A", "B")] == {"weight": 3.25, "adjacency": 2.0, "proximity": 2.0, "copresence": 1.0}
+    # A-C only in scene 2 -> present
+    assert ("A", "C") in epi["edges"]
+    # B-C never co-present -> absent
+    assert ("B", "C") not in epi["edges"]
