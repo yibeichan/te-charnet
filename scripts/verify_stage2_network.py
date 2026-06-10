@@ -41,26 +41,35 @@ def _round4(x: float) -> float:
 def read_table_rows(path: Path) -> list[dict]:
     """Read a speaker TSV, mirroring stage-2's combined two-phase row filter.
 
+    Replicates the combined production filter:
+    load_corrected_speaker_rows (empty start) +
+    build_temporal_network_from_aligned_rows (empty scene_id/speaker,
+    coercion failures).
+
     keep_default_na=False keeps blank cells as "" (default pd.read_csv would
     make them NaN, which str()/float() would silently let through).
     Preserves TSV row order (matters for stable sort on tied start times).
     """
     df = pd.read_csv(path, sep="\t", dtype=str, keep_default_na=False)
+    required = {"scene_id", "start", "end", "speaker"}
+    missing = required - set(df.columns)
+    if missing:
+        raise ValueError(f"{path}: missing required column(s): {sorted(missing)}")
     rows: list[dict] = []
     for _, r in df.iterrows():
         scene_raw = str(r.get("scene_id", "")).strip()
         start_raw = str(r.get("start", "")).strip()
         end_raw = str(r.get("end", "")).strip()
         speaker = str(r.get("speaker", "")).strip()
-        if not start_raw:                      # phase (a): scene-marker rows
+        if not start_raw:                      # phase (a): load_corrected_speaker_rows drops empty-start (scene-marker) rows
             continue
-        if not scene_raw or not speaker:       # phase (b): empty scene_id/speaker
+        if not scene_raw or not speaker:       # phase (b): build_temporal_network_from_aligned_rows drops empty scene_id/speaker
             continue
         try:
-            scene_id = int(float(scene_raw))
+            scene_id = int(float(scene_raw))   # mirrors network.py's int(float(...)) coercion
             start = float(start_raw)
             end = float(end_raw)
-        except (TypeError, ValueError):        # phase (b): coercion failures
+        except (TypeError, ValueError):        # phase (b): network.py skips rows whose scene_id/start/end fail coercion
             continue
         rows.append({"scene_id": scene_id, "start": start, "end": end, "speaker": speaker})
     return rows

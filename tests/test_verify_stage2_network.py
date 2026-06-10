@@ -4,6 +4,8 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
+import pytest
+
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "src"))
 sys.path.insert(0, str(REPO / "scripts"))
@@ -38,3 +40,11 @@ def test_read_table_rows_blank_cells_are_not_nan(tmp_path):
     p = tmp_path / "t.tsv"
     _write_table(p, [{"scene_id": "1", "start": "0", "end": "1", "speaker": ""}])
     assert v.read_table_rows(p) == []
+
+
+def test_read_table_rows_missing_column_raises(tmp_path):
+    p = tmp_path / "bad.tsv"
+    # header missing the 'speaker' column entirely
+    p.write_text("scene_id\tstart\tend\n1\t0\t1\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="missing required column"):
+        v.read_table_rows(p)
