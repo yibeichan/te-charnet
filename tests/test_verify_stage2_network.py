@@ -181,7 +181,7 @@ def test_check_episode_dropped_edge_fails(tmp_path):
     data[0]["edges"] = []
     temporal.write_text(json.dumps(data), encoding="utf-8")
     fails = v.check_episode("s00e00a", table, temporal, episode, v.DEFAULTS, tol=1e-6)
-    assert any("MISSING from committed JSON" in f for f in fails), fails
+    assert any("MISSING from generated JSON" in f for f in fails), fails
 
 
 def test_check_episode_corrupted_aggregate_fails(tmp_path):
@@ -282,7 +282,7 @@ def test_check_episode_scene_missing_from_committed_fails(tmp_path):
     data = [s for s in data if s["scene_id"] != 1]
     temporal.write_text(json.dumps(data), encoding="utf-8")
     fails = v.check_episode("s00e00a", table, temporal, episode, v.DEFAULTS, tol=1e-6)
-    assert any("absent from committed JSON" in f for f in fails), fails
+    assert any("absent from generated JSON" in f for f in fails), fails
 
 
 def test_check_episode_duplicate_scene_id_fails(tmp_path):
@@ -292,3 +292,41 @@ def test_check_episode_duplicate_scene_id_fails(tmp_path):
     temporal.write_text(json.dumps(data), encoding="utf-8")
     fails = v.check_episode("s00e00a", table, temporal, episode, v.DEFAULTS, tol=1e-6)
     assert any("duplicate scene_id" in f for f in fails), fails
+
+
+def test_main_strict_fails_on_skip(tmp_path):
+    tables_root, net_root = _build_tables_root(tmp_path)
+    # add a second table with no matching stage-2 dir -> skipped
+    rows = [
+        {"scene_id": "1", "start": "0", "end": "1", "speaker": "A"},
+        {"scene_id": "1", "start": "1", "end": "2", "speaker": "B"},
+    ]
+    _write_table(tables_root / "s0" / "friends_s00e01a_sentence_speaker_table.tsv", rows)
+    # non-strict: the one real episode passes -> exit 0
+    assert v.main(["--tables-root", str(tables_root), "--network-root", str(net_root)]) == 0
+    # strict: a skip -> exit 1
+    assert v.main(["--tables-root", str(tables_root), "--network-root", str(net_root), "--strict"]) == 1
+
+
+def test_check_episode_duplicate_episode_edge_fails(tmp_path):
+    table, temporal, episode = _build_fixture(tmp_path)
+    data = json.loads(episode.read_text())
+    data["edges"].append(dict(data["edges"][0]))  # duplicate the A-B episode edge
+    episode.write_text(json.dumps(data), encoding="utf-8")
+    fails = v.check_episode("s00e00a", table, temporal, episode, v.DEFAULTS, tol=1e-6)
+    assert any("duplicate edge" in f and "episode" in f for f in fails), fails
+
+
+def test_check_episode_unsorted_scene_edges_fails(tmp_path):
+    table, temporal, episode = _build_fixture(tmp_path)
+    # build a scene with >=2 edges out of order. Use a fresh 3-speaker scene.
+    data = [{
+        "scene_id": 1, "start": 0.0, "end": 3.0, "nodes": ["A", "B", "C"],
+        "edges": [
+            {"source": "B", "target": "C", "weight": 0.25, "adjacency": 0.0, "proximity": 0.0, "copresence": 1.0},
+            {"source": "A", "target": "B", "weight": 0.25, "adjacency": 0.0, "proximity": 0.0, "copresence": 1.0},
+        ],
+    }]
+    temporal.write_text(json.dumps(data), encoding="utf-8")
+    fails = v.check_episode("s00e00a", table, temporal, episode, v.DEFAULTS, tol=1e-6)
+    assert any("not sorted by (source, target)" in f for f in fails), fails

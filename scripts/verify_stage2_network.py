@@ -3,8 +3,8 @@
 
 Reconstructs each episode's per-scene and aggregate interaction graphs *from
 scratch* off the tracked speaker tables (a different code path than
-``charnet.network`` — nothing is imported from it) and confirms the committed
-``output/02_build_network/<ep>/temporal_network.json`` and
+``charnet.network`` — nothing is imported from it) and confirms the generated
+(local, untracked) ``output/02_build_network/<ep>/temporal_network.json`` and
 ``episode_network.json`` match, plus a layer of structural invariants. Together
 with ``verify_network_export.py`` this independently verifies the whole chain:
 tracked speaker table -> stage-2 graph -> network-metric export.
@@ -193,23 +193,33 @@ def _edges_by_pair(edge_list: list[dict]) -> dict[tuple[str, str], dict]:
     return {tuple(sorted((e["source"], e["target"]))): e for e in edge_list}
 
 
+def _duplicate_pairs(edge_list: list[dict]) -> list[tuple[str, str]]:
+    seen, dups = set(), []
+    for e in edge_list:
+        pair = tuple(sorted((e["source"], e["target"])))
+        if pair in seen:
+            dups.append(pair)
+        seen.add(pair)
+    return dups
+
+
 _VALUE_COLS = ("weight", "adjacency", "proximity", "copresence")
 
 
-def _compare_edges(label: str, ep: str, sid, recon_edges: dict, committed_edges: dict,
+def _compare_edges(label: str, ep: str, sid, recon_edges: dict, generated_edges: dict,
                    tol: float, fails: list[str]) -> None:
-    missing = set(recon_edges) - set(committed_edges)
-    extra = set(committed_edges) - set(recon_edges)
+    missing = set(recon_edges) - set(generated_edges)
+    extra = set(generated_edges) - set(recon_edges)
     for pair in sorted(missing):
-        fails.append(f"{ep} {label} {sid}: edge MISSING from committed JSON: {pair}")
+        fails.append(f"{ep} {label} {sid}: edge MISSING from generated JSON: {pair}")
     for pair in sorted(extra):
-        fails.append(f"{ep} {label} {sid}: edge in committed JSON but not reconstructed: {pair}")
-    for pair in sorted(set(recon_edges) & set(committed_edges)):
+        fails.append(f"{ep} {label} {sid}: edge in generated JSON but not reconstructed: {pair}")
+    for pair in sorted(set(recon_edges) & set(generated_edges)):
         for col in _VALUE_COLS:
-            if not _close(committed_edges[pair][col], recon_edges[pair][col], tol):
+            if not _close(generated_edges[pair][col], recon_edges[pair][col], tol):
                 fails.append(
                     f"{ep} {label} {sid} {pair} {col}: "
-                    f"committed={committed_edges[pair][col]!r} expected={recon_edges[pair][col]!r}"
+                    f"generated={generated_edges[pair][col]!r} expected={recon_edges[pair][col]!r}"
                 )
 
 
@@ -222,6 +232,9 @@ def _check_invariants(ep: str, committed_scenes: list[dict], recon_by_id: dict,
         epi_end = max(s["end"] for s in committed_scenes)
     else:
         epi_start, epi_end = 0.0, 0.0
+    scene_ids = [cs["scene_id"] for cs in committed_scenes]
+    if scene_ids != sorted(scene_ids):
+        fails.append(f"{ep}: scenes not in ascending scene_id order")
     for cs in committed_scenes:
         sid = cs["scene_id"]
         node_set = set(cs.get("nodes", []))
@@ -250,6 +263,12 @@ def _check_invariants(ep: str, committed_scenes: list[dict], recon_by_id: dict,
                     f"{ep} scene {sid} {pair}: weight {e['weight']} != formula {formula:.6f} "
                     f"(slack {weight_slack:.2e})"
                 )
+        nodes_list = cs.get("nodes", [])
+        if nodes_list != sorted(nodes_list):
+            fails.append(f"{ep} scene {sid}: nodes not in sorted order")
+        edge_pairs = [(e["source"], e["target"]) for e in cs.get("edges", [])]
+        if edge_pairs != sorted(edge_pairs):
+            fails.append(f"{ep} scene {sid}: edges not sorted by (source, target)")
         if cs["start"] > cs["end"]:
             fails.append(f"{ep} scene {sid}: start {cs['start']} > end {cs['end']}")
         if cs["start"] < epi_start - tol or cs["end"] > epi_end + tol:
@@ -267,39 +286,47 @@ def check_episode(ep: str, table_path: Path, temporal_json: Path, episode_json: 
     committed_scenes = json.loads(temporal_json.read_text())
     committed_by_id = {s["scene_id"]: s for s in committed_scenes}
     if len(committed_by_id) != len(committed_scenes):
-        fails.append(f"{ep}: committed temporal_network.json has duplicate scene_id(s)")
+        fails.append(f"{ep}: generated temporal_network.json has duplicate scene_id(s)")
 
     # --- temporal_network.json ---
     exp_ids, got_ids = set(recon_by_id), set(committed_by_id)
     for sid in sorted(exp_ids - got_ids):
-        fails.append(f"{ep} scene {sid}: reconstructed but absent from committed JSON")
+        fails.append(f"{ep} scene {sid}: reconstructed but absent from generated JSON")
     for sid in sorted(got_ids - exp_ids):
-        fails.append(f"{ep} scene {sid}: in committed JSON but not reconstructed")
+        fails.append(f"{ep} scene {sid}: in generated JSON but not reconstructed")
     for sid in sorted(exp_ids & got_ids):
         rs, cs = recon_by_id[sid], committed_by_id[sid]
         if not _close(rs["start"], cs["start"], tol):
-            fails.append(f"{ep} scene {sid} start: committed={cs['start']!r} expected={rs['start']!r}")
+            fails.append(f"{ep} scene {sid} start: generated={cs['start']!r} expected={rs['start']!r}")
         if not _close(rs["end"], cs["end"], tol):
-            fails.append(f"{ep} scene {sid} end: committed={cs['end']!r} expected={rs['end']!r}")
+            fails.append(f"{ep} scene {sid} end: generated={cs['end']!r} expected={rs['end']!r}")
         if set(rs["nodes"]) != set(cs.get("nodes", [])):
             fails.append(f"{ep} scene {sid} nodes mismatch")
         _compare_edges("scene", ep, sid, rs["edges"], _edges_by_pair(cs.get("edges", [])), tol, fails)
 
     # --- episode_network.json ---
     cepi = json.loads(episode_json.read_text())
-    committed_ep = cepi.get("episode")
-    if committed_ep is not None and not str(committed_ep).endswith(ep):
-        fails.append(f"{ep} episode: label {committed_ep!r} does not match episode key {ep!r}")
+    epi_nodes = cepi.get("nodes", [])
+    if epi_nodes != sorted(epi_nodes):
+        fails.append(f"{ep} episode: nodes not in sorted order")
+    epi_pairs = [(e["source"], e["target"]) for e in cepi.get("edges", [])]
+    if epi_pairs != sorted(epi_pairs):
+        fails.append(f"{ep} episode: edges not sorted by (source, target)")
+    for pair in _duplicate_pairs(cepi.get("edges", []) or []):
+        fails.append(f"{ep} episode: duplicate edge {pair} in episode_network.json")
+    generated_ep = cepi.get("episode")
+    if generated_ep is not None and not str(generated_ep).endswith(ep):
+        fails.append(f"{ep} episode: label {generated_ep!r} does not match episode key {ep!r}")
     if set(expected_epi["nodes"]) != set(cepi.get("nodes", [])):
         fails.append(f"{ep} episode: node set mismatch")
     if expected_epi["n_scenes"] != cepi.get("n_scenes"):
-        fails.append(f"{ep} episode: n_scenes committed={cepi.get('n_scenes')} expected={expected_epi['n_scenes']}")
+        fails.append(f"{ep} episode: n_scenes generated={cepi.get('n_scenes')} expected={expected_epi['n_scenes']}")
     for key in ("start", "end"):
         if not _close(expected_epi[key], cepi.get(key, 0.0), tol):
-            fails.append(f"{ep} episode {key}: committed={cepi.get(key)!r} expected={expected_epi[key]!r}")
+            fails.append(f"{ep} episode {key}: generated={cepi.get(key)!r} expected={expected_epi[key]!r}")
     _compare_edges("episode", ep, "(agg)", expected_epi["edges"], _edges_by_pair(cepi.get("edges", [])), tol, fails)
 
-    # --- structural invariants on committed graphs ---
+    # --- structural invariants on generated graphs ---
     _check_invariants(ep, committed_scenes, recon_by_id, params, tol, fails)
     return fails
 
@@ -334,6 +361,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--weight-proximity", type=float, default=DEFAULTS["weight_proximity"])
     ap.add_argument("--weight-copresence", type=float, default=DEFAULTS["weight_copresence"])
     ap.add_argument("--proximity-window", type=int, default=DEFAULTS["proximity_window"])
+    ap.add_argument("--strict", action="store_true",
+                    help="treat skipped episodes (missing stage-2) as failures (exit 1)")
     args = ap.parse_args(argv)
 
     params = {
@@ -377,10 +406,13 @@ def main(argv: list[str] | None = None) -> int:
         if len(all_fails) > 50:
             print(f"  ... and {len(all_fails) - 50} more")
         return 1
+    if args.strict and skipped:
+        print(f"\nSTRICT: {len(skipped)} episode(s) skipped — failing.")
+        return 1
     if checked == 0:
         print("\nNo episodes could be checked (all skipped).")
         return 2
-    print(f"\n✓ All {checked} episodes match within tol={args.tol} "
+    print(f"\n✓ All {checked} episodes match within tol={args.tol} ({len(skipped)} skipped) "
           f"(independent reconstruction + structural invariants).")
     return 0
 
