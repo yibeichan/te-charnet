@@ -85,6 +85,16 @@ export. Each is scoped as its own feature-export spec (lightest first):
    rebuild stage 2 (`python scripts/run_pipeline.py --season sN
    --skip-stages 1a,1b,3,4`, ~19 s/season), then
    `python scripts/verify_network_export.py`.
+
+   The stage-2 networks themselves are independently re-checked by
+   `scripts/verify_stage2_network.py`, which reconstructs each
+   `temporal_network.json` and `episode_network.json` from scratch off the
+   tracked `*_sentence_speaker_table.tsv` (no `charnet.network` import) and
+   asserts structural invariants (all 341 match within `1e-6`). Together the two
+   verifiers cover the full chain — tracked speaker table → stage-2 graph →
+   network-metric export — so the untracked stage-2 intermediate is safe: every
+   committed number is reproducible and checked from a tracked input. (Same
+   precondition: rebuild stage 2 first on a fresh clone.)
 3. **Dialogue embeddings** *(available, needs export — heaviest)* — the
    `.npz` cache holds per-turn MiniLM vectors but **no turn timestamps or
    text**, so it cannot stand alone as a feature product. The export task is to
