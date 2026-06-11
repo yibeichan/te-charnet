@@ -247,6 +247,11 @@ output/**/*.gexf
 AGENTS.md
 CLAUDE.md
 specs/
+# ...but DO track superpowers design specs — they document shipped features
+# alongside their plans. Re-include the directory before its contents (a bare
+# `specs/` exclude otherwise blocks git from descending into nested negations).
+!docs/superpowers/specs/
+!docs/superpowers/specs/**
 
 # Local annotation data checkout
 data/friends_annotations/
