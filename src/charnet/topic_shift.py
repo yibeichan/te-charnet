@@ -49,8 +49,14 @@ def build_text(utterance_ct, utterance) -> str:
 
 
 def group_turns_with_counts(scene_rows: pd.DataFrame) -> list[tuple[Turn, int]]:
-    """Like ``group_turns_for_scene`` but each turn carries how many sentence
-    rows merged into it (the dialogue-embeddings export's ``n_sentences``)."""
+    """Collapse consecutive rows sharing the same ``utterance_ct`` into turns,
+    pairing each turn with the number of sentence rows merged into it (the
+    dialogue-embeddings export's ``n_sentences``).
+
+    Rows are assumed already ordered by time within one scene. A turn's text is
+    its (shared) ct text, or the first row's ``utterance`` fallback when ct is
+    blank; blank-ct rows never merge with neighbours.
+    """
     out: list[tuple[Turn, int]] = []
     prev_ct_key: str | None = None
     for _, row in scene_rows.iterrows():
@@ -71,9 +77,7 @@ def group_turns_with_counts(scene_rows: pd.DataFrame) -> list[tuple[Turn, int]]:
 def group_turns_for_scene(scene_rows: pd.DataFrame) -> list[Turn]:
     """Collapse consecutive rows sharing the same ``utterance_ct`` into turns.
 
-    Rows are assumed already ordered by time within one scene. A turn's text is
-    its (shared) ct text, or the first row's ``utterance`` fallback when ct is
-    blank; blank-ct rows never merge with neighbours.
+    Same contract as ``group_turns_with_counts``, without the row counts.
     """
     return [t for t, _ in group_turns_with_counts(scene_rows)]
 
@@ -254,7 +258,11 @@ def turns_by_scene_with_counts(sentences: pd.DataFrame) -> dict[int, list[tuple[
 
 
 def turns_by_scene(sentences: pd.DataFrame) -> dict[int, list[Turn]]:
-    """Group an episode's sentence table into per-scene turn sequences."""
+    """Group an episode's sentence table into per-scene turn sequences.
+
+    Ordering follows ``turns_by_scene_with_counts``: rows stable-sorted by
+    ``start`` within each scene, table order deciding ties.
+    """
     return {sid: [t for t, _ in pairs] for sid, pairs in turns_by_scene_with_counts(sentences).items()}
 
 
