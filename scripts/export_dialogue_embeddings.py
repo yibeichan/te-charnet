@@ -99,14 +99,22 @@ def _episode_product(episode, sentences_in, encoder, cache_dir, status_counts=No
 
 def _write_atomic_tsv(df: pd.DataFrame, dest: Path) -> None:
     tmp = dest.with_name(dest.name + ".tmp")
-    df.to_csv(tmp, sep="\t", index=False)
-    os.replace(tmp, dest)
+    try:
+        df.to_csv(tmp, sep="\t", index=False)
+        os.replace(tmp, dest)
+    except BaseException:
+        tmp.unlink(missing_ok=True)
+        raise
 
 
 def _write_atomic_npz(vecs: np.ndarray, key: str, dest: Path) -> None:
     tmp = dest.with_name(dest.name + ".tmp.npz")  # np.savez appends .npz unless present
-    np.savez(tmp, vecs=vecs, key=np.array(key))
-    os.replace(tmp, dest)
+    try:
+        np.savez(tmp, vecs=vecs, key=np.array(key))
+        os.replace(tmp, dest)
+    except BaseException:
+        tmp.unlink(missing_ok=True)
+        raise
 
 
 def main() -> None:

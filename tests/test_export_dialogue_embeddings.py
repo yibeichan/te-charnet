@@ -104,6 +104,16 @@ def test_main_writes_products_and_sidecars(tmp_path, monkeypatch):
     assert desc["DatasetType"] == "derivative"
 
 
+def test_nan_scene_id_rows_warned_and_dropped(tmp_path, capsys):
+    rows = BASIC_ROWS + [{"scene_id": np.nan, "utterance_ct": "ghost", "utterance": "ghost",
+                          "start": 50.0, "end": 51.0}]
+    sentences_in = _write_table(tmp_path, rows)
+    out = E._episode_product("s01e01a", sentences_in, _fake_encoder, tmp_path / "cache")
+    df, vecs, key = out
+    assert len(df) == 4  # ghost row not in any turn
+    assert "1 rows with missing scene_id" in capsys.readouterr().out
+
+
 def test_main_skips_missing_and_reports(tmp_path, monkeypatch, capsys):
     # scenes dir lists an episode with no sentence table -> skip, not crash
     scenes = tmp_path / "scenes" / "s1"
