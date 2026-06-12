@@ -112,6 +112,10 @@ def check_episode(ep: str, table_path: Path, product_root: Path, cache_root: Pat
         errs.append(f"{ep}: TSV columns {list(got.columns)} != {COLUMNS}")
         return errs, False
     exp = pd.DataFrame(rows, columns=COLUMNS)
+    if got[COLUMNS].isna().any().any():
+        # corrupted export: blank/NaN cells would crash astype(int) below
+        errs.append(f"{ep}: TSV contains blank/NaN cells")
+        return errs, False
     if len(got) != len(exp):
         errs.append(f"{ep}: TSV has {len(got)} rows, reconstruction has {len(exp)}")
     else:
