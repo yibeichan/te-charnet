@@ -233,6 +233,12 @@ output/**
 # product by scripts/verify_network_export.py.
 !output/annotations/network_metrics/
 !output/annotations/network_metrics/**
+# Track dialogue-embeddings timing TSVs + sidecars; the NPZ vector files stay
+# untracked (~160 MB) — regenerable via scripts/export_dialogue_embeddings.py
+# and bound to the tracked tables by scripts/verify_dialogue_embeddings.py.
+!output/annotations/dialogue_embeddings/
+!output/annotations/dialogue_embeddings/**
+output/annotations/dialogue_embeddings/**/*.npz
 # Track scene-segmentation evaluation results so reviewers can verify the
 # numbers in docs/scene_segmentation_evaluation.md without rerunning.
 !output/evaluation/

@@ -9,6 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 from charnet.topic_shift import Turn, build_text, group_turns_for_scene, block_distance_trace, peak_depths, propose_topic_boundaries, _accepted_peak_indices, episode_topic_trace, TRACE_COLUMNS
 from charnet.topic_shift import embed_texts_cached
 from charnet.topic_shift import intersect_within, turns_by_scene
+from charnet.topic_shift import group_turns_with_counts, turns_by_scene_with_counts
 
 
 def test_build_text_prefers_ct_falls_back_to_utterance():
@@ -235,3 +236,56 @@ def test_accepted_peak_indices_matches_propose_boundaries():
     assert times == propose_topic_boundaries(turns, vecs, w=1, tau_depth=0.1, min_spacing=0.5)
     idx_tight = _accepted_peak_indices(trace, turns, tau_depth=0.1, min_spacing=2.5)
     assert sorted(turns[i].end for i in idx_tight) == [2.0]
+
+
+def test_group_turns_with_counts_tracks_merged_rows():
+    df = pd.DataFrame([
+        {"utterance_ct": "hello there", "utterance": "x", "start": 0.0, "end": 1.0},
+        {"utterance_ct": "hello there", "utterance": "y", "start": 1.0, "end": 2.0},
+        {"utterance_ct": "hello there", "utterance": "z", "start": 2.0, "end": 3.0},
+        {"utterance_ct": "bye", "utterance": "w", "start": 3.0, "end": 4.0},
+    ])
+    pairs = group_turns_with_counts(df)
+    assert [(t.text, n) for t, n in pairs] == [("hello there", 3), ("bye", 1)]
+    assert pairs[0][0].start == 0.0 and pairs[0][0].end == 3.0
+
+
+def test_group_turns_with_counts_blank_ct_counts_one_each():
+    df = pd.DataFrame([
+        {"utterance_ct": "", "utterance": "a", "start": 0.0, "end": 1.0},
+        {"utterance_ct": "", "utterance": "b", "start": 1.0, "end": 2.0},
+    ])
+    pairs = group_turns_with_counts(df)
+    assert [(t.text, n) for t, n in pairs] == [("a", 1), ("b", 1)]
+
+
+def test_group_turns_for_scene_matches_counts_variant():
+    df = pd.DataFrame([
+        {"utterance_ct": "s", "utterance": "a", "start": 0.0, "end": 1.0},
+        {"utterance_ct": "s", "utterance": "b", "start": 1.0, "end": 2.0},
+        {"utterance_ct": "", "utterance": "c", "start": 2.0, "end": 3.0},
+    ])
+    assert group_turns_for_scene(df) == [t for t, _ in group_turns_with_counts(df)]
+
+
+def test_turns_by_scene_with_counts_stable_tie_order():
+    # two rows with IDENTICAL start: original row order must decide turn order
+    df = pd.DataFrame([
+        {"scene_id": 1, "utterance_ct": "first", "utterance": "first", "start": 5.0, "end": 6.0},
+        {"scene_id": 1, "utterance_ct": "second", "utterance": "second", "start": 5.0, "end": 7.0},
+        {"scene_id": 1, "utterance_ct": "third", "utterance": "third", "start": 4.0, "end": 5.0},
+    ])
+    pairs = turns_by_scene_with_counts(df)[1]
+    assert [t.text for t, _ in pairs] == ["third", "first", "second"]
+
+
+def test_turns_by_scene_delegates_and_matches():
+    df = pd.DataFrame([
+        {"scene_id": 2, "utterance_ct": "b", "utterance": "b", "start": 1.0, "end": 2.0},
+        {"scene_id": 1, "utterance_ct": "a", "utterance": "a", "start": 0.0, "end": 1.0},
+    ])
+    plain = turns_by_scene(df)
+    counted = turns_by_scene_with_counts(df)
+    assert set(plain) == set(counted) == {1, 2}
+    for sid in plain:
+        assert plain[sid] == [t for t, _ in counted[sid]]

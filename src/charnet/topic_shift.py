@@ -48,14 +48,16 @@ def build_text(utterance_ct, utterance) -> str:
     return ""
 
 
-def group_turns_for_scene(scene_rows: pd.DataFrame) -> list[Turn]:
-    """Collapse consecutive rows sharing the same ``utterance_ct`` into turns.
+def group_turns_with_counts(scene_rows: pd.DataFrame) -> list[tuple[Turn, int]]:
+    """Collapse consecutive rows sharing the same ``utterance_ct`` into turns,
+    pairing each turn with the number of sentence rows merged into it (the
+    dialogue-embeddings export's ``n_sentences``).
 
     Rows are assumed already ordered by time within one scene. A turn's text is
     its (shared) ct text, or the first row's ``utterance`` fallback when ct is
     blank; blank-ct rows never merge with neighbours.
     """
-    turns: list[Turn] = []
+    out: list[tuple[Turn, int]] = []
     prev_ct_key: str | None = None
     for _, row in scene_rows.iterrows():
         ct_raw = row.get("utterance_ct")
@@ -63,13 +65,21 @@ def group_turns_for_scene(scene_rows: pd.DataFrame) -> list[Turn]:
         text = build_text(ct_raw, row.get("utterance"))
         start, end = float(row["start"]), float(row["end"])
         mergeable = ct != "" and ct == prev_ct_key
-        if mergeable and turns:
-            last = turns[-1]
-            turns[-1] = Turn(text=last.text, start=last.start, end=max(last.end, end))  # text shared by all rows with same ct key
+        if mergeable and out:
+            last, n = out[-1]
+            out[-1] = (Turn(text=last.text, start=last.start, end=max(last.end, end)), n + 1)  # text shared by all rows with same ct key
         else:
-            turns.append(Turn(text=text, start=start, end=end))
+            out.append((Turn(text=text, start=start, end=end), 1))
         prev_ct_key = ct if ct != "" else None
-    return turns
+    return out
+
+
+def group_turns_for_scene(scene_rows: pd.DataFrame) -> list[Turn]:
+    """Collapse consecutive rows sharing the same ``utterance_ct`` into turns.
+
+    Same contract as ``group_turns_with_counts``, without the row counts.
+    """
+    return [t for t, _ in group_turns_with_counts(scene_rows)]
 
 
 def _mean_block(vecs: np.ndarray, lo: int, hi: int) -> np.ndarray:
@@ -233,16 +243,27 @@ def intersect_within(char_times, topic_times, *, eps: float) -> list[float]:
     return sorted(out)
 
 
+def turns_by_scene_with_counts(sentences: pd.DataFrame) -> dict[int, list[tuple[Turn, int]]]:
+    """Per-scene (turn, merged-row-count) sequences from an episode's sentence table.
+
+    Rows are STABLE-sorted by ``start`` within each scene (mergesort): for tied
+    starts the original table row order decides — this ordering is the export
+    contract that fixes turn_id, embedding row order, and the cache key.
+    """
+    out: dict[int, list[tuple[Turn, int]]] = {}
+    for scene_id, grp in sentences.groupby("scene_id", sort=True):
+        grp = grp.sort_values("start", kind="mergesort")
+        out[int(scene_id)] = group_turns_with_counts(grp)
+    return out
+
+
 def turns_by_scene(sentences: pd.DataFrame) -> dict[int, list[Turn]]:
     """Group an episode's sentence table into per-scene turn sequences.
 
-    Rows are sorted by ``start`` within each scene group before turn collapsing.
+    Ordering follows ``turns_by_scene_with_counts``: rows stable-sorted by
+    ``start`` within each scene, table order deciding ties.
     """
-    out: dict[int, list[Turn]] = {}
-    for scene_id, grp in sentences.groupby("scene_id", sort=True):
-        grp = grp.sort_values("start")
-        out[int(scene_id)] = group_turns_for_scene(grp)
-    return out
+    return {sid: [t for t, _ in pairs] for sid, pairs in turns_by_scene_with_counts(sentences).items()}
 
 
 TRACE_COLUMNS = ["scene_id", "onset", "block_distance", "depth", "is_peak", "w", "tau_depth", "min_spacing"]

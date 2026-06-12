@@ -27,7 +27,9 @@ catalog is the map of what `charnet` can feed that pipeline.
 | `annotations/network_metrics/sN/friends_<ep>_scene_network.tsv` | `export_network_metrics.py` (`network_export.scene_network_trace`) | per-scene | `scene_id, start, end, duration, n_nodes, n_edges, density, n_components, n_interaction_edges, interaction_density, interaction_entropy` | yes (`start`/`end` s) | **exported** (per-scene social-structure regressors) |
 | `annotations/network_metrics/sN/friends_<ep>_character_centrality.tsv` | `export_network_metrics.py` (`network_export.character_centrality_trace`) | per-scene × character | `scene_id, start, end, character, <measures…>` (default `degree`, `betweenness`, `eigenvector`) | yes (`start`/`end` s) | **exported** (per-character centrality regressors) |
 | `<viz_dir>/*.gexf`, plots | `04_visualize.py` | episode graph | Gephi export, figures | — | not brain-relevant (presentation) |
-| `intermediate/sentence_embeddings/sN/<ep>.npz` | `charnet.topic_shift` (this session) | per-turn | `vecs` (MiniLM `all-MiniLM-L6-v2`), `key` (cache hash) | **no** (timestamps not stored in npz) | **available-not-yet-exported** (needs turn timestamps to be a product) |
+| `intermediate/sentence_embeddings/sN/<ep>.npz` | `charnet.topic_shift` (this session) | per-turn | `vecs` (MiniLM `all-MiniLM-L6-v2`), `key` (cache hash) | **no** (timestamps not stored in npz) | **exported** → `annotations/dialogue_embeddings/` (feature #3) |
+| `annotations/dialogue_embeddings/sN/friends_<ep>_dialogue_turns.tsv` | `export_dialogue_embeddings.py` | per-turn | `turn_id, scene_id, start, end, n_sentences` (row i indexes the companion NPZ's `vecs` row i) | yes (`start`/`end` s) | **exported** (tracked; turn timing for the embedding matrix) |
+| `annotations/dialogue_embeddings/sN/friends_<ep>_dialogue_embeddings.npz` | `export_dialogue_embeddings.py` | per-turn | `vecs` (n_turns × 384 float32, MiniLM `all-MiniLM-L6-v2`), `key` (SHA256 of model_id + texts) | via companion TSV | **exported** (untracked; regenerable, verified by `verify_dialogue_embeddings.py`) |
 | topic-shift trace (block cosine-distance over turns) | `charnet.topic_shift.block_distance_trace` | per-turn-gap | continuous semantic-change score | derivable (turn `end`), **not persisted** | **planned** |
 
 `<network_dir>` / `<analysis_dir>` / `<viz_dir>` are the per-run output
@@ -56,10 +58,11 @@ by-products:
 3. **Network metrics over time** → social-structure regressors (centrality,
    interaction density) beyond a speaker count.
 
-## Gaps & planned exports
+## Feature exports
 
-To become brain-analysis-ready, three products need a documented, timestamped
-export. Each is scoped as its own feature-export spec (lightest first):
+Three products needed a documented, timestamped export to become
+brain-analysis-ready; all three are now shipped. Each was scoped as its own
+feature-export spec (lightest first):
 
 1. **Topic-shift trace** *(shipped)* — `scripts/export_topic_trace.py` persists
    the per-episode `block_distance_trace` as a timestamped continuous signal
@@ -95,11 +98,19 @@ export. Each is scoped as its own feature-export spec (lightest first):
    network-metric export — so the untracked stage-2 intermediate is safe: every
    committed number is reproducible and checked from a tracked input. (Same
    precondition: rebuild stage 2 first on a fresh clone.)
-3. **Dialogue embeddings** *(available, needs export — heaviest)* — the
-   `.npz` cache holds per-turn MiniLM vectors but **no turn timestamps or
-   text**, so it cannot stand alone as a feature product. The export task is to
-   emit per-turn `(start, end, embedding)` records (turn timing is recoverable
-   via `topic_shift.turns_by_scene` over the sentence table).
+3. **Dialogue embeddings** *(shipped)* — `scripts/export_dialogue_embeddings.py`
+   writes a per-episode pair under `output/annotations/dialogue_embeddings/sN/`:
+   `friends_<ep>_dialogue_turns.tsv` (**tracked**; `turn_id, scene_id, start,
+   end, n_sentences` — row i indexes NPZ row i) and
+   `friends_<ep>_dialogue_embeddings.npz` (**untracked**, ~160 MB total;
+   `vecs` (n_turns × 384) float32 MiniLM `all-MiniLM-L6-v2`, `key` =
+   SHA256(model_id + texts), same contract as the embedding cache).
+   Regenerate: `python scripts/export_dialogue_embeddings.py --episodes ALL`.
+   Verify: `python scripts/verify_dialogue_embeddings.py` — independent turn
+   reconstruction off the tracked sentence tables (no `charnet` import), key
+   check, and cache↔product vector binding; exit 0 on a full pass.
+   BIDS-inspired `dialogue_turns.json` data dictionary; spec at
+   `docs/superpowers/specs/2026-06-12-dialogue-embeddings-export-design.md`.
 
 All three exports stay in `charnet`'s lane: they *produce* timestamped
 annotation outputs. TR-alignment and the correspondence statistics remain the
