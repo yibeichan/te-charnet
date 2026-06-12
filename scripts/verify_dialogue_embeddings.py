@@ -23,6 +23,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import sys
+import zipfile
 from pathlib import Path
 
 import numpy as np
@@ -53,6 +54,17 @@ def _texts_key(texts: list[str], model_id: str = MODEL_ID) -> str:
         h.update(t.encode("utf-8"))
         h.update(b"\x00")
     return h.hexdigest()
+
+
+def _load_npz(path: Path, members: tuple[str, ...] = ("key", "vecs")):
+    """(dict, None) on success, (None, reason) on unreadable/incomplete NPZ."""
+    try:
+        with np.load(path, allow_pickle=False) as npz:
+            return {m: npz[m] for m in members}, None
+    except KeyError as e:
+        return None, f"missing member {e}"
+    except (zipfile.BadZipFile, OSError, EOFError, ValueError) as e:
+        return None, f"{type(e).__name__}: {e}"
 
 
 def _reconstruct(sents: pd.DataFrame):
@@ -139,7 +151,10 @@ def check_episode(ep: str, table_path: Path, product_root: Path, cache_root: Pat
         return errs, True  # skip vector checks; TSV findings still count
 
     key = _texts_key(texts)
-    prod = np.load(npz_path, allow_pickle=False)
+    prod, load_err = _load_npz(npz_path)
+    if load_err:
+        errs.append(f"{ep}: product NPZ unreadable ({load_err})")
+        return errs, False
     if str(prod["key"]) != key:
         errs.append(f"{ep}: product NPZ key != recomputed text hash")
     vecs = prod["vecs"]

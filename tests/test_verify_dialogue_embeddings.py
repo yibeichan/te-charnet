@@ -1,4 +1,5 @@
 import hashlib
+import shutil
 import sys
 from pathlib import Path
 
@@ -131,3 +132,37 @@ def test_nan_scene_rows_are_accounted(tmp_path):
     df.to_csv(tpath, sep="\t", index=False)
     # dropped-row is reported but reconstruction still matches -> pass
     assert _run(sentences, product, cache, extra=("--expected-dim", "4")) == 0
+
+
+def _clone_episode(sentences, product, cache, ep="s01e02a"):
+    """Copy the fixture episode under a second episode id (same texts/key)."""
+    shutil.copy(sentences / "s1" / "friends_s01e01a_sentence_speaker_table.tsv",
+                sentences / "s1" / f"friends_{ep}_sentence_speaker_table.tsv")
+    shutil.copy(product / "s1" / "friends_s01e01a_dialogue_turns.tsv",
+                product / "s1" / f"friends_{ep}_dialogue_turns.tsv")
+    shutil.copy(product / "s1" / "friends_s01e01a_dialogue_embeddings.npz",
+                product / "s1" / f"friends_{ep}_dialogue_embeddings.npz")
+    shutil.copy(cache / "s1" / "s01e01a.npz", cache / "s1" / f"{ep}.npz")
+
+
+def test_truncated_product_npz_fails_cleanly(tmp_path, capsys):
+    sentences, product, cache = _build_fixture(tmp_path)
+    _clone_episode(sentences, product, cache)
+    npz = product / "s1" / "friends_s01e01a_dialogue_embeddings.npz"
+    npz.write_bytes(b"PK\x03\x04 this is not a real zip archive")
+    # must not raise; bad episode FAILs, the cloned episode still passes
+    rc = _run(sentences, product, cache, extra=("--expected-dim", "4"))
+    out = capsys.readouterr().out
+    assert rc == 1
+    assert "unreadable" in out
+    assert "s01e02a" not in "".join(l for l in out.splitlines() if "FAIL" in l)
+
+
+def test_product_npz_missing_vecs_member_fails_cleanly(tmp_path, capsys):
+    sentences, product, cache = _build_fixture(tmp_path)
+    npz = product / "s1" / "friends_s01e01a_dialogue_embeddings.npz"
+    d = dict(np.load(npz, allow_pickle=False))
+    np.savez(npz, key=d["key"])  # drop the vecs member
+    rc = _run(sentences, product, cache, extra=("--expected-dim", "4"))
+    assert rc == 1
+    assert "unreadable" in capsys.readouterr().out
