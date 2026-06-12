@@ -1,0 +1,19 @@
+{
+  "turn_id": {
+    "Description": "0-based episode-wide turn index; equals the row index into the companion NPZ's 'vecs' matrix."
+  },
+  "scene_id": {
+    "Description": "Fan-transcript scene index the turn belongs to."
+  },
+  "start": {
+    "Description": "Turn onset: start of its first sentence row, relative to episode start. Mapping to fMRI run time / TRs is the consumer's responsibility.",
+    "Units": "s"
+  },
+  "end": {
+    "Description": "Turn offset: max end across its merged sentence rows.",
+    "Units": "s"
+  },
+  "n_sentences": {
+    "Description": "Number of sentence-table rows merged into this turn (consecutive rows sharing one community-transcript utterance)."
+  }
+}
