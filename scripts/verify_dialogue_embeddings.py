@@ -77,6 +77,12 @@ def _load_npz(path: Path, members: tuple[str, ...] = ("key", "vecs")):
 def _build_real_encoder():
     """Lazy MiniLM encoder matching the export's settings exactly.
 
+    Deliberately duplicates ``charnet.topic_shift.minilm_encoder`` inline rather
+    than importing it — the verifier's whole point is independence from charnet.
+    The flip side is drift: if that encoder's settings change (model, device,
+    batch_size, normalize_embeddings, dtype), this copy must change in lockstep
+    or --re-embed will compare against a stale assumption. Keep the two in sync.
+
     Returns None when sentence-transformers is not installed.
     """
     try:
