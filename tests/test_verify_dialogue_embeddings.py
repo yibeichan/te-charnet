@@ -155,7 +155,7 @@ def test_truncated_product_npz_fails_cleanly(tmp_path, capsys):
     out = capsys.readouterr().out
     assert rc == 1
     assert "unreadable" in out
-    assert "s01e02a" not in "".join(l for l in out.splitlines() if "FAIL" in l)
+    assert "s01e02a" not in "".join(ln for ln in out.splitlines() if "FAIL" in ln)
 
 
 def test_product_npz_missing_vecs_member_fails_cleanly(tmp_path, capsys):
@@ -166,3 +166,11 @@ def test_product_npz_missing_vecs_member_fails_cleanly(tmp_path, capsys):
     rc = _run(sentences, product, cache, extra=("--expected-dim", "4"))
     assert rc == 1
     assert "unreadable" in capsys.readouterr().out
+
+
+def test_corrupt_cache_npz_fails_cleanly(tmp_path, capsys):
+    sentences, product, cache = _build_fixture(tmp_path)
+    (cache / "s1" / "s01e01a.npz").write_bytes(b"\x00\x01garbage")
+    rc = _run(sentences, product, cache, extra=("--expected-dim", "4"))
+    assert rc == 1
+    assert "cache NPZ unreadable" in capsys.readouterr().out

@@ -170,8 +170,12 @@ def check_episode(ep: str, table_path: Path, product_root: Path, cache_root: Pat
         errs.append(f"{ep}: cache NPZ missing — vectors cannot be vouched for "
                     f"(regenerate via scripts/export_dialogue_embeddings.py)")
     else:
-        cached = np.load(cache_path, allow_pickle=False)
-        if str(cached["key"]) != key:
+        cached, load_err = _load_npz(cache_path)
+        if load_err:
+            errs.append(f"{ep}: cache NPZ unreadable ({load_err}) — vectors "
+                        f"cannot be vouched for (regenerate via "
+                        f"scripts/export_dialogue_embeddings.py)")
+        elif str(cached["key"]) != key:
             errs.append(f"{ep}: cache NPZ key != recomputed text hash (stale cache)")
         elif not np.array_equal(vecs, cached["vecs"]):
             errs.append(f"{ep}: product vecs != cache vecs (binding broken)")
