@@ -13,6 +13,12 @@ and SHA256 key derivation. Per episode it checks
   4. vector binding   — cache NPZ key matches too, and product vecs are
      array_equal to cache vecs (a permuted matrix with a valid key fails);
   5. sanity           — float32, (n_turns, dim), finite, start <= end.
+  6. deep check     — with --re-embed N, re-encodes N sampled passing
+     episodes with the real model (lazy import) and compares to product
+     vecs within atol=1e-5; --seed makes the sample reproducible.
+
+Corrupt or member-incomplete NPZ files (product or cache) are clean
+per-episode FAILures (exit 1), never tracebacks.
 
 Product NPZ absent  -> SKIP (TSV checks 1-2 still run).
 Cache absent/stale while product NPZ exists -> FAILURE (vectors unvouchable).
