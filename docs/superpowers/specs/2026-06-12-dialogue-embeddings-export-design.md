@@ -145,6 +145,8 @@ verifier proves vectors are *the cached vectors for exactly these texts*, not
 that the encoder computed them correctly. An optional `--re-embed N` flag
 re-encodes N randomly chosen episodes end-to-end and compares within
 tolerance, for occasional deep checks.
+*(Update 2026-06-12: `--re-embed N` and clean corrupt-NPZ handling shipped —
+see `2026-06-12-verifier-hardening-design.md`.)*
 
 ## Testing
 
