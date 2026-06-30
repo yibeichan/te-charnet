@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import random
 import sys
 import zipfile
 from pathlib import Path
@@ -67,6 +68,30 @@ def _load_npz(path: Path, members: tuple[str, ...] = ("key", "vecs")):
         return None, f"{type(e).__name__}: {e}"
 
 
+def _build_real_encoder():
+    """Lazy MiniLM encoder matching the export's settings exactly.
+
+    Returns None when sentence-transformers is not installed.
+    """
+    try:
+        from sentence_transformers import SentenceTransformer
+    except ImportError:
+        return None
+    model = SentenceTransformer(MODEL_ID, device="cpu")
+
+    def encode(texts: list[str]) -> np.ndarray:
+        if not texts:
+            return np.zeros((0, model.get_sentence_embedding_dimension()),
+                            dtype=np.float32)
+        return np.asarray(
+            model.encode(texts, batch_size=64, show_progress_bar=False,
+                         normalize_embeddings=False),
+            dtype=np.float32,
+        )
+
+    return encode
+
+
 def _reconstruct(sents: pd.DataFrame):
     """(rows, texts, n_dropped): independent turn reconstruction.
 
@@ -104,8 +129,9 @@ def _episode_id(table_path: Path) -> str:
 
 
 def check_episode(ep: str, table_path: Path, product_root: Path, cache_root: Path,
-                  expected_dim: int) -> tuple[list[str], bool]:
-    """Returns (mismatches, skipped). skipped=True when the product NPZ is absent."""
+                  expected_dim: int) -> tuple[list[str], bool, dict | None]:
+    """Returns (mismatches, skipped, deep). skipped=True when the product NPZ is
+    absent; deep carries texts+vecs for re-embedding when the episode fully passed."""
     errs: list[str] = []
     season = f"s{int(ep[1:3])}"
     tsv_path = product_root / season / f"friends_{ep}_dialogue_turns.tsv"
@@ -118,16 +144,16 @@ def check_episode(ep: str, table_path: Path, product_root: Path, cache_root: Pat
         print(f"  note {ep}: {n_dropped} rows without scene_id (excluded from turns)")
 
     if not tsv_path.exists():
-        return [f"{ep}: product TSV missing"], False
+        return [f"{ep}: product TSV missing"], False, None
     got = pd.read_csv(tsv_path, sep="\t")
     if list(got.columns) != COLUMNS:
         errs.append(f"{ep}: TSV columns {list(got.columns)} != {COLUMNS}")
-        return errs, False
+        return errs, False, None
     exp = pd.DataFrame(rows, columns=COLUMNS)
     if got[COLUMNS].isna().any().any():
         # corrupted export: blank/NaN cells would crash astype(int) below
         errs.append(f"{ep}: TSV contains blank/NaN cells")
-        return errs, False
+        return errs, False, None
     if len(got) != len(exp):
         errs.append(f"{ep}: TSV has {len(got)} rows, reconstruction has {len(exp)}")
     else:
@@ -148,13 +174,13 @@ def check_episode(ep: str, table_path: Path, product_root: Path, cache_root: Pat
             errs.append(f"{ep}: TSV has turns with start > end")
 
     if not npz_path.exists():
-        return errs, True  # skip vector checks; TSV findings still count
+        return errs, True, None  # skip vector checks; TSV findings still count
 
     key = _texts_key(texts)
     prod, load_err = _load_npz(npz_path)
     if load_err:
         errs.append(f"{ep}: product NPZ unreadable ({load_err})")
-        return errs, False
+        return errs, False, None
     if str(prod["key"]) != key:
         errs.append(f"{ep}: product NPZ key != recomputed text hash")
     vecs = prod["vecs"]
@@ -179,15 +205,21 @@ def check_episode(ep: str, table_path: Path, product_root: Path, cache_root: Pat
             errs.append(f"{ep}: cache NPZ key != recomputed text hash (stale cache)")
         elif not np.array_equal(vecs, cached["vecs"]):
             errs.append(f"{ep}: product vecs != cache vecs (binding broken)")
-    return errs, False
+    deep = {"texts": texts, "vecs": vecs} if not errs else None
+    return errs, False, deep
 
 
-def run(argv: list[str] | None = None) -> int:
+def run(argv: list[str] | None = None, encoder_factory=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--tables-root", default=str(DEFAULT_TABLES_ROOT))
     ap.add_argument("--product-root", default=str(DEFAULT_PRODUCT_ROOT))
     ap.add_argument("--cache-root", default=str(DEFAULT_CACHE_ROOT))
     ap.add_argument("--expected-dim", type=int, default=384)
+    ap.add_argument("--re-embed", type=int, default=0, metavar="N",
+                    help="re-encode N sampled passing episodes with the real "
+                         "model and compare to product vecs")
+    ap.add_argument("--seed", type=int, default=None,
+                    help="seed for --re-embed episode sampling")
     args = ap.parse_args(argv)
 
     tables = sorted(Path(args.tables_root).glob("*/*_sentence_speaker_table.tsv"))
@@ -196,17 +228,41 @@ def run(argv: list[str] | None = None) -> int:
         return 2
 
     all_errs: list[str] = []
+    pool: list[tuple[str, dict]] = []
     n_checked = n_skipped = 0
     for tpath in tables:
         ep = _episode_id(tpath)
-        errs, skipped = check_episode(ep, tpath, Path(args.product_root),
-                                      Path(args.cache_root), args.expected_dim)
+        errs, skipped, deep = check_episode(ep, tpath, Path(args.product_root),
+                                            Path(args.cache_root), args.expected_dim)
         all_errs.extend(errs)
+        if deep is not None:
+            pool.append((ep, deep))
         if skipped and not errs:
             n_skipped += 1
             print(f"  skip {ep}: product NPZ absent (TSV checks only)")
         else:
             n_checked += 1
+
+    if args.re_embed > 0 and pool:
+        rng = random.Random(args.seed)
+        chosen = rng.sample(sorted(pool), min(args.re_embed, len(pool)))
+        print(f"Re-embed deep check: {[ep for ep, _ in chosen]}"
+              + (f" (seed={args.seed})" if args.seed is not None else ""))
+        encoder = encoder_factory() if encoder_factory else _build_real_encoder()
+        if encoder is None:
+            print("  FAIL --re-embed requires sentence-transformers (not installed)")
+            all_errs.append("--re-embed: sentence-transformers not installed")
+        else:
+            for ep, deep in chosen:
+                fresh = encoder(deep["texts"])
+                if fresh.shape != deep["vecs"].shape:
+                    all_errs.append(f"{ep}: re-embedded shape {fresh.shape} != "
+                                    f"product {deep['vecs'].shape}")
+                elif not np.allclose(deep["vecs"], fresh, atol=1e-5, rtol=0):
+                    diff = float(np.abs(deep["vecs"] - fresh).max())
+                    all_errs.append(f"{ep}: re-embedded vecs differ from product "
+                                    f"(max abs diff {diff:.3g})")
+            print(f"  re-embedded {len(chosen)} episode(s)")
 
     print(f"\nChecked {n_checked} episodes ({n_skipped} NPZ-absent skips)")
     if all_errs:

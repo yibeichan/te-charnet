@@ -51,11 +51,11 @@ def _build_fixture(tmp_path):
     return tmp_path / "sentences", tmp_path / "product", tmp_path / "cache"
 
 
-def _run(sentences, product, cache, extra=()):
+def _run(sentences, product, cache, extra=(), **kw):
     argv = ["verify_dialogue_embeddings.py",
             "--tables-root", str(sentences), "--product-root", str(product),
             "--cache-root", str(cache), *extra]
-    return V.run(argv[1:])
+    return V.run(argv[1:], **kw)
 
 
 def test_clean_fixture_exits_zero(tmp_path):
@@ -174,3 +174,55 @@ def test_corrupt_cache_npz_fails_cleanly(tmp_path, capsys):
     rc = _run(sentences, product, cache, extra=("--expected-dim", "4"))
     assert rc == 1
     assert "cache NPZ unreadable" in capsys.readouterr().out
+
+
+def _fake_encoder_factory():
+    """Reproduces the fixture vecs: arange over (n_texts, 4)."""
+    def encode(texts):
+        return np.arange(len(texts) * 4, dtype=np.float32).reshape(len(texts), 4)
+    return encode
+
+
+def test_re_embed_matching_vecs_passes(tmp_path):
+    roots = _build_fixture(tmp_path)
+    assert _run(*roots, extra=("--expected-dim", "4", "--re-embed", "1"),
+                encoder_factory=_fake_encoder_factory) == 0
+
+
+def test_re_embed_catches_consistent_perturbation(tmp_path):
+    # perturb product AND cache identically: key check and binding both pass,
+    # only re-embedding can catch it
+    sentences, product, cache = _build_fixture(tmp_path)
+    for path in (product / "s1" / "friends_s01e01a_dialogue_embeddings.npz",
+                 cache / "s1" / "s01e01a.npz"):
+        d = dict(np.load(path, allow_pickle=False))
+        d["vecs"] = d["vecs"].copy()
+        d["vecs"][1, 2] += 0.5
+        np.savez(path, **d)
+    assert _run(sentences, product, cache,
+                extra=("--expected-dim", "4")) == 0  # binding intact
+    assert _run(sentences, product, cache,
+                extra=("--expected-dim", "4", "--re-embed", "1"),
+                encoder_factory=_fake_encoder_factory) == 1
+
+
+def test_re_embed_clamps_n_to_pool_size(tmp_path, capsys):
+    roots = _build_fixture(tmp_path)
+    rc = _run(*roots, extra=("--expected-dim", "4", "--re-embed", "5"),
+              encoder_factory=_fake_encoder_factory)
+    assert rc == 0
+    assert "re-embedded 1 episode" in capsys.readouterr().out
+
+
+def test_re_embed_seed_makes_sampling_deterministic(tmp_path, capsys):
+    sentences, product, cache = _build_fixture(tmp_path)
+    _clone_episode(sentences, product, cache)
+
+    def chosen_line():
+        _run(sentences, product, cache,
+             extra=("--expected-dim", "4", "--re-embed", "1", "--seed", "7"),
+             encoder_factory=_fake_encoder_factory)
+        out = capsys.readouterr().out
+        return next(ln for ln in out.splitlines() if "Re-embed" in ln)
+
+    assert chosen_line() == chosen_line()
