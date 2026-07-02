@@ -5,7 +5,23 @@ import pandas as pd
 import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
-from charnet.scene_subdivide import Scene, expand_episode_spec, subdivide_episode
+from charnet.scene_subdivide import (
+    Scene,
+    expand_episode_spec,
+    is_explicit_episode_list,
+    subdivide_episode,
+)
+
+
+def test_is_explicit_episode_list():
+    # ALL / single-season / season-range are NOT explicit lists
+    assert is_explicit_episode_list("ALL") is False
+    assert is_explicit_episode_list("s3") is False
+    assert is_explicit_episode_list("s3-s6") is False
+    assert is_explicit_episode_list("  s3-s6  ") is False
+    # named episodes (single or comma-list) ARE explicit
+    assert is_explicit_episode_list("s01e01a") is True
+    assert is_explicit_episode_list("s01e01a,s02e03b") is True
 
 
 def _touch_scene_files(root: Path, episodes: list[str]) -> None:

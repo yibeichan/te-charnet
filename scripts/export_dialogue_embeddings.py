@@ -23,7 +23,8 @@ sys.path.insert(0, str(REPO / "src"))
 
 from charnet import topic_shift as ts  # noqa: E402
 from charnet.bids_meta import write_data_dictionary, write_dataset_description  # noqa: E402
-from charnet.scene_subdivide import expand_episode_spec  # noqa: E402
+from charnet.io import write_atomic_tsv  # noqa: E402
+from charnet.scene_subdivide import expand_episode_spec, is_explicit_episode_list  # noqa: E402
 
 DEFAULT_SCENES_IN = REPO / "output/annotations/scenes"
 DEFAULT_SENTENCES_IN = REPO / "output/annotations/sentences"
@@ -97,16 +98,6 @@ def _episode_product(episode, sentences_in, encoder, cache_dir, status_counts=No
     return pd.DataFrame(rows, columns=COLUMNS), vecs, key
 
 
-def _write_atomic_tsv(df: pd.DataFrame, dest: Path) -> None:
-    tmp = dest.with_name(dest.name + ".tmp")
-    try:
-        df.to_csv(tmp, sep="\t", index=False)
-        os.replace(tmp, dest)
-    except BaseException:
-        tmp.unlink(missing_ok=True)
-        raise
-
-
 def _write_atomic_npz(vecs: np.ndarray, key: str, dest: Path) -> None:
     tmp = dest.with_name(dest.name + ".tmp.npz")  # np.savez appends .npz unless present
     try:
@@ -129,7 +120,9 @@ def main() -> None:
     out_dir = Path(args.out_dir)
     sentences_in = Path(args.sentences_in)
     cache_dir = Path(args.cache_dir)
-    episodes = expand_episode_spec(args.episodes, Path(args.scenes_in))
+    scenes_in = Path(args.scenes_in)
+    episodes = expand_episode_spec(args.episodes, scenes_in)
+    explicit = is_explicit_episode_list(args.episodes)
     encoder = ts.minilm_encoder()
 
     # sidecars first so the output dir is self-describing even on partial runs
@@ -143,22 +136,31 @@ def main() -> None:
 
     print(f"Exporting dialogue embeddings for {len(episodes)} eps → {out_dir}")
     n_written = n_skipped = 0
+    missing = []
     status_counts = {"hit": 0, "re-encoded": 0, "new": 0}
     for ep in episodes:
         product = _episode_product(ep, sentences_in, encoder, cache_dir, status_counts)
         if product is None:
+            missing.append(ep)
             n_skipped += 1
             continue
         df, vecs, key = product
         season = int(ep[1:3])
         ep_dir = out_dir / f"s{season}"
         ep_dir.mkdir(parents=True, exist_ok=True)
-        _write_atomic_tsv(df, ep_dir / f"friends_{ep}_dialogue_turns.tsv")
+        write_atomic_tsv(df, ep_dir / f"friends_{ep}_dialogue_turns.tsv")
         _write_atomic_npz(vecs, key, ep_dir / f"friends_{ep}_dialogue_embeddings.npz")
         n_written += 1
         print(f"  {ep}: {len(df)} turns")
     print(f"\nWrote {n_written} episodes ({n_skipped} missing sentence tables)")
     print(f"Cache: {status_counts['hit']} hits, {status_counts['re-encoded']} re-encoded, {status_counts['new']} new")
+
+    if explicit and missing:
+        sys.exit(f"error: no sentence table for explicitly-named episode(s): "
+                 f"{', '.join(missing)} (checked under {sentences_in})")
+    if n_written == 0:
+        sys.exit(f"error: 0 episodes written — check --sentences-in ({sentences_in}) "
+                 f"has sentence tables, or --scenes-in ({scenes_in})")
 
 
 if __name__ == "__main__":

@@ -4,6 +4,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import pytest
 
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO / "src"))
@@ -114,18 +115,44 @@ def test_nan_scene_id_rows_warned_and_dropped(tmp_path, capsys):
     assert "1 rows with missing scene_id" in capsys.readouterr().out
 
 
-def test_main_skips_missing_and_reports(tmp_path, monkeypatch, capsys):
-    # scenes dir lists an episode with no sentence table -> skip, not crash
-    scenes = tmp_path / "scenes" / "s1"
-    scenes.mkdir(parents=True)
-    (scenes / "friends_s01e02a_scene_summary.tsv").write_text("scene_id\tstart\tend\n")
+def _run_main(monkeypatch, tmp_path, episodes, sentences_in, out_dir):
     monkeypatch.setattr(E.ts, "minilm_encoder", lambda: _fake_encoder)
     monkeypatch.setattr(sys, "argv", [
-        "export_dialogue_embeddings.py", "--episodes", "s01e02a",
+        "export_dialogue_embeddings.py", "--episodes", episodes,
         "--scenes-in", str(tmp_path / "scenes"),
-        "--sentences-in", str(tmp_path / "sentences"),
-        "--out-dir", str(tmp_path / "out"),
+        "--sentences-in", str(sentences_in),
+        "--out-dir", str(out_dir),
         "--cache-dir", str(tmp_path / "cache"),
     ])
     E.main()
-    assert "1 missing sentence tables" in capsys.readouterr().out
+
+
+def test_main_explicit_missing_episode_errors(tmp_path, monkeypatch):
+    # explicitly-named episode has a resolvable scene file but no sentence table
+    scenes = tmp_path / "scenes" / "s1"
+    scenes.mkdir(parents=True)
+    (scenes / "friends_s01e02a_scene_summary.tsv").write_text("scene_id\tstart\tend\n")
+    with pytest.raises(SystemExit, match=r"s01e02a"):
+        _run_main(monkeypatch, tmp_path, "s01e02a", tmp_path / "sentences", tmp_path / "out")
+
+
+def test_main_zero_written_exits(tmp_path, monkeypatch):
+    # ALL resolves an episode from the scenes dir but its sentence table is absent
+    # -> zero written -> nonzero exit (a bad --sentences-in cannot pass as success)
+    scenes = tmp_path / "scenes" / "s1"
+    scenes.mkdir(parents=True)
+    (scenes / "friends_s01e02a_scene_summary.tsv").write_text("scene_id\tstart\tend\n")
+    with pytest.raises(SystemExit, match="0 episodes written"):
+        _run_main(monkeypatch, tmp_path, "ALL", tmp_path / "sentences", tmp_path / "out")
+
+
+def test_main_season_spec_skips_missing_without_error(tmp_path, monkeypatch):
+    # season spec: one episode has a sentence table, one doesn't -> partial ok, no raise
+    scenes = tmp_path / "scenes" / "s1"
+    scenes.mkdir(parents=True)
+    (scenes / "friends_s01e01a_scene_summary.tsv").write_text("scene_id\tstart\tend\n")
+    (scenes / "friends_s01e01b_scene_summary.tsv").write_text("scene_id\tstart\tend\n")
+    sentences_in = _write_table(tmp_path, BASIC_ROWS)  # only e01a has a table
+    _run_main(monkeypatch, tmp_path, "s1", sentences_in, tmp_path / "out")  # must not raise
+    assert (tmp_path / "out" / "s1" / "friends_s01e01a_dialogue_turns.tsv").exists()
+    assert not (tmp_path / "out" / "s1" / "friends_s01e01b_dialogue_turns.tsv").exists()

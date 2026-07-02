@@ -136,3 +136,16 @@ def expand_episode_spec(spec: str, scenes_in_dir: Path) -> list[str]:
         if not _ID_RE.match(e):
             raise ValueError(f"Invalid episode id: {e!r}")
     return ids
+
+
+def is_explicit_episode_list(spec: str) -> bool:
+    """True when *spec* names specific episodes (vs ``ALL`` / season / range).
+
+    Exports use this to decide fail-fast policy: when an explicit list is
+    requested, an episode that cannot be produced is an error, whereas a
+    season/ALL spec may legitimately skip episodes it does not cover.
+    """
+    spec = spec.strip()
+    if spec == "ALL":
+        return False
+    return re.fullmatch(r"s\d+(-s\d+)?", spec) is None

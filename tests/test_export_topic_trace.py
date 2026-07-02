@@ -3,6 +3,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import pytest
 
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO / "src"))
@@ -89,3 +90,51 @@ def test_missing_sentence_table_returns_none(tmp_path):
     out = E._episode_trace("s09e99z", tmp_path / "sentences", _fake_encoder, tmp_path / "cache",
                            w=1, tau_depth=0.1, min_spacing=0.5)
     assert out is None
+
+
+def _run_main(monkeypatch, tmp_path, episodes, out_dir):
+    monkeypatch.setattr(E.ts, "minilm_encoder", lambda: _fake_encoder)
+    monkeypatch.setattr(sys, "argv", [
+        "export_topic_trace.py", "--episodes", episodes,
+        "--scenes-in", str(tmp_path / "scenes"),
+        "--sentences-in", str(tmp_path / "sentences"),
+        "--out-dir", str(out_dir),
+        "--cache-dir", str(tmp_path / "cache"),
+        "--w", "1", "--tau-depth", "0.1", "--min-spacing", "0.5",
+    ])
+    E.main()
+
+
+def test_main_explicit_missing_episode_errors(tmp_path, monkeypatch):
+    # explicitly-named episode has a resolvable scene file but no sentence table
+    scenes = tmp_path / "scenes" / "s1"
+    scenes.mkdir(parents=True)
+    (scenes / "friends_s01e01a_scene_summary.tsv").write_text("scene_id\tstart\tend\n")
+    with pytest.raises(SystemExit, match=r"s01e01a"):
+        _run_main(monkeypatch, tmp_path, "s01e01a", tmp_path / "out")
+
+
+def test_main_zero_written_exits(tmp_path, monkeypatch):
+    # ALL resolves an episode from the scenes dir but its sentence table is absent
+    # -> zero written -> nonzero exit (a bad --sentences-in cannot pass as success)
+    scenes = tmp_path / "scenes" / "s1"
+    scenes.mkdir(parents=True)
+    (scenes / "friends_s01e01a_scene_summary.tsv").write_text("scene_id\tstart\tend\n")
+    with pytest.raises(SystemExit, match="0 episodes written"):
+        _run_main(monkeypatch, tmp_path, "ALL", tmp_path / "out")
+
+
+def test_main_season_spec_skips_missing_without_error(tmp_path, monkeypatch):
+    # season spec: one episode has a sentence table, one doesn't -> partial ok, no raise
+    scenes = tmp_path / "scenes" / "s1"
+    scenes.mkdir(parents=True)
+    (scenes / "friends_s01e01a_scene_summary.tsv").write_text("scene_id\tstart\tend\n")
+    (scenes / "friends_s01e01b_scene_summary.tsv").write_text("scene_id\tstart\tend\n")
+    sent = tmp_path / "sentences" / "s1"
+    sent.mkdir(parents=True)
+    rows = [{"scene_id": 1, "utterance_ct": w, "utterance": w, "start": float(i), "end": float(i) + 1.0}
+            for i, w in enumerate(["alpha", "beta", "gamma", "delta"])]
+    pd.DataFrame(rows).to_csv(sent / "friends_s01e01a_sentence_speaker_table.tsv", sep="\t", index=False)
+    _run_main(monkeypatch, tmp_path, "s1", tmp_path / "out")  # must not raise
+    assert (tmp_path / "out" / "s1" / "friends_s01e01a_topic_trace.tsv").exists()
+    assert not (tmp_path / "out" / "s1" / "friends_s01e01b_topic_trace.tsv").exists()
