@@ -1,0 +1,33 @@
+{
+  "scene_id": {
+    "Description": "Fan-transcript scene index the gap falls in"
+  },
+  "onset": {
+    "Description": "Gap time: end of the turn before the gap, relative to episode start. Mapping to fMRI run time / TRs is the consumer's responsibility.",
+    "Units": "s"
+  },
+  "block_distance": {
+    "Description": "Cosine distance between mean-pooled w-turn blocks on either side of the gap; continuous topic-shift regressor. Higher = larger semantic shift.",
+    "Units": "arbitrary (0-1 for normalized embeddings)"
+  },
+  "depth": {
+    "Description": "TextTiling depth (rise above neighboring valleys) at local maxima of block_distance; NaN at non-maxima."
+  },
+  "is_peak": {
+    "Description": "Gap accepted as a boundary by the topic-shift detector at the recorded params. NOTE: the detector is a documented negative result (docs/scene_segmentation_evaluation.md, Prototype #2); is_peak is an audit trail, not a validated boundary.",
+    "Levels": {
+      "True": "accepted",
+      "False": "not accepted"
+    }
+  },
+  "w": {
+    "Description": "Block half-width in turns used to compute block_distance and is_peak."
+  },
+  "tau_depth": {
+    "Description": "Depth threshold for is_peak."
+  },
+  "min_spacing": {
+    "Description": "Minimum seconds between accepted peaks (greedy, deepest-first).",
+    "Units": "s"
+  }
+}

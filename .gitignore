@@ -221,6 +221,9 @@ output/**
 # downstream stages (02_build_network, 03_analyze, 04_visualize) stay
 # ignored, as do figure files.
 !output/annotations/
+# the shared root sidecar (files directly inside a re-included directory are
+# NOT covered by the directory's negation — they need their own)
+!output/annotations/dataset_description.json
 !output/annotations/sentences/
 !output/annotations/sentences/**
 !output/annotations/scenes/
@@ -233,6 +236,13 @@ output/**
 # product by scripts/verify_network_export.py.
 !output/annotations/network_metrics/
 !output/annotations/network_metrics/**
+# Track the topic-shift trace product (TSV + JSON sidecar) — same contract as
+# network_metrics: versioned text regressors for the brain-states pipeline,
+# independently verified by scripts/verify_topic_trace.py against the tracked
+# sentence tables. The sentence-embedding cache it derives from
+# (output/intermediate/) stays ignored — regenerable.
+!output/annotations/topic_shift/
+!output/annotations/topic_shift/**
 # Track dialogue-embeddings timing TSVs + sidecars; the NPZ vector files stay
 # untracked (~160 MB) — regenerable via scripts/export_dialogue_embeddings.py
 # and bound to the tracked tables by scripts/verify_dialogue_embeddings.py.

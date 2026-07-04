@@ -30,7 +30,7 @@ catalog is the map of what `charnet` can feed that pipeline.
 | `intermediate/sentence_embeddings/sN/<ep>.npz` | `charnet.topic_shift` (this session) | per-turn | `vecs` (MiniLM `all-MiniLM-L6-v2`), `key` (cache hash) | **no** (timestamps not stored in npz) | **exported** → `annotations/dialogue_embeddings/` (feature #3) |
 | `annotations/dialogue_embeddings/sN/friends_<ep>_dialogue_turns.tsv` | `export_dialogue_embeddings.py` | per-turn | `turn_id, scene_id, start, end, n_sentences` (row i indexes the companion NPZ's `vecs` row i) | yes (`start`/`end` s) | **exported** (tracked; turn timing for the embedding matrix) |
 | `annotations/dialogue_embeddings/sN/friends_<ep>_dialogue_embeddings.npz` | `export_dialogue_embeddings.py` | per-turn | `vecs` (n_turns × 384 float32, MiniLM `all-MiniLM-L6-v2`), `key` (SHA256 of model_id + texts) | via companion TSV | **exported** (untracked; regenerable, verified by `verify_dialogue_embeddings.py`) |
-| topic-shift trace (block cosine-distance over turns) | `charnet.topic_shift.block_distance_trace` | per-turn-gap | continuous semantic-change score | derivable (turn `end`), **not persisted** | **planned** |
+| `annotations/topic_shift/sN/friends_<ep>_topic_trace.tsv` | `export_topic_trace.py` (`charnet.topic_shift.episode_topic_trace`) | per-turn-gap | `scene_id, onset, block_distance, depth, is_peak, w, tau_depth, min_spacing` | yes (`onset` s) | **exported** (tracked; continuous topic-shift regressor, verified by `verify_topic_trace.py`; `depth`/`is_peak` are the negative-result audit trail) |
 
 `<network_dir>` / `<analysis_dir>` / `<viz_dir>` are the per-run output
 directories configured by `run_pipeline.py`; they are not in the default
