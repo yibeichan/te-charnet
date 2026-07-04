@@ -141,3 +141,16 @@ def test_wrong_row_count_fails(tmp_path):
 def test_nothing_checkable_exits_two(tmp_path):
     empty = tmp_path / "none"
     assert _run(empty, empty, empty) == 2
+
+
+def test_legitimately_empty_tsv_is_skip_not_fail(tmp_path, capsys):
+    # w=3 needs 2w+1 = 7 turns per scene; the fixture scene has 5, so the export
+    # legitimately writes a zero-row TSV. w is recorded only in rows, so an empty
+    # TSV cannot be verified at any particular w — it must skip, not false-FAIL
+    # against the w=1 fallback.
+    sentences, product, cache = _build_fixture(tmp_path, w=3)
+    assert pd.read_csv(_tsv(product), sep="\t").empty  # fixture sanity: export wrote 0 rows
+    rc = _run(sentences, product, cache)
+    out = capsys.readouterr().out
+    assert rc == 2  # only episode is unverifiable -> nothing checkable
+    assert "empty" in out.lower()

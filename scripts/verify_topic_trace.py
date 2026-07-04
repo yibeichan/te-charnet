@@ -27,6 +27,10 @@ Cache absent/stale/corrupt while a product TSV exists -> FAILURE
 (block_distance unvouchable); onset/structure are still checked. Corrupt NPZ is
 a clean per-episode FAILure, never a traceback.
 
+A zero-row TSV (every scene shorter than 2w+1 turns at the export's w) is a
+SKIP, not a failure: w is recorded only in rows, so an empty file leaves the
+reconstruction with no w to run at.
+
 Exit 0 all pass; 1 any failure; 2 nothing checkable.
 """
 from __future__ import annotations
@@ -160,27 +164,34 @@ def _episode_id(table_path: Path) -> str:
 
 
 def check_episode(ep: str, table_path: Path, product_root: Path,
-                  cache_root: Path, tol: float) -> tuple[list[str], bool]:
-    """(mismatches, skipped). skipped=True when the product TSV is absent."""
+                  cache_root: Path, tol: float) -> tuple[list[str], str | None]:
+    """(mismatches, skip_reason). skip_reason is non-None when the episode is
+    unverifiable (product TSV absent, or empty so ``w`` is unrecoverable)."""
     errs: list[str] = []
     season = f"s{int(ep[1:3])}"
     tsv_path = product_root / season / f"friends_{ep}_topic_trace.tsv"
     cache_path = cache_root / season / f"{ep}.npz"
 
     if not tsv_path.exists():
-        return [], True
+        return [], "product TSV absent"
 
     got = pd.read_csv(tsv_path, sep="\t")
     if list(got.columns) != COLUMNS:
-        return [f"{ep}: TSV columns {list(got.columns)} != {COLUMNS}"], False
+        return [f"{ep}: TSV columns {list(got.columns)} != {COLUMNS}"], None
+
+    # w is recorded only in rows; an empty TSV (every scene shorter than 2w+1
+    # turns at the export's w) leaves it unrecoverable, so the reconstruction
+    # has no w to run at — skip rather than false-FAIL against a guessed w.
+    if not len(got):
+        return [], "empty TSV (w unrecoverable, unverifiable)"
 
     # provenance columns must be constant within the file
     for col in ("w", "tau_depth", "min_spacing"):
         if got[col].nunique() > 1:
             errs.append(f"{ep}: {col} not constant across rows: {sorted(got[col].unique())}")
     if errs:
-        return errs, False
-    w = int(got["w"].iloc[0]) if len(got) else 1
+        return errs, None
+    w = int(got["w"].iloc[0])
 
     sents = pd.read_csv(table_path, sep="\t")
     scene_ends, flat_texts, scene_slices = _reconstruct(sents)
@@ -233,7 +244,7 @@ def check_episode(ep: str, table_path: Path, product_root: Path,
                 if abs(float(got["onset"].iloc[i]) - onset) > 1e-9:
                     errs.append(f"{ep}: onset mismatch at row {i}: "
                                 f"tsv={got['onset'].iloc[i]} expected={onset}")
-    return errs, False
+    return errs, None
 
 
 def run(argv: list[str] | None = None) -> int:
@@ -254,16 +265,16 @@ def run(argv: list[str] | None = None) -> int:
     n_checked = n_skipped = 0
     for tpath in tables:
         ep = _episode_id(tpath)
-        errs, skipped = check_episode(ep, tpath, Path(args.product_root),
-                                      Path(args.cache_root), args.tol)
+        errs, skip_reason = check_episode(ep, tpath, Path(args.product_root),
+                                          Path(args.cache_root), args.tol)
         all_errs.extend(errs)
-        if skipped:
+        if skip_reason:
             n_skipped += 1
-            print(f"  skip {ep}: product TSV absent")
+            print(f"  skip {ep}: {skip_reason}")
         else:
             n_checked += 1
 
-    print(f"\nChecked {n_checked} episodes ({n_skipped} TSV-absent skips)")
+    print(f"\nChecked {n_checked} episodes ({n_skipped} skipped)")
     if all_errs:
         for e in all_errs[:50]:
             print(f"  FAIL {e}")
