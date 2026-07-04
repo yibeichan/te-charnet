@@ -19,6 +19,9 @@ dependencies:
   - pytest>=7.0
   - ruff>=0.4
   - pip:
+    # Embeddings for the topic-shift / dialogue exports (core dep in pyproject.toml;
+    # CPU torch suffices: uv pip install --torch-backend=cpu sentence-transformers)
+    - sentence-transformers>=2.2
     # Optional: Louvain community detection (no conda-forge package for python-louvain)
     - python-louvain>=0.16
     # Optional: interactive viz
