@@ -6,21 +6,24 @@ the time-evolving character-interaction network. This catalog inventories every
 data product the pipeline emits and flags how each maps onto downstream brain
 analysis.
 
-**Downstream consumer.** The `brain-states-friends` project fits sticky
-HDP-HMM brain states on the Courtois NeuroMod Friends fMRI (6 subjects watching
-all of Friends in-scanner) and, in its `08`-series, tests **content ↔
-brain-state correspondence** — does a given brain state carry information about
-the narrative content the subject is processing? Its `08a` step already
-converts `charnet` annotations into TR-aligned feature arrays; `08b` runs the
-per-state AUC / circular-shift-permutation / HRF-lag correspondence tests. This
-catalog is the map of what `charnet` can feed that pipeline.
+**Downstream consumers.** These products are designed for brain-analysis
+pipelines that test **content ↔ brain-state correspondence** on the Courtois
+NeuroMod Friends fMRI (6 subjects watching all of Friends in-scanner) — does a
+given brain state carry information about the narrative content the subject is
+processing? The reference design is the `brain-states-friends` project's
+`08`-series (`08a` converts `charnet` annotations into TR-aligned feature
+arrays; `08b` runs the per-state AUC / circular-shift-permutation / HRF-lag
+correspondence tests); consumption of the three feature exports below is
+planned as its own dedicated research project. Either way, this repo stays the
+source of record: consumers pull the tracked TSVs (and regenerate/read the
+embedding NPZs) from here.
 
 ## Product inventory
 
 | Product (path under `output/`) | Producer | Unit | Key fields | Timestamped? | Brain-status |
 |---|---|---|---|---|---|
-| `annotations/scenes/sN/friends_<ep>_scene_summary.tsv` | `01a_extract_annotations.py` | per-scene | `scene_id, scene_desc, start, end, shot_ids` | yes (`start`/`end` s) | **consumed-by-08a** (scene boundaries) |
-| `annotations/sentences/sN/friends_<ep>_sentence_speaker_table.tsv` | `01a` + `01b_fill_speakers.py` | per-sentence | `scene_id, start, end, speaker, utterance, utterance_ct, visual_presence, visual_presence_chars, scene_speaker_set, …` (29 cols) | yes (`start`/`end` s) | **consumed-by-08a** (dialogue + character + presence tiers) |
+| `annotations/scenes/sN/friends_<ep>_scene_summary.tsv` | `01a_extract_annotations.py` | per-scene | `scene_id, scene_desc, start, end, shot_ids` | yes (`start`/`end` s) | **consumer-ready** (scene boundaries; already TR-aligned by `brain-states-friends` `08a`) |
+| `annotations/sentences/sN/friends_<ep>_sentence_speaker_table.tsv` | `01a` + `01b_fill_speakers.py` | per-sentence | `scene_id, start, end, speaker, utterance, utterance_ct, visual_presence, visual_presence_chars, scene_speaker_set, …` (29 cols) | yes (`start`/`end` s) | **consumer-ready** (dialogue + character + presence tiers; already TR-aligned by `brain-states-friends` `08a`) |
 | `<network_dir>/temporal_network.json` | `02_build_network.py` | per-scene graph | per scene: `scene_id, start, end, nodes, edges` (weighted speaker adjacency / proximity) | yes (per-scene `start`/`end`) | **available-not-yet-exported** |
 | `<network_dir>/episode_network.json` | `02_build_network.py` | per-episode graph | aggregated weighted interaction graph | episode-level only | available-not-yet-exported |
 | `<analysis_dir>/centrality_timeseries.csv` | `03_analyze.py` (`metrics.centrality_timeseries`) | per-scene × character | `scene_id, start, end, character, degree, betweenness, eigenvector` | yes (`start`/`end` s) | **available-not-yet-exported** (highest-value social product) |
@@ -39,7 +42,8 @@ checkout's `output/` tree.
 ## Brain-analysis mapping
 
 Grouping the products by the kind of feature they provide, and how each lines
-up with the existing `08a` feature tiers:
+up with the `brain-states-friends` `08a` feature tiers (the reference for what
+TR-aligned consumption looks like):
 
 | Feature family | charnet source | In `08a` today? | Gap this fills |
 |---|---|---|---|
@@ -114,4 +118,5 @@ feature-export spec (lightest first):
 
 All three exports stay in `charnet`'s lane: they *produce* timestamped
 annotation outputs. TR-alignment and the correspondence statistics remain the
-`brain-states-friends` `08a`/`08b` pipeline's responsibility.
+consuming project's responsibility (the `brain-states-friends` `08a`/`08b`
+pipeline is the reference design).
