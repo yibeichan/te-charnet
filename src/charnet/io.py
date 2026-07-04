@@ -4,6 +4,7 @@ from __future__ import annotations
 import csv
 import json
 import logging
+import os
 import re
 from pathlib import Path
 from typing import Any, Optional
@@ -339,6 +340,26 @@ def infer_community_transcript_path(transcript_path: Path, episode: str) -> Opti
         if candidate.exists():
             return candidate
     return None
+
+
+def write_atomic_tsv(df, dest: Path) -> None:
+    """Write a DataFrame to *dest* as TSV atomically.
+
+    Writes to a sibling ``.tmp`` file then ``os.replace``s it into place, so an
+    interrupted write (Ctrl-C, OOM, HPC node eviction) never leaves a truncated
+    TSV that looks complete. The temp file is removed if the write fails.
+    Accepts anything with a ``to_csv(path, sep, index)`` method (duck-typed to
+    avoid a hard pandas import here).
+    """
+    dest = Path(dest)
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    tmp = dest.with_name(dest.name + ".tmp")
+    try:
+        df.to_csv(tmp, sep="\t", index=False)
+        os.replace(tmp, dest)
+    except BaseException:
+        tmp.unlink(missing_ok=True)
+        raise
 
 
 def save_records(records: list[dict[str, Any]], path: Path, label: str = "records") -> None:

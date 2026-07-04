@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import argparse
 import os
-import re
 import subprocess
 import sys
 from pathlib import Path
@@ -19,8 +18,8 @@ sys.path.insert(0, str(REPO / "src"))
 
 from charnet import network_export as nx_exp  # noqa: E402
 from charnet.bids_meta import write_data_dictionary, write_dataset_description  # noqa: E402
-from charnet.io import load_temporal_network  # noqa: E402
-from charnet.scene_subdivide import expand_episode_spec  # noqa: E402
+from charnet.io import load_temporal_network, write_atomic_tsv  # noqa: E402
+from charnet.scene_subdivide import expand_episode_spec, is_explicit_episode_list  # noqa: E402
 from charnet.transcript_align import normalize_episode_key  # noqa: E402
 
 SCRATCH_DIR = os.environ.get("SCRATCH_DIR", ".")
@@ -59,14 +58,6 @@ def _git_version() -> str:
         return "unknown"
 
 
-def _is_explicit_list(spec: str) -> bool:
-    """True when --episodes names specific episodes (vs ALL / season / range)."""
-    spec = spec.strip()
-    if spec == "ALL":
-        return False
-    return re.fullmatch(r"s\d+(-s\d+)?", spec) is None
-
-
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--episodes", default="ALL", help="ALL | sN | sN-sM | comma-list")
@@ -84,7 +75,7 @@ def main() -> None:
     nx_exp.validate_measures(measures)  # fail fast on a bad --measures, before any I/O
     scenes_in = Path(args.scenes_in)
     episodes = expand_episode_spec(args.episodes, scenes_in)
-    explicit = _is_explicit_list(args.episodes)
+    explicit = is_explicit_episode_list(args.episodes)
 
     # write schema sidecars first so the dir is self-describing on partial runs
     write_data_dictionary(out_dir / "scene_network.json", nx_exp.SCENE_NETWORK_DD)
@@ -110,9 +101,8 @@ def main() -> None:
         char_df = nx_exp.character_centrality_trace(scene_graphs, measures=measures)
         season = int(ep[1:3])
         ep_dir = out_dir / f"s{season}"
-        ep_dir.mkdir(parents=True, exist_ok=True)
-        scene_df.to_csv(ep_dir / f"friends_{ep}_scene_network.tsv", sep="\t", index=False)
-        char_df.to_csv(ep_dir / f"friends_{ep}_character_centrality.tsv", sep="\t", index=False)
+        write_atomic_tsv(scene_df, ep_dir / f"friends_{ep}_scene_network.tsv")
+        write_atomic_tsv(char_df, ep_dir / f"friends_{ep}_character_centrality.tsv")
         n_written += 1
         print(f"  {ep}: {len(scene_df)} scenes, {len(char_df)} character-rows")
 

@@ -248,7 +248,7 @@ def resolve_network_json(network_root: Path, ep: str) -> Path | None:
     return None
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--export-dir", type=Path,
@@ -256,7 +256,7 @@ def main() -> int:
     ap.add_argument("--network-root", type=Path,
                     default=Path("output/02_build_network"))
     ap.add_argument("--tol", type=float, default=1e-6)
-    args = ap.parse_args()
+    args = ap.parse_args(argv)
 
     # Discover episodes from the export's scene_network TSVs.
     scene_tsvs = sorted(args.export_dir.glob("*/*_scene_network.tsv"))

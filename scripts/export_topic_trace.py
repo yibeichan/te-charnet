@@ -18,7 +18,8 @@ sys.path.insert(0, str(REPO / "src"))
 
 from charnet import topic_shift as ts  # noqa: E402
 from charnet.bids_meta import write_data_dictionary, write_dataset_description  # noqa: E402
-from charnet.scene_subdivide import expand_episode_spec  # noqa: E402
+from charnet.io import write_atomic_tsv  # noqa: E402
+from charnet.scene_subdivide import expand_episode_spec, is_explicit_episode_list  # noqa: E402
 
 DEFAULT_SCENES_IN = REPO / "output/annotations/scenes"
 DEFAULT_SENTENCES_IN = REPO / "output/annotations/sentences"
@@ -89,7 +90,9 @@ def main() -> None:
 
     out_dir = Path(args.out_dir)
     sentences_in = Path(args.sentences_in)
-    episodes = expand_episode_spec(args.episodes, Path(args.scenes_in))
+    scenes_in = Path(args.scenes_in)
+    episodes = expand_episode_spec(args.episodes, scenes_in)
+    explicit = is_explicit_episode_list(args.episodes)
     encoder = ts.minilm_encoder()
 
     # write schema sidecars first so the output dir is self-describing even on partial/zero-episode runs
@@ -103,19 +106,27 @@ def main() -> None:
 
     print(f"Exporting topic trace for {len(episodes)} eps → {out_dir}")
     n_written = n_skipped = 0
+    missing = []
     for ep in episodes:
         df = _episode_trace(ep, sentences_in, encoder, Path(args.cache_dir),
                             w=args.w, tau_depth=args.tau_depth, min_spacing=args.min_spacing)
         if df is None:
+            missing.append(ep)
             n_skipped += 1
             continue
         season = int(ep[1:3])
         ep_dir = out_dir / f"s{season}"
-        ep_dir.mkdir(parents=True, exist_ok=True)
-        df.to_csv(ep_dir / f"friends_{ep}_topic_trace.tsv", sep="\t", index=False)
+        write_atomic_tsv(df, ep_dir / f"friends_{ep}_topic_trace.tsv")
         n_written += 1
         print(f"  {ep}: {len(df)} gaps")
     print(f"\nWrote {n_written} episodes ({n_skipped} missing sentence tables)")
+
+    if explicit and missing:
+        sys.exit(f"error: no sentence table for explicitly-named episode(s): "
+                 f"{', '.join(missing)} (checked under {sentences_in})")
+    if n_written == 0:
+        sys.exit(f"error: 0 episodes written — check --sentences-in ({sentences_in}) "
+                 f"has sentence tables, or --scenes-in ({scenes_in})")
 
 
 if __name__ == "__main__":

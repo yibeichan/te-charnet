@@ -2,8 +2,11 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 
 import pytest
+
+import pandas as pd
 
 from charnet.io import (
     load_shots,
@@ -12,6 +15,7 @@ from charnet.io import (
     estimate_missing_end_times, save_utterances, load_utterances,
     save_shots, load_shots_json, load_sentence_transcript,
     infer_community_transcript_path, save_records, load_records,
+    write_atomic_tsv,
 )
 from charnet.models import Utterance
 
@@ -235,3 +239,31 @@ class TestInferCommunityTranscriptPath:
 
         inferred = infer_community_transcript_path(transcript, "friends_s06e01a")
         assert inferred == community
+
+
+class TestWriteAtomicTsv:
+    def test_writes_tsv_and_creates_parent(self, tmp_path):
+        df = pd.DataFrame({"a": [1, 2], "b": ["x", "y"]})
+        dest = tmp_path / "nested" / "out.tsv"
+        write_atomic_tsv(df, dest)
+        assert dest.exists()
+        back = pd.read_csv(dest, sep="\t")
+        assert back["a"].tolist() == [1, 2]
+        assert back["b"].tolist() == ["x", "y"]
+        # no temp file left behind
+        assert list(dest.parent.glob("*.tmp")) == []
+
+    def test_no_partial_file_when_write_fails(self, tmp_path):
+        dest = tmp_path / "out.tsv"
+
+        class Boom:
+            def to_csv(self, path, *args, **kwargs):
+                # simulate an interrupted write: partial temp bytes then failure
+                Path(path).write_text("partial")
+                raise RuntimeError("interrupted mid-write")
+
+        with pytest.raises(RuntimeError, match="interrupted"):
+            write_atomic_tsv(Boom(), dest)
+        # destination untouched, temp cleaned up — no corrupt file masquerades as complete
+        assert not dest.exists()
+        assert list(tmp_path.glob("*.tmp")) == []
