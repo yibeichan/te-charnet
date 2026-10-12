@@ -45,7 +45,10 @@ source repo URL, the full commit, the path prefix, the date it was generated,
 and a sha256 for each of the 293 files. Before scoring, the evaluator checks
 the clone against it: every listed file must exist and match its hash, and
 every manual TSV the run reads must be listed. Any mismatch, missing file or
-unlisted file stops the run with exit 1 and names the file. The run writes the
+unlisted file stops the run with exit 1 and names the file, and prints the repo and
+commit to check out. Each read through `load_manual_raw()` is checked against the manifest
+as well, so code that imports the evaluator instead of running it gets the same protection
+(it raises `GoldMismatchError`). The run writes the
 source repo, commit and the manifest's own sha256 into `aggregate.json` under
 `gold_source`.
 

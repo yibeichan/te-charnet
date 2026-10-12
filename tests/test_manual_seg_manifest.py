@@ -158,3 +158,84 @@ def test_writer_refuses_dirty_tree(clone, change):
 def test_writer_ignores_changes_outside_prefix(clone):
     (clone / "README.md").write_text("edited\n")
     assert W.build_manifest(clone, "HEAD")["n_files"] == 2
+
+
+# --- library callers and operator messages ----------------------------------
+
+@pytest.fixture
+def lib_tree(manual_tree, monkeypatch):
+    """manual_tree, with the module-level manifest pointed at it (as a library caller sees it)."""
+    manual, manifest = manual_tree
+    monkeypatch.setattr(EV, "MANIFEST_PATH", manifest)
+    EV._manifest_files.cache_clear()
+    yield manual, manifest
+    EV._manifest_files.cache_clear()
+
+
+def test_load_manual_raw_checks_hash_for_library_callers(lib_tree):
+    manual, _ = lib_tree
+    assert len(EV.load_manual_raw("s01e01a")) == 2
+    (manual / "s1/friends_s01e01b_manualseg.tsv").write_text(TSV + "3\t2\t20\t30\n")
+    with pytest.raises(EV.GoldMismatchError, match="sha256 mismatch: s1/friends_s01e01b_manualseg.tsv"):
+        EV.load_manual_raw("s01e01b")
+
+
+def test_load_manual_raw_rejects_unlisted_file(lib_tree):
+    manual, _ = lib_tree
+    (manual / "s1/friends_s01e02a_manualseg.tsv").write_text(TSV)
+    with pytest.raises(EV.GoldMismatchError, match="not in manifest"):
+        EV.load_manual_raw("s01e02a")
+
+
+def test_main_message_names_repo_and_commit_when_folder_missing(manual_tree, tmp_path, monkeypatch, capsys):
+    manual, manifest = manual_tree
+    monkeypatch.setattr(EV, "MANIFEST_PATH", manifest)
+    monkeypatch.setattr(EV, "MANUAL_DIR", tmp_path / "absent")
+    monkeypatch.setattr(sys, "argv", ["evaluate_scene_segmentation.py", "--episodes", "s01e01a",
+                                      "--out-dir", str(tmp_path / "out")])
+    real_verify = EV.verify_manual_files
+    monkeypatch.setattr(EV, "verify_manual_files",
+                        lambda eps: real_verify(eps, manifest, tmp_path / "absent"))
+    with pytest.raises(SystemExit):
+        EV.main()
+    err = capsys.readouterr().err
+    assert "manual segmentation folder not found" in err
+    assert W.DEFAULT_SOURCE_REPO in err and "0" * 40 in err
+    assert len(err.splitlines()) < 12             # no per-file list when the folder is absent
+
+
+def test_main_message_caps_long_lists(manual_tree, tmp_path, monkeypatch, capsys):
+    manual, manifest = manual_tree
+    data = json.loads(manifest.read_text())
+    data["files"].update({f"s2/friends_s02e{k:02d}a_manualseg.tsv": "0" * 64 for k in range(1, 40)})
+    manifest.write_text(json.dumps(data))
+    monkeypatch.setattr(EV, "MANIFEST_PATH", manifest)
+    monkeypatch.setattr(sys, "argv", ["evaluate_scene_segmentation.py", "--episodes", "s01e01a",
+                                      "--out-dir", str(tmp_path / "out")])
+    real_verify = EV.verify_manual_files
+    monkeypatch.setattr(EV, "verify_manual_files", lambda eps: real_verify(eps, manifest, manual))
+    with pytest.raises(SystemExit):
+        EV.main()
+    err = capsys.readouterr().err
+    assert "(39 problem(s))" in err and "... and 19 more" in err
+
+
+def test_writer_manifest_mode_follows_umask(clone, tmp_path):
+    import os
+    import stat
+    out = tmp_path / "m.json"
+    old = os.umask(0o002)
+    try:
+        assert W.main(["--commit", "HEAD", "--clone", str(clone), "--out", str(out)]) == 0
+    finally:
+        os.umask(old)
+    assert stat.S_IMODE(out.stat().st_mode) == 0o664
+
+
+def test_writer_refuses_ignored_file(clone):
+    (clone / ".gitignore").write_text("*.bak\n")
+    _git(clone, "add", ".gitignore")
+    _git(clone, "-c", "user.name=t", "-c", "user.email=t@example.org", "commit", "-q", "-m", "ignore")
+    (clone / W.PATH_PREFIX / "s1" / "friends_s01e01a_manualseg.tsv.bak").write_text("old\n")
+    with pytest.raises(W.ManifestError, match="local changes"):
+        W.build_manifest(clone, "HEAD")

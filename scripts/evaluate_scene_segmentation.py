@@ -30,7 +30,9 @@ Outputs (default OUT_DIR=output/evaluation/scene_segmentation/):
 from __future__ import annotations
 
 import argparse
+import functools
 import hashlib
+import io
 import json
 import re
 import sys
@@ -89,9 +91,33 @@ def discover_episodes() -> list[str]:
     return sorted(manual_eps & ours_eps)
 
 
+class GoldMismatchError(RuntimeError):
+    """A manual-segmentation file differs from the pinned manifest."""
+
+
+@functools.lru_cache(maxsize=None)
+def _manifest_files(manifest_path: Path) -> dict[str, str]:
+    return json.loads(Path(manifest_path).read_text())["files"]
+
+
 def load_manual_raw(episode: str) -> pd.DataFrame:
-    """Raw manual TSV, one row per segment, with all ONbond_* columns."""
-    return pd.read_csv(manual_path(episode), sep="\t")
+    """Raw manual TSV, one row per segment, with all ONbond_* columns.
+
+    The file's sha256 is checked against the manifest first, so library callers (not only
+    main()) never score against labels that drifted from the pin. The bytes are hashed and
+    parsed from a single read."""
+    path = manual_path(episode)
+    rel = path.relative_to(MANUAL_DIR).as_posix()
+    try:
+        want = _manifest_files(MANIFEST_PATH).get(rel)
+    except FileNotFoundError:
+        raise GoldMismatchError(f"manifest not found: {_display(MANIFEST_PATH)}") from None
+    if want is None:
+        raise GoldMismatchError(f"not in manifest: {rel}\n{remedy_text()}")
+    data = path.read_bytes()
+    if hashlib.sha256(data).hexdigest() != want:
+        raise GoldMismatchError(f"sha256 mismatch: {rel}\n{remedy_text()}")
+    return pd.read_csv(io.BytesIO(data), sep="\t")
 
 
 def _display(path: Path) -> str:
@@ -138,6 +164,20 @@ def verify_manual_files(
         if rel not in files:
             problems.append(f"not in manifest: {rel}")
     return problems
+
+
+def remedy_text(manifest_path: Path | None = None) -> str:
+    """How to get the clone the manifest expects, naming the repo and the commit."""
+    manifest_path = MANIFEST_PATH if manifest_path is None else manifest_path
+    try:
+        m = json.loads(Path(manifest_path).read_text())
+        repo, commit = m["source_repo"], m["commit"]
+    except (OSError, ValueError, KeyError):
+        return f"See docs/scene_segmentation_evaluation.md (manifest {_display(manifest_path)} unreadable)."
+    return (f"Expected {_display(MANUAL_DIR)} to be a clean checkout of {repo} at {commit}:\n"
+            f"  git clone {repo} data/friends_annotations\n"
+            f"  git -C data/friends_annotations checkout {commit}\n"
+            f"See docs/scene_segmentation_evaluation.md#gold-labels-source-and-verification.")
 
 
 def gold_source(manifest_path: Path = MANIFEST_PATH) -> dict:
@@ -446,12 +486,16 @@ def main() -> None:
 
     problems = verify_manual_files(episodes)
     if problems:
-        print(f"Manual segmentation does not match {_display(MANIFEST_PATH)} "
-              f"({len(problems)} problem(s)):", file=sys.stderr)
-        for msg in problems:
-            print(f"  {msg}", file=sys.stderr)
-        print(f"Expected {_display(MANUAL_DIR)} to be a clean checkout of the "
-              f"commit recorded in the manifest.", file=sys.stderr)
+        if not MANUAL_DIR.is_dir() or not any(MANUAL_DIR.rglob("*_manualseg.tsv")):
+            print(f"manual segmentation folder not found or empty: {_display(MANUAL_DIR)}", file=sys.stderr)
+        else:
+            print(f"Manual segmentation does not match {_display(MANIFEST_PATH)} "
+                  f"({len(problems)} problem(s)):", file=sys.stderr)
+            for msg in problems[:20]:
+                print(f"  {msg}", file=sys.stderr)
+            if len(problems) > 20:
+                print(f"  ... and {len(problems) - 20} more", file=sys.stderr)
+        print(remedy_text(), file=sys.stderr)
         sys.exit(1)
 
     out_dir.mkdir(parents=True, exist_ok=True)

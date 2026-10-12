@@ -95,6 +95,9 @@ def write_manifest(manifest: dict, out: Path) -> None:
         with os.fdopen(fd, "w") as fh:
             json.dump(manifest, fh, indent=2)
             fh.write("\n")
+        umask = os.umask(0)
+        os.umask(umask)
+        os.chmod(tmp, 0o666 & ~umask)     # mkstemp creates 0600; give the file normal permissions
         os.replace(tmp, out)
     except BaseException:
         Path(tmp).unlink(missing_ok=True)
