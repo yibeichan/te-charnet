@@ -10,6 +10,13 @@ Reports, per episode and aggregated:
     goal change / music transit / theme song) and whether a predicted boundary
     fell within ±5 s.
 
+Before scoring, every file under MANUAL_DIR listed in the pinned manifest
+(data/manifests/friends_annotations.json, written by
+scripts/write_manual_seg_manifest.py) must exist and match its sha256, and
+every manual TSV the run reads must be listed there; otherwise the run stops
+with exit 1 and names the files. The manifest's source repo, commit and digest
+are written into aggregate.json under "gold_source".
+
 Comparison is restricted to the overlapping coverage window per episode
 (t in [max(manual_start, our_start), min(manual_end, our_end)]) so the
 theme-song / pre-roll that our pipeline skips doesn't count as misses.
@@ -23,8 +30,12 @@ Outputs (default OUT_DIR=output/evaluation/scene_segmentation/):
 from __future__ import annotations
 
 import argparse
+import functools
+import hashlib
+import io
 import json
 import re
+import sys
 from pathlib import Path
 
 import pandas as pd
@@ -34,6 +45,7 @@ MANUAL_DIR = REPO / "data/friends_annotations/annotation_results/manual_segmenta
 DEFAULT_OURS_DIR = REPO / "output/annotations/scenes"
 OURS_DIR = DEFAULT_OURS_DIR  # mutable; overridden by --ours-dir
 OUT_DIR = REPO / "output/evaluation/scene_segmentation"
+MANIFEST_PATH = REPO / "data/manifests/friends_annotations.json"
 
 TOLERANCES = (2.0, 5.0, 10.0)
 DIAG_TOL = 5.0
@@ -79,9 +91,104 @@ def discover_episodes() -> list[str]:
     return sorted(manual_eps & ours_eps)
 
 
+class GoldMismatchError(RuntimeError):
+    """A manual-segmentation file differs from the pinned manifest."""
+
+
+@functools.lru_cache(maxsize=None)
+def _manifest_files(manifest_path: Path) -> dict[str, str]:
+    return json.loads(Path(manifest_path).read_text())["files"]
+
+
 def load_manual_raw(episode: str) -> pd.DataFrame:
-    """Raw manual TSV, one row per segment, with all ONbond_* columns."""
-    return pd.read_csv(manual_path(episode), sep="\t")
+    """Raw manual TSV, one row per segment, with all ONbond_* columns.
+
+    The file's sha256 is checked against the manifest first, so library callers (not only
+    main()) never score against labels that drifted from the pin. The bytes are hashed and
+    parsed from a single read."""
+    path = manual_path(episode)
+    rel = path.relative_to(MANUAL_DIR).as_posix()
+    try:
+        want = _manifest_files(MANIFEST_PATH).get(rel)
+    except FileNotFoundError:
+        raise GoldMismatchError(f"manifest not found: {_display(MANIFEST_PATH)}") from None
+    if want is None:
+        raise GoldMismatchError(f"not in manifest: {rel}\n{remedy_text()}")
+    data = path.read_bytes()
+    if hashlib.sha256(data).hexdigest() != want:
+        raise GoldMismatchError(f"sha256 mismatch: {rel}\n{remedy_text()}")
+    return pd.read_csv(io.BytesIO(data), sep="\t")
+
+
+def _display(path: Path) -> str:
+    try:
+        return str(path.relative_to(REPO))
+    except ValueError:
+        return str(path)
+
+
+def _sha256_file(path: Path) -> str:
+    h = hashlib.sha256()
+    with open(path, "rb") as fh:
+        for chunk in iter(lambda: fh.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def verify_manual_files(
+    episodes: list[str],
+    manifest_path: Path = MANIFEST_PATH,
+    manual_dir: Path | None = None,
+) -> list[str]:
+    """Check the manual-segmentation files against the pinned manifest.
+
+    Returns one message per problem (empty list = all good):
+      - a manifest-listed file is missing or its sha256 differs;
+      - a manual TSV for one of ``episodes`` is not listed in the manifest.
+    """
+    manual_dir = MANUAL_DIR if manual_dir is None else manual_dir
+    if not manifest_path.is_file():
+        return [f"manifest not found: {manifest_path}"]
+    manifest = json.loads(manifest_path.read_text())
+    files: dict[str, str] = manifest["files"]
+
+    problems: list[str] = []
+    for rel, want in sorted(files.items()):
+        path = manual_dir / rel
+        if not path.is_file():
+            problems.append(f"missing: {rel}")
+        elif _sha256_file(path) != want:
+            problems.append(f"sha256 mismatch: {rel}")
+    for ep in episodes:
+        rel = manual_path(ep).relative_to(MANUAL_DIR).as_posix()
+        if rel not in files:
+            problems.append(f"not in manifest: {rel}")
+    return problems
+
+
+def remedy_text(manifest_path: Path | None = None) -> str:
+    """How to get the clone the manifest expects, naming the repo and the commit."""
+    manifest_path = MANIFEST_PATH if manifest_path is None else manifest_path
+    try:
+        m = json.loads(Path(manifest_path).read_text())
+        repo, commit = m["source_repo"], m["commit"]
+    except (OSError, ValueError, KeyError):
+        return f"See docs/scene_segmentation_evaluation.md (manifest {_display(manifest_path)} unreadable)."
+    return (f"Expected {_display(MANUAL_DIR)} to be a clean checkout of {repo} at {commit}:\n"
+            f"  git clone {repo} data/friends_annotations\n"
+            f"  git -C data/friends_annotations checkout {commit}\n"
+            f"See docs/scene_segmentation_evaluation.md#gold-labels-source-and-verification.")
+
+
+def gold_source(manifest_path: Path = MANIFEST_PATH) -> dict:
+    """Provenance block for aggregate.json."""
+    manifest = json.loads(manifest_path.read_text())
+    return {
+        "source_repo": manifest["source_repo"],
+        "commit": manifest["commit"],
+        "path_prefix": manifest["path_prefix"],
+        "manifest_sha256": _sha256_file(manifest_path),
+    }
 
 
 def collapse_to_scenes(df: pd.DataFrame) -> pd.DataFrame:
@@ -371,13 +478,27 @@ def main() -> None:
 
     set_ours_dir(Path(args.ours_dir).resolve())
     out_dir = Path(args.out_dir).resolve()
-    out_dir.mkdir(parents=True, exist_ok=True)
 
     if args.episodes == "ALL":
         episodes = discover_episodes()
     else:
         episodes = [e.strip() for e in args.episodes.split(",") if e.strip()]
 
+    problems = verify_manual_files(episodes)
+    if problems:
+        if not MANUAL_DIR.is_dir() or not any(MANUAL_DIR.rglob("*_manualseg.tsv")):
+            print(f"manual segmentation folder not found or empty: {_display(MANUAL_DIR)}", file=sys.stderr)
+        else:
+            print(f"Manual segmentation does not match {_display(MANIFEST_PATH)} "
+                  f"({len(problems)} problem(s)):", file=sys.stderr)
+            for msg in problems[:20]:
+                print(f"  {msg}", file=sys.stderr)
+            if len(problems) > 20:
+                print(f"  ... and {len(problems) - 20} more", file=sys.stderr)
+        print(remedy_text(), file=sys.stderr)
+        sys.exit(1)
+
+    out_dir.mkdir(parents=True, exist_ok=True)
     print(f"Evaluating {len(episodes)} episodes...")
 
     long_rows_all: list[dict] = []
@@ -404,12 +525,13 @@ def main() -> None:
 
     agg = aggregate(long_df, counts_df)
     agg["diagnostics"] = diag_summary(diag_df)
+    agg["gold_source"] = gold_source()
     agg_path.write_text(json.dumps(agg, indent=2))
 
-    print(f"\nWrote {long_path.relative_to(REPO)} ({long_df.shape[0]} rows)")
-    print(f"Wrote {counts_path.relative_to(REPO)} ({counts_df.shape[0]} rows)")
-    print(f"Wrote {diag_path.relative_to(REPO)} ({diag_df.shape[0]} rows)")
-    print(f"Wrote {agg_path.relative_to(REPO)}")
+    print(f"\nWrote {_display(long_path)} ({long_df.shape[0]} rows)")
+    print(f"Wrote {_display(counts_path)} ({counts_df.shape[0]} rows)")
+    print(f"Wrote {_display(diag_path)} ({diag_df.shape[0]} rows)")
+    print(f"Wrote {_display(agg_path)}")
 
     print("\n=== Aggregate (means across {} episodes) ===".format(agg["n_episodes"]))
     for unit in ("scene", "segment"):

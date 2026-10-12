@@ -20,6 +20,55 @@ or clustering algorithm.
 - **Eval coverage:** Seasons 1–6, 292 half-episodes (s7 has no manual labels)
 - **Outputs:** `output/evaluation/scene_segmentation/` (per-episode + aggregate + diagnostics)
 - **Gold source:** `data/friends_annotations/annotation_results/manual_segmentation/`
+  at commit `3e5f108` of `courtois-neuromod/friends_annotations` (pinned by
+  `data/manifests/friends_annotations.json`; see [Gold labels](#gold-labels-source-and-verification))
+
+## Gold labels: source and verification
+
+The manual labels come from
+[`courtois-neuromod/friends_annotations`](https://github.com/courtois-neuromod/friends_annotations)
+(underscore), commit `3e5f108b913f1843fb58b543883f66a50d9a90ae`, path
+`annotation_results/manual_segmentation/` (292 half-episode TSVs plus
+`manual_seg.json`). Do not confuse it with `courtois-neuromod/friends.annotations`
+(dot), a separate repo with a different history that has no
+`manual_segmentation/`.
+
+`data/friends_annotations/` is a gitignored local clone. To set it up:
+
+```bash
+git clone https://github.com/courtois-neuromod/friends_annotations.git data/friends_annotations
+git -C data/friends_annotations checkout 3e5f108b913f1843fb58b543883f66a50d9a90ae
+```
+
+The tracked manifest `data/manifests/friends_annotations.json` records the
+source repo URL, the full commit, the path prefix, the date it was generated,
+and a sha256 for each of the 293 files. Before scoring, the evaluator checks
+the clone against it: every listed file must exist and match its hash, and
+every manual TSV the run reads must be listed. Any mismatch, missing file or
+unlisted file stops the run with exit 1 and names the file, and prints the repo and
+commit to check out. Each read through `load_manual_raw()` is checked against the manifest
+as well, so code that imports the evaluator instead of running it gets the same protection
+(it raises `GoldMismatchError`). The run writes the
+source repo, commit and the manifest's own sha256 into `aggregate.json` under
+`gold_source`.
+
+To move to a different annotations commit, check it out in the clone (with no
+local changes under `manual_segmentation/`) and regenerate the manifest:
+
+```bash
+python scripts/write_manual_seg_manifest.py --commit <sha>
+```
+
+The script refuses if the clone's HEAD is not `<sha>` or the clone has local
+changes under `manual_segmentation/`. Rerun the evaluator afterwards and update
+the numbers in this document.
+
+**Single rater.** The annotation repo's README, guidelines
+(`docs/manual_segmentation/segmentation_manual.md`) and `manual_seg.json`
+describe one main rater; the TSVs have no rater column, and no inter-rater
+agreement figures are published. Goal-change boundaries are described there
+as more subjective to the rater. The scores in this document therefore measure
+agreement with one annotator, whose reliability is unknown.
 
 ## Data sources and units
 
@@ -393,6 +442,8 @@ genuine value over these hand-built signals.
   full-episode narrative arcs aren't reconstructed.
 - **Within-scene shot ordering.** We compare boundaries and intervals only.
 - **The s7 special.** No manual labels for s7 (incl. the 4-part finale).
+- **Agreement between human raters.** The gold is a single rater's labels with
+  no published reliability, so there is no human ceiling to compare F1 against.
 
 ## Files
 
