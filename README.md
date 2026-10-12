@@ -65,6 +65,11 @@ Default structured paths (under `data/friends_annotations/annotation_results/`):
 - `TSVpyscene/s{season}/friends_sXXeYY{part}_pyscene.tsv`
 - `community_based/s{season}/friends_sXXeYY_ufs.txt` (full-episode, no `a/b/c` suffix)
 
+The manual scene segmentation used by `scripts/evaluate_scene_segmentation.py`
+is pinned to one commit of the annotations repo by
+`data/manifests/friends_annotations.json`; the evaluator checks file hashes
+against it. Setup and details: `docs/scene_segmentation_evaluation.md`.
+
 Note: ASR data is per half-episode part (`a`/`b`/...), while community
 transcripts cover the full episode. The pipeline handles this automatically.
 
