@@ -18,8 +18,8 @@ from charnet import char_presence as cp  # noqa: E402
 from charnet import topic_shift as ts  # noqa: E402
 from charnet.scene_subdivide import Scene, expand_episode_spec, subdivide_episode  # noqa: E402
 from charnet.visual_presence import (  # noqa: E402
-    DEFAULT_CHAR_TRACKER_DIR, char_tracker_csv_path, load_char_tracker_grid,
-    resolve_char_tracker_dir,
+    char_tracker_csv_path, load_char_tracker_grid,
+    require_char_tracker_dir,
 )
 
 DEFAULT_SCENES_IN = REPO / "output/annotations/scenes"
@@ -100,7 +100,7 @@ def main() -> None:
     scenes_in = Path(args.scenes_in)
     scenes_out = Path(args.scenes_out)
     sentences_in = Path(args.sentences_in)
-    ct_dir = resolve_char_tracker_dir(args.char_tracker_dir) or Path(DEFAULT_CHAR_TRACKER_DIR)
+    ct_dir = require_char_tracker_dir(args.char_tracker_dir)
     # NOTE: both proposers receive the same min_spacing value but interpret it slightly differently.
     # char: gates between scene endpoints AND between accepted boundaries (3 checks per candidate).
     # topic: gates only between accepted boundaries; scene endpoints are implicitly handled because

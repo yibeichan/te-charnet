@@ -113,8 +113,7 @@ feature-export spec (lightest first):
    Verify: `python scripts/verify_dialogue_embeddings.py` — independent turn
    reconstruction off the tracked sentence tables (no `charnet` import), key
    check, and cache↔product vector binding; exit 0 on a full pass.
-   BIDS-inspired `dialogue_turns.json` data dictionary; spec at
-   `docs/superpowers/specs/2026-06-12-dialogue-embeddings-export-design.md`.
+   BIDS-inspired `dialogue_turns.json` data dictionary.
 
 All three exports stay in `charnet`'s lane: they *produce* timestamped
 annotation outputs. TR-alignment and the correspondence statistics remain the

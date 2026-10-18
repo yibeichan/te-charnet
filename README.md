@@ -47,6 +47,13 @@ uv sync
 uv run python --version
 ```
 
+### Data locations
+
+Machine-specific locations are read from the environment. Copy `.env.example`
+to `.env` (gitignored) and export the variables before running the scripts:
+`SCRATCH_DIR` (pipeline output root) and `CHAR_TRACKER_STAGE5_DIR` (char-tracker
+stage-05 per-episode timestamp CSVs, used for visual presence).
+
 ### Running scripts
 
 Examples below use a bare `python`. Prefix with your environment runner:

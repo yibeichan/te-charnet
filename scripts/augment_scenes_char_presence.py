@@ -30,10 +30,9 @@ import pandas as pd
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO / "src"))
 from charnet.visual_presence import (  # noqa: E402
-    DEFAULT_CHAR_TRACKER_DIR,
     char_tracker_csv_path,
     load_char_tracker_grid,
-    resolve_char_tracker_dir,
+    require_char_tracker_dir,
 )
 from charnet.char_presence import (  # noqa: E402
     DEFAULT_SHOTS_DIR, JACCARD_THRESH, MIN_SCENE_LENGTH, MIN_SPACING_SECS,
@@ -159,7 +158,7 @@ def main() -> None:
     scenes_in = Path(args.scenes_in)
     scenes_out = Path(args.scenes_out)
     shots_dir = Path(args.shots_dir)
-    ct_dir = resolve_char_tracker_dir(args.char_tracker_dir) or Path(DEFAULT_CHAR_TRACKER_DIR)
+    ct_dir = require_char_tracker_dir(args.char_tracker_dir)
 
     if args.episodes == "ALL":
         episodes = sorted(

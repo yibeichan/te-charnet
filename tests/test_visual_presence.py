@@ -207,11 +207,6 @@ def test_resolve_char_tracker_dir_uses_explicit_override(tmp_path):
 
 def test_resolve_char_tracker_dir_returns_none_when_missing(tmp_path, monkeypatch):
     monkeypatch.delenv("CHAR_TRACKER_STAGE5_DIR", raising=False)
-    # Point at a definitely-nonexistent path so default scratch dir doesn't pick up.
-    monkeypatch.setattr(
-        "charnet.visual_presence.DEFAULT_CHAR_TRACKER_DIR",
-        tmp_path / "definitely_not_here",
-    )
 
     assert resolve_char_tracker_dir(tmp_path / "also_missing") is None
 

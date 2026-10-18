@@ -23,9 +23,6 @@ MAIN_CHARACTERS: tuple[str, ...] = (
     "rachel",
     "ross",
 )
-DEFAULT_CHAR_TRACKER_DIR = Path(
-    "/orcd/scratch/bcs/002/yibei/friends-char-track/output/05_character_timestamps"
-)
 CHAR_TRACKER_ENV_VAR = "CHAR_TRACKER_STAGE5_DIR"
 PRESENCE_THRESHOLD = 0.5
 
@@ -57,7 +54,7 @@ VISUAL_COLUMN_DEFAULTS: dict[str, str] = {
 
 
 def resolve_char_tracker_dir(override: Path | str | None = None) -> Path | None:
-    """Resolve the stage-05 directory: explicit override → env var → default scratch path.
+    """Resolve the stage-05 directory: explicit override → ``CHAR_TRACKER_STAGE5_DIR`` env var.
 
     Returns ``None`` if none of the candidates point at an existing directory.
     """
@@ -67,11 +64,21 @@ def resolve_char_tracker_dir(override: Path | str | None = None) -> Path | None:
     env = os.environ.get(CHAR_TRACKER_ENV_VAR)
     if env:
         candidates.append(Path(env))
-    candidates.append(DEFAULT_CHAR_TRACKER_DIR)
     for candidate in candidates:
         if candidate.is_dir():
             return candidate
     return None
+
+
+def require_char_tracker_dir(override: Path | str | None = None) -> Path:
+    """Like :func:`resolve_char_tracker_dir`, but raise a clear error when unresolved."""
+    resolved = resolve_char_tracker_dir(override)
+    if resolved is None:
+        raise SystemExit(
+            f"char-tracker stage-05 directory not found: pass --char-tracker-dir or set "
+            f"{CHAR_TRACKER_ENV_VAR} to the directory holding <episode>_timestamps.csv."
+        )
+    return resolved
 
 
 def char_tracker_csv_path(char_tracker_dir: Path, episode: str) -> Path | None:

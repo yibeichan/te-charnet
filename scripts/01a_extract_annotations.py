@@ -25,7 +25,6 @@ from charnet.transcript_align import (  # noqa: E402
 )
 from charnet.visual_presence import (  # noqa: E402
     CHAR_TRACKER_ENV_VAR,
-    DEFAULT_CHAR_TRACKER_DIR,
     resolve_char_tracker_dir,
 )
 
@@ -94,7 +93,7 @@ def _load_shots_for_episode(episode: str, annotation_root: Path) -> list | None:
     help=(
         "Directory containing char-tracker stage-05 per-character timestamps "
         f"(<episode>_timestamps.csv). Falls back to ${CHAR_TRACKER_ENV_VAR} env "
-        f"var, then to {DEFAULT_CHAR_TRACKER_DIR}."
+        "var."
     ),
 )
 @click.option("--overwrite-speaker", is_flag=True, default=False, show_default=True)
@@ -143,12 +142,11 @@ def main(
     resolved_char_tracker_dir = resolve_char_tracker_dir(char_tracker_dir)
     if resolved_char_tracker_dir is None:
         logger.warning(
-            "char-tracker stage-05 directory not found (override=%s, env=%s, default=%s); "
+            "char-tracker stage-05 directory not found (override=%s, env=%s); "
             "visual_presence will be 'unavailable' for all sentences.",
             char_tracker_dir,
             os.environ.get(CHAR_TRACKER_ENV_VAR),
-            DEFAULT_CHAR_TRACKER_DIR,
-        )
+                )
     else:
         logger.info("Using char-tracker stage-05 directory: %s", resolved_char_tracker_dir)
 

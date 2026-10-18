@@ -271,4 +271,4 @@ If the reviewer's time is constrained:
   done
   ```
 - Smoke run: 2026-05-22, ~4 minutes for all 7 seasons end-to-end on the HPC head node.
-- Stage-05 visual data: `/orcd/scratch/bcs/002/yibei/friends-char-track/output/05_character_timestamps/` (1,023 files, 100% s1–s7 episode coverage).
+- Stage-05 visual data: `$CHAR_TRACKER_STAGE5_DIR` (char-tracker `output/05_character_timestamps/`) (1,023 files, 100% s1–s7 episode coverage).

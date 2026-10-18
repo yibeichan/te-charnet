@@ -4,8 +4,7 @@
   python scripts/export_dialogue_embeddings.py --episodes ALL
 
 TSV row i describes NPZ ``vecs`` row i. Turn construction contract (stable
-ordering, merge semantics) lives in charnet.topic_shift.turns_by_scene_with_counts;
-the spec is docs/superpowers/specs/2026-06-12-dialogue-embeddings-export-design.md.
+ordering, merge semantics) lives in charnet.topic_shift.turns_by_scene_with_counts.
 """
 from __future__ import annotations
 
