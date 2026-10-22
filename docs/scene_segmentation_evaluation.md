@@ -70,6 +70,25 @@ agreement figures are published. Goal-change boundaries are described there
 as more subjective to the rater. The scores in this document therefore measure
 agreement with one annotator, whose reliability is unknown.
 
+**Whole-second resolution.** All 6,223 manual onsets are whole seconds, so a
+gold boundary can sit up to about half a second from the moment it marks.
+F1@2s is the most sensitive to this; F1@5s and F1@10s are barely affected.
+
+**Timebase.** The manual onsets and the Speech2Text timestamps that
+te-charnet reads share a zero: both count from the start of the same
+half-episode `.mkv`, and the theme-song cleanup of the transcripts removes
+entries without shifting timestamps. The labels agree with this. Of the
+5,881 internal segment boundaries inside the speech window, 18.8% fall inside
+a spoken sentence, against 59% for random times. Shifting all boundaries by
+1 s or more in either direction raises that rate towards the random level.
+
+**Unlabelled tail.** The last manual segment ends 5.2–20.3 s (median 7.2 s)
+before the end of the last PySceneDetect shot in every one of the 292
+half-episodes, although the guidelines say it should run to the last frame.
+The evaluator restricts scoring to the overlap window and scores only internal
+boundaries, so the tail does not affect the numbers here, but the gold does not
+cover the end of each half-episode.
+
 ## Data sources and units
 
 The manual annotation defines two nested narrative units:
@@ -444,6 +463,8 @@ genuine value over these hand-built signals.
 - **The s7 special.** No manual labels for s7 (incl. the 4-part finale).
 - **Agreement between human raters.** The gold is a single rater's labels with
   no published reliability, so there is no human ceiling to compare F1 against.
+- **The last 5–20 s of each half-episode.** The manual labels stop before the
+  video does, so boundaries in that tail are neither gold nor scored.
 
 ## Files
 
